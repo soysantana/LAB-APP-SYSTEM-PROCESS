@@ -32,7 +32,7 @@ page_require_level(2);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="gs_rock.php" onsubmit="calcular();">
+<form method="post" action="gs_rock.php" onsubmit="calcular();calcularD();">
 
     <div>
         <table class="table table-bordered" style="width: 100%;">
@@ -881,7 +881,7 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" scope="row">Coarser than Gravel %:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="383"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="383"oninput="calcularDiametro"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Gravel %:</th>
@@ -897,31 +897,31 @@ page_require_level(2);
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D10 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="387"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="387"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D15 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="388"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="388"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D30 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="389"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="389"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D60 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="390"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="390"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D85 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="391"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="391"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Cc:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="392"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="392"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Cu:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="393"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="393"oninput="calcularD()"></td>
             </tr>
         </tbody>
     </table>
@@ -1020,6 +1020,8 @@ page_require_level(2);
     var cWRno140 = parseFloat(document.getElementById("367").value);
     var cWRno200 = parseFloat(document.getElementById("371").value);
     var cWRPAN = parseFloat(document.getElementById("362").value);
+
+
 
     // //calculo de humedades
     var water1 = TPWS1 - TPDS1;
@@ -1300,17 +1302,102 @@ var cPP2p5 = 100 - cCPR2p5;
       // Pan
       var cPRpan = (fcWRpan / TPSS) * 100;
   
+      
+
+      var TPL = cWR50 + cWR40 + cWR12 + cWR10 + cWR8 + cWR6 + cWR4 + cWR3 + fcWR2p5 + fcWR2 +
+      fcWR1p5 + fcWR1 + fcWR3p4 + fcWR1p2 + fcWR3p8 + fcWRn4 + fcWRn10 + fcWRn16 + fcWRn20 + fcWRn50 + 
+      fcWRn60 + fcWRn100 + fcWRn140 + fcWRn200 + fcWRpan;
+      
+      var PPL = TPSS - TPL;
+
       // Total Pan
-      var cWRTP = PPL + cPRpan;
+      var cWRTP = fcWRpan + PPL;
       var cPRTP = (cWRTP / TPSS) * 100;
       var cCPRTP = cPRTP + cCPRn200;
       var cPPTP = 100 - cCPRTP;
 
-      var TPL = cWR50 + cWR40 + cWR12 + cWR10 + cWR8 + cWR6 + cWR4 + cWR3 + fcWR2p5 + fcWR2
-      fcWR1p5 + fcWR1 + fcWR3p4 + fcWR1p2 + fcWR3p8 + fcWRn4 + fcWRn10 + fcWRn16 + fcWRn20 + fcWRn50
-      fcWRn60 + fcWRn100 + fcWRn140 + fcWRn200 + fcWRpan;
-      
-      var PPL = TPSS - TPL;
+      var pasante3;
+  
+         if (cPP3 === "") {
+            pasante3 = 100;
+        } else {
+            pasante3 = cPP3;
+        }
+   
+    var pasanteN4 = cPPn4;
+    var pasanteN200 = cPPn200;
+    var ctgravel = 100 - pasante3;
+    var gravel = pasante3 - pasanteN4;
+    var sand = pasanteN4 - pasanteN200;
+    var fines = pasanteN200;
+
+    //proceso de calculo de D10, D15, D30, D60 y D85
+
+    var p50 = parseFloat(document.getElementById("271").value);
+    var p40 = parseFloat(document.getElementById("275").value);
+    var p12 = parseFloat(document.getElementById("279").value);
+    var p10 = parseFloat(document.getElementById("283").value);
+    var p8 = parseFloat(document.getElementById("287").value);
+    var p6 = parseFloat(document.getElementById("292").value);
+    var p4 = parseFloat(document.getElementById("296").value);
+    var p3 = parseFloat(document.getElementById("300").value);
+    var p2m5 = parseFloat(document.getElementById("304").value);
+    var p2 = parseFloat(document.getElementById("308").value);
+    var p1m5 = parseFloat(document.getElementById("312").value);
+    var p1 = parseFloat(document.getElementById("316").value);
+    var p3m4 = parseFloat(document.getElementById("320").value);
+    var p1m2 = parseFloat(document.getElementById("334").value);
+    var p3m8 = parseFloat(document.getElementById("338").value);
+    var no4 = parseFloat(document.getElementById("342").value);
+    var no10 = parseFloat(document.getElementById("346").value);
+    var no16 = parseFloat(document.getElementById("350").value);
+    var no20 = parseFloat(document.getElementById("354").value);
+    var no50 = parseFloat(document.getElementById("358").value);
+    var no60 = parseFloat(document.getElementById("362").value);
+    var no100 = parseFloat(document.getElementById("366").value);
+    var no140 = parseFloat(document.getElementById("370").value);
+    var no200 = parseFloat(document.getElementById("374").value);
+  
+    var tamanos = [0.075, 0.106, 0.15, 0.25, 0.30, 0.85, 1.18, 2.00, 4.75, 9.5, 12.7, 19.5, 25.4, 38.1, 50.80, 63.50, 76.2, 101.6, 152.4, 203.2, 254, 304.8, 1016, 1270];
+    var porcentajes = [no200, no140, no100, no60, no50, no20, no16, no10, no4, p3m8, p1m2, p3m4, p1, p1m5, p2, p2m5, p3, p4, p6, p8, p10, p12, p40, p50];
+
+
+function calcularD(d) {
+  function buscarIndice() {
+    for (var i = 0; i < porcentajes.length; i++) {
+      if (porcentajes[i] >= d) {
+        return i;
+      }
+    }
+    return porcentajes.length - 1; // Si no se encuentra un índice, se devuelve el último
+  }
+
+  var indice = buscarIndice();
+  if (porcentajes[indice] == d) {
+    return tamanos[indice];
+  } else {
+    // Realizar interpolación logarítmica
+    var logD = Math.log(d);
+    var logD1 = Math.log(porcentajes[indice - 1]);
+    var logD2 = Math.log(porcentajes[indice]);
+    var logT1 = Math.log(tamanos[indice - 1]);
+    var logT2 = Math.log(tamanos[indice]);
+    var resultadoD = Math.exp(logT1 + (logD - logD1) * (logT2 - logT1) / (logD2 - logD1));
+    return resultadoD;
+  }
+}
+
+var d10 = calcularD(10)||0;
+var d15 = calcularD(15)||0;
+var d30 = calcularD(30)||0;
+var d60 = calcularD(60)||0;
+var d85 = calcularD(85)||0;
+  
+var Cc = (Math.pow(d30, 2) / (d60 * d10))||0;
+var Cu = (d60 / d10)||0;
+
+
+
 
       // Pasar los valores a los inputs
 
@@ -1558,6 +1645,21 @@ var cPP2p5 = 100 - cCPR2p5;
       document.getElementById("982").value = cPPTP.toFixed(2);
 
 
+      document.getElementById("383").value = ctgravel.toFixed(2);
+      document.getElementById("384").value = gravel.toFixed(2);
+      document.getElementById("385").value = sand.toFixed(2);
+      document.getElementById("386").value = fines.toFixed(2);
+
+      document.getElementById("387").value = d10.toFixed(2);
+      document.getElementById("388").value = d15.toFixed(2);
+      document.getElementById("389").value = d30.toFixed(2);
+      document.getElementById("390").value = d60.toFixed(2);
+      document.getElementById("391").value = d85.toFixed(2);
+
+      document.getElementById("392").value = Cc.toFixed(2);
+      document.getElementById("393").value = Cu.toFixed(2);
+     
+
     }
     </script>
     
@@ -1568,8 +1670,8 @@ var cPP2p5 = 100 - cCPR2p5;
 
 
 
-<button type="submit" name="Grain_Size" class="btn btn-danger">Registrar ensayo</button>
-<button type="submit" name="grainsize" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
+<button type="submit" name="gs_rock" class="btn btn-danger">Registrar ensayo</button>
+<button type="submit" name="gs_rock" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </form>
 </div>
 </div>
@@ -1580,7 +1682,7 @@ var cPP2p5 = 100 - cCPR2p5;
     function enviarData(event) {
       event.preventDefault()
       $.ajax({
-        url: "libs/js/grainsize.js",
+        url: "libs/js/gs_rock.js",
         type: "POST",
         data: $("#mxy").serialize(),
         success: function(data) {
