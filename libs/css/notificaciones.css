@@ -1,0 +1,61 @@
+body {
+    margin: 25px 50px;
+    font-family: Montserrat, sans-serif;
+    background: #e9f0f4;
+}
+
+.wrap {
+    margin: 20px auto;
+    text-align: center;
+}
+
+h2 {
+  color: #585858;
+  margin-top: 0;
+}
+
+small {
+  display: block;
+  color: #585858;
+  font-size: 75%;
+  margin-top: 25px;
+}
+
+small > a {
+  color: #585858;
+}
+
+/* Aqui empieza el codigo de notificaciones. */
+.notificacion {
+	background-color: #D8DED8;
+  color: #797979;
+	text-align: left;
+	padding: 10px 20px;
+  border-left: 6px solid #a7a7a7;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.notificacion-info {
+	background-color: #CCDFF0;
+  color: #5296CD;
+	border-left: 6px solid #2196F3;
+}
+
+.notificacion-exito {
+	background-color: #CAE4CA;
+  color: #3D9A41;
+  border-left: 6px solid #4CAF50;
+}
+
+.notificacion-advertencia {
+	background-color: #ffffcc;
+  color: #B3AA5A;
+	border-left: 6px solid #FFDC00;
+}
+
+.notificacion-peligro {
+	background-color: #ffdddd;
+  color: #CD6D66;
+	border-left: 6px solid #f44336;
+}

@@ -1,0 +1,308 @@
+<?php
+$page_title = 'Uniaxial Compressive Strength Calculation ';
+require_once('includes/load.php');
+// Checkin What level user has permission to view this page
+page_require_level(3);
+?>
+
+<?php include_once('layouts/header.php'); ?>
+<div class="row">
+  <div class="col-md-6">
+    <?php echo display_msg($msg); ?>
+    <form method="post" action="ajax.php" autocomplete="off" id="sug-form">
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">Búsqueda</button>
+          </span>
+          <input type="text" id="sug_input" class="form-control" name="title" placeholder="Buscar por el nombre de la muestra">
+        </div>
+        <div id="result" class="list-group"></div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <strong>
+          <span class="glyphicon glyphicon-th"></span>
+          <span> Splitting Tensile Strenght Calculation</span>
+        </strong>
+      </div>
+      <div class="panel-body">
+        <form method="post" action="BTS.php" onsubmit="calcular()">
+
+            <table class="table table-bordered">
+                <thead>
+          </div>
+          <div class="col-xs-4">
+            <label>Standard</label>
+            <select class="form-control" name="Standard">
+              <option selected>Choose...</option>
+              <option value="ASTM-D4318">ASTM-D7012</option>
+            </select>
+          </div>
+          <div class="col-xs-4">
+            <label>Method</label>
+            <select class="form-control" type = "text" name="method" id="1">
+              <option selected>Choose...</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              
+            </select>
+          </div>
+    
+          <div class="col-xs-4">
+            <label>Extraction Equipment:</label>
+            <input class="form-control" name="Extraequip" type="text" value="">
+          </div>
+
+          <div class="col-xs-4">
+            <label>Cutter Equipment:</label>
+            <input class="form-control" name="cuttrequip" type="text" value="">
+          </div>
+          <div class="col-xs-4">
+            <label>Test Device:</label>
+            <input class="form-control" name="testdevice" type="text" value="">
+          </div>
+          <div class="col-xs-4">
+            <label>Temperature:</label>
+            <input class="form-control" name="temperature" type="text" value="">
+          </div>
+    
+          <div class="col-xs-4">
+            <label>Comments</label>
+            <textarea class="form-control" name="Comments"></textarea>
+          </div>
+    
+          <div class="col-xs-4">
+            <label>Technician</label>
+            <input class="form-control" name="Technician" type="text">
+          </div>
+        </div>
+          <div class="col-xs-4">
+            <label>Test Start Date</label>
+            <input class="form-control" name="Test_Start_Date" type="date">
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <table class="table table-bordered border-primary" style="width:950px;">
+              <thead>
+              </thead>
+              <caption>Testing Information</caption>
+              <tr>
+                <th style="font-size: 20px; width: 350px; height: 25px; text-align: center;" scope="row" 
+                colspan="9">Splittling Tensile Strength of Rock Core Specimen- Brazilian:</th>
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                       <tr>
+                        <th scope="col">Samples</th>
+                        <th scope="col" style="text-align: center;">Diameter D (cm)</th>
+                        <th scope="col" style="text-align: center;">Thicness t (cm)</th>
+                        <th scope="col" style="text-align: center;">Relation t/d</th>
+                        <th scope="col" style="text-align: center;">Loading rate (KN/s)</th>
+                        <th scope="col" style="text-align: center;">Time to Failure (s)</th>
+                        <th scope="col" style="text-align: center;">Max. Load (kN)</th>
+                        <th scope="col" style="text-align: center;">Tensile Strength (Mpa)</th>
+                        <th scope="col" style="text-align: center;">Failure type</th>
+                      </tr>
+            
+                      <tbody>
+                        <tr>
+                          <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 1</th>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="5" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="6" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="7" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="8" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="9" oninput="calcular()"></td>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 2</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="10" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="11" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="12" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="13" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="14" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="15" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="16" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="17" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 3</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="18" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="19" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="20" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="21" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="22" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="23" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="24" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="25" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 4</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="26" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="27" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="28" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="29" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="30" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="31" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="32" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="33" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 5</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="34" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="35" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="36" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="37" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="38" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="39" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="40" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="41" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 6</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="42" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="43" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="44" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="45" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="46" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="47" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="48" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="49" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 7</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="50" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="51" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="52" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="53" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="54" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="55" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="56" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="57" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 8</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="58" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="59" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="60" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="61" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="62" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="63" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="64" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="65" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 9</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="66" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="67" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="68" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="69" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="70" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="71" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="72" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="73" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 10</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="74" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="75" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="76" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="77" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="78" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="79" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="80" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="81" oninput="calcular()"></td>
+                          </tr>
+                          <tr>
+                            <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Averages</th>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="83" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="84" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="85" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="86" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="87" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="88" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="89" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="90" oninput="calcular()"></td>
+                          </tr>
+                        </tr>
+                    </table>
+                    <script>
+                        function calcular() {
+                          // Obtenemos los valores de los campos de entrada d
+                          d1= parseFloat(document.getElementById("2").value);
+                          d1= parseFloat(document.getElementById("10").value);
+                          d1= parseFloat(document.getElementById("18").value);
+                          d1= parseFloat(document.getElementById("26").value);
+                          d1= parseFloat(document.getElementById("34").value);
+                          d1= parseFloat(document.getElementById("42").value);
+                          d1= parseFloat(document.getElementById("50").value);
+                          d1= parseFloat(document.getElementById("58").value);
+                          d1= parseFloat(document.getElementById("66").value);
+                          d10= parseFloat(document.getElementById("74").value);
+                          
+
+                          t1 = parseFloat(document.geElementById("3").value);
+                          t2 = parseFloat(document.geElementById("11").value);
+                          t3 = parseFloat(document.geElementById("19").value);
+                          t4 = parseFloat(document.geElementById("27").value);
+                          t5 = parseFloat(document.geElementById("35").value);
+                          t6 = parseFloat(document.geElementById("43").value);
+                          t7 = parseFloat(document.geElementById("51").value);
+                          t8 = parseFloat(document.geElementById("59").value);
+                          t9 = parseFloat(document.geElementById("67").value);
+                          t10 = parseFloat(document.geElementById("75").value);
+                         
+
+                          ML1 = parseFloat(document.geElementById("7").value);
+                          ML2 = parseFloat(document.geElementById("15").value);
+                          ML3 = parseFloat(document.geElementById("23").value);
+                          ML4 = parseFloat(document.geElementById("31").value);
+                          ML5 = parseFloat(document.geElementById("39").value);
+                          ML6 = parseFloat(document.geElementById("47").value);
+                          ML7 = parseFloat(document.geElementById("55").value);
+                          ML8 = parseFloat(document.geElementById("63").value);
+                          ML9= parseFloat(document.geElementById("71").value);
+                          ML10 = parseFloat(document.geElementById("79").value);
+
+                          aved=parseFloat(document.getElementById("83").value);
+                          avet = parseFloat(document.geElementById("84").value);
+                          aveM = parseFloat(document.geElementById("88").value);
+                        
+                          // Calculamos los resultados
+                          var rel1= t1/d1;
+                          var rel2= t2/d2;
+                          var rel3= t3/d3;
+                          var rel4= t4/d4;
+                          var rel5= t5/d5;
+                          var rel6= t6/d6;
+                          var rel7= t7/d7;
+                          var rel8= t8/d8;
+                          var rel9= t9/d9;
+                          var rel10= t10/d10;
+
+
+                          
+                          // Pasamos los resultados a los elementos correspondientes
+                          document.getElementById("3").value = relh.toFixed(3);
+                          document.getElementById("4").value = area.toFixed(5);
+                          document.getElementById("5").value = volume.toFixed(6);
+                          document.getElementById("7").value = Uwc.toFixed(3);
+                        }
+                        </script>
+                
+                
+                
+                
+                
+                
+                
+          
