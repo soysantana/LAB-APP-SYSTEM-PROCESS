@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Atterberg limit  Calculation ';
+$page_title = 'Standard Proctor Calculation ';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
@@ -264,7 +264,7 @@ page_require_level(2);
             Containing Oversize Particles ASTM D4718</caption>
     </thead>
 </tr>
-<th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">MC (%)</th>
+<th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">Wc (%)</th>
 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="94" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">GM</th>
 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="95" oninput="calcular()"></td>
@@ -362,6 +362,16 @@ function calcular() {
     var WT5   = parseFloat(document.getElementById("72").value);
     var WT6   = parseFloat(document.getElementById("73").value);
 
+    //variables para la correccion de tamano.
+
+    var Wc = parseFloat(document.getElementById("94").value);
+    var Gm = parseFloat(document.getElementById("95").value);
+    var Pc = parseFloat(document.getElementById("96").value);
+    var Pf = parseFloat(document.getElementById("97").value);
+    
+    var Ydt = parseFloat(document.getElementById("99").value);
+    var Yw = parseFloat(document.getElementById("100").value);
+
     // CALCULAMOS
     
          //peso de agua
@@ -425,12 +435,21 @@ function calcular() {
     if (densidadesSecas[i] > densidadSecaMaxima) {
     densidadSecaMaxima = densidadesSecas[i];
     humedadOptima = humedades[i];
-
-    
-    
+  
 
   }
 }
+
+    //Determinacion de correction de densidad y humedad por sobre tamaño.
+
+    // punto 1
+    var OptMc1 = MC1;
+    var Ydf1 = DD1 / 98.1;
+    var YDT1 = 100 *(Ydf1 * Gm * Yw) / ((Ydf1 * Pc) + (Gm * Yw * Pf));
+
+    var DD1C = YDT1 * 98.1;
+    var Mc1C = (OptMc1 * Pf) + ((Wc/100) * Pc);
+
 
     // Pasar el resultado al input
     //peso seco del material.
@@ -485,6 +504,11 @@ function calcular() {
     // Densidad Maxima y Humedad Optima.
     document.getElementById("92").value = densidadSecaMaxima.toFixed(2);
     document.getElementById("93").value = (humedadOptima *100).toFixed(2);
+
+    // Correccion por sobre tamano.
+
+    document.getElementById("38").value = DD1C.toFixed(2);
+    document.getElementById("86").value = Mc1C.toFixed(2);
 
 
 }
