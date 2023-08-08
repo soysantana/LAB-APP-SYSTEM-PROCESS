@@ -425,6 +425,10 @@ function calcular() {
     if (densidadesSecas[i] > densidadSecaMaxima) {
     densidadSecaMaxima = densidadesSecas[i];
     humedadOptima = humedades[i];
+
+    
+    
+
   }
 }
 
@@ -507,7 +511,7 @@ function calcular() {
     function enviarData(event) {
       event.preventDefault()
       $.ajax({
-        url: "sp_graph.js",
+        url: "libs/js/sp_graph.js",
         type: "POST",
         data: $("#mxy").serialize(),
         success: function(data) {
@@ -519,6 +523,6 @@ function calcular() {
 
   <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="sp_graph.js"></script>
+  <script src="libs/js/sp_graph.js"></script>
 
 <?php include_once('layouts/footer.php'); ?>
