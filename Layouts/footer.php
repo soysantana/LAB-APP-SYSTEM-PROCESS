@@ -21,7 +21,6 @@
 <script src="libs/js/plasticity_chart.js"></script>
 <script src="libs/js/consolidation.js"></script>
 
-
 </body>
 </html>
 
