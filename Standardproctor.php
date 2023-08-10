@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Atterberg limit  Calculation ';
+$page_title = 'Standard Proctor Calculation';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
@@ -264,7 +264,7 @@ page_require_level(2);
             Containing Oversize Particles ASTM D4718</caption>
     </thead>
 </tr>
-<th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">MC (%)</th>
+<th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">Wc (%)</th>
 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="94" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">GM</th>
 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="95" oninput="calcular()"></td>
@@ -362,6 +362,16 @@ function calcular() {
     var WT5   = parseFloat(document.getElementById("72").value);
     var WT6   = parseFloat(document.getElementById("73").value);
 
+    //variables para la correccion de tamano.
+
+    var Wc = parseFloat(document.getElementById("94").value);
+    var Gm = parseFloat(document.getElementById("95").value);
+    var Pc = parseFloat(document.getElementById("96").value);
+    var Pf = parseFloat(document.getElementById("97").value);
+    
+    var Ydt = parseFloat(document.getElementById("99").value);
+    var Yw = parseFloat(document.getElementById("100").value);
+
     // CALCULAMOS
     
          //peso de agua
@@ -425,8 +435,81 @@ function calcular() {
     if (densidadesSecas[i] > densidadSecaMaxima) {
     densidadSecaMaxima = densidadesSecas[i];
     humedadOptima = humedades[i];
+  
+
   }
 }
+
+    //Determinacion de correction de densidad y humedad por sobre tamaño.
+
+    // punto 1
+    var OptMc1 = MC1;
+    var Ydf1 = DD1 / 98.1;
+    var YDT1 = 100 *(Ydf1 * Gm * Yw) / ((Ydf1 * Pc) + (Gm * Yw * Pf));
+
+    var DD1C = YDT1 * 98.1;
+    var Mc1C = (OptMc1 * Pf) + ((Wc/100) * Pc);
+
+    // punto 2
+    var OptMc2 = MC2;
+    var Ydf2 = DD2 / 98.1;
+    var YDT2 = 100 *(Ydf2 * Gm * Yw) / ((Ydf2 * Pc) + (Gm * Yw * Pf));
+
+    var DD2C = YDT2 * 98.1;
+    var Mc2C = (OptMc2 * Pf) + ((Wc/100) * Pc);
+
+
+    // punto 3
+    var OptMc3 = MC3;
+    var Ydf3 = DD3 / 98.1;
+    var YDT3 = 100 *(Ydf3 * Gm * Yw) / ((Ydf3 * Pc) + (Gm * Yw * Pf));
+
+    var DD3C = YDT3 * 98.1;
+    var Mc3C = (OptMc3 * Pf) + ((Wc/100) * Pc);
+
+    // punto 4
+    var OptMc4 = MC4;
+    var Ydf4 = DD4 / 98.1;
+    var YDT4 = 100 *(Ydf4 * Gm * Yw) / ((Ydf4 * Pc) + (Gm * Yw * Pf));
+
+    var DD4C = YDT4 * 98.1;
+    var Mc4C = (OptMc4 * Pf) + ((Wc/100) * Pc);
+
+    // punto 5
+    var OptMc5 = MC5;
+    var Ydf5 = DD5 / 98.1;
+    var YDT5 = 100 *(Ydf5 * Gm * Yw) / ((Ydf5 * Pc) + (Gm * Yw * Pf));
+
+    var DD5C = YDT5 * 98.1;
+    var Mc5C = (OptMc5 * Pf) + ((Wc/100) * Pc);
+
+
+    // punto 6
+    var OptMc6 = MC6;
+    var Ydf6 = DD6 / 98.1;
+    var YDT6 = 100 *(Ydf6 * Gm * Yw) / ((Ydf6 * Pc) + (Gm * Yw * Pf));
+
+    var DD6C = YDT6 * 98.1;
+    var Mc6C = (OptMc6 * Pf) + ((Wc/100) * Pc);
+
+// densidades secas y humedades corregidas
+var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
+    var humedadesC = [Mc1c, Mc2c Mc3c, Mc4c, Mc5c, Mc6c];
+
+    // Variables para almacenar la densidad seca máxima y su humedad correspondiente
+    var densidadSecaMaximac = densidadesSecasc[0];
+    var humedadOptimac = humedadesc[0];
+
+    // Iterar sobre los datos para encontrar la densidad seca máxima
+    for (var i = 1; i < densidadesSecasc.length; i++) {
+    if (densidadesSecasc[i] > densidadSecaMaximac) {
+    densidadSecaMaximac = densidadesSecasc[i];
+    humedadOptimac = humedadesc[i];
+  
+
+  }
+}
+
 
     // Pasar el resultado al input
     //peso seco del material.
@@ -478,9 +561,28 @@ function calcular() {
     document.getElementById("37").value = DD6.toFixed(2);
 
 
-    // Densidad Maxima y Humedad Optima.
+
+    // Correccion por sobre tamano.
+
+    document.getElementById("38").value = DD1C.toFixed(2);
+    document.getElementById("39").value = DD2C.toFixed(2);
+    document.getElementById("40").value = DD3C.toFixed(2);
+    document.getElementById("41").value = DD4C.toFixed(2);
+    document.getElementById("42").value = DD5C.toFixed(2);
+    document.getElementById("43").value = DD6C.toFixed(2);
+
+    document.getElementById("86").value = Mc1C.toFixed(2);
+    document.getElementById("87").value = Mc2C.toFixed(2);
+    document.getElementById("88").value = Mc3C.toFixed(2);
+    document.getElementById("89").value = Mc4C.toFixed(2);
+    document.getElementById("90").value = Mc5C.toFixed(2);
+    document.getElementById("91").value = Mc6C.toFixed(2);
+
+     // Densidad Maxima y Humedad Optima.
     document.getElementById("92").value = densidadSecaMaxima.toFixed(2);
     document.getElementById("93").value = (humedadOptima *100).toFixed(2);
+    document.getElementById("101").value = densidadSecaMaximac.toFixed(2);
+    document.getElementById("102").value = (humedadOptimac *100).toFixed(2);
 
 
 }
@@ -507,7 +609,7 @@ function calcular() {
     function enviarData(event) {
       event.preventDefault()
       $.ajax({
-        url: "sp_graph.js",
+        url: "libs/js/sp_graph.js",
         type: "POST",
         data: $("#mxy").serialize(),
         success: function(data) {
@@ -519,6 +621,6 @@ function calcular() {
 
   <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="sp_graph.js"></script>
+  <script src="libs/js/sp_graph.js"></script>
 
 <?php include_once('layouts/footer.php'); ?>
