@@ -510,7 +510,6 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
   }
 }
 
-
     // Pasar el resultado al input
     //peso seco del material.
     document.getElementById("14").value = WS1.toFixed(2);
@@ -559,7 +558,6 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
     document.getElementById("35").value = DD4.toFixed(2);
     document.getElementById("36").value = DD5.toFixed(2);
     document.getElementById("37").value = DD6.toFixed(2);
-
 
 
     // Correccion por sobre tamano.
