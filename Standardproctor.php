@@ -561,9 +561,8 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
     document.getElementById("37").value = DD6.toFixed(2);
 
 
-    // Densidad Maxima y Humedad Optima.
-    document.getElementById("92").value = densidadSecaMaxima.toFixed(2);
-    document.getElementById("93").value = (humedadOptima *100).toFixed(2);
+   
+
 
     // Correccion por sobre tamano.
 
@@ -581,7 +580,9 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
     document.getElementById("90").value = Mc5C.toFixed(2);
     document.getElementById("91").value = Mc6C.toFixed(2);
 
-
+     // Densidad Maxima y Humedad Optima.
+    document.getElementById("92").value = densidadSecaMaxima.toFixed(2);
+    document.getElementById("93").value = (humedadOptima *100).toFixed(2);
     document.getElementById("101").value = densidadSecaMaximac.toFixed(2);
     document.getElementById("102").value = (humedadOptimac *100).toFixed(2);
 
