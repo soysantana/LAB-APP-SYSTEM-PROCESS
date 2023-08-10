@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Standard Proctor Calculation ';
+$page_title = 'Standard Proctor Calculation';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
@@ -560,8 +560,6 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
     document.getElementById("36").value = DD5.toFixed(2);
     document.getElementById("37").value = DD6.toFixed(2);
 
-
-   
 
 
     // Correccion por sobre tamano.
