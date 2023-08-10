@@ -450,6 +450,66 @@ function calcular() {
     var DD1C = YDT1 * 98.1;
     var Mc1C = (OptMc1 * Pf) + ((Wc/100) * Pc);
 
+    // punto 2
+    var OptMc2 = MC2;
+    var Ydf2 = DD2 / 98.1;
+    var YDT2 = 100 *(Ydf2 * Gm * Yw) / ((Ydf2 * Pc) + (Gm * Yw * Pf));
+
+    var DD2C = YDT2 * 98.1;
+    var Mc2C = (OptMc2 * Pf) + ((Wc/100) * Pc);
+
+
+    // punto 3
+    var OptMc3 = MC3;
+    var Ydf3 = DD3 / 98.1;
+    var YDT3 = 100 *(Ydf3 * Gm * Yw) / ((Ydf3 * Pc) + (Gm * Yw * Pf));
+
+    var DD3C = YDT3 * 98.1;
+    var Mc3C = (OptMc3 * Pf) + ((Wc/100) * Pc);
+
+    // punto 4
+    var OptMc4 = MC4;
+    var Ydf4 = DD4 / 98.1;
+    var YDT4 = 100 *(Ydf4 * Gm * Yw) / ((Ydf4 * Pc) + (Gm * Yw * Pf));
+
+    var DD4C = YDT4 * 98.1;
+    var Mc4C = (OptMc4 * Pf) + ((Wc/100) * Pc);
+
+    // punto 5
+    var OptMc5 = MC5;
+    var Ydf5 = DD5 / 98.1;
+    var YDT5 = 100 *(Ydf5 * Gm * Yw) / ((Ydf5 * Pc) + (Gm * Yw * Pf));
+
+    var DD5C = YDT5 * 98.1;
+    var Mc5C = (OptMc5 * Pf) + ((Wc/100) * Pc);
+
+
+    // punto 6
+    var OptMc6 = MC6;
+    var Ydf6 = DD6 / 98.1;
+    var YDT6 = 100 *(Ydf6 * Gm * Yw) / ((Ydf6 * Pc) + (Gm * Yw * Pf));
+
+    var DD6C = YDT6 * 98.1;
+    var Mc6C = (OptMc6 * Pf) + ((Wc/100) * Pc);
+
+// densidades secas y humedades corregidas
+var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
+    var humedadesC = [Mc1c, Mc2c Mc3c, Mc4c, Mc5c, Mc6c];
+
+    // Variables para almacenar la densidad seca máxima y su humedad correspondiente
+    var densidadSecaMaximac = densidadesSecasc[0];
+    var humedadOptimac = humedadesc[0];
+
+    // Iterar sobre los datos para encontrar la densidad seca máxima
+    for (var i = 1; i < densidadesSecasc.length; i++) {
+    if (densidadesSecasc[i] > densidadSecaMaximac) {
+    densidadSecaMaximac = densidadesSecasc[i];
+    humedadOptimac = humedadesc[i];
+  
+
+  }
+}
+
 
     // Pasar el resultado al input
     //peso seco del material.
@@ -508,7 +568,22 @@ function calcular() {
     // Correccion por sobre tamano.
 
     document.getElementById("38").value = DD1C.toFixed(2);
+    document.getElementById("39").value = DD2C.toFixed(2);
+    document.getElementById("40").value = DD3C.toFixed(2);
+    document.getElementById("41").value = DD4C.toFixed(2);
+    document.getElementById("42").value = DD5C.toFixed(2);
+    document.getElementById("43").value = DD6C.toFixed(2);
+
     document.getElementById("86").value = Mc1C.toFixed(2);
+    document.getElementById("87").value = Mc2C.toFixed(2);
+    document.getElementById("88").value = Mc3C.toFixed(2);
+    document.getElementById("89").value = Mc4C.toFixed(2);
+    document.getElementById("90").value = Mc5C.toFixed(2);
+    document.getElementById("91").value = Mc6C.toFixed(2);
+
+
+    document.getElementById("101").value = densidadSecaMaximac.toFixed(2);
+    document.getElementById("102").value = (humedadOptimac *100).toFixed(2);
 
 
 }

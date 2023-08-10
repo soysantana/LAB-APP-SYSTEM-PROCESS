@@ -161,10 +161,33 @@ option = {
         [document.getElementById(84).value, document.getElementById(36).value],
         [document.getElementById(85).value, document.getElementById(37).value]
       ],
+
       type: "line",
       symbol: "diamond",
       symbolSize: 9,
       color: "blue"
+    },
+    {
+      data: [
+       
+   
+    
+    
+    
+    
+        [document.getElementById(86).value,  document.getElementById(38).value ],
+        [document.getElementById(87).value,  document.getElementById(39).value ],
+        [document.getElementById(88).value,  document.getElementById(40).value ],
+        [document.getElementById(89).value,  document.getElementById(41).value ],
+        [document.getElementById(90).value,  document.getElementById(42).value ],
+        [document.getElementById(91).value,  document.getElementById(43).value ]
+      ],
+      
+      type: "line",
+      symbol: "diamond",
+      showSymbol: true,
+      symbolSize: 9,
+      color: "Gray"
     },
     {
       data: [
