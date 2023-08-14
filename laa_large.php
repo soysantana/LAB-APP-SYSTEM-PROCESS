@@ -109,19 +109,19 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Initial Weight (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="In-Weigt-g"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Final Weight (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Fin-Weigt-g"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight Loss (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Weigt-Loss-g"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight Loss (%)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Weigt-Loss-Porce"></td>
             </tr>
         </tbody>
     </table>
@@ -154,6 +154,11 @@ page_require_level(2);
 </div>
 
 
+<script>
+    function calcular(){
+        
+    }
+</script>
 
 
 
