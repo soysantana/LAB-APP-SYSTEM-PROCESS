@@ -307,12 +307,8 @@ function calcular() {
     //variables de otro ensayo.
     var Nmc = parseFloat(document.getElementById("1").value);
     var SG = parseFloat(document.getElementById("1.1").value);
-    var PC = parseFloat(document.getElementById("96").value);
-    var PF = parseFloat(document.getElementById("97").value);
-    var mc = parseFloat(document.getElementById("94").value);
-    var gm = parseFloat(document.getElementById("95").value);
 
-     //variables del peso del material humedo mas el molde de cada punto.
+    //variables del peso del material humedo mas el molde de cada punto.
     var Wwsm1 = parseFloat(document.getElementById("2").value);
     var Wwsm2 = parseFloat(document.getElementById("3").value);
     var Wwsm3 = parseFloat(document.getElementById("4").value);
@@ -494,17 +490,17 @@ function calcular() {
 
 // densidades secas y humedades corregidas
 var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
-    var humedadesC = [Mc1c, Mc2c Mc3c, Mc4c, Mc5c, Mc6c];
+    var humedadesC = [Mc1C, Mc2C, Mc3C, Mc4C, Mc5C, Mc6C];
 
     // Variables para almacenar la densidad seca máxima y su humedad correspondiente
-    var densidadSecaMaximac = densidadesSecasc[0];
-    var humedadOptimac = humedadesc[0];
+    var densidadSecaMaximaC = densidadesSecasC[0];
+    var humedadOptimaC = humedadesC[0];
 
     // Iterar sobre los datos para encontrar la densidad seca máxima
-    for (var i = 1; i < densidadesSecasc.length; i++) {
-    if (densidadesSecasc[i] > densidadSecaMaximac) {
-    densidadSecaMaximac = densidadesSecasc[i];
-    humedadOptimac = humedadesc[i];
+    for (var i = 1; i < densidadesSecasC.length; i++) {
+    if (densidadesSecasC[i] > densidadSecaMaximaC) {
+    densidadSecaMaximaC = densidadesSecasC[i];
+    humedadOptimaC = humedadesC[i];
   
 
   }
@@ -579,8 +575,8 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
      // Densidad Maxima y Humedad Optima.
     document.getElementById("92").value = densidadSecaMaxima.toFixed(2);
     document.getElementById("93").value = (humedadOptima *100).toFixed(2);
-    document.getElementById("101").value = densidadSecaMaximac.toFixed(2);
-    document.getElementById("102").value = (humedadOptimac *100).toFixed(2);
+    document.getElementById("101").value = densidadSecaMaximaC.toFixed(2);
+    document.getElementById("102").value = (humedadOptimaC).toFixed(2);
 
 
 }
@@ -616,8 +612,6 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
       });
     }
   </script>
-
-  <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="libs/js/sp_graph.js"></script>
 
