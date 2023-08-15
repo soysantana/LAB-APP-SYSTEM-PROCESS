@@ -88,39 +88,39 @@ page_require_level(3);
             </tr>
             <tr>
                 <th scope="col">Weight of tare (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-g" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare + Soil (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-g" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Volume of the Mold (m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Vol-the-Mold-m3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight Loose Material (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Loose-Material-g" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Absorption %</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Specific Gravity (OD)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Sg-OD" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Density of Water (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Loose Bulk Denisty (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Loose-Bulk-Densy-Kgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Percent Voids in loose Aggregate</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Loose-Agg" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -136,39 +136,39 @@ page_require_level(3);
         <tbody>
             <tr>
                 <th scope="col">Weight of tare (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Compacted" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare + Soil (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-Compacted" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Volume of the Mold (m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Vol-Mold-m3-Compacted" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight Compacted Material (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Compacted-Material" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Absorption %</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce-Compacted" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Specific Gravity (OD)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Sg-OD-Compacted" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Density of Water (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3-Compacted" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Compacted Bulk Denisty (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Compacted-Bulk-Densy" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Percent Voids in compacted Aggregate</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Compacted-Agg" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -179,26 +179,41 @@ page_require_level(3);
     <button type="submit" name="add_mcoven" class="btn btn-danger">Registrar ensayo</button>
 </div>
 
+<script>
+    function convertToNumberOrZero(value) {
+        const parsedValue = parseFloat(value);
+        return isNaN(parsedValue) ? 0 : parsedValue;
+    }
 
+    function calcular() {
 
+        WeigTareg = convertToNumberOrZero(document.getElementById("Weig-Tare-g").value);
+        WeigTareSoilg = convertToNumberOrZero(document.getElementById("Weig-Tare-Soil-g").value);
+        VoltheMoldm3 = convertToNumberOrZero(document.getElementById("Vol-the-Mold-m3").value);
+        AbsorptionPorce = convertToNumberOrZero(document.getElementById("Absorption-Porce").value);
+        SgOD = convertToNumberOrZero(document.getElementById("Sg-OD").value);
+        DensyWtKgm3 = convertToNumberOrZero(document.getElementById("Densy-Wt-Kgm3").value);
 
+        WeigTareCompacted = convertToNumberOrZero(document.getElementById("Weig-Tare-Compacted").value);
+        WeigTareSoilCompacted = convertToNumberOrZero(document.getElementById("Weig-Tare-Soil-Compacted").value);
+        VolMoldm3Compacted = convertToNumberOrZero(document.getElementById("Vol-Mold-m3-Compacted").value);
+        WeigCompactedMaterial = convertToNumberOrZero(document.getElementById("Weig-Compacted-Material").value);
+        AbsorptionPorceCompacted = convertToNumberOrZero(document.getElementById("Absorption-Porce-Compacted").value);
+        SgODCompacted = convertToNumberOrZero(document.getElementById("Sg-OD-Compacted").value);
+        DensyWtKgm3Compacted = convertToNumberOrZero(document.getElementById("Densy-Wt-Kgm3-Compacted").value);
+        
+        const WeigLsMtg = WeigTareSoilg-WeigTareg;
+        const LsBkDensyKgm3 = (WeigLsMtg/1000)/VoltheMoldm3;
+        const PorcentVoidsLsAgg = 100*((SgOD*DensyWtKgm3)-LsBkDensyKgm3)/(SgOD*DensyWtKgm3);
+        const CompactedBkDensyKgm3 = (WeigCompactedMaterial/1000)/VolMoldm3Compacted;
+        const PorcentCompactedAgg = 100*((SgODCompacted*DensyWtKgm3Compacted)-CompactedBkDensyKgm3)/(SgODCompacted*DensyWtKgm3Compacted);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        document.getElementById("Weig-Loose-Material-g").value = isNaN(WeigLsMtg) ? 0 : WeigLsMtg.toFixed(2);
+        document.getElementById("Loose-Bulk-Densy-Kgm3").value = isNaN(LsBkDensyKgm3) ? 0 : LsBkDensyKgm3.toFixed(2);
+        document.getElementById("Percent-Voids-Loose-Agg").value = isNaN(PorcentVoidsLsAgg) ? 0 : PorcentVoidsLsAgg.toFixed(2);
+        document.getElementById("Compacted-Bulk-Densy").value = isNaN(CompactedBkDensyKgm3) ? 0 : CompactedBkDensyKgm3.toFixed(2);
+        document.getElementById("Percent-Voids-Compacted-Agg").value = isNaN(PorcentCompactedAgg) ? 0 : PorcentCompactedAgg.toFixed(2);
+    }
+</script>
 
 <?php include_once('layouts/footer.php'); ?>
