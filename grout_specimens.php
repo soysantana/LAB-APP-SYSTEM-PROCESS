@@ -1,87 +1,79 @@
 <?php
-$page_title = 'Compressive Strenght of Grout Specimens';
+$page_title = 'Compressive Strength of Grout Specimens';
 require_once('includes/load.php');
-// Checkin What level user has permission to view this page
+// Verificar el nivel de permiso del usuario para ver esta página
 page_require_level(2);
 ?>
 
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
-<div class="col-md-6">
-<?php echo display_msg($msg); ?>
-<form method="post" action="ajax.php" autocomplete="off" id="sug-form">
-<div class="form-group">
-<div class="input-group">
-<span class="input-group-btn">
-<button type="submit" class="btn btn-primary">Búsqueda</button>
-</span>
-<input type="text" id="sug_input" class="form-control" name="title"  placeholder="Buscar por el nombre de la muestra">
+    <div class="col-md-6">
+        <?php echo display_msg($msg); ?>
+        <form method="post" action="ajax.php" autocomplete="off" id="sug-form">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">Búsqueda</button>
+                    </span>
+                    <input type="text" id="sug_input" class="form-control" name="title" placeholder="Buscar por el nombre de la muestra">
+                </div>
+                <div id="result" class="list-group"></div>
+            </div>
+        </form>
+    </div>
 </div>
-<div id="result" class="list-group"></div>
-</div>
-</form>
-</div>
-</div>
-<div class="row"></div>
-<div class="col-md-12"></div>
+
 <div class="panel panel-default">
-<div class="panel-heading clearfix">
-<strong>
-<span class="glyphicon glyphicon-th"></span>
-<span>Compressive Strenght of Grout Specimens</span>
-</strong>
-</div>
-<div class="panel-body">
-<form method="post" action="" onsubmit="calcular();calcularD();">
+    <div class="panel-heading clearfix">
+        <strong>
+            <span class="glyphicon glyphicon-th"></span>
+            <span>Compressive Strength of Grout Specimens</span>
+        </strong>
+    </div>
+    <div class="panel-body">
+        <form method="post" action="" oninput="calcular(); calculateAverageStrength();">
+            <div class="row">
+                <div class="col-xs-4">
+                    <label>Standard</label>
+                    <select class="form-control" name="Standard">
+                        <option selected>Choose...</option>
+                        <option value="ASTM C88">ASTM C88</option>
+                    </select>
+                </div>
+                <div class="col-xs-4">
+                    <label>Preparation Method</label>
+                    <select class="form-control" name="preparation">
+                        <option selected>Choose...</option>
+                        <option value="Oven_Dried">Oven Dried</option>
+                        <option value="Air_Dried">Air Dried</option>
+                    </select>
+                </div>
+                <div class="col-xs-4">
+                    <label>Split Method</label>
+                    <select class="form-control" name="split_method">
+                        <option selected>Choose...</option>
+                        <option value="Mech_Split">Mech. Split</option>
+                        <option value="Man_Split">Manual Split</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-xs-4">
+                <label>Comments</label>
+                <textarea class="form-control" name="Comments"></textarea>
+            </div>
+            
+            <div class="col-xs-4">
+                <label>Technician</label>
+                <input class="form-control" name="Technician" type="text">
+            </div>
+            
+            <div class="col-xs-4">
+                <label>Test Start Date</label>
+                <input class="form-control" name="Test_Start_Date" type="date">
+            </div>
 
-<table class="table table-bordered">
-<thead>
-</div>
-<div class="col-xs-4">
-<label >Standard</label>
-<select class="form-control" name="Standard">
-<option selected>Choose...</option>
-<option value="ASTM C88">ASTM C88</option>         
-</select>
-</div>
-
-<div class="col-xs-4">
-<label >Preparation Method</label>
-<select class="form-control" name="preparacion">
-<option selected>Choose...</option>
-<option value="Oven_Dried">Oven Dried</option>
-<option value="Air_Dried">Air Dried</option>
-</select>
-</div>
-
-<div class="col-xs-4">
-<label >Split Method</label>
-<select class="form-control" name="preparacion">
-<option selected>Choose...</option>
-<option value="Mech_Split">Mech. Split</option>
-<option value="Man_Split">Manual Split</option>
-</select>
-</div>
-
-<div class="col-xs-4">
-<label>Comments</label>
-<textarea class="form-control" name="Comments"></textarea>
-</div>
-      
-<div class="col-xs-4">
-<label>Technician</label>
-<input class="form-control" name="Technician" type="text">
-</div>
-    
-<div class="col-xs-4">
-<label>Test Start Date</label>
-<input class="form-control" name="Test_Start_Date" type="date">
-</div>
-
-
-
-
-<div>
+            <div>
     <table class="table table-bordered" style="width: 100%;">
         <thead>
             <caption>Testing Information</caption>
@@ -112,13 +104,13 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-1"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-1"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-1"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-1"></td>
+                <td rowspan="5"><input type="text" style="border: none;" size="4" style="background: transparent;"id="Average-Streng-Mpa"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -128,13 +120,12 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-2"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-2"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-2"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-2"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -144,13 +135,12 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-3"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-3"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-3"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-3"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -160,13 +150,12 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-4"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-4"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-4"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-4"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -176,13 +165,12 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-5"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-5"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-5"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-5"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -190,29 +178,7 @@ page_require_level(2);
     </table>
 </div>
 
-
-
-<div style="display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-end; margin-right: 10%;">
-    <span>Graphic Load versus time</span>
-    <div>
-      <form action="" method="POST" enctype="multipart/form-data">
-      <div>
-        <div>
-          <span>
-            <input type="file" name="" id="fileToUpload" multiple="multiple" class="btn btn-primary"/>
-         </span>
-
-         <div>
-            <img id="imatge" sty>
-         </div>
-       </div>
-      </div>
-  </div>
-  </div>
-
-
-
-  <div style="display: flex; margin-left: 10%;">
+<div style="display: flex; margin-left: 10%;">
     <table class="table table-bordered" style="width: 12%;">
         <thead>
             <caption>Test condition</caption>
@@ -230,62 +196,84 @@ page_require_level(2);
     </table>
   </div>
 
+  <div style="display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-end; margin-right: 10%;">
+    <span>Graphic Load versus time</span>
+    <div>
+      <form action="" method="POST" enctype="multipart/form-data">
+      <div>
+        <div>
+          <span>
+            <input type="file" name="" id="fileToUpload" multiple="multiple" class="btn btn-primary"/>
+         </span>
 
+         <div>
+            <img id="imatge" sty>
+         </div>
+       </div>
+      </div>
+  </div>
+  </div>
 
-  <script>
-    document.getElementById("fileToUpload").onchange = function(e) {   
-     
-     // Creamos el objeto de la clase FileReader 
-     let reader = new FileReader();
-     
-     // Leemos el archivo subido y se lo pasamos a nuestro fileReader   
-     reader.readAsDataURL(e.target.files[0]);   
-     
-     // Le decimos que cuando este listo ejecute el código interno 
-     reader.onload = function(){ 
-      
-      let preview = document.getElementById('imatge'), 
-      image = document.createElement('img'); 
-      image.src = reader.result; 
-      preview.innerHTML = ''; 
-      preview.append(image);
-     
-     }; 
-    
+        </form>
+    </div>
+</div>
+
+<script>
+    function convertToNumberOrZero(value) {
+        const parsedValue = parseFloat(value);
+        return isNaN(parsedValue) ? 0 : parsedValue;
     }
-    </script>
+    function calculateAverageStrength() {
+        const strengthInputs = [
+        document.getElementById('Strenght-Mpa-1'),
+        document.getElementById('Strenght-Mpa-2'),
+        document.getElementById('Strenght-Mpa-3'),
+        document.getElementById('Strenght-Mpa-4'),
+        document.getElementById('Strenght-Mpa-5')
+    ];
 
+    let validCount = 0;
+    let totalStrength = 0;
 
+    for (const input of strengthInputs) {
+        const value = parseFloat(input.value);
+        if (!isNaN(value)) {
+            totalStrength += value;
+            validCount++;
+        }
+    }
 
+    if (validCount === 0) {
+        return 0;
+    }
 
+    const averageStrength = totalStrength / validCount;
+    return document.getElementById("Average-Streng-Mpa").value = isNaN(averageStrength) ? 0 : averageStrength.toFixed(2);
+}
+    function calcular() {
+        Volm31 = convertToNumberOrZero(document.getElementById("Vol-m3-1").value);
+        WeigCylinder1 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-1").value);
+        Volm32 = convertToNumberOrZero(document.getElementById("Vol-m3-2").value);
+        WeigCylinder2 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-2").value);
+        Volm33 = convertToNumberOrZero(document.getElementById("Vol-m3-3").value);
+        WeigCylinder3 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-3").value);
+        Volm34 = convertToNumberOrZero(document.getElementById("Vol-m3-4").value);
+        WeigCylinder4 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-4").value);
+        Volm35 = convertToNumberOrZero(document.getElementById("Vol-m3-5").value);
+        WeigCylinder5 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-5").value);
 
+        const UnitWeigKgm31 = WeigCylinder1/Volm31;
+        const UnitWeigKgm32 = WeigCylinder2/Volm32;
+        const UnitWeigKgm33 = WeigCylinder3/Volm33;
+        const UnitWeigKgm34 = WeigCylinder4/Volm34;
+        const UnitWeigKgm35 = WeigCylinder5/Volm35;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        document.getElementById("Unit-Weig-Kgm3-1").value = isNaN(UnitWeigKgm31) ? 0 : UnitWeigKgm31.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-2").value = isNaN(UnitWeigKgm32) ? 0 : UnitWeigKgm32.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-3").value = isNaN(UnitWeigKgm33) ? 0 : UnitWeigKgm33.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-4").value = isNaN(UnitWeigKgm34) ? 0 : UnitWeigKgm34.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-5").value = isNaN(UnitWeigKgm35) ? 0 : UnitWeigKgm35.toFixed(2);
+    }
+</script>
 
 <?php include_once('layouts/footer.php'); ?>
