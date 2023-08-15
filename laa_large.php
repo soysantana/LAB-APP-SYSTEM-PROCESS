@@ -109,21 +109,6 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Initial Weight (g)</th>
-<<<<<<< Updated upstream
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
-            </tr>
-            <tr>
-                <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Final Weight (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
-            </tr>
-            <tr>
-                <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight Loss (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
-            </tr>
-            <tr>
-                <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight Loss (%)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
-=======
                 <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="In-Weigt-g" oninput="calcular()"></td>
             </tr>
             <tr>
@@ -137,7 +122,6 @@ page_require_level(2);
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight Loss (%)</th>
                 <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Weigt-Loss-Porce" oninput="calcular()"></td>
->>>>>>> Stashed changes
             </tr>
         </tbody>
     </table>
@@ -166,9 +150,6 @@ page_require_level(2);
     <button type="submit" name="" class="btn btn-danger">Registrar ensayo</button>
 </div>
 
-<<<<<<< Updated upstream
-
-=======
 <script>
     function convertToNumberOrZero(value) {
         const parsedValue = parseFloat(value);
@@ -188,6 +169,5 @@ page_require_level(2);
         document.getElementById("Weigt-Loss-Porce").value = isNaN(WeigtLossPorce) ? 0 : WeigtLossPorce.toFixed(2);
     }
 </script>
->>>>>>> Stashed changes
 
 <?php include_once('layouts/footer.php'); ?>
