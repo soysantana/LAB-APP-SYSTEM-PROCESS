@@ -166,6 +166,8 @@ page_require_level(2);
               </tr>
               </table>
            
+              <div id="PointLoadGraph" style="height: 500px; width: 500px;"></div>
+
               <script>
                 function calcular() {
                   // declaramos todas las variables a usar.
@@ -289,7 +291,9 @@ page_require_level(2);
                 </div>
                 </div>
                 </div>
-                
-                
-                
+              
+                <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script src="libs/js/plt_graph.js"></script>
+
                 <?php include_once('layouts/footer.php'); ?>
