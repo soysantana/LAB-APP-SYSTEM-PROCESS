@@ -18,13 +18,15 @@ option = {
 
   xAxis: {
     minInterval: 20,
+    min: 0,
+    max: 20,
     name: "TEST TIME (MINUTE)",
     nameLocation: "center",
     nameTextStyle: {
       color: "black",
       fontWeight: "bold",
       fontSize: 13,
-      lineHeight: 50
+      lineHeight: 20
     }
   },
   yAxis: {
@@ -35,7 +37,7 @@ option = {
       color: "black",
       fontWeight: "bold",
       fontSize: 13,
-      lineHeight: 50
+      lineHeight: 20
     }
   },
 
@@ -46,224 +48,15 @@ option = {
         {
           type: 'image',
           style: {
-            image: "uploads/img/legenda.png",
-            x: 100,
-            y: 80,
-            width: 350,
-            height: 45,
+            image: "uploads/img/pinhole-graph.png",
+            x: 65,
+            y: 50,
+            width: 772,
+            height: 552,
           }
         }
       ]
     },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/legenda2.png",
-            x: 95,
-            y: 165,
-            width: 360,
-            height: 270,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/hydraulic.png",
-            x: 450,
-            y: 240,
-            width: 180,
-            height: 50,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/hydraulic3.2.png",
-            x: 630,
-            y: 205,
-            width: 175,
-            height: 40,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/head.png",
-            x: 250,
-            y: 140,
-            width: 500,
-            height: 30,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/headlow.png",
-            x: 290,
-            y: 510,
-            width: 140,
-            height: 36,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/headlow.png",
-            x: 470,
-            y: 470,
-            width: 140,
-            height: 36,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/swelling.png",
-            x: 542,
-            y: 540,
-            width: 180,
-            height: 16,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/hole.png",
-            x: 170,
-            y: 560,
-            width: 160,
-            height: 13,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/nd1.png",
-            x: 690,
-            y: 430,
-            width: 40,
-            height: 30,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/nd2nd3.png",
-            x: 630,
-            y: 249,
-            width: 180,
-            height: 142,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/nd4nd3.png",
-            x: 450,
-            y: 290,
-            width: 180,
-            height: 164,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/d1d2.png",
-            x: 90,
-            y: 435,
-            width: 360,
-            height: 40,
-          }
-        }
-      ]
-    },
-
-    {
-      type: 'group',
-      children: [
-        {
-          type: 'image',
-          style: {
-            image: "uploads/img/nd4.png",
-            x: 270,
-            y: 477,
-            width: 180,
-            height: 20,
-          }
-        }
-      ]
-    }
-
   ],
 
   series: [
@@ -295,188 +88,6 @@ option = {
       type: "line",
       color: "red"
     },
-    {
-      data: [
-        [0, 1.4],
-        [10, 1.4]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false
-    },
-    {
-      data: [
-        [0, 1],
-        [10, 1]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false
-    },
-    {
-      data: [
-        [5, 0.8],
-        [10, 0.8]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false
-    },
-    {
-      data: [
-        [0, 0.2],
-        [10, 0.2]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-      lineStyle: {
-        type: "dotted"
-      }
-    },
-    {
-      data: [
-        [5, 0.2],
-        [5, 1.4]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false
-    },
-
-    {
-      data: [
-        [10, 0],
-        [10, 2.8]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [10, 0.6],
-        [15, 0.6]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-      lineStyle: {
-        type: "dotted"
-      }
-    },
-    {
-      data: [
-        [10, 1.2],
-        [15, 1.2]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [10, 2],
-        [15, 2]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [15, 0],
-        [15, 3.2]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [20, 0],
-        [20, 5.0]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [10, 2.8],
-        [15, 2.8]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [15, 0.8],
-        [20, 0.8]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [15, 1.8],
-        [20, 1.8]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false,
-    },
-    {
-      data: [
-        [15, 2.4],
-        [20, 2.4]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false
-    },
-    {
-      data: [
-        [15, 3.2],
-        [20, 3.2]
-      ],
-      type: "line",
-      color: "black",
-      showSymbol: false
-    },
-    {
-      data: [[10, 4]],
-      type: "line",
-      color: "black",
-      symbol: "arrow",
-      symbolRotate: 270,
-      symbolSize: 12,
-      lineStyle: {
-        type: "dotted"
-      },
-      markLine: {
-        data: [
-          {
-            type: "average"
-          }
-        ],
-        symbol: "arrow",
-        silent: true
-      }
-    },
-    {
-      data: [[15, 4]],
-      type: "line",
-      color: "black",
-      symbol: "arrow",
-      symbolRotate: 270,
-      symbolSize: 12,
-      lineStyle: {
-        type: "dotted"
-      }
-    }
   ]
 };
 
