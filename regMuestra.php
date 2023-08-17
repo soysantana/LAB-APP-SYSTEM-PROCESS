@@ -32,19 +32,19 @@ $products = join_lab_test_requisition_form();
 <?php } ?>
 <div class="col-md-4">
     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#basicModal_<?php echo $product['Sample_ID']; ?>">
-        <?php echo count_id(); ?> - <?php echo remove_junk($product['Sample_ID']); ?>
+        <?php echo count_id(); ?> - <?php echo remove_junk($product['Sample_ID']); ?> - <?php echo remove_junk($product['Sample_Number']);?> 
     </button>
     <div class="modal fade" id="basicModal_<?php echo $product['Sample_ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel_<?php echo $product['Sample_ID']; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="basicModalLabel_<?php echo $product['Sample_ID']; ?>"><?php echo remove_junk($product['Sample_ID']); ?></h4>
+                    <h4 class="modal-title" id="basicModalLabel_<?php echo $product['Sample_ID']; ?>"><?php echo remove_junk($product['Sample_ID']); ?> - <?php echo remove_junk($product['Sample_Number']);?></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                  <h3>Sample Number:  <?php echo remove_junk($product['Sample_Number']);?></h3>
+                  
                     <ul>
 
                         <li>McO:  <?php echo remove_junk($product['MC_Oven']);?></li>
@@ -104,3 +104,4 @@ $products = join_lab_test_requisition_form();
 </style>
 
 <?php include_once('layouts/footer.php'); ?>
+
