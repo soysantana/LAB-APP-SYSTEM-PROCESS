@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-07-2023 a las 21:21:07
+-- Tiempo de generación: 17-08-2023 a las 16:33:04
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -439,7 +439,7 @@ CREATE TABLE `moisture_content` (
 --
 
 INSERT INTO `moisture_content` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Tare_Name`, `Temperature`, `Tare_Plus_Wet_Soil`, `Tare_Plus_Dry_Soil`, `Water`, `Weigth_Tare`, `Dry_Soil`, `Mc`, `Standard`, `Method`, `Comments`, `Technician`, `Test_Start_Date`, `Report_Date`, `test_type`) VALUES
-(1, 'TP-BGC23-NTSF-100', 'G1', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grab', 20232500, 376589, 125, '2023-07-07', 'LG', '110 ºC', 178, 151, 27, 68, 83, 32, 'Choose...', '', '', 'wd', '2023-07-10', '2023-07-13', 'MC-Oven'),
+(1, 'TP-BGC23-NTSF-100', 'G1', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grab', 20232500, 376589, 125, '2023-07-07', 'LG', '110 ºC', 178, 151, 27, 68, 83, 32, 'Choose...', '', '', 'wd', '2023-07-10', '2023-08-07', 'MC-Oven'),
 (3, 'TP-BGC23-NTSF-101', 'M2', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, '2023-07-17', 'a', '110 ºC', 150, 120, 30, 45, 75, 40, 'Choose...', '', '', 'l', '2023-07-14', '2023-07-17', 'MC-Oven');
 
 -- --------------------------------------------------------
@@ -745,7 +745,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Admin Users', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-07-20 21:03:25'),
+(1, 'Admin Users', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-08-17 13:14:06'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2023-03-20 03:13:43'),
 (3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2023-07-19 21:21:18');
 
