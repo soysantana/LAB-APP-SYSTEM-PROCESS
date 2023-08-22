@@ -82,39 +82,39 @@ page_require_level(3);
               <tbody>
                 <tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Dispersing Agent</th>
-                  <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="1" oninput="calcular()"></td>
                 </tr>
                 <tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Amount used (g)</th>
-                  <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="2" oninput="calcular()"></td>
                 </tr>
                 <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Temperature of test, T (ºC)</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="3" oninput="calcular()"></td>
               </tr>
               <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Viscosity of water (g*s/cm2)</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="4" oninput="calcular()"></td>
               </tr>
               <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Mass density of water Calibrated (ᵨc )</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="5" oninput="calcular()"></td>
               </tr>
               <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Acceleration (cm/s2)</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="6" oninput="calcular()"></td>
               </tr>
               <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Volume of suspension (Vsp) cm3</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="7" oninput="calcular()"></td>
               </tr>
               <tr>
-              <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Meniscus Correction, Cm</th>
-              <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+              <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Meniscus Correc8tion, Cm</th>
+              <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="8" oninput="calcular()"></td>
             </tr>
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Percent Passing No. 200 sieve</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="9" oninput="calcular()"></td>
               </tr>
             </tbody>
             </table>
@@ -134,37 +134,37 @@ page_require_level(3);
                 </tr>
                 <tr>
                  <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Name</th>
-                 <td><input type="text" value="A" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
-                 <td><input type="text" value="A" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                 <td><input type="text" value="" style="border: none;" size="4" style="background: transparent;" id="14" oninput="calcular()"></td>
+                 <td><input type="text" value="" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
                 </tr>                
                 <tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Oven Temperature (°C)</th>
-                  <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                  <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="15" oninput="calcular()"></td>
                   <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
                 </tr>
               <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Plus Wet Soil (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="16" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Plus Dry Soil (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="17" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Water, Ww (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="18" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="19" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Dry Soil, Ws (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="20" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Moisture Content (%)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="21" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
               </tr>
               </tbody>
@@ -180,10 +180,10 @@ page_require_level(3);
                   <caption>Atterber Limit Results</caption>
                   <tbody>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Liquid Limit (%)</th>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="10" oninput="calcular()"></td>
                   </tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Plasticity Index (%)</th>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="11" oninput="calcular()"></td>
                   </tr>
                   </tbody>
                 </table>
@@ -196,7 +196,7 @@ page_require_level(3);
                   <caption>Specific Gravity</caption>
                   <tbody>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">SG</th>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="12" oninput="calcular()"></td>
                   </tr>
                   </tbody>
                 </table>
@@ -209,7 +209,7 @@ page_require_level(3);
               <table class="table table-bordered border-primary" style="width: 530px;">
               <thead>
               </thead>
-              <caption></caption>
+              <caption>Hydrometer Calibration (25 gr) </caption>
               <th style="text-align: center;" scope="row" colspan="2">Hydrometer Calibration:</th>
               <th style="text-align: center;" scope="row" colspan="2">Hydrometer measure of fluid:</th>
               <tbody>
@@ -280,7 +280,7 @@ page_require_level(3);
                 <table class="table table-bordered border-primary" style="width: 530px;">
                 <thead>
                 </thead>
-                <caption></caption>
+                <caption>Hydrometer Calibration (50 gr) </caption>
                 <th style="text-align: center;" scope="row" colspan="2">Hydrometer Calibration:</th>
                 <th style="text-align: center;" scope="row" colspan="2">Hydrometer measure of fluid:</th>
                 <tbody>
@@ -993,7 +993,295 @@ page_require_level(3);
                 </tbody>
               </table>
               </div>
+              <script>
+        function calcular() {
+        // obtenemos los valores
 
+        // calculos hidrometros de 50 gr
+         var temperatura_ensayo = parseFloat(document.getElementById("3").value);
+         var Mdisp = parseFloat(document.getElementById("2").value);
+         var Viscwater = parseFloat(document.getElementById("4").value);
+         var g= parseFloat(document.getElementById("6").value);
+         var Vsp = parseFloat(document.getElementById("7").value);
+         var Cm = parseFloat(document.getElementById("8").value);
+         var Sg = parseFloat(document.getElementById("12").value);
+         var PNo200 = parseFloat(document.getElementById("9").value);
+         var TPWS = parseFloat(document.getElementById("16").value);
+         var TPDS = parseFloat(document.getElementById("17").value);
+         var tare = parseFloat(document.getElementById("19").value);
+         var tempCal1 = parseFloat(document.getElementById("24").value);
+         var tempCal6 = parseFloat(document.getElementById("44").value);
+         var tempCal7 = parseFloat(document.getElementById("48").value);
+         var tempCal8 = parseFloat(document.getElementById("52").value);
+         var tempCal9 = parseFloat(document.getElementById("56").value);
+
+         var AR1 = parseFloat(document.getElementById("25").value);
+         var AR2 = parseFloat(document.getElementById("29").value);
+         var AR3 = parseFloat(document.getElementById("33").value);
+         var AR4 = parseFloat(document.getElementById("37").value);
+         var AR5 = parseFloat(document.getElementById("41").value);
+         var AR6 = parseFloat(document.getElementById("45").value);
+         var AR7 = parseFloat(document.getElementById("49").value);
+         var AR8 = parseFloat(document.getElementById("53").value);
+         var AR9 = parseFloat(document.getElementById("57").value);
+
+         var tempf1 = parseFloat(document.getElementById("26").value);
+         var tempf2 = parseFloat(document.getElementById("30").value);
+         var tempf3 = parseFloat(document.getElementById("34").value);
+         var tempf4 = parseFloat(document.getElementById("38").value);
+         var tempf5 = parseFloat(document.getElementById("42").value);
+         var tempf6 = parseFloat(document.getElementById("46").value);
+         var tempf7 = parseFloat(document.getElementById("50").value);
+         var tempf8 = parseFloat(document.getElementById("54").value);
+         var tempf9 = parseFloat(document.getElementById("58").value);
+
+         var arf1 = parseFloat(document.getElementById("27").value);
+         var arf2 = parseFloat(document.getElementById("31").value);
+         var arf3 = parseFloat(document.getElementById("35").value);
+         var arf4 = parseFloat(document.getElementById("39").value);
+         var arf5 = parseFloat(document.getElementById("43").value);
+         var arf6 = parseFloat(document.getElementById("47").value);
+         var arf7 = parseFloat(document.getElementById("51").value);
+         var arf8 = parseFloat(document.getElementById("55").value);
+         var arf9 = parseFloat(document.getElementById("59").value);
+
+         var tm1 = parseFloat(document.getElementById("185").value);
+         var tm2 = parseFloat(document.getElementById("197").value);
+         var tm3 = parseFloat(document.getElementById("209").value);
+         var tm4 = parseFloat(document.getElementById("221").value);
+         var tm5 = parseFloat(document.getElementById("233").value);
+         var tm6 = parseFloat(document.getElementById("245").value);
+         var tm7 = parseFloat(document.getElementById("257").value);
+         var tm8 = parseFloat(document.getElementById("269").value);
+         var tm9 = parseFloat(document.getElementById("281").value);
+
+
+         var Temp1 = parseFloat(document.getElementById("186").value);
+         var Temp2 = parseFloat(document.getElementById("198").value);
+         var Temp3 = parseFloat(document.getElementById("210").value);
+         var Temp4 = parseFloat(document.getElementById("222").value);
+         var Temp5 = parseFloat(document.getElementById("234").value);
+         var Temp6 = parseFloat(document.getElementById("246").value);
+         var Temp7 = parseFloat(document.getElementById("258").value);
+         var Temp8 = parseFloat(document.getElementById("270").value);
+         var Temp9 = parseFloat(document.getElementById("282").value);
+
+         var Rm1 = parseFloat(document.getElementById("187").value);
+         var Rm2 = parseFloat(document.getElementById("199").value);
+         var Rm3 = parseFloat(document.getElementById("211").value);
+         var Rm4 = parseFloat(document.getElementById("223").value);
+         var Rm5 = parseFloat(document.getElementById("235").value);
+         var Rm6 = parseFloat(document.getElementById("247").value);
+         var Rm7 = parseFloat(document.getElementById("259").value);
+         var Rm8 = parseFloat(document.getElementById("271").value);
+         var Rm9 = parseFloat(document.getElementById("283").value);
+
+        // Función para realizar la interpolación lineal
+        function interpolate(x, x0, x1, y0, y1) {
+            return y0 + ((x - x0) / (x1 - x0)) * (y1 - y0);
+        }
+
+        // Tabla con valores de temperatura, densidad y coeficiente de temperatura
+        var tabla = [
+            { temperatura: 15.0, densidad: 0.9991, coef_temp: 1.00090 },
+            { temperatura: 15.9, densidad: 0.99896, coef_temp: 1.00076 },
+            { temperatura: 20.0, densidad: 0.99821, coef_temp: 1.00000 },
+            { temperatura: 20.9, densidad: 0.99802, coef_temp: 0.99981 },
+            { temperatura: 25.0, densidad: 0.99705, coef_temp: 0.9984 },
+            { temperatura: 25.9, densidad: 0.99681, coef_temp: 0.9986 },
+            { temperatura: 30.0, densidad: 0.99565, coef_temp: 0.99744 },
+            { temperatura: 30.5, densidad: 0.99550, coef_temp: 0.99729 },
+            { temperatura: 30.9, densidad: 0.99538, coef_temp: 0.99716}
+        ];
+
+        // Buscar los índices de los valores inferior y superior en la tabla
+        var index_superior = tabla.findIndex(function (element) {
+            return element.temperatura >= temperatura_ensayo;
+        });
+
+        var index_inferior;
+        if (index_superior === -1) {
+            // Si la temperatura de ensayo está fuera del rango de la tabla, ajusta los índices
+            index_inferior = tabla.length - 2;
+            index_superior = tabla.length - 1;
+        } else {
+            index_inferior = index_superior - 1;
+        }
+
+        // Realizar la interpolación
+        var densidad_ensayo = interpolate(temperatura_ensayo, tabla[index_inferior].temperatura, tabla[index_superior].temperatura, tabla[index_inferior].densidad, tabla[index_superior].densidad);
+
+
+        // Calculo de Md
+
+        var TPWS = parseFloat(document.getElementById("16").value);
+        var TPDS = parseFloat(document.getElementById("17").value);
+        var tare = parseFloat(document.getElementById("19").value);
+
+        var Water = TPWS - TPDS;
+
+        var Mdd = TPDS - tare;
+
+        var Mc = (Water / Mdd) * 100;
+
+       var tempCal2 = tempCal1 + 0;
+       var tempCal3 = tempCal2;
+       var tempCal4 = tempCal3;
+       var tempCal5 = tempCal4;
+
+       //Determinacion de A o B
+       var b1 = AR1 + (0.01248 * tempCal1) + (0.00795 * (Math.pow(tempCal1, 2)));
+       var b2 = AR2 + (0.01248 * tempCal2) + (0.00795 * (Math.pow(tempCal2, 2)));
+       var b3= AR3 + (0.01248 * tempCal3) + (0.00795 * (Math.pow(tempCal3, 2)));
+       var b4 = AR4 + (0.01248 * tempCal4) + (0.00795 * (Math.pow(tempCal4, 2)));
+       var b5 = AR5 + (0.01248 * tempCal5) + (0.00795 * (Math.pow(tempCal5, 2)));
+
+       var B1 = (b1 + b2 +b3 + b4 + b5) / 5;
+       var B2 = B1;
+       var B3 = B2;
+       var B4 = B3;
+       var B5 = B4;
+       var B6 = B5;
+       var B7 = B6;
+       var B8 = B7;
+       var B9 = B8;
+
+      
+       // Determinacion del Offset at Reading.
+       var Rdm1 = B1 - (0.01248 * Temp1) - (0.00795 * (Math.pow(Temp1, 2)));
+       var Rdm2 = B2 - (0.01248 * Temp2) - (0.00795 * (Math.pow(Temp2, 2)));
+       var Rdm3 = B3 - (0.01248 * Temp3) - (0.00795 * (Math.pow(Temp3, 2)));
+       var Rdm4 = B4 - (0.01248 * Temp4) - (0.00795 * (Math.pow(Temp4, 2)));
+       var Rdm5 = B5 - (0.01248 * Temp5) - (0.00795 * (Math.pow(Temp5, 2)));
+       var Rdm6 = B6 - (0.01248 * Temp6) - (0.00795 * (Math.pow(Temp6, 2)));
+       var Rdm7 = B7 - (0.01248 * Temp7) - (0.00795 * (Math.pow(Temp7, 2)));
+       var Rdm8 = B8 - (0.01248 * Temp8) - (0.00795 * (Math.pow(Temp8, 2)));
+       var Rdm9 = B9 - (0.01248 * Temp9) - (0.00795 * (Math.pow(Temp9, 2)));
+
+      // Determinacion de la masa usada en el ensayo.
+      var Md = Mdd - Mdisp;
+
+      // Determinacion del porcentaje de masa fina.
+
+      Nm1 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm1- Rdm1) * (100/1000);
+      Nm2 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm2- Rdm2) * (100/1000);
+      Nm3 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm3- Rdm3) * (100/1000);
+      Nm4 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm4- Rdm4) * (100/1000);
+      Nm5 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm5- Rdm5) * (100/1000);
+      Nm6= 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm6- Rdm6) * (100/1000);
+      Nm7 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm7- Rdm7) * (100/1000);
+      Nm8 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm8- Rdm8) * (100/1000);
+      Nm9 = 0.6226 *(Sg / (Sg - 1) ) * (Vsp / Md) * (Rm9- Rdm9) * (100/1000);
+      
+      //Determinacion de la profundidad efectiva.
+
+      var Hr1 = 17.0;
+      var Hr2 = 7.1;
+      var r1 = 0.0;
+      var r2 = 60.0;
+      var Vhb = 60;
+      var dAc = 54.96;
+
+      var Hm1 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm1 + Cm))- (Vhb / dAc);
+      var Hm2 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm2 + Cm))- (Vhb / dAc);
+      var Hm3 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm3 + Cm))- (Vhb / dAc);
+      var Hm4 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm4 + Cm))- (Vhb / dAc);
+      var Hm5 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm5 + Cm))- (Vhb / dAc);
+      var Hm6 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm6 + Cm))- (Vhb / dAc);
+      var Hm7 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm7 + Cm))- (Vhb / dAc);
+      var Hm8 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm8 + Cm))- (Vhb / dAc);
+      var Hm9 = Hr2 + (((Hr1 - Hr2) / (r2 - r1)) * (r2 - Rm9 + Cm))- (Vhb / dAc);
+
+      // Determinamos el diametro maximo en suspension.
+
+      var A = 18 * Viscwater;
+      var B = densidad_ensayo * g * (Sg - 1);
+      var Dm1 = Math.sqrt((A / B) * (Hm1 / (tm1 * 60))) * 10;
+      var Dm2= Math.sqrt((A / B) * (Hm2 / (tm2 * 60))) * 10;
+      var Dm3 = Math.sqrt((A / B) * (Hm3 / (tm3 * 60))) * 10;
+      var Dm4 = Math.sqrt((A / B) * (Hm4 / (tm4 * 60))) * 10;
+      var Dm5 = Math.sqrt((A / B) * (Hm5 / (tm5 * 60))) * 10;
+      var Dm6= Math.sqrt((A / B) * (Hm6 / (tm6 * 60))) * 10;
+      var Dm7 = Math.sqrt((A / B) * (Hm7 / (tm7 * 60))) * 10;
+      var Dm8 = Math.sqrt((A / B) * (Hm8 / (tm8 * 60))) * 10;
+      var Dm9 = Math.sqrt((A / B) * (Hm9 / (tm9 * 60))) * 10;
+
+      // Determinacion de granulometria.
+      var valores = [];
+    for (var i = 67; i <=170; i++) {
+      valores.push(parseFloat(document.getElementById(i.toString()).value || 0));
+    }
+
+
+
+
+      //pasamos resultados a los inputs.
+      document.getElementById("5").value = densidad_ensayo.toFixed(5);
+      document.getElementById("18").value = Water.toFixed(2);
+      document.getElementById("20").value = Mdd.toFixed(2);
+      document.getElementById("21").value = Mc.toFixed(2);
+      document.getElementById("28").value = tempCal2.toFixed(2);
+      document.getElementById("32").value = tempCal3.toFixed(2);
+      document.getElementById("36").value = tempCal4.toFixed(2);
+      document.getElementById("40").value = tempCal5.toFixed(2);
+
+      document.getElementById("188").value = B1.toFixed(3);
+      document.getElementById("200").value = B2.toFixed(3);
+      document.getElementById("212").value = B3.toFixed(3);
+      document.getElementById("224").value = B4.toFixed(3);
+      document.getElementById("236").value = B5.toFixed(3);
+      document.getElementById("248").value = B6.toFixed(3);
+      document.getElementById("260").value = B7.toFixed(3);
+      document.getElementById("272").value = B8.toFixed(3);
+      document.getElementById("284").value = B9.toFixed(3);
+
+      document.getElementById("189").value = Rdm1.toFixed(1);
+      document.getElementById("201").value = Rdm2.toFixed(1);
+      document.getElementById("213").value = Rdm3.toFixed(1);
+      document.getElementById("225").value = Rdm4.toFixed(1);
+      document.getElementById("237").value = Rdm5.toFixed(1);
+      document.getElementById("249").value = Rdm6.toFixed(1);
+      document.getElementById("261").value = Rdm7.toFixed(1);
+      document.getElementById("273").value = Rdm8.toFixed(1);
+      document.getElementById("285").value = Rdm9.toFixed(1);
+
+      document.getElementById("190").value = Nm1.toFixed(2);
+      document.getElementById("202").value = Nm1.toFixed(2);
+      document.getElementById("214").value = Nm1.toFixed(2);
+      document.getElementById("226").value = Nm1.toFixed(2);
+      document.getElementById("238").value = Nm1.toFixed(2);
+      document.getElementById("250").value = Nm1.toFixed(2);
+      document.getElementById("262").value = Nm1.toFixed(2);
+      document.getElementById("274").value = Nm1.toFixed(2);
+      document.getElementById("286").value = Nm1.toFixed(2);
+
+      document.getElementById("191").value = Hm1.toFixed(2);
+      document.getElementById("203").value = Hm2.toFixed(2);
+      document.getElementById("215").value = Hm3.toFixed(2);
+      document.getElementById("227").value = Hm4.toFixed(2);
+      document.getElementById("239").value = Hm5.toFixed(2);
+      document.getElementById("251").value = Hm6.toFixed(2);
+      document.getElementById("263").value = Hm7.toFixed(2);
+      document.getElementById("275").value = Hm8.toFixed(2);
+      document.getElementById("287").value = Hm9.toFixed(2);
+
+      document.getElementById("192").value = Dm1.toFixed(4);
+      document.getElementById("204").value = Dm2.toFixed(4);
+      document.getElementById("216").value = Dm3.toFixed(4);
+      document.getElementById("228").value = Dm4.toFixed(4);
+      document.getElementById("240").value = Dm5.toFixed(4);
+      document.getElementById("252").value = Dm6.toFixed(4);
+      document.getElementById("264").value = Dm7.toFixed(4);
+      document.getElementById("276").value = Dm8.toFixed(4);
+      document.getElementById("288").value = Dm9.toFixed(4);
+
+
+
+
+                 }
+
+
+              </script>
 
               
             <div style="display: flex; margin-left: 5%;">
