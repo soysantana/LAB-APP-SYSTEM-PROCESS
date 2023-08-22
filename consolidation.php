@@ -105,163 +105,163 @@ page_require_level(3);
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
-                <th style="text-align: center;" scope="row">Initial</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no1"  oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no1" oninput="calcular()"></td>
+                <th style="text-align: center;" scope="row">0</th>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">6 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">15 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">30 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">60 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">2 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no6" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">4 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no7" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">8 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no8" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">15 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no9" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">30 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no10" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">60 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no11" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">2 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no12" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">4 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no13" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">8 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no14" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">16 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no15" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">24 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no16" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -541,7 +541,7 @@ page_require_level(3);
 </div>
 
 <div style="display: flex; justify-content: end; margin-bottom: -30%;">
-    <div id="consolidation-graph" style="width: 800px; height: 500px;"></div>
+    <div id="consol-graph" style="width: 900px; height: 500px;"></div>
 </div>
 
 
@@ -778,12 +778,12 @@ page_require_level(3);
     </table>
 </div>
 
-<iframe src="collpse.php" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="graph-cassagrande-taylor"></iframe>
 
 <div class="button">
     <button type="submit" name="Al" class="btn btn-danger">Registrar ensayo</button>
     <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </div>
+
 
 <script>
 function convertToNumberOrZero(value) {
@@ -1212,251 +1212,21 @@ function calcular() {
   const NameLoandingDcNo1 = document.getElementById("NameLoNo1"); NameLoandingDcNo1.textContent = NameLoNo1;
   const NameLoandingDcNo2 = document.getElementById("NameLoNo2"); NameLoandingDcNo2.textContent = NameLoNo2;
   const NameLoandingDcNo3 = document.getElementById("NameLoNo3"); NameLoandingDcNo3.textContent = NameLoNo3;
-
-  // Calculos Grafica Casagrande
-  const secNo6 = 0.316227766;
-  const secNo15 = 0.50;
-  const secNo30 = 0.707106781;
-  const secNo60 = 1.0;
-  const miNo2 = 1.414213562;
-  const miNo4 = 2.0;
-  const miNo8 = 2.828427125;
-  const miNo15 = 3.872983346;
-  const miNo30 = 5.477225575;
-  const miNo60 = 7.745966692;
-  const hrNo2 = 10.954451150;
-  const hrNo4 = 15.491933385;
-  const hrNo8 = 21.908902300;
-  const hrNo16 = 30.983866770;
-  const hrNo24 = 37.947331922;
-
-  timeF1N1 = convertToNumberOrZero(document.getElementById("6-sec-no2").value);
-  timeF1N2 = convertToNumberOrZero(document.getElementById("6-sec-no3").value);
-  timeF1N3 = convertToNumberOrZero(document.getElementById("6-sec-no4").value);
-  timeF1N4 = convertToNumberOrZero(document.getElementById("6-sec-no5").value);
-  timeF1N5 = convertToNumberOrZero(document.getElementById("6-sec-no6").value);
-  timeF1N6 = convertToNumberOrZero(document.getElementById("6-sec-no7").value);
-  timeF1N7 = convertToNumberOrZero(document.getElementById("6-sec-no8").value);
-  timeF1N8 = convertToNumberOrZero(document.getElementById("6-sec-no9").value);
-  timeF1N9 = convertToNumberOrZero(document.getElementById("6-sec-no10").value);
-  timeF1N10 = convertToNumberOrZero(document.getElementById("6-sec-no11").value);
-  timeF1N11 = convertToNumberOrZero(document.getElementById("6-sec-no12").value);
-  timeF1N12 = convertToNumberOrZero(document.getElementById("6-sec-no13").value);
-  timeF1N13 = convertToNumberOrZero(document.getElementById("6-sec-no14").value);
-  timeF1N14 = convertToNumberOrZero(document.getElementById("6-sec-no15").value);
-  timeF1N15 = convertToNumberOrZero(document.getElementById("6-sec-no16").value);
-
-  timeF2N = convertToNumberOrZero(document.getElementById("Val2-kg-no1").value);
-  timeF2N1 = convertToNumberOrZero(document.getElementById("Val2-kg-no2").value);
-  timeF2N2 = convertToNumberOrZero(document.getElementById("Val2-kg-no3").value);
-  timeF2N3 = convertToNumberOrZero(document.getElementById("Val2-kg-no4").value);
-  timeF2N4 = convertToNumberOrZero(document.getElementById("Val2-kg-no5").value);
-  timeF2N5 = convertToNumberOrZero(document.getElementById("Val2-kg-no6").value);
-  timeF2N6 = convertToNumberOrZero(document.getElementById("Val2-kg-no7").value);
-  timeF2N7 = convertToNumberOrZero(document.getElementById("Val2-kg-no8").value);
-  timeF2N8 = convertToNumberOrZero(document.getElementById("Val2-kg-no9").value);
-  timeF2N9 = convertToNumberOrZero(document.getElementById("Val2-kg-no10").value);
-  timeF2N10 = convertToNumberOrZero(document.getElementById("Val2-kg-no11").value);
-  timeF2N11 = convertToNumberOrZero(document.getElementById("Val2-kg-no12").value);
-  timeF2N12 = convertToNumberOrZero(document.getElementById("Val2-kg-no13").value);
-  timeF2N13 = convertToNumberOrZero(document.getElementById("Val2-kg-no14").value);
-  timeF2N14 = convertToNumberOrZero(document.getElementById("Val2-kg-no15").value);
-  timeF2N15 = convertToNumberOrZero(document.getElementById("Val2-kg-no16").value);
-
-  timeF3N = convertToNumberOrZero(document.getElementById("Val3-kg-no1").value);
-  timeF3N1 = convertToNumberOrZero(document.getElementById("Val3-kg-no2").value);
-  timeF3N2 = convertToNumberOrZero(document.getElementById("Val3-kg-no3").value);
-  timeF3N3 = convertToNumberOrZero(document.getElementById("Val3-kg-no4").value);
-  timeF3N4 = convertToNumberOrZero(document.getElementById("Val3-kg-no5").value);
-  timeF3N5 = convertToNumberOrZero(document.getElementById("Val3-kg-no6").value);
-  timeF3N6 = convertToNumberOrZero(document.getElementById("Val3-kg-no7").value);
-  timeF3N7 = convertToNumberOrZero(document.getElementById("Val3-kg-no8").value);
-  timeF3N8 = convertToNumberOrZero(document.getElementById("Val3-kg-no9").value);
-  timeF3N9 = convertToNumberOrZero(document.getElementById("Val3-kg-no10").value);
-  timeF3N10 = convertToNumberOrZero(document.getElementById("Val3-kg-no11").value);
-  timeF3N11 = convertToNumberOrZero(document.getElementById("Val3-kg-no12").value);
-  timeF3N12 = convertToNumberOrZero(document.getElementById("Val3-kg-no13").value);
-  timeF3N13 = convertToNumberOrZero(document.getElementById("Val3-kg-no14").value);
-  timeF3N14 = convertToNumberOrZero(document.getElementById("Val3-kg-no15").value);
-  timeF3N15 = convertToNumberOrZero(document.getElementById("Val3-kg-no16").value);
-
-  timeF4N = convertToNumberOrZero(document.getElementById("Val4-kg-no1").value);
-  timeF4N1 = convertToNumberOrZero(document.getElementById("Val4-kg-no2").value);
-  timeF4N2 = convertToNumberOrZero(document.getElementById("Val4-kg-no3").value);
-  timeF4N3 = convertToNumberOrZero(document.getElementById("Val4-kg-no4").value);
-  timeF4N4 = convertToNumberOrZero(document.getElementById("Val4-kg-no5").value);
-  timeF4N5 = convertToNumberOrZero(document.getElementById("Val4-kg-no6").value);
-  timeF4N6 = convertToNumberOrZero(document.getElementById("Val4-kg-no7").value);
-  timeF4N7 = convertToNumberOrZero(document.getElementById("Val4-kg-no8").value);
-  timeF4N8 = convertToNumberOrZero(document.getElementById("Val4-kg-no9").value);
-  timeF4N9 = convertToNumberOrZero(document.getElementById("Val4-kg-no10").value);
-  timeF4N10 = convertToNumberOrZero(document.getElementById("Val4-kg-no11").value);
-  timeF4N11 = convertToNumberOrZero(document.getElementById("Val4-kg-no12").value);
-  timeF4N12 = convertToNumberOrZero(document.getElementById("Val4-kg-no13").value);
-  timeF4N13 = convertToNumberOrZero(document.getElementById("Val4-kg-no14").value);
-  timeF4N14 = convertToNumberOrZero(document.getElementById("Val4-kg-no15").value);
-  timeF4N15 = convertToNumberOrZero(document.getElementById("Val4-kg-no16").value);
-
-  timeF5N = convertToNumberOrZero(document.getElementById("Val5-kg-no1").value);
-  timeF5N1 = convertToNumberOrZero(document.getElementById("Val5-kg-no2").value);
-  timeF5N2 = convertToNumberOrZero(document.getElementById("Val5-kg-no3").value);
-  timeF5N3 = convertToNumberOrZero(document.getElementById("Val5-kg-no4").value);
-  timeF5N4 = convertToNumberOrZero(document.getElementById("Val5-kg-no5").value);
-  timeF5N5 = convertToNumberOrZero(document.getElementById("Val5-kg-no6").value);
-  timeF5N6 = convertToNumberOrZero(document.getElementById("Val5-kg-no7").value);
-  timeF5N7 = convertToNumberOrZero(document.getElementById("Val5-kg-no8").value);
-  timeF5N8 = convertToNumberOrZero(document.getElementById("Val5-kg-no9").value);
-  timeF5N9 = convertToNumberOrZero(document.getElementById("Val5-kg-no10").value);
-  timeF5N10 = convertToNumberOrZero(document.getElementById("Val5-kg-no11").value);
-  timeF5N11 = convertToNumberOrZero(document.getElementById("Val5-kg-no12").value);
-  timeF5N12 = convertToNumberOrZero(document.getElementById("Val5-kg-no13").value);
-  timeF5N13 = convertToNumberOrZero(document.getElementById("Val5-kg-no14").value);
-  timeF5N14 = convertToNumberOrZero(document.getElementById("Val5-kg-no15").value);
-  timeF5N15 = convertToNumberOrZero(document.getElementById("Val5-kg-no16").value);
-
-
-  
-  // Almacenar los resultados calculados en localStorage
-  localStorage.setItem('xNo1', OvKgcm2No1);
-  localStorage.setItem('xNo2', OvKgcm2No2);
-  localStorage.setItem('xNo3', OvKgcm2No3);
-  localStorage.setItem('xNo4', OvKgcm2No4);
-  localStorage.setItem('xNo5', OvKgcm2No5);
-  localStorage.setItem('xNo7', OvKgcm2No7);
-  localStorage.setItem('xNo8', OvKgcm2No8);
-  localStorage.setItem('xNo9', OvKgcm2No9);
-  localStorage.setItem('xNo10', OvKgcm2No10);
-  localStorage.setItem('yNo1', eNo1);
-  localStorage.setItem('yNo2', eNo2);
-  localStorage.setItem('yNo3', eNo3);
-  localStorage.setItem('yNo4', eNo4);
-  localStorage.setItem('yNo5', eNo5);
-  localStorage.setItem('yNo7', eNo7);
-  localStorage.setItem('yNo8', eNo8);
-  localStorage.setItem('yNo9', eNo9);
-  localStorage.setItem('yNo10', eNo10);
-
-  localStorage.setItem('secNo6', secNo6);
-  localStorage.setItem('secNo15', secNo15);
-  localStorage.setItem('secNo30', secNo30);
-  localStorage.setItem('secNo60', secNo60);
-  localStorage.setItem('miNo2', miNo2);
-  localStorage.setItem('miNo4', miNo4);
-  localStorage.setItem('miNo8', miNo8);
-  localStorage.setItem('miNo15', miNo15);
-  localStorage.setItem('miNo30', miNo30);
-  localStorage.setItem('miNo60', miNo60);
-  localStorage.setItem('hrNo2', hrNo2); 
-  localStorage.setItem('hrNo4', hrNo4); 
-  localStorage.setItem('hrNo8', hrNo8);
-  localStorage.setItem('hrNo16', hrNo16);
-  localStorage.setItem('hrNo24', hrNo24);
-
-  localStorage.setItem('timeF1N1', timeF1N1);
-  localStorage.setItem('timeF1N2', timeF1N2);
-  localStorage.setItem('timeF1N3', timeF1N3);
-  localStorage.setItem('timeF1N4', timeF1N4);
-  localStorage.setItem('timeF1N5', timeF1N5);
-  localStorage.setItem('timeF1N6', timeF1N6);
-  localStorage.setItem('timeF1N7', timeF1N7);
-  localStorage.setItem('timeF1N8', timeF1N8);
-  localStorage.setItem('timeF1N9', timeF1N9);
-  localStorage.setItem('timeF1N10', timeF1N10); 
-  localStorage.setItem('timeF1N11', timeF1N11); 
-  localStorage.setItem('timeF1N12', timeF1N12);
-  localStorage.setItem('timeF1N13', timeF1N13);
-  localStorage.setItem('timeF1N14', timeF1N14);
-  localStorage.setItem('timeF1N15', timeF1N15);
-
-  localStorage.setItem('timeF2N', timeF2N);
-  localStorage.setItem('timeF2N1', timeF2N1);
-  localStorage.setItem('timeF2N2', timeF2N2);
-  localStorage.setItem('timeF2N3', timeF2N3);
-  localStorage.setItem('timeF2N4', timeF2N4);
-  localStorage.setItem('timeF2N5', timeF2N5);
-  localStorage.setItem('timeF2N6', timeF2N6);
-  localStorage.setItem('timeF2N7', timeF2N7);
-  localStorage.setItem('timeF2N8', timeF2N8);
-  localStorage.setItem('timeF2N9', timeF2N9);
-  localStorage.setItem('timeF2N10', timeF2N10); 
-  localStorage.setItem('timeF2N11', timeF2N11); 
-  localStorage.setItem('timeF2N12', timeF2N12);
-  localStorage.setItem('timeF2N13', timeF2N13);
-  localStorage.setItem('timeF2N14', timeF2N14);
-  localStorage.setItem('timeF2N15', timeF2N15);
-
-  localStorage.setItem('timeF3N', timeF3N);
-  localStorage.setItem('timeF3N1', timeF3N1);
-  localStorage.setItem('timeF3N2', timeF3N2);
-  localStorage.setItem('timeF3N3', timeF3N3);
-  localStorage.setItem('timeF3N4', timeF3N4);
-  localStorage.setItem('timeF3N5', timeF3N5);
-  localStorage.setItem('timeF3N6', timeF3N6);
-  localStorage.setItem('timeF3N7', timeF3N7);
-  localStorage.setItem('timeF3N8', timeF3N8);
-  localStorage.setItem('timeF3N9', timeF3N9);
-  localStorage.setItem('timeF3N10', timeF3N10); 
-  localStorage.setItem('timeF3N11', timeF3N11); 
-  localStorage.setItem('timeF3N12', timeF3N12);
-  localStorage.setItem('timeF3N13', timeF3N13);
-  localStorage.setItem('timeF3N14', timeF3N14);
-  localStorage.setItem('timeF3N15', timeF3N15);
-
-  localStorage.setItem('timeF4N', timeF4N);
-  localStorage.setItem('timeF4N1', timeF4N1);
-  localStorage.setItem('timeF4N2', timeF4N2);
-  localStorage.setItem('timeF4N3', timeF4N3);
-  localStorage.setItem('timeF4N4', timeF4N4);
-  localStorage.setItem('timeF4N5', timeF4N5);
-  localStorage.setItem('timeF4N6', timeF4N6);
-  localStorage.setItem('timeF4N7', timeF4N7);
-  localStorage.setItem('timeF4N8', timeF4N8);
-  localStorage.setItem('timeF4N9', timeF4N9);
-  localStorage.setItem('timeF4N10', timeF4N10); 
-  localStorage.setItem('timeF4N11', timeF4N11); 
-  localStorage.setItem('timeF4N12', timeF4N12);
-  localStorage.setItem('timeF4N13', timeF4N13);
-  localStorage.setItem('timeF4N14', timeF4N14);
-  localStorage.setItem('timeF4N15', timeF4N15);
-
-  localStorage.setItem('timeF5N', timeF5N);
-  localStorage.setItem('timeF5N1', timeF5N1);
-  localStorage.setItem('timeF5N2', timeF5N2);
-  localStorage.setItem('timeF5N3', timeF5N3);
-  localStorage.setItem('timeF5N4', timeF5N4);
-  localStorage.setItem('timeF5N5', timeF5N5);
-  localStorage.setItem('timeF5N6', timeF5N6);
-  localStorage.setItem('timeF5N7', timeF5N7);
-  localStorage.setItem('timeF5N8', timeF5N8);
-  localStorage.setItem('timeF5N9', timeF5N9);
-  localStorage.setItem('timeF5N10', timeF5N10); 
-  localStorage.setItem('timeF5N11', timeF5N11); 
-  localStorage.setItem('timeF5N12', timeF5N12);
-  localStorage.setItem('timeF5N13', timeF5N13);
-  localStorage.setItem('timeF5N14', timeF5N14);
-  localStorage.setItem('timeF5N15', timeF5N15);
-
-  // Graph Auto
-  function roundAndFormat(value) {
-    const roundedValue = parseFloat(value).toFixed(2);
-    return roundedValue + " kg/cm2";
-}
-
-  const namKgCassN1 = roundAndFormat(OvKgcm2No1);
-  localStorage.setItem('nam_Kg_Cass_N1', namKgCassN1);
-
-  const namKgCassN2 = roundAndFormat(OvKgcm2No2);
-  localStorage.setItem('nam_Kg_Cass_N2', namKgCassN2);
-
-  const namKgCassN3 = roundAndFormat(OvKgcm2No3);
-  localStorage.setItem('nam_Kg_Cass_N3', namKgCassN3);
-
-  const namKgCassN4 = roundAndFormat(OvKgcm2No4);
-  localStorage.setItem('nam_Kg_Cass_N4', namKgCassN4);
-  
-  const namKgCassN5 = roundAndFormat(OvKgcm2No5);
-  localStorage.setItem('nam_Kg_Cass_N5', namKgCassN5);
 }
 </script>
+
+<script>
+    function enviarData(event) {
+      event.preventDefault()
+      $.ajax({
+        url: "libs/js/consolidation.js",
+        type: "POST",
+        data: $("#graph").serialize(),
+        success: function(data) {
+          $("#resultado").html(data);
+        }
+      });
+    }
+  </script>
 
 <?php include_once('layouts/footer.php'); ?>
