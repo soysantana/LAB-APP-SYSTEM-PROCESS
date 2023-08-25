@@ -223,6 +223,24 @@ function tableExists($table){
     return find_by_sql($sql);
 
    }
+
+
+  /*--------------------------------------------------------------*/
+  /* Funcion para mostrar solo los ensayo que son requeridos
+  /*--------------------------------------------------------------*/
+
+function ensayos_requeridos(){
+  global $db;
+$sql = "SHOW COLUMNS FROM lab_test_requisition_form ";
+
+    $sql  .= "SELECT $column FROM lab_test_requesition_form WHERE LIKE 'Required'";
+
+    return find_by_sql($sql);
+   
+
+  }
+
+
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name
   /* Request coming from ajax.php for auto suggest
