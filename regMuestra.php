@@ -4,6 +4,7 @@ require_once('includes/load.php');
 // Checking what level user has permission to view this page
 page_require_level(3);
 $products = join_lab_test_requisition_form();
+$required_tests = ensayos_requeridos(); 
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -44,6 +45,12 @@ $products = join_lab_test_requisition_form();
                     </button>
                 </div>
                 <div class="modal-body">
+
+                <ul>
+          <?php foreach ($required_tests as $column) { ?>
+            <li><?php echo remove_junk($column) . ': ' . remove_junk($product[$column]); ?></li>
+          <?php } ?>
+        </ul>
                   
                     <ul>
 
