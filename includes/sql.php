@@ -229,25 +229,32 @@ function tableExists($table){
   /* Funcion para mostrar solo los ensayo que son requeridos
   /*--------------------------------------------------------------*/
 
-  function ensayos_requeridos(){
+  function ensayos_requeridos() {
     global $db;
-    $sql = "SHOW COLUMNS FROM lab_test_requisition_form";
-    $result = find_by_sql($sql); // Obtener las columnas de la tabla
+
+    $query = "SHOW COLUMNS FROM lab_test_requisition_form";
+    $result = find_by_sql($query);
 
     $required_columns = array();
 
-    foreach ($result as $row) {
-        if (strpos($row['Field'], 'Required') !== false) { // Verificar si el nombre de la columna contiene "Required"
-            $required_columns[] = $row['Field']; // Agregar la columna a la lista de columnas requeridas
+    foreach ($result as $column_info) {
+        $column_name = $column_info['Field'];
+        $select_query = "SELECT COUNT(*) AS count FROM lab_test_requisition_form WHERE $column_name = 'Required'";
+        $count_result = find_by_sql($select_query);
+
+        if (!empty($count_result) && $count_result[0]['count'] > 0) {
+            $required_columns[] = $column_name;
         }
     }
 
-    // Construir una consulta para seleccionar solo las columnas requeridas
-    $columns_string = implode(', ', $required_columns);
-    $query = "SELECT $columns_string FROM lab_test_requisition_form";
-
-    return find_by_sql($query);
+    return $required_columns;
 }
+
+
+
+
+
+
 
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name
