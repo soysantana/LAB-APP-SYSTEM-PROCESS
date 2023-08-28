@@ -3,6 +3,245 @@ $page_title = 'Standard Proctor Calculation';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/StandardProctor.php'); // Incluir el archivo de procesamiento del formulario
+}
+?>
+
+<?php
+/*
+// Recuperamos los datos del formulario
+if (isset($_POST['Standardproctor'])) {
+  $req_fields = array(
+'sampleid', 'samplenumber', 'structure', 'area', 'source', 'depthfrom', 'depthto', 'materialtype', 'sampletype', 'north', 
+'east', 'elev', 'sampledate', 'Standard', 'PreparationMethod', 'Split', 'Nmc', 'natmc', 'Comments', 'Technician',
+'TestStartDate', 'Wt_Wet_Soil_Mold_1', 'Wt_Wet_Soil_Mold_2', 'Wt_Wet_Soil_Mold_3', 'Wt_Wet_Soil_Mold_4',
+'Wt_Wet_Soil_Mold_5', 'Wt_Wet_Soil_Mold_6', 'Wt_Mold_g_1', 'Wt_Mold_g_2', 'Wt_Mold_g_3', 'Wt_Mold_g_4',
+'Wt_Mold_g_5', 'Wt_Mold_g_6', 'Wt_Wet_Soil_g_1', 'Wt_Wet_Soil_g_2', 'Wt_Wet_Soil_g_3', 'Wt_Wet_Soil_g_4',
+'Wt_Wet_Soil_g_5', 'Wt_Wet_Soil_g_6', 'Vol_Mold_cm3_1', 'Vol_Mold_cm3_2', 'Vol_Mold_cm3_3', 'Vol_Mold_cm3_4',
+'Vol_Mold_cm3_5', 'Vol_Mold_cm3_6', 'Wet_Density_kgm3_1', 'Wet_Density_kgm3_2', 'Wet_Density_kgm3_3',
+'Wet_Density_kgm3_4', 'Wet_Density_kgm3_5', 'Wet_Density_kgm3_6', 'Dry_Density_kgm3_1', 'Dry_Density_kgm3_2',
+'Dry_Density_kgm3_3', 'Dry_Density_kgm3_4', 'Dry_Density_kgm3_5', 'Dry_Density_kgm3_6', 'Dry_Density_Corrected_kgm3_1',
+'Dry_Density_Corrected_kgm3_2', 'Dry_Density_Corrected_kgm3_3', 'Dry_Density_Corrected_kgm3_4',
+'Dry_Density_Corrected_kgm3_5', 'Dry_Density_Corrected_kgm3_6', 'MC_Container_1', 'MC_Container_2',
+'MC_Container_3', 'MC_Container_4', 'MC_Container_5', 'MC_Container_6', 'MC_Wt_Wet_Soil_Tare_1',
+'MC_Wt_Wet_Soil_Tare_2', 'MC_Wt_Wet_Soil_Tare_3', 'MC_Wt_Wet_Soil_Tare_4', 'MC_Wt_Wet_Soil_Tare_5',
+'MC_Wt_Wet_Soil_Tare_6', 'MC_Wt_Dry_Soil_Tare_1', 'MC_Wt_Dry_Soil_Tare_2', 'MC_Wt_Dry_Soil_Tare_3',
+'MC_Wt_Dry_Soil_Tare_4', 'MC_Wt_Dry_Soil_Tare_5', 'MC_Wt_Dry_Soil_Tare_6', 'Wt_Water_g_1',
+'Wt_Water_g_2', 'Wt_Water_g_3', 'Wt_Water_g_4', 'Wt_Water_g_5', 'Wt_Water_g_6', 'Tare_g_1',
+'Tare_g_2', 'Tare_g_3', 'Tare_g_4', 'Tare_g_5', 'Tare_g_6', 'MC_Wt_Dry_Soil_g_1',
+'MC_Wt_Dry_Soil_g_2', 'MC_Wt_Dry_Soil_g_3', 'MC_Wt_Dry_Soil_g_4', 'MC_Wt_Dry_Soil_g_5', 'MC_Wt_Dry_Soil_g_6',
+'MC_Porce_1', 'MC_Porce_2', 'MC_Porce_3', 'MC_Porce_4', 'MC_Porce_5', 'MC_Porce_6',
+'MC_Porce_Corrected_1', 'MC_Porce_Corrected_2', 'MC_Porce_Corrected_3', 'MC_Porce_Corrected_4',
+'MC_Porce_Corrected_5', 'MC_Porce_Corrected_6', 'Max_Dry_Density_kgm3', 'Optimun_MC_Porce',
+'Wc_Porce', 'GM_Porce', 'PC_Porce', 'PF_Porce', 'YDF_Porce', 'YDT_Porce', 'Yw_KnM3',
+'Corrected_Dry_Unit_Weigt', 'Corrected_Water_Content_Finer'
+);
+  validate_fields($req_fields);
+
+// Validacion de post
+  if (empty($errors)) {
+    // Valores Obtenidos del ajax
+    $sampleid = $db->escape($_POST['sampleid']);
+    $samplenumber = $db->escape($_POST['samplenumber']);
+    $structure = $db->escape($_POST['structure']);
+    $area = $db->escape($_POST['area']);
+    $source = $db->escape($_POST['source']);
+    $depthfrom = $db->escape($_POST['depthfrom']);
+    $depthto = $db->escape($_POST['depthto']);
+    $materialtype = $db->escape($_POST['materialtype']);
+    $sampletype = $db->escape($_POST['sampletype']);
+    $north = $db->escape($_POST['north']);
+    $east = $db->escape($_POST['east']);
+    $elev = $db->escape($_POST['elev']);
+    $sampledate = $db->escape($_POST['sampledate']);
+    $reportdate = make_date();
+    $testype = "SP";
+
+  // Informaciones basicas
+    $Standard = $db->escape($_POST['Standard']);
+    $PreparationMethod = $db->escape($_POST['PreparationMethod']);
+    $Split = $db->escape($_POST['Split']);
+    $Nmc = $db->escape($_POST['Nmc']);
+    $natmc = $db->escape($_POST['natmc']);
+    $Comments = $db->escape($_POST['Comments']);
+    $Technician = $db->escape($_POST['Technician']);
+    $TestStartDate = $db->escape($_POST['TestStartDate']);
+
+ // Densidades
+    $Wt_Wet_Soil_Mold_1 = $db->escape($_POST['Wt_Wet_Soil_Mold_1']);
+    $Wt_Wet_Soil_Mold_2 = $db->escape($_POST['Wt_Wet_Soil_Mold_2']);
+    $Wt_Wet_Soil_Mold_3 = $db->escape($_POST['Wt_Wet_Soil_Mold_3']);
+    $Wt_Wet_Soil_Mold_4 = $db->escape($_POST['Wt_Wet_Soil_Mold_4']);
+    $Wt_Wet_Soil_Mold_5 = $db->escape($_POST['Wt_Wet_Soil_Mold_5']);
+    $Wt_Wet_Soil_Mold_6 = $db->escape($_POST['Wt_Wet_Soil_Mold_6']);
+    $Wt_Mold_g_1 = $db->escape($_POST['Wt_Mold_g_1']);
+    $Wt_Mold_g_2 = $db->escape($_POST['Wt_Mold_g_2']);
+    $Wt_Mold_g_3 = $db->escape($_POST['Wt_Mold_g_3']);
+    $Wt_Mold_g_4 = $db->escape($_POST['Wt_Mold_g_4']);
+    $Wt_Mold_g_5 = $db->escape($_POST['Wt_Mold_g_5']);
+    $Wt_Mold_g_6 = $db->escape($_POST['Wt_Mold_g_6']);
+    $Wt_Wet_Soil_g_1 = $db->escape($_POST['Wt_Wet_Soil_g_1']);
+    $Wt_Wet_Soil_g_2 = $db->escape($_POST['Wt_Wet_Soil_g_2']);
+    $Wt_Wet_Soil_g_3 = $db->escape($_POST['Wt_Wet_Soil_g_3']);
+    $Wt_Wet_Soil_g_4 = $db->escape($_POST['Wt_Wet_Soil_g_4']);
+    $Wt_Wet_Soil_g_5 = $db->escape($_POST['Wt_Wet_Soil_g_5']);
+    $Wt_Wet_Soil_g_6 = $db->escape($_POST['Wt_Wet_Soil_g_6']);
+    $Vol_Mold_cm3_1 = $db->escape($_POST['Vol_Mold_cm3_1']);
+    $Vol_Mold_cm3_2 = $db->escape($_POST['Vol_Mold_cm3_2']);
+    $Vol_Mold_cm3_3 = $db->escape($_POST['Vol_Mold_cm3_3']);
+    $Vol_Mold_cm3_4 = $db->escape($_POST['Vol_Mold_cm3_4']);
+    $Vol_Mold_cm3_5 = $db->escape($_POST['Vol_Mold_cm3_5']);
+    $Vol_Mold_cm3_6 = $db->escape($_POST['Vol_Mold_cm3_6']);
+    $Wet_Density_kgm3_1 = $db->escape($_POST['Wet_Density_kgm3_1']);
+    $Wet_Density_kgm3_2 = $db->escape($_POST['Wet_Density_kgm3_2']);
+    $Wet_Density_kgm3_3 = $db->escape($_POST['Wet_Density_kgm3_3']);
+    $Wet_Density_kgm3_4 = $db->escape($_POST['Wet_Density_kgm3_4']);
+    $Wet_Density_kgm3_5 = $db->escape($_POST['Wet_Density_kgm3_5']);
+    $Wet_Density_kgm3_6 = $db->escape($_POST['Wet_Density_kgm3_6']);
+    $Dry_Density_kgm3_1 = $db->escape($_POST['Dry_Density_kgm3_1']);
+    $Dry_Density_kgm3_2 = $db->escape($_POST['Dry_Density_kgm3_2']);
+    $Dry_Density_kgm3_3 = $db->escape($_POST['Dry_Density_kgm3_3']);
+    $Dry_Density_kgm3_4 = $db->escape($_POST['Dry_Density_kgm3_4']);
+    $Dry_Density_kgm3_5 = $db->escape($_POST['Dry_Density_kgm3_5']);
+    $Dry_Density_kgm3_6 = $db->escape($_POST['Dry_Density_kgm3_6']);
+    $Dry_Density_Corrected_kgm3_1 = $db->escape($_POST['Dry_Density_Corrected_kgm3_1']);
+    $Dry_Density_Corrected_kgm3_2 = $db->escape($_POST['Dry_Density_Corrected_kgm3_2']);
+    $Dry_Density_Corrected_kgm3_3 = $db->escape($_POST['Dry_Density_Corrected_kgm3_3']);
+    $Dry_Density_Corrected_kgm3_4 = $db->escape($_POST['Dry_Density_Corrected_kgm3_4']);
+    $Dry_Density_Corrected_kgm3_5 = $db->escape($_POST['Dry_Density_Corrected_kgm3_5']);
+    $Dry_Density_Corrected_kgm3_6 = $db->escape($_POST['Dry_Density_Corrected_kgm3_6']);
+
+ // Segunda Tabla
+    $MC_Container_1 = $db->escape($_POST['MC_Container_1']);
+    $MC_Container_2 = $db->escape($_POST['MC_Container_2']);
+    $MC_Container_3 = $db->escape($_POST['MC_Container_3']);
+    $MC_Container_4 = $db->escape($_POST['MC_Container_4']);
+    $MC_Container_5 = $db->escape($_POST['MC_Container_5']);
+    $MC_Container_6 = $db->escape($_POST['MC_Container_6']);
+    $MC_Wt_Wet_Soil_Tare_1 = $db->escape($_POST['MC_Wt_Wet_Soil_Tare_1']);
+    $MC_Wt_Wet_Soil_Tare_2 = $db->escape($_POST['MC_Wt_Wet_Soil_Tare_2']);
+    $MC_Wt_Wet_Soil_Tare_3 = $db->escape($_POST['MC_Wt_Wet_Soil_Tare_3']);
+    $MC_Wt_Wet_Soil_Tare_4 = $db->escape($_POST['MC_Wt_Wet_Soil_Tare_4']);
+    $MC_Wt_Wet_Soil_Tare_5 = $db->escape($_POST['MC_Wt_Wet_Soil_Tare_5']);
+    $MC_Wt_Wet_Soil_Tare_6 = $db->escape($_POST['MC_Wt_Wet_Soil_Tare_6']);
+    $MC_Wt_Dry_Soil_Tare_1 = $db->escape($_POST['MC_Wt_Dry_Soil_Tare_1']);
+    $MC_Wt_Dry_Soil_Tare_2 = $db->escape($_POST['MC_Wt_Dry_Soil_Tare_2']);
+    $MC_Wt_Dry_Soil_Tare_3 = $db->escape($_POST['MC_Wt_Dry_Soil_Tare_3']);
+    $MC_Wt_Dry_Soil_Tare_4 = $db->escape($_POST['MC_Wt_Dry_Soil_Tare_4']);
+    $MC_Wt_Dry_Soil_Tare_5 = $db->escape($_POST['MC_Wt_Dry_Soil_Tare_5']);
+    $MC_Wt_Dry_Soil_Tare_6 = $db->escape($_POST['MC_Wt_Dry_Soil_Tare_6']);
+    $Wt_Water_g_1 = $db->escape($_POST['Wt_Water_g_1']);
+    $Wt_Water_g_2 = $db->escape($_POST['Wt_Water_g_2']);
+    $Wt_Water_g_3 = $db->escape($_POST['Wt_Water_g_3']);
+    $Wt_Water_g_4 = $db->escape($_POST['Wt_Water_g_4']);
+    $Wt_Water_g_5 = $db->escape($_POST['Wt_Water_g_5']);
+    $Wt_Water_g_6 = $db->escape($_POST['Wt_Water_g_6']);
+    $Tare_g_1 = $db->escape($_POST['Tare_g_1']);
+    $Tare_g_2 = $db->escape($_POST['Tare_g_2']);
+    $Tare_g_3 = $db->escape($_POST['Tare_g_3']);
+    $Tare_g_4 = $db->escape($_POST['Tare_g_4']);
+    $Tare_g_5 = $db->escape($_POST['Tare_g_5']);
+    $Tare_g_6 = $db->escape($_POST['Tare_g_6']);
+    $MC_Wt_Dry_Soil_g_1 = $db->escape($_POST['MC_Wt_Dry_Soil_g_1']);
+    $MC_Wt_Dry_Soil_g_2 = $db->escape($_POST['MC_Wt_Dry_Soil_g_2']);
+    $MC_Wt_Dry_Soil_g_3 = $db->escape($_POST['MC_Wt_Dry_Soil_g_3']);
+    $MC_Wt_Dry_Soil_g_4 = $db->escape($_POST['MC_Wt_Dry_Soil_g_4']);
+    $MC_Wt_Dry_Soil_g_5 = $db->escape($_POST['MC_Wt_Dry_Soil_g_5']);
+    $MC_Wt_Dry_Soil_g_6 = $db->escape($_POST['MC_Wt_Dry_Soil_g_6']);
+    $MC_Porce_1 = $db->escape($_POST['MC_Porce_1']);
+    $MC_Porce_2 = $db->escape($_POST['MC_Porce_2']);
+    $MC_Porce_3 = $db->escape($_POST['MC_Porce_3']);
+    $MC_Porce_4 = $db->escape($_POST['MC_Porce_4']);
+    $MC_Porce_5 = $db->escape($_POST['MC_Porce_5']);
+    $MC_Porce_6 = $db->escape($_POST['MC_Porce_6']);
+    $MC_Porce_Corrected_1 = $db->escape($_POST['MC_Porce_Corrected_1']);
+    $MC_Porce_Corrected_2 = $db->escape($_POST['MC_Porce_Corrected_2']);
+    $MC_Porce_Corrected_3 = $db->escape($_POST['MC_Porce_Corrected_3']);
+    $MC_Porce_Corrected_4 = $db->escape($_POST['MC_Porce_Corrected_4']);
+    $MC_Porce_Corrected_5 = $db->escape($_POST['MC_Porce_Corrected_5']);
+    $MC_Porce_Corrected_6 = $db->escape($_POST['MC_Porce_Corrected_6']);
+
+ // Correcion x MC
+    $Max_Dry_Density_kgm3 = $db->escape($_POST['Max_Dry_Density_kgm3']);
+    $Optimun_MC_Porce = $db->escape($_POST['Optimun_MC_Porce']);
+    $Wc_Porce = $db->escape($_POST['Wc_Porce']);
+    $GM_Porce = $db->escape($_POST['GM_Porce']);
+    $PC_Porce = $db->escape($_POST['PC_Porce']);
+    $PF_Porce = $db->escape($_POST['PF_Porce']);
+    $YDF_Porce = $db->escape($_POST['YDF_Porce']);
+    $YDT_Porce = $db->escape($_POST['YDT_Porce']);
+    $Yw_KnM3 = $db->escape($_POST['Yw_KnM3']);
+    $Corrected_Dry_Unit_Weigt = $db->escape($_POST['Corrected_Dry_Unit_Weigt']);
+    $Corrected_Water_Content_Finer = $db->escape($_POST['Corrected_Water_Content_Finer']);
+
+
+// Componemos la sentencia SQL
+    $sql = "INSERT INTO standard_proctor (
+Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To, Material_Type, Sample_Type, North, 
+East, Elev, Sample_Date, Report_Date, test_type, Standard, Preparation_Method, Split_Method, Natural_MC, SG_NMC, 
+Comments, Technician, Test_Start_Date, Wt_Wet_Soil_Mold_1, Wt_Wet_Soil_Mold_2, Wt_Wet_Soil_Mold_3, Wt_Wet_Soil_Mold_4,
+Wt_Wet_Soil_Mold_5, Wt_Wet_Soil_Mold_6, Wt_Mold_g_1, Wt_Mold_g_2, Wt_Mold_g_3, Wt_Mold_g_4, Wt_Mold_g_5, Wt_Mold_g_6,
+Wt_Wet_Soil_g_1, Wt_Wet_Soil_g_2, Wt_Wet_Soil_g_3, Wt_Wet_Soil_g_4, Wt_Wet_Soil_g_5, Wt_Wet_Soil_g_6, Vol_Mold_cm3_1,
+Vol_Mold_cm3_2, Vol_Mold_cm3_3, Vol_Mold_cm3_4, Vol_Mold_cm3_5, Vol_Mold_cm3_6, Wet_Density_kgm3_1, Wet_Density_kgm3_2,
+Wet_Density_kgm3_3, Wet_Density_kgm3_4, Wet_Density_kgm3_5, Wet_Density_kgm3_6, Dry_Density_kgm3_1, Dry_Density_kgm3_2,
+Dry_Density_kgm3_3, Dry_Density_kgm3_4, Dry_Density_kgm3_5, Dry_Density_kgm3_6, Dry_Density_Corrected_kgm3_1,
+Dry_Density_Corrected_kgm3_2, Dry_Density_Corrected_kgm3_3, Dry_Density_Corrected_kgm3_4, Dry_Density_Corrected_kgm3_5,
+Dry_Density_Corrected_kgm3_6, MC_Container_1, MC_Container_2, MC_Container_3, MC_Container_4, MC_Container_5,
+MC_Container_6, MC_Wt_Wet_Soil_Tare_1, MC_Wt_Wet_Soil_Tare_2, MC_Wt_Wet_Soil_Tare_3, MC_Wt_Wet_Soil_Tare_4,
+MC_Wt_Wet_Soil_Tare_5, MC_Wt_Wet_Soil_Tare_6, MC_Wt_Dry_Soil_Tare_1, MC_Wt_Dry_Soil_Tare_2, MC_Wt_Dry_Soil_Tare_3,
+MC_Wt_Dry_Soil_Tare_4, MC_Wt_Dry_Soil_Tare_5, MC_Wt_Dry_Soil_Tare_6, Wt_Water_g_1, Wt_Water_g_2, Wt_Water_g_3,
+Wt_Water_g_4, Wt_Water_g_5, Wt_Water_g_6, Tare_g_1, Tare_g_2, Tare_g_3, Tare_g_4, Tare_g_5, Tare_g_6,
+MC_Wt_Dry_Soil_g_1, MC_Wt_Dry_Soil_g_2, MC_Wt_Dry_Soil_g_3, MC_Wt_Dry_Soil_g_4, MC_Wt_Dry_Soil_g_5,
+MC_Wt_Dry_Soil_g_6, MC_Porce_1, MC_Porce_2, MC_Porce_3, MC_Porce_4, MC_Porce_5, MC_Porce_6, MC_Porce_Corrected_1,
+MC_Porce_Corrected_2, MC_Porce_Corrected_3, MC_Porce_Corrected_4, MC_Porce_Corrected_5, MC_Porce_Corrected_6,
+Max_Dry_Density_kgm3, Optimun_MC_Porce, Wc_Porce, GM_Porce, PC_Porce, PF_Porce, YDF_Porce, YDT_Porce,
+Yw_KnM3, Corrected_Dry_Unit_Weigt, Corrected_Water_Content_Finer
+)
+      VALUES (
+'$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', 
+'$depthto', '$materialtype', '$sampletype', '$north', '$east', '$elev', '$sampledate',
+'$reportdate', '$testype', '$Standard', '$PreparationMethod', '$Split', '$Nmc', '$natmc',
+'$Comments', '$Technician', '$TestStartDate', '$Wt_Wet_Soil_Mold_1', '$Wt_Wet_Soil_Mold_2',
+'$Wt_Wet_Soil_Mold_3', '$Wt_Wet_Soil_Mold_4', '$Wt_Wet_Soil_Mold_5', '$Wt_Wet_Soil_Mold_6',
+'$Wt_Mold_g_1', '$Wt_Mold_g_2', '$Wt_Mold_g_3', '$Wt_Mold_g_4', '$Wt_Mold_g_5', '$Wt_Mold_g_6',
+'$Wt_Wet_Soil_g_1', '$Wt_Wet_Soil_g_2', '$Wt_Wet_Soil_g_3', '$Wt_Wet_Soil_g_4', '$Wt_Wet_Soil_g_5',
+'$Wt_Wet_Soil_g_6', '$Vol_Mold_cm3_1', '$Vol_Mold_cm3_2', '$Vol_Mold_cm3_3', '$Vol_Mold_cm3_4',
+'$Vol_Mold_cm3_5', '$Vol_Mold_cm3_6', '$Wet_Density_kgm3_1', '$Wet_Density_kgm3_2', '$Wet_Density_kgm3_3',
+'$Wet_Density_kgm3_4', '$Wet_Density_kgm3_5', '$Wet_Density_kgm3_6', '$Dry_Density_kgm3_1', '$Dry_Density_kgm3_2',
+'$Dry_Density_kgm3_3', '$Dry_Density_kgm3_4', '$Dry_Density_kgm3_5', '$Dry_Density_kgm3_6', '$Dry_Density_Corrected_kgm3_1',
+'$Dry_Density_Corrected_kgm3_2', '$Dry_Density_Corrected_kgm3_3', '$Dry_Density_Corrected_kgm3_4',
+'$Dry_Density_Corrected_kgm3_5', '$Dry_Density_Corrected_kgm3_6', '$MC_Container_1', '$MC_Container_2',
+'$MC_Container_3', '$MC_Container_4', '$MC_Container_5', '$MC_Container_6', '$MC_Wt_Wet_Soil_Tare_1',
+'$MC_Wt_Wet_Soil_Tare_2', '$MC_Wt_Wet_Soil_Tare_3', '$MC_Wt_Wet_Soil_Tare_4', '$MC_Wt_Wet_Soil_Tare_5',
+'$MC_Wt_Wet_Soil_Tare_6', '$MC_Wt_Dry_Soil_Tare_1', '$MC_Wt_Dry_Soil_Tare_2', '$MC_Wt_Dry_Soil_Tare_3',
+'$MC_Wt_Dry_Soil_Tare_4', '$MC_Wt_Dry_Soil_Tare_5', '$MC_Wt_Dry_Soil_Tare_6', '$Wt_Water_g_1',
+'$Wt_Water_g_2', '$Wt_Water_g_3', '$Wt_Water_g_4', '$Wt_Water_g_5', '$Wt_Water_g_6', '$Tare_g_1',
+'$Tare_g_2', '$Tare_g_3', '$Tare_g_4', '$Tare_g_5', '$Tare_g_6', '$MC_Wt_Dry_Soil_g_1',
+'$MC_Wt_Dry_Soil_g_2', '$MC_Wt_Dry_Soil_g_3', '$MC_Wt_Dry_Soil_g_4', '$MC_Wt_Dry_Soil_g_5', '$MC_Wt_Dry_Soil_g_6',
+'$MC_Porce_1', '$MC_Porce_2', '$MC_Porce_3', '$MC_Porce_4', '$MC_Porce_5', '$MC_Porce_6',
+'$MC_Porce_Corrected_1', '$MC_Porce_Corrected_2', '$MC_Porce_Corrected_3', '$MC_Porce_Corrected_4',
+'$MC_Porce_Corrected_5', '$MC_Porce_Corrected_6', '$Max_Dry_Density_kgm3', '$Optimun_MC_Porce',
+'$Wc_Porce', '$GM_Porce', '$PC_Porce', '$PF_Porce', '$YDF_Porce', '$YDT_Porce', '$Yw_KnM3',
+'$Corrected_Dry_Unit_Weigt', '$Corrected_Water_Content_Finer'
+)";
+
+// Ejecutamos la sentencia
+    if ($db->query($sql)) {
+      $session->msg('s', "Ensayo agregado exitosamente.");
+      redirect('Standardproctor.php', false);
+    } else {
+      $session->msg('d', 'Lo siento, no se pudo agregar el ensayo.');
+      redirect('Standardproctor.php', false);
+    }
+  } else {
+    $session->msg("d", $errors);
+    redirect('Standardproctor.php', false);
+  }
+}
+
+*/
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -35,6 +274,7 @@ page_require_level(2);
     <form method="post" action="Standardproctor.php" onsubmit="calcular()">
       
     <table class="table table-bordered">
+    <tbody id="product_info"> </tbody>
     <thead>
     </div>
     <div class="col-xs-4">
@@ -47,7 +287,7 @@ page_require_level(2);
     
     <div class="col-xs-4">
     <label >Preparation Method</label>
-    <select class="form-control" name="preparacion">
+    <select class="form-control" name="PreparationMethod">
     <option selected>Choose...</option>
     <option value="wet">Wet</option>
     <option value="dry">Dry</option>
@@ -56,7 +296,7 @@ page_require_level(2);
 
     <div class="col-xs-4">
         <label >Hammer</label>
-        <select class="form-control" name="preparacion">
+        <select class="form-control" name="Split">
         <option selected>Choose...</option>
         <option value="manual">Manual</option>
         <option value="mechanical">Mechanical</option>
@@ -84,7 +324,7 @@ page_require_level(2);
         
     <div class="col-xs-4">
     <label>Test Start Date</label>
-    <input class="form-control" name="Test_Start_Date" type="date">
+    <input class="form-control" name="TestStartDate" type="date">
     </div>
 
     <div class="panel-body"><div class="col-md-12">
@@ -107,63 +347,63 @@ page_require_level(2);
       <tbody>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Wet Soil + Mold (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="7" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="2" name="Wt_Wet_Soil_Mold_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3" name="Wt_Wet_Soil_Mold_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4" name="Wt_Wet_Soil_Mold_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5" name="Wt_Wet_Soil_Mold_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6" name="Wt_Wet_Soil_Mold_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="7" name="Wt_Wet_Soil_Mold_6" oninput="calcular()"></td>
         </tr>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Mold (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="8" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="10" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="11" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="13" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="8" name="Wt_Mold_g_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9" name="Wt_Mold_g_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="10" name="Wt_Mold_g_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="11" name="Wt_Mold_g_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12" name="Wt_Mold_g_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="13" name="Wt_Mold_g_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Wet Soil (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="14" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="16" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="17" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="19" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="14" name="Wt_Wet_Soil_g_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15" name="Wt_Wet_Soil_g_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="16" name="Wt_Wet_Soil_g_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="17" name="Wt_Wet_Soil_g_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18" name="Wt_Wet_Soil_g_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="19" name="Wt_Wet_Soil_g_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Vol Mold (cmᵌ)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="20" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="22" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="23" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="25" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="20" name="Vol_Mold_cm3_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21" name="Vol_Mold_cm3_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="22" name="Vol_Mold_cm3_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="23" name="Vol_Mold_cm3_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24" name="Vol_Mold_cm3_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="25" name="Vol_Mold_cm3_6" oninput="calcular()"></td>
         </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wet Density (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="26" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="27" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="28" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="29" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="30" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="31" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="26" name="Wet_Density_kgm3_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="27" name="Wet_Density_kgm3_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="28" name="Wet_Density_kgm3_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="29" name="Wet_Density_kgm3_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="30" name="Wet_Density_kgm3_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="31" name="Wet_Density_kgm3_6" oninput="calcular()"></td>
     </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Dry Density (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="32" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="33" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="34" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="35" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="36" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="37" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="32" name="Dry_Density_kgm3_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="33" name="Dry_Density_kgm3_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="34" name="Dry_Density_kgm3_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="35" name="Dry_Density_kgm3_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="36" name="Dry_Density_kgm3_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="37" name="Dry_Density_kgm3_6" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Dry Density Corrected (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="38" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="39" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="40" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="41" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="42" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="43" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="38" name="Dry_Density_Corrected_kgm3_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="39" name="Dry_Density_Corrected_kgm3_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="40" name="Dry_Density_Corrected_kgm3_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="41" name="Dry_Density_Corrected_kgm3_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="42" name="Dry_Density_Corrected_kgm3_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="43" name="Dry_Density_Corrected_kgm3_6" oninput="calcular()"></td>
     </tr>
     
     <table class="table table-bordered border-primary" style="width:850px;" >
@@ -181,71 +421,71 @@ page_require_level(2);
       <tbody>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Container</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="44" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="45" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="46" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="47" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="48" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="49" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="44" name="MC_Container_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="45" name="MC_Container_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="46" name="MC_Container_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="47" name="MC_Container_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="48" name="MC_Container_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="49" name="MC_Container_6" oninput="calcular()"></td>
         </tr>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Wet Soil + Tare (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="50" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="51" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="52" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="53" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="54" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="55" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="50" name="MC_Wt_Wet_Soil_Tare_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="51" name="MC_Wt_Wet_Soil_Tare_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="52" name="MC_Wt_Wet_Soil_Tare_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="53" name="MC_Wt_Wet_Soil_Tare_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="54" name="MC_Wt_Wet_Soil_Tare_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="55" name="MC_Wt_Wet_Soil_Tare_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Dry Soil + Tare (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="56" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="57" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="58" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="59" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="60" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="61" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="56" name="MC_Wt_Dry_Soil_Tare_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="57" name="MC_Wt_Dry_Soil_Tare_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="58" name="MC_Wt_Dry_Soil_Tare_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="59" name="MC_Wt_Dry_Soil_Tare_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="60" name="MC_Wt_Dry_Soil_Tare_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="61" name="MC_Wt_Dry_Soil_Tare_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Water (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="62" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="63" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="64" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="65" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="66" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="67" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="62" name="Wt_Water_g_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="63" name="Wt_Water_g_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="64" name="Wt_Water_g_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="65" name="Wt_Water_g_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="66" name="Wt_Water_g_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="67" name="Wt_Water_g_6" oninput="calcular()"></td>
         </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Tare (gr)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="68" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="69" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="70" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="71" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="72" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="73" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="68" name="Tare_g_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="69" name="Tare_g_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="70" name="Tare_g_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="71" name="Tare_g_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="72" name="Tare_g_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="73" name="Tare_g_6" oninput="calcular()"></td>
     </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Dry Soil (gr)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="74" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="75" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="76" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="77" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="78" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="79" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="74" name="MC_Wt_Dry_Soil_g_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="75" name="MC_Wt_Dry_Soil_g_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="76" name="MC_Wt_Dry_Soil_g_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="77" name="MC_Wt_Dry_Soil_g_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="78" name="MC_Wt_Dry_Soil_g_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="79" name="MC_Wt_Dry_Soil_g_6" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Moisture Content (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="80" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="81" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="82" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="83" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="84" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="85" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="80" name="MC_Porce_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="81" name="MC_Porce_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="82" name="MC_Porce_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="83" name="MC_Porce_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="84" name="MC_Porce_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="85" name="MC_Porce_6" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Moisture Content Corrected (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="86" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="87" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="88" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="89" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="90" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="91" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="86" name="MC_Porce_Corrected_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="87" name="MC_Porce_Corrected_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="88" name="MC_Porce_Corrected_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="89" name="MC_Porce_Corrected_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="90" name="MC_Porce_Corrected_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="91" name="MC_Porce_Corrected_6" oninput="calcular()"></td>
     </tr>
 </div>
 <table class="table table-bordered border-primary" style="width:450px;" >
@@ -253,10 +493,10 @@ page_require_level(2);
     </thead>
 </tr>
     <th style="font-size: 15px;" style="width: 750px; height: 25px;"scope="row">Maximum Dry Density (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="92" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="92" name="Max_Dry_Density_kgm3" oninput="calcular()"></td>
 </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Optimum Moisture Content (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="93" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="93" name="Optimun_MC_Porce" oninput="calcular()"></td>
 
 <table class="table table-bordered border-primary" style="width:350px;" >
     <thead>
@@ -265,26 +505,26 @@ page_require_level(2);
     </thead>
 </tr>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">Wc (%)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="94" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="94" name="Wc_Porce" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">GM</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="95" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="95" name="GM_Porce" oninput="calcular()"></td>
 </tr>
 </tr>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">PC (%)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="96" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="96" name="PC_Porce" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">PF (%)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="97" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="97" name="PF_Porce" oninput="calcular()"></td>
 </tr>
 </tr>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">YDF</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="98" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="98" name="YDF_Porce" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">YDT</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="99" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="99" name="YDT_Porce" oninput="calcular()"></td>
 </tr>
 </tr>
 
 <th style="font-size: 15px;" style="width: 850px; height: 25px;"scope="row" colspan="3">Yω (KN/mᵌ)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="100" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;"id="100" name="Yw_KnM3" oninput="calcular()"></td>
 </tr>
 </div>
 
@@ -294,11 +534,11 @@ page_require_level(2);
 </tr>
     <th style="font-size: 15px;" style="width: 750px; height: 25px;"scope="row">Corrected Dry unit weight of the total material 
         (combined finer and oversize fractions) (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="101" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="101" name="Corrected_Dry_Unit_Weigt" oninput="calcular()"></td>
 </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Corrected water content of combined finer and 
         oversize fractions ωT (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="102" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="102" name="Corrected_Water_Content_Finer" oninput="calcular()"></td>
 
     <script>
 function calcular() {
@@ -584,14 +824,13 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
 
 
 </thead>
-<tbody id="product_info"> </tbody>
 
 </table>
 
 
 <div id="standard_proctor" style="height: 600px; width: 1070px;"></div>
 
-<button type="submit" name="add_mcoven" class="btn btn-danger">Registrar ensayo</button>
+<button type="submit" name="Standardproctor" class="btn btn-danger">Registrar ensayo</button>
 <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </form>
 </div>
@@ -605,7 +844,7 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
       $.ajax({
         url: "libs/js/sp_graph.js",
         type: "POST",
-        data: $("#mxy").serialize(),
+        data: $("#standard_proctor").serialize(),
         success: function(data) {
           $("#resultado").html(data);
         }
