@@ -3,9 +3,14 @@ $page_title = 'Atterberg limit  Calculation ';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/AtterbergLimit.php'); 
+}
 ?>
-<?php
 
+<?php
+/*
 // Recuperamos los datos del formulario
 if (isset($_POST['Al'])) {
   $req_fields = array(
@@ -137,9 +142,9 @@ Plastic_Limit_Porce, Plasticity_Index_Porce, Liquidity_Index_Porce, Classificati
     redirect('Al.php', false);
   }
 }
-
-
+*/
 ?>
+
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
   <div class="col-md-6">

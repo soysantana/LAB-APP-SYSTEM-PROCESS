@@ -3,6 +3,10 @@ $page_title = 'Standard Count for Nuclear Gauche';
 require_once('includes/load.php');
 // Verifica el nivel de permiso del usuario para ver esta página
 page_require_level(2);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/EnsayoGama.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -33,8 +37,19 @@ page_require_level(2);
                 </strong>
             </div>
             <div class="panel-body">
+<<<<<<< Updated upstream
                 <form method="post" action="#" oninput="calcular()">
 
+=======
+<<<<<<< Updated upstream
+                <form method="post" action="#" onsubmit="calcular()">
+
+                    <table class="table table-bordered">
+                        <thead>
+=======
+                <form method="post" action="ensayo_gama.php" oninput="calcular()">
+
+>>>>>>> Stashed changes
                     <div class="col-xs-4">
                         <label>Standard</label>
                         <select class="form-control" name="Standard">
@@ -42,6 +57,113 @@ page_require_level(2);
                             <option value="ASTM D6938">ASTM D6938</option>
                         </select>
                     </div>
+<<<<<<< Updated upstream
+=======
+
+                    <div class="col-xs-4">
+                        <label>Method</label>
+                        <select class="form-control" type="text" name="PreparationMethod" id="">
+                            <option selected>Choose...</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <label>Comments</label>
+                        <textarea class="form-control" name="Comments"></textarea>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <label>Technician</label>
+                        <input class="form-control" name="Technician" type="text">
+                    </div>
+
+                    <div class="col-xs-4">
+                        <label>Test Start Date</label>
+                        <input class="form-control" name="TestStartDate" type="date">
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <table class="table table-bordered" style="width: 20%;">
+                            <thead>
+                                <caption></caption>
+                                <tbody id="product_info"></tbody>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="col">Station</th>
+                                    <td><input type="text" style="border: none; background: transparent;" name="Station" id="Station"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-bordered" style="width: 30%;">
+                            <thead>
+                                <caption>Field Test Result</caption>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="col">Max Dry Density ( Kg/m3)</th>
+                                    <td><input type="text" style="border: none; background: transparent;" name="MaxDryDensityKgm3" id="Max-Dry-Densy-Kgm3"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Max Wet Density (Kg/m3)</th>
+                                    <td><input type="text" style="border: none; background: transparent;" name="MaxWetDensityKgm3" id="Max-Wet-Densy-kgm3"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Percent Moisture Content</th>
+                                    <td><input type="text" style="border: none; background: transparent;" name="PercentMoistureContent" id="Porce-MC"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-bordered" style="width: 35%;">
+                            <thead>
+                                <caption>LAB Test Result</caption>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="col">Optimun Moisture Content %</th>
+                                    <td style="width: 10%;"><input type="text" style="border: none; background: transparent;" name="OptimunMoistureContent" id="Optimun-MC-Porce"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Max Dry Density (kg/m3)</th>
+                                    <td><input type="text" style="border: none; background: transparent;" name="MaxDryDensity" id="Max-Dry-Density-Lab"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Percent of Compaction</th>
+                                    <td><input type="text" style="border: none; background: transparent;" name="PercentofCompaction" id="Porce-Compaction-Lab"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <button type="submit" name="EnsayoGama" class="btn btn-danger">Registrar ensayo</button>
+                </form>
+>>>>>>> Stashed changes
+            </div>
+            <div class="col-xs-4">
+                <label>Standard</label>
+                <select class="form-control" name="Standard">
+                    <option selected>Choose...</option>
+                    <option value="ASTM D6938">ASTM D6938</option>
+                </select>
+            </div>
+            <div class="col-xs-4">
+                <label>Method</label>
+                <select class="form-control" type="text" name="method" id="">
+                    <option selected>Choose...</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+            </div>
+>>>>>>> Stashed changes
 
                     <div class="col-xs-4">
                         <label>Method</label>

@@ -3,6 +3,10 @@ $page_title = 'BULK DENSITY AND VOIDS IN AGGREGATES';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/DensityBulk.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -33,10 +37,11 @@ page_require_level(3);
                 </strong>
             </div>
             <div class="panel-body">
-                <form method="post" action="#" onsubmit="calcular()">
+                <form method="post" action="density_bulk.php" onsubmit="calcular()">
 
                     <table class="table table-bordered">
                         <thead>
+                        <tbody id="product_info"></tbody>
             </div>
             <div class="col-xs-4">
                 <label>Standard</label>
@@ -47,7 +52,7 @@ page_require_level(3);
             </div>
             <div class="col-xs-4">
                 <label>Method</label>
-                <select class="form-control" type="text" name="method" id="">
+                <select class="form-control" type="text" name="PreparationMethod" id="">
                     <option selected>Choose...</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -67,7 +72,7 @@ page_require_level(3);
 
             <div class="col-xs-4">
                 <label>Test Start Date</label>
-                <input class="form-control" name="Test_Start_Date" type="date">
+                <input class="form-control" name="TestStartDate" type="date">
             </div>
 
             <div class="panel-body">
@@ -84,43 +89,43 @@ page_require_level(3);
         <tbody>
             <tr>
                 <th scope="col">Sample ID</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="" name="Container" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-g" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-g" name="WeightTareg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare + Soil (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-g" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-g" name="WeightTareSoilg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Volume of the Mold (m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Vol-the-Mold-m3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Vol-the-Mold-m3" name="VolumeTheMoldm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight Loose Material (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Loose-Material-g" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Loose-Material-g" name="WeightLooseMaterialg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Absorption %</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce" name="AbsorptionPorce" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Specific Gravity (OD)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Sg-OD" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Sg-OD" name="SpecificGravityOD" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Density of Water (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3" name="DensityWaterKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Loose Bulk Denisty (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Loose-Bulk-Densy-Kgm3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Loose-Bulk-Densy-Kgm3" name="LooseBulkDenistyKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Percent Voids in loose Aggregate</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Loose-Agg" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Loose-Agg" name="PercentVoidsLooseAggregate" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -136,39 +141,39 @@ page_require_level(3);
         <tbody>
             <tr>
                 <th scope="col">Weight of tare (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Compacted" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Compacted" name="CompactedWeightTareg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare + Soil (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-Compacted" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-Compacted" name="CompactedWeightTareSoilg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Volume of the Mold (m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Vol-Mold-m3-Compacted" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Vol-Mold-m3-Compacted" name="CompactedVolumeTheMoldm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight Compacted Material (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Compacted-Material" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weig-Compacted-Material" name="WeightCompactedMaterialg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Absorption %</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce-Compacted" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce-Compacted" name="CompactedAbsorptionPorce" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Specific Gravity (OD)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Sg-OD-Compacted" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Sg-OD-Compacted" name="CompactedSpecificGravityOD" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Density of Water (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3-Compacted" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3-Compacted" name="CompactedDensityWaterKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Compacted Bulk Denisty (Kg/m³)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Compacted-Bulk-Densy" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Compacted-Bulk-Densy" name="CompactedBulkDenistyKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Percent Voids in compacted Aggregate</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Compacted-Agg" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Compacted-Agg" name="PercentVoidsCompactedAggregate" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -176,7 +181,7 @@ page_require_level(3);
 
 
 <div>
-    <button type="submit" name="add_mcoven" class="btn btn-danger">Registrar ensayo</button>
+    <button type="submit" name="density_bulk" class="btn btn-danger">Registrar ensayo</button>
 </div>
 
 <script>
