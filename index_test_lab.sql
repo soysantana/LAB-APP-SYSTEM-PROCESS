@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-08-2023 a las 14:45:30
+-- Tiempo de generación: 30-08-2023 a las 14:42:26
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -621,6 +621,52 @@ INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `los_angeles_abrasion_small`
+--
+
+CREATE TABLE `los_angeles_abrasion_small` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Selected_Grading` varchar(5) NOT NULL,
+  `Weight_of_The_Spheres` float DEFAULT NULL,
+  `Revolutions` float DEFAULT NULL,
+  `Initial_Weight` float DEFAULT NULL,
+  `Final_Weight` float DEFAULT NULL,
+  `Weight_Loss` float DEFAULT NULL,
+  `Weight_Loss_Porce` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `los_angeles_abrasion_small`
+--
+
+INSERT INTO `los_angeles_abrasion_small` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Selected_Grading`, `Weight_of_The_Spheres`, `Revolutions`, `Initial_Weight`, `Final_Weight`, `Weight_Loss`, `Weight_Loss_Porce`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'Choose...', 'Oven_Dried', 'Mech_Split', 'A', 50, 50, 10, 10, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S'),
+(2, 'TP-BGC23-NTSF-101', 'G1', 'ASTM-D854', 'Oven_Dried', 'Mech_Split', 'A', 50, 50, 10, 0, 10, 100, 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, '2023-07-17', '2023-08-30', '2023-08-30', 'Comentario', 'NOSE', 'A-S');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `moisture_content`
 --
 
@@ -847,6 +893,262 @@ INSERT INTO `muestra_en_realizacion` (`id`, `Sample_ID`, `Tecnico`, `Fecha_Inici
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sand_density`
+--
+
+CREATE TABLE `sand_density` (
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Weight_Sand_Mold_1` float DEFAULT NULL,
+  `Weight_Sand_Mold_2` float DEFAULT NULL,
+  `Weight_Sand_Mold_3` float DEFAULT NULL,
+  `Mold_1` float DEFAULT NULL,
+  `Mold_2` float DEFAULT NULL,
+  `Mold_3` float DEFAULT NULL,
+  `Weight_Mold_1` float DEFAULT NULL,
+  `Weight_Mold_2` float DEFAULT NULL,
+  `Weight_Mold_3` float DEFAULT NULL,
+  `Weight_Sand_In_Mold_1` float DEFAULT NULL,
+  `Weight_Sand_In_Mold_2` float DEFAULT NULL,
+  `Weight_Sand_In_Mold_3` float DEFAULT NULL,
+  `Volume_Mold_cm3_1` float DEFAULT NULL,
+  `Volume_Mold_cm3_2` float DEFAULT NULL,
+  `Volume_Mold_cm3_3` float DEFAULT NULL,
+  `Bulk_Density_Sand_gcm3_1` float DEFAULT NULL,
+  `Bulk_Density_Sand_gcm3_2` float DEFAULT NULL,
+  `Bulk_Density_Sand_gcm3_3` float DEFAULT NULL,
+  `Average_Bulk_Density_Sand` float DEFAULT NULL,
+  `Weight_Sand_Container_Before_Test_1` float DEFAULT NULL,
+  `Weight_Sand_Container_Before_Test_2` float DEFAULT NULL,
+  `Weight_Sand_Container_Before_Test_3` float DEFAULT NULL,
+  `Weight_Sand_Container_After_Test_1` float DEFAULT NULL,
+  `Weight_Sand_Container_After_Test_2` float DEFAULT NULL,
+  `Weight_Sand_Container_After_Test_3` float DEFAULT NULL,
+  `Weight_Sand_Used_1` float DEFAULT NULL,
+  `Weight_Sand_Used_2` float DEFAULT NULL,
+  `Weight_Sand_Used_3` float DEFAULT NULL,
+  `Bulk_Density_of_Sand_1` float DEFAULT NULL,
+  `Bulk_Density_of_Sand_2` float DEFAULT NULL,
+  `Bulk_Density_of_Sand_3` float DEFAULT NULL,
+  `Volume_Funnel_1` float DEFAULT NULL,
+  `Volume_Funnel_2` float DEFAULT NULL,
+  `Volume_Funnel_3` float DEFAULT NULL,
+  `Average_Volume_Funnel` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `sand_density`
+--
+
+INSERT INTO `sand_density` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Weight_Sand_Mold_1`, `Weight_Sand_Mold_2`, `Weight_Sand_Mold_3`, `Mold_1`, `Mold_2`, `Mold_3`, `Weight_Mold_1`, `Weight_Mold_2`, `Weight_Mold_3`, `Weight_Sand_In_Mold_1`, `Weight_Sand_In_Mold_2`, `Weight_Sand_In_Mold_3`, `Volume_Mold_cm3_1`, `Volume_Mold_cm3_2`, `Volume_Mold_cm3_3`, `Bulk_Density_Sand_gcm3_1`, `Bulk_Density_Sand_gcm3_2`, `Bulk_Density_Sand_gcm3_3`, `Average_Bulk_Density_Sand`, `Weight_Sand_Container_Before_Test_1`, `Weight_Sand_Container_Before_Test_2`, `Weight_Sand_Container_Before_Test_3`, `Weight_Sand_Container_After_Test_1`, `Weight_Sand_Container_After_Test_2`, `Weight_Sand_Container_After_Test_3`, `Weight_Sand_Used_1`, `Weight_Sand_Used_2`, `Weight_Sand_Used_3`, `Bulk_Density_of_Sand_1`, `Bulk_Density_of_Sand_2`, `Bulk_Density_of_Sand_3`, `Volume_Funnel_1`, `Volume_Funnel_2`, `Volume_Funnel_3`, `Average_Volume_Funnel`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+('TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S'),
+('TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S'),
+('TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 999.99, 999.98, 999.97, 888, 888, 888, 500, 502, 503, 499.99, 497.98, 496.97, 1, 2, 3, 499.99, 248.99, 165.657, 304.879, 999.99, 999.98, 999.99, 888, 888, 888, 111.99, 111.98, 111.99, 10, 12, 113, 11.2, 9.33, 0.99, 7.1739, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `specific_gravity`
+--
+
+CREATE TABLE `specific_gravity` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Pycnometer_Used_mL` varchar(10) NOT NULL,
+  `Pycnometer_Number` varchar(10) NOT NULL,
+  `Test_Temp_Tt_C` float DEFAULT NULL,
+  `Ave_Calibrated_Mass_Dry_Pycnometer_Mp_gr` float DEFAULT NULL,
+  `Ave_Calibrated_Volume_Pycnometer_Vp_mL` float DEFAULT NULL,
+  `Density_Water_Test_Temp_gmL` float DEFAULT NULL,
+  `Calibration_Weight_Pynometer_Water_Calibration_Temp_Mpwc_gr` float DEFAULT NULL,
+  `Weight_Dry_Soil_Tare_gr` float DEFAULT NULL,
+  `Weight_Dry_Soil_Ms_gr` float DEFAULT NULL,
+  `Weight_Pycnometer_Soil_Water_Mpwst_gr` float DEFAULT NULL,
+  `Specific_Gravity_Soil_Solid_Test_Temp_Gt` float DEFAULT NULL,
+  `Temperature_Coefficent_K` float DEFAULT NULL,
+  `Specific_Gravity_Soil_Solid` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `specific_gravity`
+--
+
+INSERT INTO `specific_gravity` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Pycnometer_Used_mL`, `Pycnometer_Number`, `Test_Temp_Tt_C`, `Ave_Calibrated_Mass_Dry_Pycnometer_Mp_gr`, `Ave_Calibrated_Volume_Pycnometer_Vp_mL`, `Density_Water_Test_Temp_gmL`, `Calibration_Weight_Pynometer_Water_Calibration_Temp_Mpwc_gr`, `Weight_Dry_Soil_Tare_gr`, `Weight_Dry_Soil_Ms_gr`, `Weight_Pycnometer_Soil_Water_Mpwst_gr`, `Specific_Gravity_Soil_Solid_Test_Temp_Gt`, `Temperature_Coefficent_K`, `Specific_Gravity_Soil_Solid`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D854', 'Oven_Dried', 'Man_Split', '250 ml', 'C', 22.2, 88.94, 293.31, 0.99771, 337.66, 133.96, 45.02, 365.89, 2.68, 0.99936, 2.68, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `specific_gravity_absortion`
+--
+
+CREATE TABLE `specific_gravity_absortion` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Inch5_Wt1` float NOT NULL,
+  `Inch5_Wt2` float NOT NULL,
+  `Inch5_Wt3` float NOT NULL,
+  `Inch4_Wt1` float DEFAULT NULL,
+  `Inch4_Wt2` float DEFAULT NULL,
+  `Inch4_Wt3` float DEFAULT NULL,
+  `Inch3p5_Wt1` float DEFAULT NULL,
+  `Inch3p5_Wt2` float DEFAULT NULL,
+  `Inch3p5_Wt3` float DEFAULT NULL,
+  `Inch3_Wt1` float DEFAULT NULL,
+  `Inch3_Wt2` float DEFAULT NULL,
+  `Inch3_Wt3` float DEFAULT NULL,
+  `Inch2p5_Wt1` float DEFAULT NULL,
+  `Inch2p5_Wt2` float DEFAULT NULL,
+  `Inch2p5_Wt3` float DEFAULT NULL,
+  `Inch2_Wt1` float DEFAULT NULL,
+  `Inch2_Wt2` float DEFAULT NULL,
+  `Inch2_Wt3` float DEFAULT NULL,
+  `Inch1p5_Wt1` float DEFAULT NULL,
+  `Inch1p5_Wt2` float DEFAULT NULL,
+  `Inch1p5_Wt3` float DEFAULT NULL,
+  `Inch1_Wt1` float DEFAULT NULL,
+  `Inch1_Wt2` float DEFAULT NULL,
+  `Inch1_Wt3` float DEFAULT NULL,
+  `Inch3p4_Wt1` float DEFAULT NULL,
+  `Inch3p4_Wt2` float DEFAULT NULL,
+  `Inch3p4_Wt3` float DEFAULT NULL,
+  `Inch1p2_Wt1` float DEFAULT NULL,
+  `Inch1p2_Wt2` float DEFAULT NULL,
+  `Inch1p2_Wt3` float DEFAULT NULL,
+  `Inch3p8_Wt1` float DEFAULT NULL,
+  `Inch3p8_Wt2` float DEFAULT NULL,
+  `Inch3p8_Wt3` float DEFAULT NULL,
+  `InchNo4_Wt1` float DEFAULT NULL,
+  `InchNo4_Wt2` float DEFAULT NULL,
+  `InchNo4_Wt3` float DEFAULT NULL,
+  `InchTotal_Wt1` float DEFAULT NULL,
+  `InchTotal_Wt2` float DEFAULT NULL,
+  `InchTotal_Wt3` float DEFAULT NULL,
+  `Specific_Gravity_OD` float DEFAULT NULL,
+  `Specific_Gravity_SSD` float DEFAULT NULL,
+  `Apparent_Specific_Gravity` float DEFAULT NULL,
+  `Percent_Absortion` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `specific_gravity_absortion`
+--
+
+INSERT INTO `specific_gravity_absortion` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Inch5_Wt1`, `Inch5_Wt2`, `Inch5_Wt3`, `Inch4_Wt1`, `Inch4_Wt2`, `Inch4_Wt3`, `Inch3p5_Wt1`, `Inch3p5_Wt2`, `Inch3p5_Wt3`, `Inch3_Wt1`, `Inch3_Wt2`, `Inch3_Wt3`, `Inch2p5_Wt1`, `Inch2p5_Wt2`, `Inch2p5_Wt3`, `Inch2_Wt1`, `Inch2_Wt2`, `Inch2_Wt3`, `Inch1p5_Wt1`, `Inch1p5_Wt2`, `Inch1p5_Wt3`, `Inch1_Wt1`, `Inch1_Wt2`, `Inch1_Wt3`, `Inch3p4_Wt1`, `Inch3p4_Wt2`, `Inch3p4_Wt3`, `Inch1p2_Wt1`, `Inch1p2_Wt2`, `Inch1p2_Wt3`, `Inch3p8_Wt1`, `Inch3p8_Wt2`, `Inch3p8_Wt3`, `InchNo4_Wt1`, `InchNo4_Wt2`, `InchNo4_Wt3`, `InchTotal_Wt1`, `InchTotal_Wt2`, `InchTotal_Wt3`, `Specific_Gravity_OD`, `Specific_Gravity_SSD`, `Apparent_Specific_Gravity`, `Percent_Absortion`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D854', 'Oven_Dried', 'Mech_Split', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 523, 958, 0, 523, 958, 0, 0.55, 1, 1, 83.17, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `specific_gravity_fine`
+--
+
+CREATE TABLE `specific_gravity_fine` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Pycnometer_Number` varchar(10) NOT NULL,
+  `Weight_Pycnometer` float DEFAULT NULL,
+  `Weight_Dry_Soil_Tare` float DEFAULT NULL,
+  `Weight_Dry_Soil` float DEFAULT NULL,
+  `Weight_Saturated_Surface_Dry_Soil_Air` float DEFAULT NULL,
+  `Temp_Sample` float DEFAULT NULL,
+  `Weight_Pycnometer_Soil_Water` float DEFAULT NULL,
+  `Calibration_Weight_Pycnometer_Desired_Temp` float DEFAULT NULL,
+  `Specific_Gravity` float DEFAULT NULL,
+  `Specific_Gravity_SSD` float DEFAULT NULL,
+  `Apparent_Specific_Gravity` float DEFAULT NULL,
+  `Percent_Absortion` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `specific_gravity_fine`
+--
+
+INSERT INTO `specific_gravity_fine` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Pycnometer_Number`, `Weight_Pycnometer`, `Weight_Dry_Soil_Tare`, `Weight_Dry_Soil`, `Weight_Saturated_Surface_Dry_Soil_Air`, `Temp_Sample`, `Weight_Pycnometer_Soil_Water`, `Calibration_Weight_Pycnometer_Desired_Temp`, `Specific_Gravity`, `Specific_Gravity_SSD`, `Apparent_Specific_Gravity`, `Percent_Absortion`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D854', 'Oven_Dried', 'Mech_Split', 'C', 175.86, 253.49, 77.63, 120.07, 20, 723.3, 674, 1.1, 1.7, 1.1, 54.67, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `standard_proctor`
 --
 
@@ -1011,7 +1313,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Admin Users', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-08-29 14:43:29'),
+(1, 'Admin Users', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-08-30 14:36:58'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2023-03-20 03:13:43'),
 (3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2023-07-19 21:21:18');
 
@@ -1086,6 +1388,12 @@ ALTER TABLE `lab_test_requisition_form`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `los_angeles_abrasion_small`
+--
+ALTER TABLE `los_angeles_abrasion_small`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `moisture_content`
 --
 ALTER TABLE `moisture_content`
@@ -1111,6 +1419,24 @@ ALTER TABLE `muestra_en_preparacion`
 ALTER TABLE `muestra_en_realizacion`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `Sample_ID` (`Sample_ID`);
+
+--
+-- Indices de la tabla `specific_gravity`
+--
+ALTER TABLE `specific_gravity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `specific_gravity_absortion`
+--
+ALTER TABLE `specific_gravity_absortion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `specific_gravity_fine`
+--
+ALTER TABLE `specific_gravity_fine`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1159,6 +1485,12 @@ ALTER TABLE `lab_test_requisition_form`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `los_angeles_abrasion_small`
+--
+ALTER TABLE `los_angeles_abrasion_small`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `moisture_content`
 --
 ALTER TABLE `moisture_content`
@@ -1181,6 +1513,24 @@ ALTER TABLE `muestra_en_preparacion`
 --
 ALTER TABLE `muestra_en_realizacion`
   MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `specific_gravity`
+--
+ALTER TABLE `specific_gravity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `specific_gravity_absortion`
+--
+ALTER TABLE `specific_gravity_absortion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `specific_gravity_fine`
+--
+ALTER TABLE `specific_gravity_fine`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
