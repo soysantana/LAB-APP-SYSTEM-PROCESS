@@ -2,7 +2,11 @@
 $page_title = 'SPECIFIC GRAVITY AND ABSORTION IN COARSE AGGREGATES';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level(2);
+page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/SgAbsortion.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -32,10 +36,11 @@ page_require_level(2);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="" onsubmit="calcular();">
+<form method="post" action="sg_absortion.php" onsubmit="calcular();">
 
 <table class="table table-bordered">
 <thead>
+<tbody id="product_info"></tbody>
 </div>
 <div class="col-xs-4">
 <label >Standard</label>
@@ -47,7 +52,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="PreparationMethod">
 <option selected>Choose...</option>
 <option value="Oven_Dried">Oven Dried</option>
 <option value="Air_Dried">Air Dried</option>
@@ -56,7 +61,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Split Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="SplitMethod">
 <option selected>Choose...</option>
 <option value="Mech_Split">Mech. Split</option>
 <option value="Man_Split">Manual Split</option>
@@ -75,7 +80,7 @@ page_require_level(2);
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="Test_Start_Date" type="date">
+<input class="form-control" name="TestStartDate" type="date">
 </div>
 
 
@@ -100,107 +105,107 @@ page_require_level(2);
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="1"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt1" id="1"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="2"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt2" id="2"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt3" id="3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="4"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt1" id="4"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="5"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt2" id="5"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="6" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt3" id="6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="7"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt1" id="7"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="8"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt2" id="8"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="9" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt3" id="9" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="10"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt1" id="10"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="11"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt2" id="11"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="12" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt3" id="12" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="13"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt1" id="13"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="14"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt2" id="14"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="15" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt3" id="15" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="16"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt1" id="16"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="17"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt2" id="17"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="18" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt3" id="18" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="19"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt1" id="19"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="20"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt2" id="20"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="21" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt3" id="21" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="22"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt1" id="22"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="23"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt2" id="23"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="24" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt3" id="24" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="25"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt1" id="25"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="26"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt2" id="26"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="27" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt3" id="27" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="28"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt1" id="28"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="29"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt2" id="29"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="30" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt3" id="30" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="38"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt1" id="38"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="39"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt2" id="39"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="40" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt3" id="40" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No4</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="41"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt1" id="41"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No4</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="42"  oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt2" id="42"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No4</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="43" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt3" id="43" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="31" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt1" id="31" oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="32" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt2" id="32" oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="33" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt3" id="33" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -217,19 +222,19 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Specific Gravity (OD)</th>
-                <td><input type="text" style="border: none;" size="8" style="background: transparent;"id="34"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="8" style="background: transparent;" name="SpecificGravityOD" id="34"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Specific Gravity (SSD)</th>
-                <td><input type="text" style="border: none;" size="8" style="background: transparent;"id="35"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="8" style="background: transparent;" name="SpecificGravitySSD" id="35"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Apparent Specific Gravity</th>
-                <td><input type="text" style="border: none;" size="8" style="background: transparent;"id="36"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="8" style="background: transparent;" name="ApparentSpecificGravity" id="36"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Percent of Absortion</th>
-                <td><input type="text" style="border: none;" size="8" style="background: transparent;"id="37"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="8" style="background: transparent;" name="PercentAbsortion" id="37"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -237,7 +242,7 @@ page_require_level(2);
 
 
 <div style="margin-left: 1%;">
-    <button type="submit" name="" class="btn btn-danger">Registrar ensayo</button>
+    <button type="submit" name="SgAbsortion" class="btn btn-danger">Registrar ensayo</button>
 </div>
 
 

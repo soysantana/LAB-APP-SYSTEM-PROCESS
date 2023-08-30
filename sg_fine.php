@@ -2,7 +2,11 @@
 $page_title = 'Specific Gravity for Fine Aggregate';
 require_once('includes/load.php');
 // Checking what level user has permission to view this page
-page_require_level(2);
+page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/SgFine.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -37,7 +41,7 @@ page_require_level(2);
                 <form method="post" action="sg_fine.php" onsubmit="calcular();">
                     <table class="table table-bordered">
                         <thead>
-                            <!-- Table headers can be added here if applicable -->
+                        <tbody id="product_info"></tbody>
                         </thead>
                         <tbody>
                             <tr>
@@ -51,7 +55,7 @@ page_require_level(2);
                                     </div>
                                     <div class="col-xs-4">
                                         <label>Preparation Method</label>
-                                        <select class="form-control" name="preparation">
+                                        <select class="form-control" name="PreparationMethod">
                                             <option selected>Choose...</option>
                                             <option value="Oven_Dried">Oven Dried</option>
                                             <option value="Air_Dried">Air Dried</option>
@@ -59,7 +63,7 @@ page_require_level(2);
                                     </div>
                                     <div class="col-xs-4">
                                         <label>Split Method</label>
-                                        <select class="form-control" name="split_method">
+                                        <select class="form-control" name="SplitMethod">
                                             <option selected>Choose...</option>
                                             <option value="Mech_Split">Mech. Split</option>
                                             <option value="Man_Split">Manual Split</option>
@@ -77,7 +81,7 @@ page_require_level(2);
                                     </div>
                                     <div class="col-xs-4">
                                         <label>Test Start Date</label>
-                                        <input class="form-control" name="Test_Start_Date" type="date">
+                                        <input class="form-control" name="TestStartDate" type="date">
                                     </div>
                                 </td>
                             </tr>
@@ -91,27 +95,27 @@ page_require_level(2);
                         <tbody>
                             <tr>
                                 <th>Pycnometer Number :</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="1"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="1" name="PycnometerNumber"  oninput="calcular()"></td>
                                 <th>Weight of Saturated Surface Dry Soil in Air (g):</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="2"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="2" name="WeightSaturatedSurfaceDrySoilAir"  oninput="calcular()"></td>
                             </tr>
                             <tr>
                                 <th>Weight of Pycnometer(g): </th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="3"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="3" name="WeightPycnometer"  oninput="calcular()"></td>
                                 <th>Temperature of Sample (°C) :</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="4"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="4" name="TempSample"  oninput="calcular()"></td>
                             </tr>
                             <tr>
                                 <th>Weight of Dry Soil + Tare (g):</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="5"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="5" name="WeightDrySoilTare"  oninput="calcular()"></td>
                                 <th>Weight of Pycnometer + Soil + Water (g):</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="6"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="6" name="WeightPycnometerSoilWater"  oninput="calcular()"></td>
                             </tr>
                             <tr>
                                 <th>Weight of Dry Soil (g):</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="7"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="7" name="WeightDrySoil"  oninput="calcular()"></td>
                                 <th>Calibration Weight of Pycnometer at Desired Temprature (g):</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="8"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="8" name="CalibrationWeightPycnometerDesiredTemp"  oninput="calcular()"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -123,19 +127,19 @@ page_require_level(2);
                         <tbody>
                             <tr>
                                 <th>Specific Gravity</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="9"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="9" name="SpecificGravity"  oninput="calcular()"></td>
                                 <th>Specific Gravity (SSD)</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="10"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="10" name="SpecificGravitySSD"  oninput="calcular()"></td>
                             </tr>
                             <tr>
                                 <th>Apparent Specific Gravity</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="11"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="11" name="ApparentSpecificGravity"  oninput="calcular()"></td>
                                 <th>Percent of Absortion</th>
-                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="12"  oninput="calcular()"></td>
+                                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="12" name="PercentAbsortion"  oninput="calcular()"></td>
                             </tr>
                         </tbody>
                     </table>
-                    <!-- Add submit button and other form elements here if applicable -->
+                    <button type="submit" name="SgFine" class="btn btn-danger">Registrar ensayo</button>
                 </form>
             </div>
         </div>
