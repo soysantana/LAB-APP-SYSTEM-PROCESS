@@ -2,7 +2,11 @@
 $page_title = 'Los Angeles Abrasion For Small Size Coarse';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level(2);
+page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/LLASmall.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -32,10 +36,11 @@ page_require_level(2);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="" oninput="calcular();">
+<form method="post" action="laa_small.php" oninput="calcular();">
 
 <table class="table table-bordered">
 <thead>
+<tbody id="product_info"></tbody>
 </div>
 <div class="col-xs-4">
 <label >Standard</label>
@@ -47,7 +52,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="PreparationMethod">
 <option selected>Choose...</option>
 <option value="Oven_Dried">Oven Dried</option>
 <option value="Air_Dried">Air Dried</option>
@@ -56,7 +61,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Split Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="SplitMethod">
 <option selected>Choose...</option>
 <option value="Mech_Split">Mech. Split</option>
 <option value="Man_Split">Manual Split</option>
@@ -75,7 +80,7 @@ page_require_level(2);
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="Test_Start_Date" type="date">
+<input class="form-control" name="TestStartDate" type="date">
 </div>
 
 
@@ -89,7 +94,7 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Selected Grading</th>
-                <td><select name="" id=""  style="border: none;" style="background: transparent;">
+                <td><select name="SelectedGrading" id=""  style="border: none;" style="background: transparent;">
                     <option>Choose...</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -110,19 +115,19 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Initial Weight (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="In-Weigt-g" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="In-Weigt-g" name="InitialWeight" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Final Weight (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Fin-Weigt-g" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Fin-Weigt-g" name="FinalWeight" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight Loss (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Weigt-Loss-g" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Weigt-Loss-g" name="WeightLoss" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight Loss (%)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Weigt-Loss-Porce" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="Weigt-Loss-Porce" name="WeightLossPorce" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -137,18 +142,18 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Weight of the Spheres (g)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="" name="WeightofTheSpheres" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: end;" style="width: 550px; height: 25px;"scope="row">Revolutions</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="" name="Revolutions" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
 </div>
 
 <div style="margin-left: 1%;">
-    <button type="submit" name="" class="btn btn-danger">Registrar ensayo</button>
+    <button type="submit" name="LAASmall" class="btn btn-danger">Registrar ensayo</button>
 </div>
 </form>
 

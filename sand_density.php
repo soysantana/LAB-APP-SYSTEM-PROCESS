@@ -2,7 +2,11 @@
 $page_title = 'SAND DENSITY CALIBRATION';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level(2);
+page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/SandDensity.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -36,6 +40,7 @@ page_require_level(2);
 
 <table class="table table-bordered">
 <thead>
+<tbody id="product_info"></tbody>
 </div>
 <div class="col-xs-4">
 <label >Standard</label>
@@ -47,7 +52,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="PreparationMethod">
 <option selected>Choose...</option>
 <option value="Oven_Dried">Oven Dried</option>
 <option value="Air_Dried">Air Dried</option>
@@ -56,7 +61,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Split Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="SplitMethod">
 <option selected>Choose...</option>
 <option value="Mech_Split">Mech. Split</option>
 <option value="Man_Split">Manual Split</option>
@@ -75,7 +80,7 @@ page_require_level(2);
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="Test_Start_Date" type="date">
+<input class="form-control" name="TestStartDate" type="date">
 </div>
 
 
@@ -93,43 +98,43 @@ page_require_level(2);
             </tr>
             <tr>
                 <th scope="row">Weight of Sand + Mold (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="1"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="2"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandMold1" id="1"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandMold2" id="2"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandMold3" id="3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Mold</th>
-                <td><input type="text" style="border: none; background: transparent;" id="4"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="5"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="6"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="Mold1" id="4"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="Mold2" id="5"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="Mold3" id="6"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight Mold (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="7"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="8"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="9"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightMold1" id="7"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightMold2" id="8"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightMold3" id="9"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight of Sand in Mold (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="10"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="11"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="12"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandInMold1" id="10"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandInMold2" id="11"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandInMold3" id="12"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Volume of Mold (cm3)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="13"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="14"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="15"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="VolumeMoldcm31" id="13"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="VolumeMoldcm32" id="14"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="VolumeMoldcm33" id="15"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Bulk Density of Sand (g/cm3)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="16"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="17"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="18"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm31" id="16"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm32" id="17"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm33" id="18"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Average Bulk Density of Sand (g/cm3)</th>
-                <td colspan="3"><input type="text" style="border: none; text-align: center; background: transparent;" id="19"oninput="calcular()"></td>
+                <td colspan="3"><input type="text" style="border: none; text-align: center; background: transparent;" name="AverageBulkDensitySand" id="19"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -151,37 +156,37 @@ page_require_level(2);
             </tr>
             <tr>
                 <th scope="row">Weight of Sand + Container Before Test (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="20"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="21"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="22"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest1" id="20"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest2" id="21"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest3" id="22"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight of Sand + Container After Test (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="23"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="24"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="25"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest1" id="23"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest2" id="24"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest3" id="25"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight Sand Used (g)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="26"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="27"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="28"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandUsed1" id="26"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandUsed2" id="27"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="WeightSandUsed3" id="28"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Bulk Density of Sand (g/cm3)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="29"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="30"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="31"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="BulkDensityofSand1" id="29"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="BulkDensityofSand2" id="30"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="BulkDensityofSand3" id="31"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Volume of Funnel (cm3)</th>
-                <td><input type="text" style="border: none; background: transparent;" id="32"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="33"oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" id="34"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="VolumeFunnel1" id="32"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="VolumeFunnel2" id="33"oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" name="VolumeFunnel3" id="34"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Average Volume of Funnel (cm3)</th>
-                <td colspan="3"><input type="text" style="border: none; background: transparent;" id="35"oninput="calcular()"></td>
+                <td colspan="3"><input type="text" style="border: none; background: transparent;" name="AverageVolumeFunnel" id="35"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -189,7 +194,7 @@ page_require_level(2);
 
 
 <div style="margin-left: 1%;">
-    <button type="submit" name="" class="btn btn-danger">Registrar ensayo</button>
+    <button type="submit" name="SandDensity" class="btn btn-danger">Registrar ensayo</button>
 </div>
 
 <Script>
