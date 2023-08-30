@@ -215,7 +215,7 @@ function tableExists($table){
      $sql  =" SELECT Sample_ID, Sample_Number, Structure,Area,Source, Depth_From, Depth_To, Material_Type, Sample_Type, North, East, 
      Elev, MC_Oven, MC_Stove, MC_Scale, Atterberg_Limit, Grain_Size, Standard_Proctor, Specific_Gravity,
        Acid_Reactivity, Sand_Castle, Los_Angeles_Abrasion, Soundness, UCS, PLT, BTS, Hydrometer, Double_Hydrometer, Pinhole, 
-       Consolidation, Permeability, Comment, Sample_Date, Sample_By, Registed_Date";
+       Consolidation, Permeability, Comment, Sample_Date, Sample_By, Registed_Date, Register_By";
 
     $sql  .=" FROM lab_test_requisition_form";
 
@@ -239,6 +239,7 @@ function tableExists($table){
 
     foreach ($result as $column_info) {
         $column_name = $column_info['Field'];
+
         $select_query = "SELECT COUNT(*) AS count FROM lab_test_requisition_form WHERE $column_name = 'Required'";
         $count_result = find_by_sql($select_query);
 
@@ -249,8 +250,6 @@ function tableExists($table){
 
     return $required_columns;
 }
-
-
 
 
 

@@ -9,7 +9,7 @@ $all_sampleid = find_all('lab_test_requisition_form');
 
 if (isset($_POST['add_Muestra'])) {
   $req_fields = array('Sample_ID','Sample_Number', 'Structure', 'Area', 'Source', 'Depth_From', 'Depth_To', 'Material_Type', 
-  'Sample_Type', 'North', 'East', 'Elev', 'Comment', 'Sample_Date', 'Sample_By');
+  'Sample_Type', 'North', 'East', 'Elev', 'Comment', 'Sample_Date', 'Sample_By' , 'Register_By');
 
   validate_fields($req_fields);
 
@@ -29,6 +29,7 @@ if (isset($_POST['add_Muestra'])) {
     $comment = remove_junk($db->escape($_POST['Comment']));
     $sampledate = remove_junk($db->escape($_POST['Sample_Date']));
     $sampleby = remove_junk($db->escape($_POST['Sample_By']));
+    $registerby = remove_junk($db->escape($_POST['Register_By']));
 
     // Definir los checkboxes válidos
     $checkboxes = array(
@@ -52,7 +53,7 @@ if (isset($_POST['add_Muestra'])) {
     // Agregar los nombres de los checkboxes válidos a la consulta SQL
     $query .= implode(',', $checkboxes);
 
-    $query .= ", Comment, Sample_Date, Sample_By";
+    $query .= ", Comment, Sample_Date, Sample_By , Register_By";
     $query .= ") VALUES (";
     $query .= "'{$sampleid}','{$samplenumber}','{$structure}','{$area}','{$source}','{$depthfrom}','{$depthto}','{$materialtype}','{$sampletype}','{$north}','{$east}','{$elev}',";
 
@@ -62,7 +63,7 @@ if (isset($_POST['add_Muestra'])) {
     }, array_values($checkboxes_values));
     $query .= implode(',', $values);
 
-    $query .= ",'{$comment}','{$sampledate}','{$sampleby}'";
+    $query .= ",'{$comment}','{$sampledate}','{$sampleby}','{$registerby}'";
     $query .= ") ON DUPLICATE KEY UPDATE Sample_ID='{$sampleid}'";
 
     if ($db->query($query)) {
@@ -95,15 +96,15 @@ if (isset($_POST['add_Muestra'])) {
           <form method="post" action="add_Muestra.php" class="clearfix">
             
             <div class="col-xs-4">
-              <label>Sample ID</label>
+              <label>Identificacion de muestra</label>
               <input class="form-control" name="Sample_ID" type="text">
             </div>
             <div class="col-xs-4">
-              <label>Sample Number</label>
+              <label>Numero de muestra</label>
               <input class="form-control" name="Sample_Number" type="text">
             </div>
             <div class="col-xs-4">
-              <label>Structure</label>
+              <label>Estructura</label>
               <input class="form-control" name="Structure" type="text">
             </div>
             <div class="col-xs-4">
@@ -115,15 +116,15 @@ if (isset($_POST['add_Muestra'])) {
           <div class="panel-body"><div class="col-md-12"></div>
               
               <div class="col-xs-4">
-                <label >Source</label>
+                <label >Fuente</label>
                 <input class="form-control" name="Source" type="text">
               </div>
               <div class="col-xs-4">
-                <label>Depth From</label>
+                <label>Profundidad hasta</label>
                 <input class="form-control" name="Depth_From" type="text">
               </div>
               <div class="col-xs-4">
-                <label>Depth To</label>
+                <label>profundidad hasta</label>
                 <input class="form-control" name="Depth_To" type="text">
               </div>
           </div>
@@ -133,14 +134,14 @@ if (isset($_POST['add_Muestra'])) {
               <div class="col-xs-4">
                 <label >Material Type</label>
                 <select class="form-control" name="Material_Type">
-                <option selected>Choose...</option>
-                <option value="Soil">Soil</option>
-                <option value="Rock">Rock</option>
-                <option value="Aggregates">Aggregates</option>
+                <option selected>Elige...</option>
+                <option value="Soil">Suelo</option>
+                <option value="Rock">Roca</option>
+                <option value="Aggregates">Agregados</option>
             </select>
             </div>
               <div class="col-xs-4">
-                <label >Sample Type</label>
+                <label >Tipo de Muestra</label>
                 <select class="form-control" name="Sample_Type">
                 <option selected>Choose...</option>
                 <option value="Bulk">Bulk</option>
@@ -156,40 +157,40 @@ if (isset($_POST['add_Muestra'])) {
             <div class="panel-body"><div class="col-md-12">
             </div>
             <div class="col-xs-4">
-              <label >North</label>
+              <label >Coordenada Norte</label>
               <input class="form-control" name="North" type="text">
             </div>
             <div class="col-xs-4">
-              <label>East</label>
+              <label>Coordenada Este</label>
               <input class="form-control" name=East type="text">
             </div>
             <div class="col-xs-4">
-              <label>Elevation</label>
+              <label>Elevacion</label>
               <input class="form-control" name="Elev" type="text">
             </div>
           
          
           <div class="form-check form-check-inline col-xs-4  panel-body">
           <input class="form-check-input" type="checkbox" name="MC_Oven" value="">
-          <label class="form-check-label" for="inlineCheckbox1">Moisture Content Oven</label>
+          <label class="form-check-label" for="inlineCheckbox1">Contenido de humedad con horno</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
           <input class="form-check-input" type="checkbox" name="MC_Stove" value="">
-          <label class="form-check-label" for="inlineCheckbox2">Moisture Content Stove</label>
+          <label class="form-check-label" for="inlineCheckbox2">Contenido de humedad con estufa</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
           <input class="form-check-input" type="checkbox" name="MC_Scale" value="">
-         <label class="form-check-label" for="inlineCheckbox3">Moisture Content Scale</label>
+         <label class="form-check-label" for="inlineCheckbox3">Contenido de humedad con balanza</label>
         </div>
       
 
       <div class="form-check form-check-inline col-xs-4  panel-body">
         <input class="form-check-input" type="checkbox" name="Atterberg_Limit" value="">
-        <label class="form-check-label" for="inlineCheckbox1">Atterberg Limit</label>
+        <label class="form-check-label" for="inlineCheckbox1">Limite de Atterberg</label>
         </div>
         <div class="form-check form-check-inline  col-xs-4 panel-body">
         <input class="form-check-input" type="checkbox" name="Grain_size" value="">
-        <label class="form-check-label" for="inlineCheckbox2">Sieved Grain Size</label>
+        <label class="form-check-label" for="inlineCheckbox2">Granulometria por Tamizado</label>
         </div>
         <div class="form-check form-check-inline  col-xs-4  panel-body">
         <input class="form-check-input" type="checkbox" name="Standard_Proctor" value="">
@@ -198,44 +199,44 @@ if (isset($_POST['add_Muestra'])) {
     
     <div class="form-check form-check-inline col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="Specific_Gravity" value="">
-      <label class="form-check-label" for="inlineCheckbox1">Specific Gravity</label>
+      <label class="form-check-label" for="inlineCheckbox1">Gravedad Especifica</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="Acid_Reactivity" value="">
-      <label class="form-check-label" for="inlineCheckbox2">Acid Reactivity</label>
+      <label class="form-check-label" for="inlineCheckbox2">Reactividad acidad</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
       <input class="form-check-input" type="checkbox" name="Sand_Castle" value="">
-     <label class="form-check-label" for="inlineCheckbox3">Sand Castle</label>
+     <label class="form-check-label" for="inlineCheckbox3">Castillo de Arena</label>
     </div>
   
     <div class="form-check form-check-inline col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="Los_Angeles_Abrasion" value="">
-      <label class="form-check-label" for="inlineCheckbox1">Los Angeles Abrasion</label>
+      <label class="form-check-label" for="inlineCheckbox1">Abrasion de Los Angeles</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="Soundness" value="">
-      <label class="form-check-label" for="inlineCheckbox2">Soundness</label>
+      <label class="form-check-label" for="inlineCheckbox2">Sanidad</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
       <input class="form-check-input" type="checkbox" name="UCS" value="">
-     <label class="form-check-label" for="inlineCheckbox3">Unconfined Compressive Strengh (UCS)</label>
+     <label class="form-check-label" for="inlineCheckbox3">UCS</label>
     </div>
      <div class="form-check form-check-inline col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="PLT" value="">
-      <label class="form-check-label" for="inlineCheckbox1">Point Load Test (PLT)</label>
+      <label class="form-check-label" for="inlineCheckbox1">PLT</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="BTS" value="">
-      <label class="form-check-label" for="inlineCheckbox2">Splitting Tensile Strength Test (Brazilian)</label>
+      <label class="form-check-label" for="inlineCheckbox2">Brazilian</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
       <input class="form-check-input" type="checkbox" name="Hydrometer" value="">
-     <label class="form-check-label" for="inlineCheckbox3">Hydrometer</label>
+     <label class="form-check-label" for="inlineCheckbox3">Hidrometro</label>
     </div>
      <div class="form-check form-check-inline col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="Double_Hydrometer" value="">
-      <label class="form-check-label" for="inlineCheckbox1">Double Hydrometer</label>
+      <label class="form-check-label" for="inlineCheckbox1">Doble Hidrometro</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
       <input class="form-check-input" type="checkbox" name="Pinhole" value="">
@@ -243,11 +244,11 @@ if (isset($_POST['add_Muestra'])) {
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
       <input class="form-check-input" type="checkbox" name="Consolidation" value="">
-      <label class="form-check-label" for="inlineCheckbox3">Consolidation</label>
+      <label class="form-check-label" for="inlineCheckbox3">Consolidacion</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
       <input class="form-check-input" type="checkbox" name="Permeability" value="">
-      <label class="form-check-label" for="inlineCheckbox3">Permeability</label>
+      <label class="form-check-label" for="inlineCheckbox3">Permeabilidad</label>
 </div>
 
 
@@ -255,12 +256,12 @@ if (isset($_POST['add_Muestra'])) {
 </div> 
 
   <div class="col-xs-4">
-    <label>Comment</label>
+    <label>Comentario</label>
   <input class="form-control" name="Comment"type="textarea" >
 </div>
 
   <div class="col-xs-4">
-    <label>Sample By</label>
+    <label>Muestrado por</label>
     <input class="form-control" name="Sample_By" type="text">
 </div> 
 </div>
@@ -269,8 +270,13 @@ if (isset($_POST['add_Muestra'])) {
 </div> 
 
 <div class="col-xs-4">
-  <label>Sample Date</label>
+  <label>Fecha de Muestreo</label>
   <input class="form-control" name="Sample_Date" type="date">
+</div>
+
+<div class="col-xs-4">
+  <label>Registrado por</label>
+  <input class="form-control" name="Register_By" type="text">
 </div>
 
 <div class="panel-body"><div class="col-md-28">

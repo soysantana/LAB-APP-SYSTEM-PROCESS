@@ -46,14 +46,20 @@ $required_tests = ensayos_requeridos();
                 </div>
                 <div class="modal-body">
 
-                <ul>
-          <?php foreach ($required_tests as $column) { ?>
-            <li><?php echo remove_junk($column) . ': ' . remove_junk($product[$column]); ?></li>
-          <?php } ?>
-        </ul>
+                  <h3>Ensayos Solicitados:</h3>
+
+                  <ul>
+                    <?php foreach ($required_tests as $column) { ?>
+                      <?php if (isset($product[$column]) && $product[$column] === 'Required') { ?>
+                        <li><?php echo remove_junk($column) . ': Required'; ?></li>
+                      <?php } ?>
+                    <?php } ?>
+                  </ul>
                   
-                    <h3>Sample Date:  <?php echo remove_junk($product['Sample_Date']); ?></h3>  
-                    <h3>Register Date: <?php echo remove_junk($product['Registed_Date']); ?></h3>
+                    <h3>Fecha de muestreo:  <?php echo remove_junk($product['Sample_Date']); ?></h3>  
+                    <h3>Fecha de registo: <?php echo remove_junk($product['Registed_Date']); ?></h3>
+                    <h3>Registrado por: <?php echo remove_junk($product['Register_By']); ?></h3>
+
                 </div>
                 <div class="modal-footer">
                     <form action="edit_regMuestra.php" method="GET" style="display: inline;">
@@ -75,6 +81,9 @@ $required_tests = ensayos_requeridos();
 </div>
 
 <style>
+  .modal-body h3 {
+    font-size: 15px;
+  }
   .modal-body ul {
     font-size: 14px;
   }
