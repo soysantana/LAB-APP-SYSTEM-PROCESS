@@ -40,7 +40,7 @@ page_require_level(3);
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
                             echo '<a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_ID'] . '-' . $row['Sample_Number'] . '-' . $row['test_type'] . '</a>';
-                            echo '<span class="badge bg-blue rounded-pill"><a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_Number'] . '-' . $row['Sample_Number'] . '-' . $row['test_type'] . '</a></span>';
+                            echo '<span class="badge bg-blue rounded-pill"><a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_Number'] . '-'  . $row['test_type'] . '</a></span>';
                             echo '</li>';
                         }
                     }

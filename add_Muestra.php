@@ -143,7 +143,7 @@ if (isset($_POST['add_Muestra'])) {
               <div class="col-xs-4">
                 <label >Tipo de Muestra</label>
                 <select class="form-control" name="Sample_Type">
-                <option selected>Choose...</option>
+                <option selected>Elige...</option>
                 <option value="Bulk">Bulk</option>
                 <option value="Grab">Grab</option>
                 <option value="Truck">Truck</option>
