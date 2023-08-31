@@ -252,8 +252,34 @@ function tableExists($table){
 }
 
 
+/*--------------------------------------------------------------*/
+   /* Function for Finding all product name
+   /* JOIN with categorie  and media database table
+   /*--------------------------------------------------------------*/
+   function join_product_table(){
+    global $db;
+    $sql  =" SELECT p.id, p.name, p.Marca_Modelo, p.Codigo, p.Status, p.quantity, p.buy_price, p.media_id, p.date, c.name";
+   $sql  .=" AS categorie,m.file_name AS image";
+   $sql  .=" FROM products p";
+   $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
+   $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
+   $sql  .=" ORDER BY p.id ASC";
+   return find_by_sql($sql);
 
+  }
 
+  /*--------------------------------------------------------------*/
+  /* Function for Finding all product name
+  /* Request coming from ajax.php for auto suggest
+  /*--------------------------------------------------------------*/
+
+  function find_product_by_title($product_name){
+    global $db;
+    $p_name = remove_junk($db->escape($product_name));
+    $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
+    $result = find_by_sql($sql);
+    return $result;
+  }
 
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name

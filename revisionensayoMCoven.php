@@ -57,15 +57,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 <?php include_once('layouts/header.php'); ?>
 
-<div class="row">
+    <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading clearfix">
-                <strong>
-                    <span class="glyphicon glyphicon-th"></span>
-                    <span>Revision Ensayo de humedad de horno</span>
-                </strong>
-            </div>
+    <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+    <strong>
+    <span class="glyphicon glyphicon-th"></span>
+    <span>Revision Ensayo de humedad de horno</span>
+    </strong>
+
+</div>
+            
+
+<?php foreach ($detalles_ensayo as $row) { ?>
+    <div class="col-xs-4">
+        <div class="form-group">
+            <h3>Laboratory Information</h3>
+            <label for="technician">Technician</label>
+            <input class="form-control" id="technician" name="technician" type="text" value="<?php echo $row['Technician']; ?>">
+        </div> 
+<?php } ?>
+
+
+<?php foreach ($detalles_ensayo as $row) { ?>
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label for="technician">Technician</label>
+            <input class="form-control" id="technician" name="technician" type="text" value="<?php echo $row['Technician']; ?>">
+        </div> 
+<?php } ?>
+
+
+        
+
+</div>
+
            
             <table class="table table-bordered">
                 <thead>
