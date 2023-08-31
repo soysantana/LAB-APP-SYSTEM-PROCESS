@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-08-2023 a las 14:42:26
+-- Tiempo de generación: 31-08-2023 a las 12:45:29
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -607,16 +607,17 @@ CREATE TABLE `lab_test_requisition_form` (
   `Sample_By` varchar(5) NOT NULL,
   `Registed_Date` date NOT NULL,
   `test_inicio` datetime(6) NOT NULL,
-  `Sample_Number` varchar(10) DEFAULT NULL
+  `Sample_Number` varchar(10) DEFAULT NULL,
+  `Register_By` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `lab_test_requisition_form`
 --
 
-INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `MC_Oven`, `MC_Stove`, `MC_Scale`, `Atterberg_Limit`, `Grain_size`, `Standard_Proctor`, `Specific_Gravity`, `Acid_Reactivity`, `Sand_Castle`, `Los_Angeles_Abrasion`, `Soundness`, `UCS`, `PLT`, `BTS`, `Hydrometer`, `Double_Hydrometer`, `Pinhole`, `Consolidation`, `Permeability`, `Comment`, `Statuss`, `Sample_Date`, `Sample_By`, `Registed_Date`, `test_inicio`, `Sample_Number`) VALUES
-(1, 'TP-BGC23-NTSF-100', 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, 'Required', 'Not', 'Not', 'Required', 'Not', 'Required', 'Required', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Required', 'Required', 'Required', 'Not', 'Not', 'Material for comparison with CQC', '', '2023-07-07', 'WD', '0000-00-00', '0000-00-00 00:00:00.000000', 'G3'),
-(2, 'TP-BGC23-NTSF-101', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, 'Required', 'Not', 'Not ', 'Required', 'Not ', 'Required', 'Required', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not', 'Required', 'Not ', 'Required', 'Not ', 'Not ', 'Ohters', '', '2023-07-17', 'Wi', '0000-00-00', '0000-00-00 00:00:00.000000', 'G1');
+INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `MC_Oven`, `MC_Stove`, `MC_Scale`, `Atterberg_Limit`, `Grain_size`, `Standard_Proctor`, `Specific_Gravity`, `Acid_Reactivity`, `Sand_Castle`, `Los_Angeles_Abrasion`, `Soundness`, `UCS`, `PLT`, `BTS`, `Hydrometer`, `Double_Hydrometer`, `Pinhole`, `Consolidation`, `Permeability`, `Comment`, `Statuss`, `Sample_Date`, `Sample_By`, `Registed_Date`, `test_inicio`, `Sample_Number`, `Register_By`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, 'Required', 'Not', 'Not', 'Required', 'Not', 'Required', 'Required', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Required', 'Required', 'Required', 'Not', 'Not', 'Material for comparison with CQC', '', '2023-07-07', 'WD', '0000-00-00', '0000-00-00 00:00:00.000000', 'G3', 'WD'),
+(2, 'TP-BGC23-NTSF-101', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, 'Required', 'Not', 'Not ', 'Required', 'Not ', 'Required', 'Required', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not', 'Required', 'Not ', 'Required', 'Not ', 'Not ', 'Ohters', '', '2023-07-17', 'Wi', '0000-00-00', '0000-00-00 00:00:00.000000', 'G1', 'WD');
 
 -- --------------------------------------------------------
 
