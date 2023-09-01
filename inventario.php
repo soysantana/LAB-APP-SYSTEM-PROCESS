@@ -20,7 +20,7 @@ $products = join_lab_test_requisition_form();
               <a href="categorie.php" class="btn btn-primary btn-lg btn-block">Categorias</a>
               <a href="product.php" class="btn btn-primary btn-lg btn-block">Articulos</a>
               <a href="media.php" class="btn btn-primary btn-lg btn-block">Imagenes</a>
-              <a href="mc_scale.php" class="btn btn-primary btn-lg btn-block">Contenido de humedad en Scale</a>
+             
           </div>
         </div>
     </div>

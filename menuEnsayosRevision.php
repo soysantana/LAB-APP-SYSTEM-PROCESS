@@ -28,7 +28,9 @@ page_require_level(3);
 
                     // Array con los nombres de las tablas deseadas
                     $tablas = array('moisture_content', 'grain_size', 'atterberg_limit', 'standard_proctor', 
-                    'moisture_content_microwave', 'moisture_content_constant_mass', 'moisture_scale');
+                    'moisture_content_microwave', 'moisture_content_constant_mass', 'moisture_scale', 
+                    'count_gama', 'density_bulk', 'density_weigth', 'ensayo_gama', 'los_angeles_abrasion_small', 
+                    'sand_density', 'specific_gravity', 'specific_gravity_absortion', 'specific_gravity_fine');
 
                     foreach ($tablas as $tabla) {
                         $query = "SELECT Sample_ID, Sample_Number, test_type FROM $tabla WHERE Report_Date >= '$fechaLimite'";

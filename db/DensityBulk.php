@@ -64,7 +64,7 @@ if (empty($errors)) {
     $elev = $db->escape($_POST['elev']);
     $sampledate = $db->escape($_POST['sampledate']);
     $reportdate = make_date();
-    $testype = "NOSE";
+    $testype = "Bulk density";
     // Informaciones basicas
     $Standard = $db->escape($_POST['Standard']);
     $PreparationMethod = $db->escape($_POST['PreparationMethod']);
