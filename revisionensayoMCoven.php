@@ -35,14 +35,17 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber'])) {
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading clearfix">
-                <strong>
-                    <span class="glyphicon glyphicon-th"></span>
-                    <span>Revision Ensayo de humedad de horno</span>
-                </strong>
-            </div>
+<div class="col-md-12">
+<div class="panel panel-default">
+<div class="panel-heading clearfix">
+<strong>
+<span class="glyphicon glyphicon-th"></span>
+<span>Revision Ensayo de humedad de horno</span>
+</strong>
+</div>
+
+<div class="panel-body">
+        <form method="post" action="revisionensayoMCoven.php" onsubmit="calcular()">
 
             <?php foreach ($detalles_ensayo as $row) : ?>
                 <?php
@@ -75,19 +78,187 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber'])) {
                 $comments = htmlspecialchars($row['Comments']);
                 ?>
 
-                <div class="col-xs-4">
-                    <div class="form-group form-inline"> <!-- Agrega la clase form-inline -->
-                        <h3>Laboratory Information</h3>
-                        <label for="technician" class="mr-2">Technician:</label> <!-- Agrega la clase mr-2 para añadir un margen derecho -->
-                        <input class="form-control" id="technician" name="technician" type="text" value="<?= $technician ?>">
-                    </div>
+
+<div class="container">
+    <h3>Laboratory Information</h3>
+    <form>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="technician">Laboratory:</label>
+                    <input class="form-control" id="technician" name="technician" type="text" value="QA-Lab">
+                </div>
+
+           
+            
+
+            </div>
+            
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="standard">Test Method:</label>
+                    <input class="form-control" id="standard" name="standard" type="text" value="<?= $standard?>">
                 </div>
                 
+                
+                
 
-                <!-- Resto de los datos aquí... -->
+            </div>
+        </div>
+
+        <div class="container">
+    <h3>Sample Information</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sample Date</td>
+                <td><input type="text" name="sampleDate" value="<?= $sampleDate ?>"></td>
+            </tr>
+            <tr>
+                <td>Sample Name</td>
+                <td><input type="text" name="sampleId" value="<?= $sampleId ?>"></td>
+            </tr>
+            <tr>
+                <td>Sample Number</td>
+                <td><input type="text" name="sampleDate" value="<?= $sampleNumber?>"></td>
+            </tr>
+
+            <tr>
+                <td>Sample Type</td>
+                <td><input type="text" name="sampleDate" value="<?= $sampleType ?>"></td>
+            </tr>
+
+
+            <tr>
+                <td>Material Type</td>
+                <td><input type="text" name="sampleDate" value="<?= $materialType ?>"></td>
+            </tr>
+
+            <tr>
+                <td>Depth From</td>
+                <td><input type="text" name="sampleDate" value="<?= $depthFrom ?>"></td>
+            </tr>
+            <tr>
+                <td>Depth To</td>
+                <td><input type="text" name="sampleDate" value="<?= $depthTo ?>"></td>
+            </tr>
+
+            <tr>
+                <td>Structure</td>
+                <td><input type="text" name="sampleDate" value="<?= $structure ?>"></td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td><input type="text" name="sampleDate" value="<?= $area ?>"></td>
+            </tr>
+            <tr>
+                <td>Source</td>
+                <td><input type="text" name="sampleDate" value="<?= $source ?>"></td>
+            </tr>
+            <tr>
+                <td>North</td>
+                <td><input type="text" name="sampleDate" value="<?= $north ?>"></td>
+            </tr>
+            <tr>
+                <td>East</td>
+                <td><input type="text" name="sampleDate" value="<?= $east ?>"></td>
+            </tr>
+            <tr>
+                <td>Elevation</td>
+                <td><input type="text" name="sampleDate" value="<?= $elevation ?>"></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <h3>Test Information</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Trial No.</td>
+                <td><input type="text" name="sampleDate" value="1"></td>
+            </tr>
+            <tr>
+                <td>Tare Name</td>
+                <td><input type="text" name="sampleId" value="<?= $tareName?>"></td>
+            </tr>
+            <tr>
+                <td>Oven Temperature</td>
+                <td><input type="text" name="sampleDate" value="<?= $temperature?>"></td>
+            </tr>
+
+            <tr>
+                <td>Tare Plus Wet Soil (gr)</td>
+                <td><input type="text" name="sampleDate" value="<?= $tarePlusWetSoil?>"></td>
+            </tr>
+
+            <tr>
+                <td>Tare Plus Dry Soil (gr)</td>
+                <td><input type="text" name="sampleDate" value="<?= $tarePlusDrySoil ?>"></td>
+            </tr>
+            <tr>
+                <td>Water (gr)</td>
+                <td><input type="text" name="sampleDate" value="<?= $water ?>"></td>
+            </tr>
+            <tr>
+                <td>Tare (gr)</td>
+                <td><input type="text" name="sampleDate" value="<?= $weightTare?>"></td>
+            </tr>
+
+            <tr>
+                <td>Dry Soil (gr)</td>
+                <td><input type="text" name="sampleDate" value="<?= $drySoil ?>"></td>
+            </tr>
+            <tr>
+                <td>Moisture Content (%)</td>
+                <td><input type="text" name="sampleDate" value="<?= $mc ?>"></td>
+            </tr>
+
+            <tr>
+    <td>Comments</td>
+    <td><textarea name="comments" rows="4" cols="50"><?= $comments ?></textarea></td>
+</tr>
+
+
+        </tbody>
+    </table>
+</div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<!-- Tabla debajo del container -->
+
+
+
+              
 
             <?php endforeach; ?>
 
-        </div>
+        
     </div>
 </div>
+        
+
