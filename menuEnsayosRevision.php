@@ -28,7 +28,9 @@ page_require_level(3);
 
                     // Array con los nombres de las tablas deseadas
                     $tablas = array('moisture_content', 'grain_size', 'atterberg_limit', 'standard_proctor', 
-                    'moisture_content_microwave', 'moisture_content_constant_mass', 'moisture_scale');
+                    'moisture_content_microwave', 'moisture_content_constant_mass', 'moisture_scale', 
+                    'count_gama', 'density_bulk', 'density_weigth', 'ensayo_gama', 'los_angeles_abrasion_small', 
+                    'sand_density', 'specific_gravity', 'specific_gravity_absortion', 'specific_gravity_fine');
 
                     foreach ($tablas as $tabla) {
                         $query = "SELECT Sample_ID, Sample_Number, test_type FROM $tabla WHERE Report_Date >= '$fechaLimite'";
@@ -40,7 +42,7 @@ page_require_level(3);
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
                             echo '<a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_ID'] . '-' . $row['Sample_Number'] . '-' . $row['test_type'] . '</a>';
-                            echo '<span class="badge bg-blue rounded-pill"><a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_Number'] . '-' . $row['Sample_Number'] . '-' . $row['test_type'] . '</a></span>';
+                            echo '<span class="badge bg-blue rounded-pill"><a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_Number'] . '-'  . $row['test_type'] . '</a></span>';
                             echo '</li>';
                         }
                     }

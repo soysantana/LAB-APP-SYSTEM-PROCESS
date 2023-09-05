@@ -32,7 +32,7 @@ page_require_level(2);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="" onsubmit="calcular();calcularD();">
+<form method="post" action="" onsubmit="calcular()">
 
 <table class="table table-bordered">
 <thead>
@@ -85,11 +85,11 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Wt Dry Soil, g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="1"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Wt Washed, g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="2"></td>
             </tr>
         </tbody>
     </table>
@@ -113,75 +113,75 @@ page_require_level(2);
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="7" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="8" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="10" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="11" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="13" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="14" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="16" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="17" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="19" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="20" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="22" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="23" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="25" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="26" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="27" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="28" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="29" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="30" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="31" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="32" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="33" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="34" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="35" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="36" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="37" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="38" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -196,50 +196,50 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5.1" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.8</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="7.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="8.1" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.16</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="10.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="11.1" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.30</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="13.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="14.1" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.50</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="16.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="17.1" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.100</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="19.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="20.1" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Pan</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="22.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="23.1" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="Col" colspan="2">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24.1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="25.1" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -263,75 +263,75 @@ page_require_level(2);
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="7.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="8.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="10.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="11.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="13.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="14.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="16.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="17.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="19.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="20.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="22.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="23.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="25.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="26.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="27.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="28.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="29.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="30.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="31.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="32.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="33.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="34.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="35.2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="36.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="37.2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="38.2" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -346,50 +346,50 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5.3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.8</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="7.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="8.3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.16</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="10.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="11.3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.30</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="13.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="14.3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.50</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="16.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="17.3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.100</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="19.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="20.3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Pan</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="22.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="23.3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="Col" colspan="2">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="25.3"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -418,81 +418,81 @@ page_require_level(2);
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">Minus 150 µm (No. 100)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">100g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">300 µm (No. 50) to No. 100</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">100g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">No.100</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">600 µm (No. 30) to No. 50</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">100g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">No.50</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">1.18 mm (No. 16) to No. 30</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">100g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">No.30</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">2.36 mm (No. 8) to No. 16</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">100g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">No.16</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">4.75 mm (No. 4) to No. 8</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">100g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">No.8</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">9.5mm(3⁄8 in.) to No. 4</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">100g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col" colspan="2">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">---</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -513,101 +513,101 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">---</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">4.0 mm (No. 5)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">12.5 mm (1⁄2 in) to 9.5 mm (3⁄8 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(330+-5)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">19.0mm(3⁄4 in) to 9.5mm(3⁄8 in)</th>
-                <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">8.0 mm (5⁄16 in)</th>
+                <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">8.0 mm (5⁄16 in)</oninput="calcular()"th>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">19.0mm(3⁄4 in) to 12.5 mm (1⁄2 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(670+-10)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">25 mm (1 in) to 19.0 mm (3⁄4 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(500+-30)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">37.5mm(1 1⁄2 in) to 19.0mm(3⁄4 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">16.0 mm (5⁄8 in)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">37.5mm(11⁄2 in) to 25.0 mm (1 in.)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(1000+-50)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">50 mm (2 in) to 37.5 mm (1 1⁄2 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(2000+-200)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">63mm(2 1⁄2 in) to 37.5mm(1 1⁄2 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">31.5 mm (1 1⁄4 in)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">63 mm (2 1⁄2 in) to 50 mm (2 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(3000+-300)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">75 mm (3 in) to 63 mm (2 1⁄2 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(7000+-100)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">100mm(4 in.) to  90mm(2 1⁄2 in.)</th>
-                <th style="font-size: 15px; text-align: center;" scope="row">50 mm (2 in)</th>
+                <th style="font-size: 15px; text-align: center;" scope="row">50 mm (2 in)</th>oninput="calcular()"
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">90 mm (3 1⁄2 in) to 75 mm (3 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(7000+-1000)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">63 mm (2 1⁄2 in)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">100 mm (4 in) to 90 mm (3 1⁄2 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(7000+-1000)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">75 mm (3 in)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col" colspan="2">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">---</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">---</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -1617,7 +1617,18 @@ page_require_level(2);
         </tbody>
     </table>
 </div>
+<script>
+function calcular() {
 
+
+
+    
+}
+      
+
+
+
+</script>
 
 
 <div>

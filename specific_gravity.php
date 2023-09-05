@@ -2,7 +2,11 @@
 $page_title = 'Specific Gravity by Pycnometer';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
-page_require_level(2);
+page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/SpecificGravity.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -36,6 +40,7 @@ page_require_level(2);
 
 <table class="table table-bordered">
 <thead>
+<tbody id="product_info"></tbody>
 </div>
 <div class="col-xs-4">
 <label >Standard</label>
@@ -47,7 +52,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="PreparationMethod">
 <option selected>Choose...</option>
 <option value="Oven_Dried">Oven Dried</option>
 <option value="Air_Dried">Air Dried</option>
@@ -56,7 +61,7 @@ page_require_level(2);
 
 <div class="col-xs-4">
 <label >Split Method</label>
-<select class="form-control" name="preparacion">
+<select class="form-control" name="SplitMethod">
 <option selected>Choose...</option>
 <option value="Mech_Split">Mech. Split</option>
 <option value="Man_Split">Manual Split</option>
@@ -75,7 +80,7 @@ page_require_level(2);
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="Test_Start_Date" type="date">
+<input class="form-control" name="TestStartDate" type="date">
 </div>
 
 
@@ -88,74 +93,74 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Pycnometer used (mL)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="PycnometerUsedmL" id=""></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Pycnometer Number</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="1"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="PycnometerNumber" id="1"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Test Temperatur  Tt (°C)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="2"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="TestTempTtC" id="2"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Average calibrated mass of the dry pycnometer Mp (gr)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="AveCalibratedMassDryPycnometerMpgr" id="3"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Average calibrated volume of the pycnometer Vp (mL)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="4"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="AveCalibratedVolumePycnometerVpmL" id="4"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Density of water at the test temperature (g/mL)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="5"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="DensityWaterTestTempgmL" id="5"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Calibration Weight of Pynometer and water athe the calibration temperature Mpw,c (gr)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="6"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="CalibrationWeightPynometerWaterCalibrationTempMpwcgr" id="6"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Weight of Dry Soil + Tare (gr):</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="7"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="WeightDrySoilTaregr" id="7"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Weight of Dry Soil  Ms  (gr):</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="8"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="WeightDrySoilMsgr" id="8"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Weight of Pycnometer + Soil + Water  Mpws,t (gr):</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="9"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="WeightPycnometerSoilWaterMpwstgr" id="9"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row"> Specific Gravity of Soil Solid the test temp Gt</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="10"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="SpecificGravitySoilSolidTestTempGt" id="10"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Temperature Coefficent K</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="11"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="TemperatureCoefficentK" id="11"oninput="calcular()"></td>
             </tr>
 
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Specific gravity of soil solid at 20 °C</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="12"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="12" style="background: transparent;" name="SpecificGravitySoilSolid" id="12"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
 </div>
 
 <div style="margin-left: 1%;">
-<button type="submit" name="" class="btn btn-danger">Registrar ensayo</button>
+<button type="submit" name="SpecificGravity" class="btn btn-danger">Registrar ensayo</button>
 </div>
 
 </div>

@@ -12,8 +12,8 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['tes
         case 'MC-Oven':
             $pagina_detalles = 'revisionensayoMCoven.php';
             break;
-        case 'grain_size':
-            $pagina_detalles = 'detalles_grain_size.php';
+        case 'GS-Soil':
+            $pagina_detalles = 'revisionGS.php';
             break;
         case 'atterberg_limit':
             $pagina_detalles = 'detalles_atterberg_limit.php';

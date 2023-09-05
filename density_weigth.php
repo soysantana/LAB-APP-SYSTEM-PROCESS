@@ -3,6 +3,10 @@ $page_title = 'Determination of Density (Unit Weight) of Soil Specimens';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/DensityWeigth.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -33,10 +37,11 @@ page_require_level(3);
                 </strong>
             </div>
             <div class="panel-body">
-                <form method="post" action="#" onsubmit="calcular()">
+                <form method="post" action="density_weigth.php" onsubmit="calcular()">
 
                     <table class="table table-bordered">
                         <thead>
+                        <tbody id="product_info"></tbody>
             </div>
             <div class="col-xs-4">
                 <label>Standard</label>
@@ -47,7 +52,7 @@ page_require_level(3);
             </div>
             <div class="col-xs-4">
                 <label>Method</label>
-                <select class="form-control" type="text" name="method" id="">
+                <select class="form-control" type="text" name="PreparationMethod" id="">
                     <option selected>Choose...</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -67,7 +72,7 @@ page_require_level(3);
 
             <div class="col-xs-4">
                 <label>Test Start Date</label>
-                <input class="form-control" name="Test_Start_Date" type="date">
+                <input class="form-control" name="TestStartDate" type="date">
             </div>
 
             <div class="panel-body">
@@ -91,39 +96,39 @@ page_require_level(3);
                         </tr>
                         <tr>
                             <th scope="col">Shape type (Cylindrical or Cubical)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="1" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="2" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="3" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="1" name="ShapeType1" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="2" name="ShapeType2" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="3" name="ShapeType3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Mass of moist specimen, M0</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="4" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="5" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="6" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="4" name="MassMoistSpecimen1" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="5" name="MassMoistSpecimen2" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="6" name="MassMoistSpecimen3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Diameter or Width, mm</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="7" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="8" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="9" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="7" name="DiameterWidth1" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="8" name="DiameterWidth2" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="9" name="DiameterWidth3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">height , mm</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="10" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="11" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="12" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="10" name="Height1" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="11" name="Height2" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="12" name="Height3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Length, mm</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="13" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="14" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="15" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="13" name="Length1" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="14" name="Length2" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="15" name="Length3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Volumes of Moist soil, V0 (cm3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="16" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="17" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="18" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="16" name="VolumesMoistSoil1" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="17" name="VolumesMoistSoil2" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="18" name="VolumesMoistSoil3" oninput="calcular()"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -139,31 +144,31 @@ page_require_level(3);
                     <tbody>
                         <tr>
                             <th scope="col">total Volumes of Moist specimen, V (cm3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="19" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="19" name="TotalVolumesMoistSpecimen" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Mass of moist/total  of specimens, Mt (gr)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="20" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="20" name="MassMoistTotalpecimens" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Water Content of specimen, w (%)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="21" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="21" name="WaterContentSpecimen" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Density of total moist specimen, ᵨm(gr/cm3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="22" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="22" name="DensityTotalMoistSpecimen" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Moist Unit Weight of Specimen,ᵨd(gr/cm3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="23" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="23" name="MoistUnitWeightSpecimengrcm3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Moist Unit Weight of Specimen,ϒm (KN/m3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="24" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="24" name="MoistUnitWeightSpecimenKNm3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Dry Unit Weight of Specimen,ϒd (KN/m3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="25" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="25" name="DryUnitWeightSpecimenKNm3" oninput="calcular()"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -176,15 +181,17 @@ page_require_level(3);
                     <tbody>
                         <tr>
                             <th scope="col">Moist Unit Weight of Specimen,ϒm (Kg/m3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="26" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="26" name="MoistUnitWeightSpecimenKgm3" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th scope="col">Dry Unit Weight of Specimen,ϒd (Kg/m3)</th>
-                            <td><input type="text" style="border: none; background: transparent;" size="4" id="27" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none; background: transparent;" size="4" id="27" name="DryUnitWeightSpecimenKgm3" oninput="calcular()"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <button type="submit" name="density_weigth" class="btn btn-danger">Registrar ensayo</button>
 
             <script>
     function calcular() {

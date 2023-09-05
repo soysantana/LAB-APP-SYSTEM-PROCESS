@@ -32,7 +32,7 @@ page_require_level(3);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="" onsubmit="calcular();calcularD();">
+<form method="post" action="" oninput="calcular(); calculateAverageStrength();">
 
 <table class="table table-bordered">
 <thead>
@@ -110,13 +110,13 @@ page_require_level(3);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-1"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-1"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-1"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td rowspan="5"><input type="text" style="border: none; background: transparent; padding: 40%; width: 100%;" id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-1"></td>
+                <td rowspan="5"><input type="text" style="border: none; background: transparent; padding: 40%; width: 100%;" id="Average-Streng-Mpa"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -125,12 +125,12 @@ page_require_level(3);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-2"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-2"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-2"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-2"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -139,12 +139,12 @@ page_require_level(3);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-3"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-3"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-3"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-3"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -153,12 +153,12 @@ page_require_level(3);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-4"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-4"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-4"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-4"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -167,12 +167,12 @@ page_require_level(3);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-5"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-5"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-5"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-5"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -262,41 +262,62 @@ page_require_level(3);
     </table>
   </div>
 
+  <script>
+    function convertToNumberOrZero(value) {
+        const parsedValue = parseFloat(value);
+        return isNaN(parsedValue) ? 0 : parsedValue;
+    }
+    function calculateAverageStrength() {
+        const strengthInputs = [
+        document.getElementById('Strenght-Mpa-1'),
+        document.getElementById('Strenght-Mpa-2'),
+        document.getElementById('Strenght-Mpa-3'),
+        document.getElementById('Strenght-Mpa-4'),
+        document.getElementById('Strenght-Mpa-5')
+    ];
 
+    let validCount = 0;
+    let totalStrength = 0;
 
+    for (const input of strengthInputs) {
+        const value = parseFloat(input.value);
+        if (!isNaN(value)) {
+            totalStrength += value;
+            validCount++;
+        }
+    }
 
+    if (validCount === 0) {
+        return 0;
+    }
 
+    const averageStrength = totalStrength / validCount;
+    return document.getElementById("Average-Streng-Mpa").value = isNaN(averageStrength) ? 0 : averageStrength.toFixed(2);
+}
+    function calcular() {
+        Volm31 = convertToNumberOrZero(document.getElementById("Vol-m3-1").value);
+        WeigCylinder1 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-1").value);
+        Volm32 = convertToNumberOrZero(document.getElementById("Vol-m3-2").value);
+        WeigCylinder2 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-2").value);
+        Volm33 = convertToNumberOrZero(document.getElementById("Vol-m3-3").value);
+        WeigCylinder3 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-3").value);
+        Volm34 = convertToNumberOrZero(document.getElementById("Vol-m3-4").value);
+        WeigCylinder4 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-4").value);
+        Volm35 = convertToNumberOrZero(document.getElementById("Vol-m3-5").value);
+        WeigCylinder5 = convertToNumberOrZero(document.getElementById("Weig-Cylinder-5").value);
 
+        const UnitWeigKgm31 = WeigCylinder1/Volm31;
+        const UnitWeigKgm32 = WeigCylinder2/Volm32;
+        const UnitWeigKgm33 = WeigCylinder3/Volm33;
+        const UnitWeigKgm34 = WeigCylinder4/Volm34;
+        const UnitWeigKgm35 = WeigCylinder5/Volm35;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        document.getElementById("Unit-Weig-Kgm3-1").value = isNaN(UnitWeigKgm31) ? 0 : UnitWeigKgm31.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-2").value = isNaN(UnitWeigKgm32) ? 0 : UnitWeigKgm32.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-3").value = isNaN(UnitWeigKgm33) ? 0 : UnitWeigKgm33.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-4").value = isNaN(UnitWeigKgm34) ? 0 : UnitWeigKgm34.toFixed(2);
+        document.getElementById("Unit-Weig-Kgm3-5").value = isNaN(UnitWeigKgm35) ? 0 : UnitWeigKgm35.toFixed(2);
+    }
+</script>
 
 <?php include_once('layouts/footer.php'); ?>

@@ -4,6 +4,7 @@ require_once('includes/load.php');
 // Checking what level user has permission to view this page
 page_require_level(3);
 $products = join_lab_test_requisition_form();
+$required_tests = ensayos_requeridos(); 
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -32,43 +33,33 @@ $products = join_lab_test_requisition_form();
 <?php } ?>
 <div class="col-md-4">
     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#basicModal_<?php echo $product['Sample_ID']; ?>">
-        <?php echo count_id(); ?> - <?php echo remove_junk($product['Sample_ID']); ?>
+        <?php echo count_id(); ?> - <?php echo remove_junk($product['Sample_ID']); ?> - <?php echo remove_junk($product['Sample_Number']);?> 
     </button>
     <div class="modal fade" id="basicModal_<?php echo $product['Sample_ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel_<?php echo $product['Sample_ID']; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="basicModalLabel_<?php echo $product['Sample_ID']; ?>"><?php echo remove_junk($product['Sample_ID']); ?></h4>
+                    <h4 class="modal-title" id="basicModalLabel_<?php echo $product['Sample_ID']; ?>"><?php echo remove_junk($product['Sample_ID']); ?> - <?php echo remove_junk($product['Sample_Number']);?></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                  <h3>Sample Number:  <?php echo remove_junk($product['Sample_Number']);?></h3>
-                    <ul>
 
-                        <li>McO:  <?php echo remove_junk($product['MC_Oven']);?></li>
-                        <li>McSt: <?php echo remove_junk($product['MC_Stove']); ?></li>
-                        <li>McSc: <?php echo remove_junk($product['MC_Scale']);?></li>
-                        <li>AL: <?php echo remove_junk($product['Atterberg_Limit']);?></li>
-                        <li>GS: <?php echo remove_junk($product['Grain_Size']);?></li>
-                        <li>SP: <?php echo remove_junk($product['Standard_Proctor']);?></li>
-                        <li>SG:  <?php echo remove_junk($product['Specific_Gravity']);?></li>
-                        <li>AR: <?php echo remove_junk($product['Acid_Reactivity']);?></li>
-                        <li>SNC: <?php echo remove_junk($product['Sand_Castle']);?></li>
-                        <li>LAA:  <?php echo remove_junk($product['Los_Angeles_Abrasion']);?></li>
-                        <li>SNS: <?php echo remove_junk($product['Soundness']);?></li>
-                        <li>UCS: <?php echo remove_junk($product['UCS']); ?></li>
-                        <li>PLT:  <?php echo remove_junk($product['PLT']);?></li>
-                        <li>BTS:  <?php echo remove_junk($product['BTS']); ?></li>
-                        <li>HY: <?php echo remove_junk($product['Hydrometer']);?></li>
-                        <li>DHY:  <?php echo remove_junk($product['Double_Hydrometer']);?></li>
-                        <li>PH:  <?php echo remove_junk($product['Pinhole']);?></li>
-                        <li>Consol: <?php echo remove_junk($product['Consolidation']);?></li>
-                        <li>PERM:  <?php echo remove_junk($product['Permeability']); ?></li>
-                    </ul>
-                    <h3>Sample Date:  <?php echo remove_junk($product['Sample_Date']); ?></h3>  
-                    <h3>Register Date: <?php echo remove_junk($product['Registed_Date']); ?></h3>
+                  <h3>Ensayos Solicitados:</h3>
+
+                  <ul>
+                    <?php foreach ($required_tests as $column) { ?>
+                      <?php if (isset($product[$column]) && $product[$column] === 'Required') { ?>
+                        <li><?php echo remove_junk($column) . ': Required'; ?></li>
+                      <?php } ?>
+                    <?php } ?>
+                  </ul>
+                  
+                    <h3>Fecha de muestreo:  <?php echo remove_junk($product['Sample_Date']); ?></h3>  
+                    <h3>Fecha de registo: <?php echo remove_junk($product['Registed_Date']); ?></h3>
+                    <h3>Registrado por: <?php echo remove_junk($product['Register_By']); ?></h3>
+
                 </div>
                 <div class="modal-footer">
                     <form action="edit_regMuestra.php" method="GET" style="display: inline;">
@@ -90,6 +81,9 @@ $products = join_lab_test_requisition_form();
 </div>
 
 <style>
+  .modal-body h3 {
+    font-size: 15px;
+  }
   .modal-body ul {
     font-size: 14px;
   }
@@ -104,3 +98,4 @@ $products = join_lab_test_requisition_form();
 </style>
 
 <?php include_once('layouts/footer.php'); ?>
+

@@ -724,7 +724,7 @@ page_require_level(2);
   function enviarData(event) {
     event.preventDefault()
     $.ajax({
-      url: "pinhole_graph.js",
+      url: "libs/js/pinhole.js",
       type: "POST",
       data: $("#47").serialize(),
       success: function(data) {
@@ -738,7 +738,7 @@ page_require_level(2);
 
 <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="pinhole_graph.js"></script>
+<script src="libs/js/pinhole.js"></script>
 
                 
 <?php include_once('layouts/footer.php'); ?>

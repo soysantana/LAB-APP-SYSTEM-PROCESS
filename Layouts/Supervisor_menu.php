@@ -54,6 +54,11 @@ require_once('ensayos/mcoven.php');
         <li class="nav-item">
           <a class="nav-link glyphicon glyphicon-registration-mark" href="menuEnsayosRevision.php" style="font-size: 17px;"> Ensayos en Resivion</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="inventario.php" style="font-size: 17px;">
+            <span class="glyphicon glyphicon-shopping-cart" style="margin-right: 5px;"></span>Inventario
+          </a>
+        </li>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('.submenu-toggle').forEach(function(element) {
