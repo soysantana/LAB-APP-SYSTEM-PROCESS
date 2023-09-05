@@ -32,6 +32,7 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber'])) {
     exit();
 }
 ?>
+
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
@@ -245,7 +246,9 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber'])) {
     </table>
 </div>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
+
+        <button type="submit" class="btn btn-warning">Enviar ensayo repetir</button>
     </form>
 </div>
 
