@@ -3,6 +3,10 @@ $page_title = 'Uniaxial Compressive Strength Calculation ';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/UCS.php'); 
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -36,6 +40,7 @@ page_require_level(2);
 
             <table class="table table-bordered">
                 <thead>
+                <tbody id="product_info"></tbody>
           </div>
           <div class="col-xs-4">
             <label>Standard</label>
@@ -46,7 +51,7 @@ page_require_level(2);
           </div>
           <div class="col-xs-4">
             <label>Method</label>
-            <select class="form-control" type = "text" name="method">
+            <select class="form-control" type = "text" name="Method">
               <option selected>Choose...</option>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -57,20 +62,20 @@ page_require_level(2);
     
           <div class="col-xs-4">
             <label>Extraction Equipment:</label>
-            <input class="form-control" name="Extraequip" type="text" value="">
+            <input class="form-control" name="ExtraEquip" type="text">
           </div>
 
           <div class="col-xs-4">
             <label>Cutter Equipment:</label>
-            <input class="form-control" name="cuttrequip" type="text" value="">
+            <input class="form-control" name="CutterEquip" type="text">
           </div>
           <div class="col-xs-4">
             <label>Test Device:</label>
-            <input class="form-control" name="testdevice" type="text" value="">
+            <input class="form-control" name="TestDevice" type="text">
           </div>
           <div class="col-xs-4">
             <label>Temperature:</label>
-            <input class="form-control" name="temperature" type="text" value="">
+            <input class="form-control" name="Temperature" type="text">
           </div>
     
           <div class="col-xs-4">
@@ -85,7 +90,7 @@ page_require_level(2);
         </div>
           <div class="col-xs-4">
             <label>Test Start Date</label>
-            <input class="form-control" name="Test_Start_Date" type="date">
+            <input class="form-control" name="TestStartDate" type="date">
           </div>
           <div class="panel-body">
             <div class="col-md-12">
@@ -98,32 +103,34 @@ page_require_level(2);
               <caption>Testing Information</caption>
               <tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Dimension D (cm):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="1" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="1" name="DimensionDcm" oninput="calcular()"></td>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Dimension h (cm):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="2" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="2" name="DimensionHcm" oninput="calcular()"></td>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Relation h/D:</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="3" name="RelationhD" oninput="calcular()"></td>
               <tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Area (m2):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="4" name="Aream2" oninput="calcular()"></td>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Volume (m3):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="5" name="Volumem3" oninput="calcular()"></td>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Weight of the Core (Kg):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="6" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="6" name="WeightCoreKg" oninput="calcular()"></td>
             <tr>
                <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Unit Weight of the Core (Kg/m³):</th>
-               <td><input type="text" style="border: none; background: transparent;" size="4" id="7" oninput="calcular()"></td>
+               <td><input type="text" style="border: none; background: transparent;" size="4" id="7" name="UnitWeightCorekgm3" oninput="calcular()"></td>
                <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Failure Load (KN):</th>
-               <td><input type="text" style="border: none; background: transparent;" size="4" id="8" oninput="calcular()"></td>
+               <td><input type="text" style="border: none; background: transparent;" size="4" id="8" name="FailureLoandKN" oninput="calcular()"></td>
                <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Test Timing (s):</th>
-               <td><input type="text" style="border: none; background: transparent;" size="4" id="9" oninput="calcular()"></td>
+               <td><input type="text" style="border: none; background: transparent;" size="4" id="9" name="TestTimingS" oninput="calcular()"></td>
             <tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Load Proportion (Mpa/s):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="10" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="10" name="LoadProportionMpas" oninput="calcular()"></td>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row"> Uniaxial Compressive Strenght (Mpa):</th>       
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="11" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="11" name="uniaxialCompressiveStrenghtMpa" oninput="calcular()"></td>
             </tr>
         </table>
+
+        <button type="submit" name="UCS" class="btn btn-danger">Registrar ensayo</button>
                 <script>
                     function calcular() {
                       // Obtenemos los valores de los campos de entrada
@@ -149,7 +156,7 @@ page_require_level(2);
                         <span class="glyphicon glyphicon-camera"></span>
                         <span>Graphic Failure Load versus Time </span>
                         <div class="pull-right">
-                          <form class="form-inline" action="UCS.php" method="POST" enctype="multipart/form-data">
+                          <form class="form-inline" action="" method="POST" enctype="multipart/form-data">
                           <div class="form-group">
                             <div class="input-group">
                               <span class="input-group-btn">
@@ -163,7 +170,7 @@ page_require_level(2);
                           <span class="glyphicon glyphicon-camera"></span>
                           <span>Specimen After Test</span>
                           <div class="pull-right">
-                            <form class="form-inline" action="UCS.php" method="POST" enctype="multipart/form-data">
+                            <form class="form-inline" action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                               <div class="input-group">
                                 <span class="input-group-btn">
@@ -177,7 +184,7 @@ page_require_level(2);
                             <span class="glyphicon glyphicon-camera"></span>
                             <span>Specimen After Test</span>
                             <div class="pull-right">
-                              <form class="form-inline" action="UCS.php" method="POST" enctype="multipart/form-data">
+                              <form class="form-inline" action="" method="POST" enctype="multipart/form-data">
                               <div class="form-group">
                                 <div class="input-group">
                                   <span class="input-group-btn">
@@ -195,7 +202,7 @@ page_require_level(2);
                     </div>
                     
                     
-                <button type="submit" name="add_mcoven" class="btn btn-danger">Registrar ensayo</button>
+                
                 </form>
               
                     
