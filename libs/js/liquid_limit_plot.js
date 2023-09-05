@@ -5,93 +5,142 @@ var myChart = echarts.init(dom, null, {
 });
 var app = {};
 
-no1_blows = parseFloat(document.getElementById("2").value);
-no2_blows = parseFloat(document.getElementById("3").value);
-no3_blows = parseFloat(document.getElementById("4").value);
+blowsN1 = parseFloat(document.getElementById("2").value);
+blowsN2 = parseFloat(document.getElementById("3").value);
+blowsN3 = parseFloat(document.getElementById("4").value);
+McN1 = parseFloat(document.getElementById("23").value);
+McN2 = parseFloat(document.getElementById("24").value);
+McN3 = parseFloat(document.getElementById("25").value);
+// Datos originales
+const datosX = [blowsN1, blowsN2, blowsN3];
+const datosY = [McN1, McN2, McN3];
 
-no1_mc = parseFloat(document.getElementById("23").value);
-no2_mc = parseFloat(document.getElementById("24").value);
-no3_mc = parseFloat(document.getElementById("25").value);
+// Calcular la media de un arreglo de números
+function calcularMedia(datos) {
+  const sum = datos.reduce((total, valor) => total + valor, 0);
+  return sum / datos.length;
+}
+
+// Calcular el coeficiente de determinación (RSQ)
+function calcularRSQ(datosX, datosY) {
+  const mediaX = calcularMedia(datosX);
+  const mediaY = calcularMedia(datosY);
+
+  let numerador = 0;
+  let denominadorX = 0;
+  let denominadorY = 0;
+
+  for (let i = 0; i < datosX.length; i++) {
+    numerador += (datosX[i] - mediaX) * (datosY[i] - mediaY);
+    denominadorX += Math.pow(datosX[i] - mediaX, 2);
+    denominadorY += Math.pow(datosY[i] - mediaY, 2);
+  }
+
+  const rsq = Math.pow(numerador, 2) / (denominadorX * denominadorY);
+  return rsq;
+}
+
+// Calcular el logaritmo natural (LN) de un arreglo de números
+function calcularLN(datos) {
+  return datos.map((valor) => Math.log(valor));
+}
+
+// Calcular RSQ
+const rsq = calcularRSQ(datosX, datosY);
 
 var option;
 
 echarts.registerTransform(ecStat.transform.regression);
+
+const data = [
+  { blows: blowsN1, mc: McN1 },
+  { blows: blowsN2, mc: McN2 },
+  { blows: blowsN3, mc: McN3 }
+];
+
+const sourceData = data.map((item) => [item.blows, item.mc]);
+
 option = {
   dataset: [
     {
-      source: [
-        [no1_blows, no1_mc, 0, 'Blows + Moisture', 0],
-        [no2_blows, no2_mc, 0, 'Blows + Moisture', 0],
-        [no3_blows, no3_mc, 0,  'Blows + Moisture', 0]
-      ]
-    },
-    {
-      transform: {
-        type: 'filter',
-        config: { dimension: 4, eq: 0}
-      }
-    },
-    {
-      transform: {
-        type: 'filter',
-        config: { dimension: 4, eq: 1 }
-      }
+      source: sourceData
     },
     {
       transform: {
         type: 'ecStat:regression',
-        config: {
-          method: 'logarithmic'
-        }
+        config: { method: 'logarithmic' }
       }
     }
   ],
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'cross'
+  title: {
+    subtext: "MULTI-POINT LIQUID LIMIT PLOT",
+    left: "center",
+    subtextStyle: {
+      fontSize: 15,
+      color: "black",
+      fontWeight: "bold"
     }
   },
   xAxis: {
-    type: 'value',
-    splitLine: {
-      lineStyle: {
-        type: 'dashed'
-      }
+    type: 'log',
+    name: "Number of Blows",
+    nameLocation: "center",
+    nameTextStyle: {
+      color: "black",
+      fontWeight: "bold",
+      lineHeight: 20
     }
   },
   yAxis: {
-    type: 'value',
-    splitLine: {
-      lineStyle: {
-        type: 'dashed'
-      }
+    name: "Moisture Content (%)",
+    nameLocation: "center",
+    nameTextStyle: {
+      color: "black",
+      fontWeight: "bold",
+      lineHeight: 35
     }
   },
   series: [
     {
       type: 'scatter',
-      datasetIndex: 1,
+      symbolSize: 12,
       symbol: 'diamond'
-    },
-    {
-      type: 'scatter',
-      datasetIndex: 2
     },
     {
       name: 'line',
       type: 'line',
+      color: 'orange',
       smooth: true,
-      datasetIndex: 3,
-      symbolSize: 0.1,
+      datasetIndex: 1,
+      symbolSize: 0,
       symbol: 'circle',
       label: { show: true, fontSize: 16 },
-      labelLayout: { dx: -20 },
+      labelLayout: { dy: -30 },
       encode: { label: 2, tooltip: 1 }
+    },
+    {
+      name: 'RSQ',
+      type: 'line',
+      symbolSize: 0,
+      symbol: 'circle',
+      data: sourceData.map((item, index) => {
+        if (item[0] === blowsN1 && item[1] === McN1) {
+          return {
+            value: [item[0], item[1]],
+            label: {
+              show: true,
+              fontSize: 16,
+              formatter: 'R²= ' + rsq.toFixed(4),
+              position: 'top', // Colocar la etiqueta a la derecha del punto
+              offset: [0, -10] // Ajustar el desplazamiento horizontal (puedes ajustar estos valores según tus necesidades)
+            }
+          };
+        }
+      })
+      // Resto de la configuración para la serie RSQ...
     }
   ]
 };
-
 
 if (option && typeof option === 'object') {
   myChart.setOption(option);
