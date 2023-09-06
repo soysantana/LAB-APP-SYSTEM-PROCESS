@@ -3,6 +3,10 @@ $page_title = 'PERMEABILITY OF GRANULAR SOILS (CONSTANT HEAD)';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/PermeabilityGranular.php'); 
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -32,10 +36,11 @@ page_require_level(2);
         </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="#" onsubmit="calcular()">
+        <form method="post" action="permeability_granular.php" onsubmit="calcular()">
 
             <table class="table table-bordered">
                 <thead>
+                <tbody id="product_info"></tbody>
           </div>
           <div class="col-xs-4">
             <label>Standard</label>
@@ -46,7 +51,7 @@ page_require_level(2);
           </div>
           <div class="col-xs-4">
             <label>Method</label>
-            <select class="form-control" type = "text" name="method" id="">
+            <select class="form-control" type = "text" name="Method" id="">
               <option selected>Choose...</option>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -66,7 +71,7 @@ page_require_level(2);
     
           <div class="col-xs-4">
             <label>Test Start Date</label>
-            <input class="form-control" name="Test_Start_Date" type="date">
+            <input class="form-control" name="TestStartDate" type="date">
           </div>
 
           <div class="panel-body">
@@ -96,19 +101,19 @@ page_require_level(2);
                     </tr>
                     <tr>
                         <td>
-                        <input type="text" style="border: none;background: transparent;padding: 20%;width: 100%;" size="4" id="" oninput="calcular()">
+                        <input type="text" style="border: none;background: transparent;padding: 20%;width: 100%;" size="4" id="" name="Descriptionofmaterialusefortest" oninput="calcular()">
                         </td>
 
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="1" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="2" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="3" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="4" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="5" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="6" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="7" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="8" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="9" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="10" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="1" name="DiameterDcm" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="2" name="Areacm2" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="3" name="LenghtLcm" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="4" name="WMaxKgm2" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="5" name="WMaxKgm3" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="6" name="HeightBeforeH1" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="7" name="HeightAfterH2" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="8" name="HeightNetcm" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="9" name="VoidRatioe" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" size="4" id="10" name="RelativeDensityRDPorce" oninput="calcular()"></td>
                     </tr>
                 </tbody>
             </table>
@@ -136,99 +141,99 @@ page_require_level(2);
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">1</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="31" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="32" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="33" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="34" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="35" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="36" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="37" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="38" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="39" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H11" size="4" id="31" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H21" size="4" id="32" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN1" size="4" id="33" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N1" size="4" id="34" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN1" size="4" id="35" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN1" size="4" id="36" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN1" size="4" id="37" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN1" size="4" id="38" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN1" size="4" id="39" oninput="calcular()"></td>
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">2</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="40" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="41" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="42" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="43" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="44" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="45" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="46" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="47" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="48" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H12" size="4" id="40" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H22" size="4" id="41" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN2" size="4" id="42" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N2" size="4" id="43" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN2" size="4" id="44" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN2" size="4" id="45" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN2" size="4" id="46" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN2" size="4" id="47" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN2" size="4" id="48" oninput="calcular()"></td>
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">3</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="49" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="50" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="51" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="52" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="53" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="54" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="55" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="56" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="57" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H13" size="4" id="49" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H23" size="4" id="50" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN3" size="4" id="51" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N3" size="4" id="52" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN3" size="4" id="53" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN3" size="4" id="54" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN3" size="4" id="55" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN3" size="4" id="56" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN3" size="4" id="57" oninput="calcular()"></td>
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">4</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="58" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="59" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="60" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="61" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="62" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="63" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="64" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="65" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="66" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H14" size="4" id="58" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H24" size="4" id="59" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN4" size="4" id="60" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N4" size="4" id="61" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN4" size="4" id="62" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN4" size="4" id="63" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN4" size="4" id="64" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN4" size="4" id="65" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN4" size="4" id="66" oninput="calcular()"></td>
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">5</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="67" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="68" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="69" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="70" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="71" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="72" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="73" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="74" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="75" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H15" size="4" id="67" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H25" size="4" id="68" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN5" size="4" id="69" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N5" size="4" id="70" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN5" size="4" id="71" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN5" size="4" id="72" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN5" size="4" id="73" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN5" size="4" id="74" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN5" size="4" id="75" oninput="calcular()"></td>
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">6</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="76" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="77" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="78" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="79" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="80" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="81" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="82" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="83" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="84" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H16" size="4" id="76" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H26" size="4" id="77" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN6" size="4" id="78" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N6" size="4" id="79" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN6" size="4" id="80" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN6" size="4" id="81" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN6" size="4" id="82" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN6" size="4" id="83" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN6" size="4" id="84" oninput="calcular()"></td>
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">7</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="85" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="86" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="87" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="88" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="89" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="90" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="91" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="92" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="93" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H17" size="4" id="85" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H27" size="4" id="86" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN7" size="4" id="87" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N7" size="4" id="88" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN7" size="4" id="89" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN7" size="4" id="90" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN7" size="4" id="91" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN7" size="4" id="92" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN7" size="4" id="93" oninput="calcular()"></td>
                     </tr>
                     <tr>
                         <th style="font-size: 15px; text-align: center;">8</th>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="94" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="95" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="96" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="97" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="98" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="99" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="100" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="101" oninput="calcular()"></td>
-                        <td><input type="text" style="border: none; background: transparent;" size="4" id="102" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H18" size="4" id="94" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="H28" size="4" id="95" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="HeadhcmN8" size="4" id="96" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="Quantityofwaterdischargedcm3N8" size="4" id="97" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TotaltimeofdischargesecN8" size="4" id="98" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="QAtN8" size="4" id="99" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="hLN8" size="4" id="100" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="TemperatureCN8" size="4" id="101" oninput="calcular()"></td>
+                        <td><input type="text" style="border: none; background: transparent;" name="CoefficientofpermeabilitycmsegN8" size="4" id="102" oninput="calcular()"></td>
                     </tr>
                 </tbody>
             </table>
@@ -376,7 +381,7 @@ page_require_level(2);
           </script>
 
 
-<script>
+<script>a
   function enviarData(event) {
     event.preventDefault()
     $.ajax({
@@ -390,6 +395,8 @@ page_require_level(2);
   }
 </script>
 
+
+<button type="submit" name="PermeabilityGranular" class="btn btn-danger">Registrar ensayo</button>
 <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event),enviarData2(event) ">Graficar</button>
 
 
