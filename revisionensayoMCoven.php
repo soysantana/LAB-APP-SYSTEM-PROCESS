@@ -31,6 +31,35 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber'])) {
     header('Location: menuEnsayosRevision.php');
     exit();
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["repeat"])) {
+        // Recupera el valor del campo oculto "ensayo_repetir"
+        $ensayo_repetir = $_POST["Sample_ID"];
+
+        // Aquí puedes realizar la inserción en la base de datos
+        $rtv = mysqli_connect('localhost', 'root', '', 'index_test_lab');
+        if (!$rtv) {
+            die("Error de conexión a la base de datos: " . mysqli_connect_error());
+        }
+
+        // Inserta la cadena en la columna "Sample_ID"
+        $query = "INSERT INTO ensayo_en_repeticion (Sample_ID) VALUES ('$ensayo_repetir')";
+        echo "Query: $query"; // Mensaje de depuración
+        $result = mysqli_query($rtv, $query);
+        if ($result) {
+            // La inserción fue exitosa
+            echo "El ensayo ha sido enviado a repetir.";
+        } else {
+            // Error en la inserción
+            echo "Error al enviar el ensayo a repetir: " . mysqli_error($rtv);
+        }
+
+        mysqli_close($rtv);
+    } else {
+        // El botón "Enviar ensayo a firma" se presionó
+        // Realiza la lógica para enviar el ensayo a firma aquí
+    }
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -77,6 +106,7 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber'])) {
                 $drySoil = htmlspecialchars($row['Dry_Soil']);
                 $mc = htmlspecialchars($row['Mc']);
                 $comments = htmlspecialchars($row['Comments']);
+                $testType = htmlspecialchars($row['test_type']);
                 ?>
 
 
@@ -245,10 +275,11 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber'])) {
         </tbody>
     </table>
 </div>
-        
+<input type="hidden" name="Sample_ID" value="<?= $sample_id . ',' . $sample_number . ',' . $testType ?>">
         <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 
-        <button type="submit" class="btn btn-warning">Enviar ensayo repetir</button>
+        <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
+
     </form>
 </div>
 
