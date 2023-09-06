@@ -25,7 +25,24 @@ if (isset($_POST['PointLoad'])) {
         'Temperature',
         'Comments',
         'Technician',
-        'TestStartDate'
+        'TestStartDate',
+        'EffectiveAreaofJackPistonm2',
+        'K1ValueAssumedValueToCorrelateIs50ToUCS',
+        'K2ValueAssumed',
+        'TestTypeABCD',
+        'DimensionLmm',
+        'DimensionDorWmm',
+        'PlattensSeparationmm',
+        'LoadDirection',
+        'GaugeReadingMpa',
+        'FailureLaodMN',
+        'Demm',
+        'IsMpa',
+        'F',
+        'Is50',
+        'UCSFromK1Mpa',
+        'UCSFromK2Mpa',
+        'StrenghtClassification'
     );    
 
     // Llamamos a la función para validar los campos
@@ -61,6 +78,24 @@ if (empty($errors)) {
     $Technician = $db->escape($_POST['Technician']);
     $TestStartDate = $db->escape($_POST['TestStartDate']);
 
+    $EffectiveAreaofJackPistonm2 = $db->escape($_POST['EffectiveAreaofJackPistonm2']);
+    $K1ValueAssumedValueToCorrelateIs50ToUCS = $db->escape($_POST['K1ValueAssumedValueToCorrelateIs50ToUCS']);
+    $K2ValueAssumed = $db->escape($_POST['K2ValueAssumed']);
+    $TestTypeABCD = $db->escape($_POST['TestTypeABCD']);
+    $DimensionLmm = $db->escape($_POST['DimensionLmm']);
+    $DimensionDorWmm = $db->escape($_POST['DimensionDorWmm']);
+    $PlattensSeparationmm = $db->escape($_POST['PlattensSeparationmm']);
+    $LoadDirection = $db->escape($_POST['LoadDirection']);
+    $GaugeReadingMpa = $db->escape($_POST['GaugeReadingMpa']);
+    $FailureLaodMN = $db->escape($_POST['FailureLaodMN']);
+    $Demm = $db->escape($_POST['Demm']);
+    $IsMpa = $db->escape($_POST['IsMpa']);
+    $F = $db->escape($_POST['F']);
+    $Is50 = $db->escape($_POST['Is50']);
+    $UCSFromK1Mpa = $db->escape($_POST['UCSFromK1Mpa']);
+    $UCSFromK2Mpa = $db->escape($_POST['UCSFromK2Mpa']);
+    $StrenghtClassification = $db->escape($_POST['StrenghtClassification']);
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO point_load_test (
     Sample_ID, 
@@ -86,7 +121,24 @@ $sql = "INSERT INTO point_load_test (
     Temperature,
     Comments,
     Technician,
-    Test_Start_Date
+    Test_Start_Date,
+    Effective_Area_of_Jack_Piston_m2,
+    K1_Value_Assumed_Value_To_Correlate_Is50_To_UCS,
+    K2_Value_Assumed,
+    Test_Type_A_B_C_D,
+    Dimension_L_mm,
+    Dimension_D_or_W_mm,
+    Plattens_Separation_mm,
+    Load_Direction,
+    Gauge_Reading_Mpa,
+    Failure_Laod_MN,
+    De_mm,
+    Is_Mpa,
+    F,
+    Is_50,
+    UCS_From_K1_Mpa,
+    UCS_From_K2_Mpa,
+    Strenght_Classification
 )
 VALUES (
     '$sampleid',
@@ -112,7 +164,24 @@ VALUES (
     '$Temperature',
     '$Comments',
     '$Technician',
-    '$TestStartDate'
+    '$TestStartDate',
+    '$EffectiveAreaofJackPistonm2',
+    '$K1ValueAssumedValueToCorrelateIs50ToUCS',
+    '$K2ValueAssumed',
+    '$TestTypeABCD',
+    '$DimensionLmm',
+    '$DimensionDorWmm',
+    '$PlattensSeparationmm',
+    '$LoadDirection',
+    '$GaugeReadingMpa',
+    '$FailureLaodMN',
+    '$Demm',
+    '$IsMpa',
+    '$F',
+    '$Is50',
+    '$UCSFromK1Mpa',
+    '$UCSFromK2Mpa',
+    '$StrenghtClassification'
 )";
 
 // Ejecutamos la sentencia
