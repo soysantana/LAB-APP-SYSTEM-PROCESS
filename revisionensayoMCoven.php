@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Inserta la cadena en la columna "Sample_ID"
-        $query = "INSERT INTO ensayo_en_repeticion (Sample_ID) VALUES ('$ensayo_repetir')";
+        $query = "INSERT INTO ensayo_en_repeticion (Sample_ID, Tecnico, Fecha_Inicio ) VALUES ('$ensayo_repetir','$technician', '$repetirFecha')";
         echo "Query: $query"; // Mensaje de depuración
         $result = mysqli_query($rtv, $query);
         if ($result) {
@@ -107,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mc = htmlspecialchars($row['Mc']);
                 $comments = htmlspecialchars($row['Comments']);
                 $testType = htmlspecialchars($row['test_type']);
+                $repetirFecha = make_date();
                 ?>
 
 
