@@ -3,6 +3,10 @@ $page_title = 'PLT Calculation ';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/PointLoad.php'); 
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -36,6 +40,7 @@ page_require_level(2);
 
             <table class="table table-bordered">
                 <thead>
+                <tbody id="product_info"></tbody>
           </div>
           <div class="col-xs-4">
             <label>Standard</label>
@@ -46,7 +51,7 @@ page_require_level(2);
           </div>
           <div class="col-xs-4">
             <label>Method</label>
-            <select class="form-control" type = "text" name="method" id="1">
+            <select class="form-control" type = "text" name="Method" id="1">
               <option selected>Choose...</option>
               <option value="diametral">Diametral</option>
               <option value="axial">Axial</option>
@@ -57,20 +62,20 @@ page_require_level(2);
     
           <div class="col-xs-4">
             <label>Extraction Equipment:</label>
-            <input class="form-control" name="Extraequip" type="text" value="">
+            <input class="form-control" name="ExtraEquip" type="text">
           </div>
 
           <div class="col-xs-4">
             <label>Cutter Equipment:</label>
-            <input class="form-control" name="cuttrequip" type="text" value="">
+            <input class="form-control" name="CutterEquip" type="text">
           </div>
           <div class="col-xs-4">
             <label>Test Device:</label>
-            <input class="form-control" name="testdevice" type="text" value="">
+            <input class="form-control" name="TestDevice" type="text">
           </div>
           <div class="col-xs-4">
             <label>Temperature:</label>
-            <input class="form-control" name="temperature" type="text" value="">
+            <input class="form-control" name="Temperature" type="text">
           </div>
     
           <div class="col-xs-4">
@@ -85,7 +90,7 @@ page_require_level(2);
     
           <div class="col-xs-4">
             <label>Test Start Date</label>
-            <input class="form-control" name="Test_Start_Date" type="date">
+            <input class="form-control" name="TestStartDate" type="date">
           </div>
 
           <div class="panel-body">
@@ -167,6 +172,7 @@ page_require_level(2);
               </table>
            
               <div id="PointLoadGraph" style="height: 500px; width: 500px;"></div>
+              <button type="submit" name="PointLoad" class="btn btn-danger">Registrar ensayo</button>
 
               <script>
                 function calcular() {
@@ -284,7 +290,7 @@ page_require_level(2);
                     </div>
                   </div>
                 </div>
-                  <button type="submit" name="add_mcoven" class="btn btn-danger">Registrar ensayo</button>
+                  
                   </form>
                 
                 </div>
