@@ -105,36 +105,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <tbody>
                 <tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Effective Area of Jack Piston (m²)</th>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" name="EffectiveAreaofJackPistonm2" oninput="calcular()"></td>
                 </tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">k₁ value (assumed value to correlate Is50 to UCS):</th>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" name="K1ValueAssumedValueToCorrelateIs50ToUCS" oninput="calcular()"></td>
                 </tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">k₂ value (assumed)::</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" name="K2ValueAssumed" oninput="calcular()"></td>
               </tr>
               
               <table class="table table-bordered border-primary" style="width: 450px;">
                 <caption>Testing Information</caption>
                 <tr>
                   <th style="font-size: 16px; width: 350px; height: 25px;" scope="row" colspan="3">Test Type (A, B, C, D):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="5" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="5" name="TestTypeABCD" oninput="calcular()"></td>
                 </tr>
                 <tr>
                   <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Dimension L (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="6" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="6" name="DimensionLmm" oninput="calcular()"></td>
                 
                 
                   <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Dimension D or W (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="7" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="7" name="DimensionDorWmm" oninput="calcular()"></td>
                 
                 <tr>
                   <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Plattens Separation (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="8" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="8" name="PlattensSeparationmm" oninput="calcular()"></td>
                 
                   <th style="font-size: 15px; width: 450px; height: 25px;" scope="row">Load Direction:</th>
                   <td>
-                    <select class="form-control" name="loadirection">
+                    <select class="form-control" name="LoadDirection">
                       <option selected>Choose...</option>
                       <option value="Perpendicular">⊥</option>
                       <option value="Parallel">//</option>
@@ -142,32 +142,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </td>
                 </tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Gauge Reading (Mpa):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="9" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="9" name="GaugeReadingMpa" oninput="calcular()"></td>
                 
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Failure Laod (MN):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="10" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="10" name="FailureLaodMN" oninput="calcular()"></td>
                 </tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">De (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="11" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="11" name="Demm" oninput="calcular()"></td>
              
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Is (Mpa):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="12" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="12" name="IsMpa" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">F:</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="13" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="13" name="F" oninput="calcular()"></td>
               
               <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Is 50:</th>
-              <td><input type="text" style="border: none; background: transparent;" size="4" id="14" oninput="calcular()"></td>
+              <td><input type="text" style="border: none; background: transparent;" size="4" id="14" name="Is50" oninput="calcular()"></td>
             </tr>
             <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">UCS From k1 (Mpa):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="15" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="15" name="UCSFromK1Mpa" oninput="calcular()"></td>
               
               <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">UCS From k2 (Mpa):</th>
-              <td><input type="text" style="border: none; background: transparent;" size="4" id="16" oninput="calcular()"></td>
+              <td><input type="text" style="border: none; background: transparent;" size="4" id="16" name="UCSFromK2Mpa" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row" colspan="3">Strenght Classification :</th>
-                <td><input type="text" style="border: none; background: transparent;" size="6" id="17" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="6" id="17" name="StrenghtClassification" oninput="calcular()"></td>
               </tr>
               </table>
            
