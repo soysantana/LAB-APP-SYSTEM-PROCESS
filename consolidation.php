@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Pinhole Test';
+$page_title = 'Consolidation';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
