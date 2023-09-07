@@ -117,8 +117,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="technician">Laboratory:</label>
-                    <input class="form-control" id="technician" name="technician" type="text" value="QA-Lab">
+                    <label for="lab">Laboratory:</label>
+                    <input class="form-control" id="Qalab" name="QaLab" type="text" value="QA-Lab">
+                </div>
+                <div class="form-group">
+                    <label for="technician">Technician:</label>
+                    <input class="form-control" id="technician" name="technician" type="text" value="<?= $technician?>">
                 </div>
 
            
@@ -131,7 +135,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="standard">Test Method:</label>
                     <input class="form-control" id="standard" name="standard" type="text" value="<?= $standard?>">
                 </div>
-                
+                <div class="form-group">
+                    <label for="teststartdate">Test Start Date:</label>
+                    <input class="form-control" id="teststartdate" name="teststartdate" type="text" value="<?= $testStartDate?>">
+                </div>
+                <div class="form-group">Report Date:</label>
+                    <input class="form-control" id="reportdate" name="repordate" type="text" value="<?= $reportDate?>">
+                </div>
                 
                 
 
