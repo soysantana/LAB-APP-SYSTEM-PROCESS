@@ -1,8 +1,12 @@
 <?php
-$page_title = 'Uniaxial Compressive Strength Calculation ';
+$page_title = 'BTS';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/BTS.php'); 
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -34,19 +38,22 @@ page_require_level(3);
       <div class="panel-body">
         <form method="post" action="BTS.php" onsubmit="calcular()">
 
-            <table class="table table-bordered">
-                <thead>
+        <table class="table table-bordered">
+          <thead>
+            <tbody id="product_info"></tbody>
+          </thead>
+
           </div>
           <div class="col-xs-4">
             <label>Standard</label>
             <select class="form-control" name="Standard">
               <option selected>Choose...</option>
-              <option value="ASTM-D4318">ASTM-D7012</option>
+              <option value="ASTM-D3967">ASTM-D3967</option>
             </select>
           </div>
           <div class="col-xs-4">
             <label>Method</label>
-            <select class="form-control" type = "text" name="method" id="1">
+            <select class="form-control" type = "text" name="Method" id="1">
               <option selected>Choose...</option>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -56,16 +63,16 @@ page_require_level(3);
     
           <div class="col-xs-4">
             <label>Extraction Equipment:</label>
-            <input class="form-control" name="Extraequip" type="text" value="">
+            <input class="form-control" name="ExtractionEquipment" type="text" value="">
           </div>
 
           <div class="col-xs-4">
             <label>Cutter Equipment:</label>
-            <input class="form-control" name="cuttrequip" type="text" value="">
+            <input class="form-control" name="CutterEquipment" type="text" value="">
           </div>
           <div class="col-xs-4">
             <label>Test Device:</label>
-            <input class="form-control" name="testdevice" type="text" value="">
+            <input class="form-control" name="TestDevice" type="text" value="">
           </div>
           <div class="col-xs-4">
             <label>Temperature:</label>
@@ -84,7 +91,7 @@ page_require_level(3);
         </div>
           <div class="col-xs-4">
             <label>Test Start Date</label>
-            <input class="form-control" name="Test_Start_Date" type="date">
+            <input class="form-control" name="TestStartDate" type="date">
           </div>
           <div class="panel-body">
             <div class="col-md-12">
@@ -114,128 +121,135 @@ page_require_level(3);
                       <tbody>
                         <tr>
                           <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 1</th>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" oninput="calcular()"></td>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" oninput="calcular()"></td>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" oninput="calcular()"></td>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="5" oninput="calcular()"></td>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="6" oninput="calcular()"></td>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="7" oninput="calcular()"></td>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="8" oninput="calcular()"></td>
-                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="9" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo1" id="2" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo1" id="3" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo1" id="4" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo1" id="5" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo1" id="6" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo1" id="7" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo1" id="8" oninput="calcular()"></td>
+                          <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo1" id="9" oninput="calcular()"></td>
                         </tr>
                         <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 2</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="10" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="11" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="12" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="13" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="14" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="15" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="16" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="17" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo2" id="10" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo2" id="11" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo2" id="12" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo2" id="13" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo2" id="14" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo2" id="15" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo2" id="16" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo2" id="17" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 3</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="18" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="19" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="20" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="21" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="22" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="23" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="24" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="25" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo3" id="18" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo3" id="19" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo3" id="20" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo3" id="21" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo3" id="22" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo3" id="23" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo3" id="24" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo3" id="25" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 4</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="26" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="27" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="28" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="29" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="30" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="31" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="32" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="33" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo4" id="26" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo4" id="27" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo4" id="28" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo4" id="29" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo4" id="30" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo4" id="31" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo4" id="32" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo4" id="33" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 5</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="34" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="35" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="36" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="37" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="38" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="39" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="40" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="41" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo5" id="34" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo5" id="35" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo5" id="36" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo5" id="37" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo5" id="38" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo5" id="39" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo5" id="40" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo5" id="41" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 6</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="42" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="43" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="44" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="45" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="46" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="47" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="48" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="49" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo6" id="42" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo6" id="43" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo6" id="44" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo6" id="45" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo6" id="46" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo6" id="47" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo6" id="48" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo6" id="49" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 7</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="50" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="51" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="52" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="53" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="54" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="55" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="56" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="57" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo7" id="50" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo7" id="51" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo7" id="52" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo7" id="53" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo7" id="54" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo7" id="55" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo7" id="56" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo7" id="57" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 8</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="58" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="59" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="60" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="61" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="62" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="63" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="64" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="65" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo8" id="58" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo8" id="59" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo8" id="60" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo8" id="61" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo8" id="62" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo8" id="63" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo8" id="64" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo8" id="65" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 9</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="66" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="67" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="68" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="69" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="70" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="71" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="72" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="73" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo9" id="66" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo9" id="67" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo9" id="68" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo9" id="69" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo9" id="70" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo9" id="71" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo9" id="72" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo9" id="73" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Sample 10</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="74" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="75" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="76" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="77" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="78" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="79" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="80" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="81" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="DiameterDcmNo10" id="74" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="ThicnesstcmNo10" id="75" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="RelationtdNo10" id="76" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="LoadingRateKNsNo10" id="77" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TimeToFailuresNo10" id="78" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="MaxLoadkNNo10" id="79" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="TensileStrengthMpaNo10" id="80" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="FailureTypeNo10" id="81" oninput="calcular()"></td>
                           </tr>
                           <tr>
                             <th style="font-size: 12px;" style="width: 350px; height: 25px;" scope="row">Averages</th>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="83" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="84" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="85" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="86" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="87" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="88" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="89" oninput="calcular()"></td>
-                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="90" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo1" id="83" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo2" id="84" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo3" id="85" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo4" id="86" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo5" id="87" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo6" id="88" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo7" id="89" oninput="calcular()"></td>
+                            <td><input type="text" style="border: none;" size="4" style="background: transparent;" name="AverageNo8" id="90" oninput="calcular()"></td>
                           </tr>
                         </tr>
                     </table>
+
+                    <button type="submit" name="BTS" class="btn btn-danger">Registrar ensayo</button>
+
+                    <?php include_once('layouts/footer.php'); ?>
+
+                    
                     <script>
+                      /*
                         function calcular() {
                           // Obtenemos los valores de los campos de entrada d
                           d1= parseFloat(document.getElementById("2").value);
@@ -297,6 +311,7 @@ page_require_level(3);
                           document.getElementById("5").value = volume.toFixed(6);
                           document.getElementById("7").value = Uwc.toFixed(3);
                         }
+                        */
                         </script>
                 
                 
