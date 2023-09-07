@@ -128,7 +128,7 @@ if (empty($errors)) {
     $elev = $db->escape($_POST['elev']);
     $sampledate = $db->escape($_POST['sampledate']);
     $reportdate = make_date();
-    $testype = "NOSE";
+    $testype = "Perma-Granular";
     // Informaciones basicas
     $Standard = $db->escape($_POST['Standard']);
     $Method = $db->escape($_POST['Method']);
