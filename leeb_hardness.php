@@ -150,11 +150,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
-    function convertToNumberOrZero(value) {
-        const parsedValue = parseFloat(value);
-        return isNaN(parsedValue) ? 0 : parsedValue;
-    }
-
     function calculateAverageStrength() {
         const strengthInputs = [
             document.getElementById('No-1'),
