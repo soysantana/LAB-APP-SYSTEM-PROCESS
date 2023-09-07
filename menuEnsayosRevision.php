@@ -30,7 +30,10 @@ page_require_level(3);
                     $tablas = array('moisture_content', 'grain_size', 'atterberg_limit', 'standard_proctor', 
                     'moisture_content_microwave', 'moisture_content_constant_mass', 'moisture_scale', 
                     'count_gama', 'density_bulk', 'density_weigth', 'ensayo_gama', 'los_angeles_abrasion_small', 
-                    'sand_density', 'specific_gravity', 'specific_gravity_absortion', 'specific_gravity_fine');
+                    'sand_density', 'specific_gravity', 'specific_gravity_absortion', 'specific_gravity_fine',
+                     'splitting_tensile_strenght', 'uniaxial_compressive_strength', 'pinhole', 'point_load_test', 
+                     'permeability_of_granular_soils', 'los_angeles_abrasion_large', 'leeb_hardness', 'grout_specimens',
+                      'concrete_specimens');
 
                     foreach ($tablas as $tabla) {
                         $query = "SELECT Sample_ID, Sample_Number, test_type FROM $tabla WHERE Report_Date >= '$fechaLimite'";
