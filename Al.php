@@ -38,14 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       <div class="panel-body">
         <form method="post" action="Al.php" onsubmit="calcular()">
-
-  <table>
-    <thead></thead>
-    <tbody id="product_info"> </tbody>
-  </table>
-
           <table class="table table-bordered">
             <thead>
+            <tbody id="product_info"> </tbody>
+            </thead>
+          </table>
       </div>
       <div class="col-xs-4">
         <label>Standard</label>
