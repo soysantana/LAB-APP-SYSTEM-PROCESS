@@ -32,7 +32,7 @@ page_require_level(2);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="" onsubmit="calcular()">
+<form method="post" action="soundness.php" onsubmit="calcular()">
 
 <table class="table table-bordered">
 <thead>
@@ -113,61 +113,61 @@ page_require_level(2);
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3" oninput="calcular()">101.6</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="6" oninput="calcular()">88.9</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="7" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="8" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="9" oninput="calcular()">76.2</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="10" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="11" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="12" oninput="calcular()">63.5</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="13" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="14" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="15" oninput="calcular()">50.8</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="16" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="17" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1 1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="18" oninput="calcular()">38.1</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="19" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="20" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="21" oninput="calcular()">25.4</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="22" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="23" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="24" oninput="calcular()">19.05</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="25" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="26" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="27" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="27" oninput="calcular()">12.7</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="28" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="29" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="30" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="30" oninput="calcular()">9.52</td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="31" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="32" oninput="calcular()"></td>
             </tr>
@@ -178,8 +178,8 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="35" oninput="calcular()"></td>
             </tr>
             <tr>
-                <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="36" oninput="calcular()"></td>
+                <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row" colspan="2">Total</th>
+                
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="37" oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="38" oninput="calcular()"></td>
             </tr>
@@ -346,9 +346,9 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3.3"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4.3"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5.3"oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="3.3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="4.3" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="5.3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No.8</th>
@@ -520,9 +520,9 @@ page_require_level(2);
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="row">12.5 mm (1⁄2 in) to 9.5 mm (3⁄8 in)</th>
                 <th style="font-size: 15px; text-align: center;" scope="row">(330+-5)g</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="" oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">19.0mm(3⁄4 in) to 9.5mm(3⁄8 in)</th>
-                <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">8.0 mm (5⁄16 in)</oninput="calcular()"th>
+                <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">8.0 mm (5⁄16 in)<th>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
@@ -576,7 +576,7 @@ page_require_level(2);
                 <th style="font-size: 15px; text-align: center;" scope="row">(7000+-100)g</th>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row" rowspan="2">100mm(4 in.) to  90mm(2 1⁄2 in.)</th>
-                <th style="font-size: 15px; text-align: center;" scope="row">50 mm (2 in)</th>oninput="calcular()"
+                <th style="font-size: 15px; text-align: center;" scope="row">50 mm (2 in)</th>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
@@ -1605,7 +1605,7 @@ page_require_level(2);
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
             <tr>
-                <th style="font-size: 15px; text-align: center;" scope="col">% Gravek</th>
+                <th style="font-size: 15px; text-align: center;" scope="col">% Gravel</th>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""></td>
             </tr>
@@ -1618,16 +1618,162 @@ page_require_level(2);
     </table>
 </div>
 <script>
+
 function calcular() {
 
+    // obtenemos los valores de la parte gruesa
+        
+    var WDS = parseFloat(document.getElementById("1").value);
+    var Ww = parseFloat(document.getElementById("2").value);
 
+    var WR4 = parseFloat(document.getElementById("4").value);
+    var WR3P5 = parseFloat(document.getElementById("7").value);
+    var WR3 = parseFloat(document.getElementById("10").value);
+    var WR2P5= parseFloat(document.getElementById("13").value);
+    var WR2 = parseFloat(document.getElementById("16").value);
+    var WR1P5 = parseFloat(document.getElementById("19").value);
+    var WR1 = parseFloat(document.getElementById("22").value);
+    var WR3P4 = parseFloat(document.getElementById("25").value);
+    var WR1P2= parseFloat(document.getElementById("28").value);
+    var WR3P8 = parseFloat(document.getElementById("31").value);
+    var WRN4 = parseFloat(document.getElementById("34").value);
+
+  // Calculamos los % Ret de la parte gruesa.
+
+  var TWRg = WR4 + WR3P5 + WR3 + WR2P5 + WR2 + WR1P5 + WR1 + WR3P4 + WR1P2 + WR3P8 + WRN4;
+   
+  var PR4 = ( WR4 / TWRg) * 100 ;
+  var PR3P5 = ( WR3P5 / TWRg) * 100 ;
+  var PR3 = ( WR3 / TWRg) * 100 ;
+  var PR2P5 = ( WR2P5 / TWRg) * 100 ;
+  var PR2 = ( WR2 / TWRg) * 100 ;
+  var PR1P5 = ( WR1P5 / TWRg) * 100 ;
+  var PR1 = ( WR1 / TWRg) * 100 ;
+  var PR3P4 = ( WR3P4 / TWRg) * 100 ;
+  var PR1P2 = ( WR1P2 / TWRg) * 100 ;
+  var PR3P8 = ( WR3P8 / TWRg) * 100 ;
+  var PRN4 = ( WRN4 / TWRg) * 100 ;
+
+ var PTg = (TWRg / TWRg) * 100;
+
+
+  // obtenemos los valores de la parte fina.
+
+    var WRN4f = parseFloat(document.getElementById("4.1").value);
+    var WRN8 = parseFloat(document.getElementById("7.1").value);
+    var WRN16 = parseFloat(document.getElementById("10.1").value);
+    var WRN30 = parseFloat(document.getElementById("13.1").value);
+    var WRN50 = parseFloat(document.getElementById("16.1").value);
+    var WRN100 = parseFloat(document.getElementById("19.1").value);
+    var Wpan= parseFloat(document.getElementById("22.1").value);
+    
+
+
+  // Calculamos los % Ret de la parte fina
+
+   var TWRf = WDS - TWRg;
+
+   var PRN4f = ( WRN4f / TWRf) * 100 ;
+   var PRN8 = ( WRN8/ TWRf) * 100 ;
+   var PRN16 = ( WRN16 / TWRf) * 100 ;
+   var PRN30 = ( WRN30 / TWRf) * 100 ;
+   var PRN50 = ( WRN50 / TWRf) * 100 ;
+   var PRN100 = ( WRN100 / TWRf) * 100 ;
+   var PRpan = ( Wpan / TWRf) * 100 ;
+
+   var PTf = PRN4f + PRN8 + PRN16 + PRN30 + PRN50 + PRN100 + PRpan;
+
+   // SEGUNDA DISTRIBUCION.
+
+   var WR41 = WR4;
+    var WR3P51 = WR3P5;
+    var WR31 = WR3 ;
+    var WR2P51= WR2P5;
+    var WR21 = WR2;
+    var WR1P51 = WR1P5 ;
+    var WR11 = WR1;
+    var WR3P41 = WR3P4;
+    var WR1P21= WR1P2;
+    var WR3P81 = WR3P8;
+    var WRN41 = WRN4;
+
+  // Calculamos los % Ret de la parte gruesa.
+
+  var TWRg1 = TWRg
+  var PR41 = ( WR41 / TWRg1) * 100 ;
+  var PR3P51 = ( WR3P51 / TWRg1) * 100 ;
+  var PR31 = ( WR31 / TWRg1) * 100 ;
+  var PR2P51 = ( WR2P51 / TWRg1) * 100 ;
+  var PR21 = ( WR21 / TWRg1) * 100 ;
+  var PR1P51 = ( WR1P51 / TWRg1) * 100 ;
+  var PR11 = ( WR11 / TWRg1) * 100 ;
+  var PR3P41 = ( WR3P41 / TWRg1) * 100 ;
+  var PR1P21 = ( WR1P21 / TWRg1) * 100 ;
+  var PR3P81 = ( WR3P81 / TWRg1) * 100 ;
+  var PRN41 = ( WRN41 / TWRg1) * 100 ;
+
+ var PTg1 = (TWRg1 / TWRg1) * 100;
+
+
+  // obtenemos los valores de la parte fina.
+
+    var WRN4f1 = WRN4g ;
+    var WRN81 = WRN8 ;
+    var WRN161 = WRN16;
+    var WRN301 = WRN30 ;
+    var WRN501 = WRN50;
+    var WRN1001 = WRN100;
+    var Wpan1= Wpan;
+    
+    var TRRf1 = WRN4f1 +  WRN81 + WRN161 + WRN301 + WRN501 + WRN1001 + Wpan1;
+
+  // Calculamos los % Ret de la parte fina
+
+  
+
+   var PRN4f1 = ( WRN4f1 / WDS) * 100 ;
+   var PRN81 = ( WRN81/ WDS) * 100 ;
+   var PRN161 = ( WRN161 / WDS) * 100 ;
+   var PRN301 = ( WRN301 / WDS) * 100 ;
+   var PRN501 = ( WRN501 / WDS) * 100 ;
+   var PRN1001 = ( WRN1001 / WDS) * 100 ;
+   var PRpan1 = ( Wpan1 / TWDS )* 100 ;
+
+   var PTf1 = PRN4f1 + PRN81 + PRN161 + PRN301 + PRN501 + PRN1001 + PRpan1;
 
     
-}
+
       
 
+document.getElementById("37").value = TWRg.toFixed(2);
+document.getElementById("38").value = PTg.toFixed(2);
+
+document.getElementById("5").value = PR4.toFixed(2);
+document.getElementById("8").value = PR3P5.toFixed(2);
+document.getElementById("11").value = PR3 .toFixed(2);
+document.getElementById("14").value = PR2P5.toFixed(2);
+document.getElementById("17").value = PR2.toFixed(2);
+document.getElementById("20").value = PR1P5.toFixed(2);
+document.getElementById("23").value = PR1.toFixed(2);
+document.getElementById("26").value = PR3P4.toFixed(2);
+document.getElementById("29").value = PR1P2.toFixed(2);
+document.getElementById("32").value = PR3P8.toFixed(2);
+document.getElementById("35").value = PRN4.toFixed(2);
+
+document.getElementById("5.1").value = PRN4f.toFixed(2);
+document.getElementById("8.1").value = PRN8.toFixed(2);
+document.getElementById("11.1").value = PRN16  .toFixed(2);
+document.getElementById("14.1").value = PRN30.toFixed(2);
+document.getElementById("17.1").value = PRN50.toFixed(2);
+document.getElementById("20.1").value = PRN100.toFixed(2);
+document.getElementById("23.1").value = PRpan.toFixed(2);
+
+document.getElementById("24.1").value = TWRf.toFixed(2);
+document.getElementById("25.1").value = PTf.toFixed(2);
 
 
+
+}
 </script>
 
 
