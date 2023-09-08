@@ -634,17 +634,17 @@ page_require_level(3);
                 <tbody>
                   <tr>
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Nm, 2µm not dispersed</th>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="289" oninput="calcular()"></td>
+                    <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="289" oninput="calcular()"></td>
                   </tr>
                   <tr>
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Nm, 2µm  dispersed</th>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="289.1" oninput="calcular()"></td>
+                    <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="289.1" oninput="calcular()"></td>
                   </tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">% Dispersion</th>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="290" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="290" oninput="calcular()"></td>
                 </tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Classification</th>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="291" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="291" oninput="calcular()"></td>
                 </tr>
                 </tbody>
               </table>
@@ -804,48 +804,7 @@ page_require_level(3);
          var Rm17 = parseFloat(document.getElementById("271.1").value);
          var Rm18 = parseFloat(document.getElementById("283.1").value);
 
-         /*var d125 = parseFloat(document.getElementById("192").value);
-         var d225 = parseFloat(document.getElementById("104").value);
-         var d325 = parseFloat(document.getElementById("116").value);
-         var d425 = parseFloat(document.getElementById("128").value);
-         var d525= parseFloat(document.getElementById("140").value);
-         var d625 = parseFloat(document.getElementById("164").value);
-         var d725 = parseFloat(document.getElementById("176").value);
-         var d825 = parseFloat(document.getElementById("188").value);
-         var d925 = parseFloat(document.getElementById("200").value);
-
-         var p125 = parseFloat(document.getElementById("190").value);
-         var p225 = parseFloat(document.getElementById("102").value);
-         var p325 = parseFloat(document.getElementById("114").value);
-         var p425 = parseFloat(document.getElementById("126").value);
-         var p525= parseFloat(document.getElementById("138").value);
-         var p625 = parseFloat(document.getElementById("162").value);
-         var p725 = parseFloat(document.getElementById("174").value);
-         var p825 = parseFloat(document.getElementById("186").value);
-         var p925 = parseFloat(document.getElementById("198").value);
-
-         var d150 = parseFloat(document.getElementById("192.1").value);
-         var d250 = parseFloat(document.getElementById("104.1").value);
-         var d350 = parseFloat(document.getElementById("116.1").value);
-         var d450 = parseFloat(document.getElementById("128.1").value);
-         var d550 = parseFloat(document.getElementById("140.1").value);
-         var d650 = parseFloat(document.getElementById("164.1").value);
-         var d750 = parseFloat(document.getElementById("176.1").value);
-         var d850 = parseFloat(document.getElementById("188.1").value);
-         var d950 = parseFloat(document.getElementById("200.1").value);
-
-         var p150 = parseFloat(document.getElementById("190.1").value);
-         var p250 = parseFloat(document.getElementById("102.1").value);
-         var p350 = parseFloat(document.getElementById("114.1").value);
-         var p450 = parseFloat(document.getElementById("126.1").value);
-         var p550 = parseFloat(document.getElementById("138.1").value);
-         var p650 = parseFloat(document.getElementById("162.1").value);
-         var p750 = parseFloat(document.getElementById("174.1").value);
-         var p850 = parseFloat(document.getElementById("186.1").value);
-         var p950 = parseFloat(document.getElementById("198.1").value);*/
-
-
-        
+      
 
         // Función para realizar la interpolación lineal
         function interpolate(x, x0, x1, y0, y1) {
@@ -1062,76 +1021,70 @@ page_require_level(3);
       // Porcentaje de Dispersion
 
   
- /* var diametros25 = array (d125, d225, d325, d435, d525, d625, d725, d825, d925);
-  var porcentajes25 = array (p125, p225, p325, p435, p525, p625, p725, p825, p925);
+      var diametros25 = [Dm1, Dm2, Dm3, Dm4, Dm5, Dm6, Dm7, Dm8, Dm9];
+var porcentajes25 = [Nm1, Nm2, Nm3, Nm4, Nm5, Nm6, Nm7, Nm8, Nm9];
 
-  var diametros50 = array (d150, d250, d350, d450, d550, d650, d750, d850, d950);
-  var porcentajes50 = array (p150, p250, p350, p450, p550, p650, p750, p850, p950);
+var diametros50 = [Dm10, Dm11, Dm12, Dm13, Dm14, Dm15, Dm16, Dm17, Dm18];
+var porcentajes50 = [Nm10, Nm11, Nm12, Nm13, Nm14, Nm15, Nm16, Nm17, Nm18];
 
-  var Dref = 0.002;
-  var dia25;
-  var dia50;
+var Dref = 0.002;
 
-  var Diamenor25;
-  var Diamayor25;
+var Diamenor25 = null;
+var Diamayor25 = null;
 
-  var Diamenor50;
-  var Diamayor50;
+var Diamenor50 = null;
+var Diamayor50 = null;
 
-  Diamenor25 = Diamayor25 = null;
-  Diamenor50 = Diamayor50 = null;
-
-  foreach (diametros25 as dia25 ){
-     if (dia25 <= Dref && (Diamenor25 === null || dia25 > Diamenor25)){
-        Diamenor25 = dia;
-        
-     }
-     if (dia25 >= Dref && (Diamayor25 === null || dia25 < Diamayor25)){
+for (var dia25 of diametros25) {
+   if (dia25 <= Dref && (Diamenor25 === null || dia25 > Diamenor25)){
+      Diamenor25 = dia25;
+   }
+   if (dia25 >= Dref && (Diamayor25 === null || dia25 < Diamayor25)){
       Diamayor25 = dia25;
+   }
+}
 
-     }
-
-  }
-
-  foreach (diametros50 as dia50 ){
-     if (dia <= Dref && (Diamenor50 === null || var= dia50 > Diamenor50)){
-        Diamenor50 = dia;
-        
-     }
-     if (dia50 >= Dref && (Diamayor50 === null || dia50 < Diamayor50)){
+for (var dia50 of diametros50) {
+   if (dia50 <= Dref && (Diamenor50 === null || dia50 > Diamenor50)){
+      Diamenor50 = dia50;
+   }
+   if (dia50 >= Dref && (Diamayor50 === null || dia50 < Diamayor50)){
       Diamayor50 = dia50;
+   }
+}
 
-     }
+// Calcula los porcentajes correspondientes a los diámetros más cercanos.
 
-  }
+var porcentajemenor25 = porcentajes25[diametros25.indexOf(Diamenor25)];
+var porcentajemayor25 = porcentajes25[diametros25.indexOf(Diamayor25)];
 
-  // Calcular los porncentajes correspondientes a los diametros mas cercanos.
+var porcentajemenor50 = porcentajes50[diametros50.indexOf(Diamenor50)];
+var porcentajemayor50 = porcentajes50[diametros50.indexOf(Diamayor50)];
 
-   var porcentajemenor25 = porcentajes25[array_search(Diamenor25,diametros25)];
-   var porcentajemayor25 = porcentajes25[array_search(Diamayor25,diametros25 )];
+// Interpolaciones
 
-   var porcentajemenor50 = porcentajes50[array_search(Diamenor50,diametros50)];
-   var porcentajemayor50 = porcentajes50[array_search(Diamayor50,diametros50 )];
+var porcentajeinter25 = ((porcentajemayor25 - porcentajemenor25) / (Math.log(Diamayor25) - Math.log(Diamenor25))) * (Math.log(Dref) - Math.log(Diamenor25)) + porcentajemenor25;
+var porcentajeinter50 = ((porcentajemayor50 - porcentajemenor50) / (Math.log(Diamayor50) - Math.log(Diamenor50))) * (Math.log(Dref) - Math.log(Diamenor50)) + porcentajemenor50;
 
+if (porcentajeinter25 != 0){
+  var PerDisp = (porcentajeinter50 / porcentajeinter25) * 100;
 
-  //interpolaciones
-
-   var porcentajeinter25 = ((porcentajemayor25 - porcentajemenor25) / (log (Diamayor25) - log(Diamenor25))) * (log(Dref) - log(Diamenor25)) + porcentajemenor25;
-   var porcentajeinter50 = ((porcentajemayor50 - porcentajemenor50) / (log (Diamayor50) - log(Diamenor50))) * (log(Dref) - log(Diamenor50)) + porcentajemenor50;
-
-  var PerDisp = (porcentajeinter25 / porcentajeinter50) * 100;
+}else{
+  PerDisp =0;
+}
 
 
-   //if( PerDisp >= 50){
-     //var clasificacion = "Dispersive";
 
-   //}else if (PerDisp >= 30){
-   // clasificacion = "Intermediate";
+var clasificacion;
 
-   //}else {
-  //$clasificacion = " No Dispersive";
+if (PerDisp >= 50) {
+   clasificacion = "Dispersive";
+} else if (PerDisp >= 30) {
+   clasificacion = "Intermediate";
+} else {
+   clasificacion = "No Dispersive";
+}
 
-   //}*/
 
       //pasamos resultados a los inputs.
 
@@ -1257,10 +1210,10 @@ page_require_level(3);
       document.getElementById("276.1").value = Dm17.toFixed(4);
       document.getElementById("288.1").value = Dm18.toFixed(4);
 
-      document.getElementById("289").value = porcentajeinter25.toFixed(4);
-      document.getElementById("289.1").value = porcentajeinter50 .toFixed(4);
-      document.getElementById("290").value = PerDisp.toFixed(4);
-      document.getElementById("291").value = clasificacion.toFixed(4);
+      document.getElementById("289").value = porcentajeinter50.toFixed(0);
+      document.getElementById("289.1").value = porcentajeinter25 .toFixed(0);
+      document.getElementById("290").value = PerDisp.toFixed(0);
+      document.getElementById("291").value = clasificacion;
 
 
 
