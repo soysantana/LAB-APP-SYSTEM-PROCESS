@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2023 a las 17:17:04
+-- Tiempo de generación: 08-09-2023 a las 21:52:29
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -110,7 +110,8 @@ CREATE TABLE `atterberg_limit` (
 --
 
 INSERT INTO `atterberg_limit` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Technician`, `Split_Method`, `Preparation_Method`, `LL_Blows_1`, `LL_Blows_2`, `LL_Blows_3`, `LL_Container_1`, `LL_Container_2`, `LL_Container_3`, `LL_Wet_Soil_1`, `LL_Wet_Soil_2`, `LL_Wet_Soil_3`, `LL_Dry_soil_tare1`, `LL_Dry_soil_tare2`, `LL_Dry_soil_tare3`, `LL_Water_1`, `LL_Water_2`, `LL_Water_3`, `LL_Tare_1`, `LL_Tare_2`, `LL_Tare_3`, `LL_Wt_Dry_Soil_1`, `LL_Wt_Dry_Soil_2`, `LL_Wt_Dry_Soil_3`, `LL_MC_Porce_1`, `LL_MC_Porce_2`, `LL_MC_Porce_3`, `PL_Container_1`, `PL_Container_2`, `PL_Container_3`, `PL_Wet_Soil_1`, `PL_Wet_Soil_2`, `PL_Wet_Soil_3`, `PL_Dry_soil_tare1`, `PL_Dry_soil_tare2`, `PL_Dry_soil_tare3`, `PL_Water_1`, `PL_Water_2`, `PL_Water_3`, `PL_Tare_1`, `PL_Tare_2`, `PL_Tare_3`, `PL_Wt_Dry_Soil_1`, `PL_Wt_Dry_Soil_2`, `PL_Wt_Dry_Soil_3`, `PL_MC_Porce_1`, `PL_MC_Porce_2`, `PL_MC_Porce_3`, `PL_Avg_Mc`, `Liquid_Limit_Porce`, `Plastic_Limit_Porce`, `Plasticity_Index_Porce`, `Liquidity_Index_Porce`, `Classification`, `Liquid_Limit_Plot`, `Plasticity_Chart`, `Comments`, `Test_Start_Date`, `Report_Date`, `test_type`, `Standard`) VALUES
-(1, 'TP-BGC23-NTSF-100', 'G4', 'LL-NTSF', 'DS', 'Borrow N60', 0.5, 1.3, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'SDA', 'Manual', 'Oven_Dried', 34, 23, 16, 'C-11', 'C-41', 'C-8', 25, 24, 24, 21, 21, 20, 4, 4, 4, 14, 14, 14, 7, 7, 6, 56, 57, 59, 'H-7', 'H-22', 'H-11', 22, 21, 23, 21, 20, 21, 2, 2, 2, 14, 14, 14, 6, 5, 6, 29, 29, 29, 29, 57, 29, 29, 0, 'CH', NULL, NULL, 'OK', '2023-07-19', '2023-07-19', 'AL', 'ASTM-D4318');
+(1, 'TP-BGC23-NTSF-100', 'G4', 'LL-NTSF', 'DS', 'Borrow N60', 0.5, 1.3, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'SDA', 'Manual', 'Oven_Dried', 34, 23, 16, 'C-11', 'C-41', 'C-8', 25, 24, 24, 21, 21, 20, 4, 4, 4, 14, 14, 14, 7, 7, 6, 56, 57, 59, 'H-7', 'H-22', 'H-11', 22, 21, 23, 21, 20, 21, 2, 2, 2, 14, 14, 14, 6, 5, 6, 29, 29, 29, 29, 57, 29, 29, 0, 'CH', NULL, NULL, 'OK', '2023-07-19', '2023-07-19', 'AL', 'ASTM-D4318'),
+(3, 'TP-BGC23-NTSF-100', '', 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'AS', 'Manual', 'Oven_Dried', 31, 25, 19, 'A1', 'A2', 'A3', 26.738, 26.347, 26.944, 22.902, 22.534, 22.65, 3.84, 3.81, 4.29, 15.686, 15.687, 15.422, 7.22, 6.85, 7.23, 53.16, 55.69, 59.41, 'X1', 'X2', 'X3', 24.35, 24.75, 25.16, 22.46, 22.77, 23.14, 1.89, 1.98, 2.02, 15.66, 15.64, 15.72, 6.8, 7.13, 7.42, 27.79, 27.77, 27.22, 27.6, 56, 28, 28, -0.9686, 'CH', NULL, NULL, 'cOMMEN', '2023-09-07', '2023-09-07', 'AL', 'ASTM-D4318');
 
 -- --------------------------------------------------------
 
@@ -213,6 +214,7 @@ INSERT INTO `concrete_specimens` (`id`, `Sample_ID`, `Sample_Number`, `Standard`
 --
 
 CREATE TABLE `count_gama` (
+  `id` int(11) NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
   `Sample_Number` varchar(10) NOT NULL,
   `Standard` varchar(10) NOT NULL,
@@ -259,9 +261,9 @@ CREATE TABLE `count_gama` (
 -- Volcado de datos para la tabla `count_gama`
 --
 
-INSERT INTO `count_gama` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Date_Count_1`, `Date_Count_2`, `Date_Count_3`, `Date_Count_4`, `Date_Count_5`, `Value_Count_1`, `Value_Count_2`, `Value_Count_3`, `Value_Count_4`, `Value_Count_5`, `Rank_Date_1`, `Rank_Date_2`, `Rank_Date_3`, `Rank_Date_4`, `Rank_Date_5`, `Operator_1`, `Operator_2`, `Operator_3`, `Operator_4`, `Operator_5`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
-('TP-BGC23-NTSF-100', 'G3', 'Choose...', 'A', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'Comentario', 'NOSE', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM D6938', 'A', 'date count 1', 'date count 2', 'date count 3', 'date count 4', 'date count 5', 'Value of Count 1', 'Value of Count 2', 'Value of Count 3', 'Value of Count 4', 'Value of Count 5', 'Rank to Date 1', 'Rank to Date 2', 'Rank to Date 3', 'Rank to Date 4', 'Rank to Date 5', 'Operator 1', 'Operator 2', 'Operator 3', 'Operator 4', 'Operator 5', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'as', 'NOSE', 'A-S');
+INSERT INTO `count_gama` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Date_Count_1`, `Date_Count_2`, `Date_Count_3`, `Date_Count_4`, `Date_Count_5`, `Value_Count_1`, `Value_Count_2`, `Value_Count_3`, `Value_Count_4`, `Value_Count_5`, `Rank_Date_1`, `Rank_Date_2`, `Rank_Date_3`, `Rank_Date_4`, `Rank_Date_5`, `Operator_1`, `Operator_2`, `Operator_3`, `Operator_4`, `Operator_5`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'Choose...', 'A', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'Comentario', 'NOSE', 'A-S'),
+(2, 'TP-BGC23-NTSF-100', 'G3', 'ASTM D6938', 'A', 'date count 1', 'date count 2', 'date count 3', 'date count 4', 'date count 5', 'Value of Count 1', 'Value of Count 2', 'Value of Count 3', 'Value of Count 4', 'Value of Count 5', 'Rank to Date 1', 'Rank to Date 2', 'Rank to Date 3', 'Rank to Date 4', 'Rank to Date 5', 'Operator 1', 'Operator 2', 'Operator 3', 'Operator 4', 'Operator 5', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'as', 'NOSE', 'A-S');
 
 -- --------------------------------------------------------
 
@@ -270,6 +272,7 @@ INSERT INTO `count_gama` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation
 --
 
 CREATE TABLE `density_bulk` (
+  `id` int(11) NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
   `Sample_Number` varchar(10) NOT NULL,
   `Standard` varchar(10) NOT NULL,
@@ -307,7 +310,7 @@ CREATE TABLE `density_bulk` (
   `Test_Start_Date` date NOT NULL,
   `Report_Date` date NOT NULL,
   `Comments` varchar(100) NOT NULL,
-  `test_type` varchar(10) NOT NULL,
+  `test_type` varchar(30) NOT NULL,
   `Technician` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -315,8 +318,8 @@ CREATE TABLE `density_bulk` (
 -- Volcado de datos para la tabla `density_bulk`
 --
 
-INSERT INTO `density_bulk` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Container`, `Weight_Tare_g`, `Weight_Tare_Soil_g`, `Volume_The_Mold_m3`, `Weight_Loose_Material_g`, `Absorption_Porce`, `Specific_Gravity_OD`, `Density_Water_Kgm3`, `Loose_Bulk_Denisty_Kgm3`, `Percent_Voids_Loose_Aggregate`, `Compacted_Weight_Tare_g`, `Compacted_Weight_Tare_Soil_g`, `Compacted_Volume_The_Mold_m3`, `Weight_Compacted_Material_g`, `Compacted_Absorption_Porce`, `Compacted_Specific_Gravity_OD`, `Compacted_Density_Water_Kgm3`, `Compacted_Bulk_Denisty_Kgm3`, `Percent_Voids_Compacted_Aggregate`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
-('TP-BGC23-NTSF-100', 'G3', 'ASTM C29', 'A', 'Container', 1, 2, 3, 1, 4, 5, 6, 0, 100, 1, 2, 3, 4, 5, 6, 3, 0, 99.99, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'comentario', 'NOSE', 'A-S');
+INSERT INTO `density_bulk` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Container`, `Weight_Tare_g`, `Weight_Tare_Soil_g`, `Volume_The_Mold_m3`, `Weight_Loose_Material_g`, `Absorption_Porce`, `Specific_Gravity_OD`, `Density_Water_Kgm3`, `Loose_Bulk_Denisty_Kgm3`, `Percent_Voids_Loose_Aggregate`, `Compacted_Weight_Tare_g`, `Compacted_Weight_Tare_Soil_g`, `Compacted_Volume_The_Mold_m3`, `Weight_Compacted_Material_g`, `Compacted_Absorption_Porce`, `Compacted_Specific_Gravity_OD`, `Compacted_Density_Water_Kgm3`, `Compacted_Bulk_Denisty_Kgm3`, `Percent_Voids_Compacted_Aggregate`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM C29', 'A', 'Container', 1, 2, 3, 1, 4, 5, 6, 0, 100, 1, 2, 3, 4, 5, 6, 3, 0, 99.99, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-09-07', 'comentario', 'Bulk-Density', 'A-S');
 
 -- --------------------------------------------------------
 
@@ -325,6 +328,7 @@ INSERT INTO `density_bulk` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparati
 --
 
 CREATE TABLE `density_weigth` (
+  `id` int(11) NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
   `Sample_Number` varchar(10) NOT NULL,
   `Standard` varchar(10) NOT NULL,
@@ -378,9 +382,9 @@ CREATE TABLE `density_weigth` (
 -- Volcado de datos para la tabla `density_weigth`
 --
 
-INSERT INTO `density_weigth` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Shape_Type_1`, `Shape_Type_2`, `Shape_Type_3`, `Mass_Moist_Specimen_1`, `Mass_Moist_Specimen_2`, `Mass_Moist_Specimen_3`, `Diameter_Width_1`, `Diameter_Width_2`, `Diameter_Width_3`, `Height_1`, `Height_2`, `Height_3`, `Length_1`, `Length_2`, `Length_3`, `Volumes_Moist_Soil_1`, `Volumes_Moist_Soil_2`, `Volumes_Moist_Soil_3`, `Total_Volumes_Moist_Specimen`, `Mass_Moist_Total_Specimens`, `Water_Content_Specimen`, `Density_Total_Moist_Specimen`, `Moist_Unit_Weight_Specimen_grcm3`, `Moist_Unit_Weight_Specimen_KNm3`, `Dry_Unit_Weight_Specimen_KNm3`, `Moist_Unit_Weight_Specimen_Kgm3`, `Dry_Unit_Weight_Specimen_Kgm3`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
-('TP-BGC23-NTSF-100', 'G3', 'ASTM-D7263', 'B', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-26', '2023-08-28', 'Run', 'NOSE', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM-D7263', 'A', 'Cylindrical', 'Cylindrical', 'Cubical', 1589.5, 1589.5, 1589.5, 1258.2, 1258.2, 1258.2, 63.5, 63.5, 63.5, 45.2, 45.2, 45.2, 78952, 78952, 902.82, 52935.6, 1589.5, 25.85, 0.03, 0.02, 0.29, 0.23, 29.45, 23.4, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'Comentario', 'NOSE', 'A-S');
+INSERT INTO `density_weigth` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Shape_Type_1`, `Shape_Type_2`, `Shape_Type_3`, `Mass_Moist_Specimen_1`, `Mass_Moist_Specimen_2`, `Mass_Moist_Specimen_3`, `Diameter_Width_1`, `Diameter_Width_2`, `Diameter_Width_3`, `Height_1`, `Height_2`, `Height_3`, `Length_1`, `Length_2`, `Length_3`, `Volumes_Moist_Soil_1`, `Volumes_Moist_Soil_2`, `Volumes_Moist_Soil_3`, `Total_Volumes_Moist_Specimen`, `Mass_Moist_Total_Specimens`, `Water_Content_Specimen`, `Density_Total_Moist_Specimen`, `Moist_Unit_Weight_Specimen_grcm3`, `Moist_Unit_Weight_Specimen_KNm3`, `Dry_Unit_Weight_Specimen_KNm3`, `Moist_Unit_Weight_Specimen_Kgm3`, `Dry_Unit_Weight_Specimen_Kgm3`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D7263', 'B', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-26', '2023-08-28', 'Run', 'NOSE', 'A-S'),
+(2, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D7263', 'A', 'Cylindrical', 'Cylindrical', 'Cubical', 1589.5, 1589.5, 1589.5, 1258.2, 1258.2, 1258.2, 63.5, 63.5, 63.5, 45.2, 45.2, 45.2, 78952, 78952, 902.82, 52935.6, 1589.5, 25.85, 0.03, 0.02, 0.29, 0.23, 29.45, 23.4, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'Comentario', 'NOSE', 'A-S');
 
 -- --------------------------------------------------------
 
@@ -444,6 +448,7 @@ CREATE TABLE `ensayo_en_repeticion` (
 --
 
 CREATE TABLE `ensayo_gama` (
+  `id` int(11) NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
   `Sample_Number` varchar(10) NOT NULL,
   `Standard` varchar(10) NOT NULL,
@@ -477,9 +482,9 @@ CREATE TABLE `ensayo_gama` (
 -- Volcado de datos para la tabla `ensayo_gama`
 --
 
-INSERT INTO `ensayo_gama` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Station`, `Max_Dry_Density_Kgm3`, `Max_Wet_Density_Kgm3`, `Percent_Moisture_Content`, `Optimun_Moisture_Content`, `Max_Dry_Density`, `Percent_of_Compaction`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
-('TP-BGC23-NTSF-100', 'G3', 'ASTM D6938', 'B', 'A-85', 8592.53, 6589.52, 5234.56, 5423.25, 12358.2, 70, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'Cooment', 'NOSE', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM D6938', 'C', 'A-85', 8592.53, 6589.52, 5234.56, 5423.25, 123, 6986, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'commen', 'NOSE', 'A-S');
+INSERT INTO `ensayo_gama` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Station`, `Max_Dry_Density_Kgm3`, `Max_Wet_Density_Kgm3`, `Percent_Moisture_Content`, `Optimun_Moisture_Content`, `Max_Dry_Density`, `Percent_of_Compaction`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM D6938', 'B', 'A-85', 8592.53, 6589.52, 5234.56, 5423.25, 12358.2, 70, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'Cooment', 'NOSE', 'A-S'),
+(2, 'TP-BGC23-NTSF-100', 'G3', 'ASTM D6938', 'C', 'A-85', 8592.53, 6589.52, 5234.56, 5423.25, 123, 6986, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-28', '2023-08-28', 'commen', 'NOSE', 'A-S');
 
 -- --------------------------------------------------------
 
@@ -656,6 +661,486 @@ INSERT INTO `grain_size` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area
 (7, 'TP-BGC23-NTSF-101', 'G7', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, '2023-07-17', 'Oven_Dried', 'AR/SD', 'K-7', 1331, 1209, 533, 675, 343, 332, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 2, 0, 0, 100, 8, 1, 1, 99, 27, 4, 5, 95, 27, 4, 9, 91, 24, 3, 13, 87, 108, 16, 29, 71, 24, 4, 32, 68, 58, 9, 41, 59, 0, 0, 41, 59, 65, 10, 51, 49, 1, 0, 333, 49, 100, 0, 0, 1, 49, 49, 0, 0, 0, 0, 0, 0, 0, 'Runs  conducted to avoid sieve overloading as per  ASTM D6913-17, Clause 11.3.1 and table for maximu', NULL, '2023-07-19', '2023-07-19', 'GS-Soil', 'Man_Split', 'ASTM-D6913'),
 (11, 'TP-BGC23-NTSF-100', 'G3', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'Oven_Dried', 'A-S', 'B-150', 921.67, 864.88, 309.23, 555.65, 217.55, 338.1, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 3.21, 0.58, 0.58, 99.42, 14.16, 2.55, 3.13, 96.87, 18.31, 3.3, 6.42, 93.58, 15.71, 2.83, 9.25, 90.751, 70.75, 12.73, 21.98, 78.02, 13.2, 2.38, 24.36, 75.64, 37.17, 6.69, 31.05, 68.953, 0, 0, 31.05, 68.953, 43.13, 7.76, 38.81, 61.19, 1.9, 0.34, 340, 61.19, 100, 0, 0, 0.58, 38.23, 61.19, 0, 0, 0, 0, 0.54, 0, 0, 'Run Go', NULL, '2023-08-24', '2023-08-24', 'GS-Soil', 'Man_Split', 'ASTM-D6913'),
 (12, 'TP-BGC23-NTSF-100', 'G3', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'Oven_Dried', 'A-S', 'Container', 3586, 2598, 1256, 1342, 859.56, 482.44, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 482.44, 35.95, 35.95, 64.05, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 'comentario', NULL, '2023-08-28', '2023-08-28', 'GS-Soil', 'Mech_Split', 'ASTM-D6913');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `grain_size_coarse_aggregate`
+--
+
+CREATE TABLE `grain_size_coarse_aggregate` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Date_Material_Arrive` date NOT NULL,
+  `Date_of_improvement` date NOT NULL,
+  `Improvement` varchar(20) NOT NULL,
+  `Samples_usig_for_improvement_No1` varchar(20) NOT NULL,
+  `Samples_usig_for_improvement_No2` varchar(20) NOT NULL,
+  `Container` varchar(20) DEFAULT NULL,
+  `Tare_Wet_Soil` float DEFAULT NULL,
+  `Tare_Dry_Soil` float DEFAULT NULL,
+  `Tare` float DEFAULT NULL,
+  `Dry_Soil` float DEFAULT NULL,
+  `Washed` float DEFAULT NULL,
+  `Wash_Pan` float DEFAULT NULL,
+  `Wt_Ret_5_127` float DEFAULT NULL,
+  `Porce_Ret_5_127` float DEFAULT NULL,
+  `Cum_Ret_5_127` float DEFAULT NULL,
+  `Porce_Pass_5_127` float DEFAULT NULL,
+  `Specs_5_127` float DEFAULT NULL,
+  `Wt_Ret_4_101` float DEFAULT NULL,
+  `Porce_Ret_4_101` float DEFAULT NULL,
+  `Cum_Ret_4_101` float DEFAULT NULL,
+  `Porce_Pass_4_101` float DEFAULT NULL,
+  `Specs_4_101` float DEFAULT NULL,
+  `Wt_Ret_3p5_89` float DEFAULT NULL,
+  `Porce_Ret_3p5_89` float DEFAULT NULL,
+  `Cum_Ret_3p5_89` float DEFAULT NULL,
+  `Porce_Pass_3p5_89` float DEFAULT NULL,
+  `Specs_3p5_89` float DEFAULT NULL,
+  `Wt_Ret_3_75` float DEFAULT NULL,
+  `Porce_Ret_3_75` float DEFAULT NULL,
+  `Cum_Ret_3_75` float DEFAULT NULL,
+  `Porce_Pass_3_75` float DEFAULT NULL,
+  `Specs_3_75` float DEFAULT NULL,
+  `Wt_Ret_2p5_63` float DEFAULT NULL,
+  `Porce_Ret_2p5_63` float DEFAULT NULL,
+  `Cum_Ret_2p5_63` float DEFAULT NULL,
+  `Porce_Pass_2p5_63` float DEFAULT NULL,
+  `Specs_2p5_63` float DEFAULT NULL,
+  `Wt_Ret_2_50` float DEFAULT NULL,
+  `Porce_Ret_2_50` float DEFAULT NULL,
+  `Cum_Ret_2_50` float DEFAULT NULL,
+  `Porce_Pass_2_50` float DEFAULT NULL,
+  `Specs_2_50` float DEFAULT NULL,
+  `Wt_Ret_1p5_37` float DEFAULT NULL,
+  `Porce_Ret_1p5_37` float DEFAULT NULL,
+  `Cum_Ret_1p5_37` float DEFAULT NULL,
+  `Porce_Pass_1p5_37` float DEFAULT NULL,
+  `Specs_1p5_37` float DEFAULT NULL,
+  `Wt_Ret_1_25` float DEFAULT NULL,
+  `Porce_Ret_1_25` float DEFAULT NULL,
+  `Cum_Ret_1_25` float DEFAULT NULL,
+  `Porce_Pass_1_25` float DEFAULT NULL,
+  `Specs_1_25` float DEFAULT NULL,
+  `Wt_Ret_3p4_19` float DEFAULT NULL,
+  `Porce_Ret_3p4_19` float DEFAULT NULL,
+  `Cum_Ret_3p4_19` float DEFAULT NULL,
+  `Porce_Pass_3p4_19` float DEFAULT NULL,
+  `Specs_3p4_19` float DEFAULT NULL,
+  `Wt_Ret_1p2_12` float DEFAULT NULL,
+  `Porce_Ret_1p2_12` float DEFAULT NULL,
+  `Cum_Ret_1p2_12` float DEFAULT NULL,
+  `Porce_Pass_1p2_12` float DEFAULT NULL,
+  `Specs_1p2_12` float DEFAULT NULL,
+  `Wt_Ret_3p8_9` float DEFAULT NULL,
+  `Porce_Ret_3p8_9` float DEFAULT NULL,
+  `Cum_Ret_3p8_9` float DEFAULT NULL,
+  `Porce_Pass_3p8_9` float DEFAULT NULL,
+  `Specs_3p8_9` float DEFAULT NULL,
+  `Wt_Ret_No4_4` float DEFAULT NULL,
+  `Porce_Ret_No4_4` float DEFAULT NULL,
+  `Cum_Ret_No4_4` float DEFAULT NULL,
+  `Porce_Pass_No4_4` float DEFAULT NULL,
+  `Specs_No4_4` float DEFAULT NULL,
+  `Wt_Ret_No10_2` float DEFAULT NULL,
+  `Porce_Ret_No10_2` float DEFAULT NULL,
+  `Cum_Ret_No10_2` float DEFAULT NULL,
+  `Porce_Pass_No10_2` float DEFAULT NULL,
+  `Specs_No10_2` float DEFAULT NULL,
+  `Wt_Ret_No16_1` float DEFAULT NULL,
+  `Porce_Ret_No16_1` float DEFAULT NULL,
+  `Cum_Ret_No16_1` float DEFAULT NULL,
+  `Porce_Pass_No16_1` float DEFAULT NULL,
+  `Specs_No16_1` float DEFAULT NULL,
+  `Wt_Ret_No20_0p85` float DEFAULT NULL,
+  `Porce_Ret_No20_0p85` float DEFAULT NULL,
+  `Cum_Ret_No20_0p85` float DEFAULT NULL,
+  `Porce_Pass_No20_0p85` float DEFAULT NULL,
+  `Specs_No20_0p85` float DEFAULT NULL,
+  `Wt_Ret_No50_0p3` float DEFAULT NULL,
+  `Porce_Ret_No50_0p3` float DEFAULT NULL,
+  `Cum_Ret_No50_0p3` float DEFAULT NULL,
+  `Porce_Pass_No50_0p3` float DEFAULT NULL,
+  `Specs_No50_0p3` float DEFAULT NULL,
+  `Wt_Ret_No60_0p25` float DEFAULT NULL,
+  `Porce_Ret_No60_0p25` float DEFAULT NULL,
+  `Cum_Ret_No60_0p25` float DEFAULT NULL,
+  `Porce_Pass_No60_0p25` float DEFAULT NULL,
+  `Specs_No60_0p25` float DEFAULT NULL,
+  `Wt_Ret_No200_0p075` float DEFAULT NULL,
+  `Porce_Ret_No200_0p075` float DEFAULT NULL,
+  `Cum_Ret_No200_0p075` float DEFAULT NULL,
+  `Porce_Pass_No200_0p075` float DEFAULT NULL,
+  `Specs_No200_0p075` float DEFAULT NULL,
+  `Wt_Ret_Pan` float DEFAULT NULL,
+  `Porce_Ret_Pan` float DEFAULT NULL,
+  `Wt_Ret_Total_Pan` float DEFAULT NULL,
+  `Porce_Ret_Total_Pan` float DEFAULT NULL,
+  `Cum_Ret_Total_Pan` float DEFAULT NULL,
+  `Porce_Pass_Total_Pan` float DEFAULT NULL,
+  `Total_Sample_Weight_g` float DEFAULT NULL,
+  `Weight_used_for_the_Test_g` float DEFAULT NULL,
+  `A_Particles_Reactive` float DEFAULT NULL,
+  `B_Particles_Reactive` float DEFAULT NULL,
+  `C_Particles_Reactive` float DEFAULT NULL,
+  `Weight_Mat_Ret_No_4_If_Applicable` float DEFAULT NULL,
+  `Wt_Reactive_Part_Ret_No4_If_Applicable` float DEFAULT NULL,
+  `Percent_Reactive_Particles_If_Applicable` float NOT NULL,
+  `Average_Particles_Reactive` float DEFAULT NULL,
+  `Reaction_Strength_Result` varchar(20) NOT NULL,
+  `Acid_Reactivity_Test_Result` varchar(20) NOT NULL,
+  `Grain_Size_Test_Result` varchar(50) NOT NULL,
+  `Fine_Grained_Classification_using_the_USCS` varchar(50) NOT NULL,
+  `Coarser_than_Gravel` float DEFAULT NULL,
+  `Gravel` float DEFAULT NULL,
+  `Sand` float DEFAULT NULL,
+  `Fines` float DEFAULT NULL,
+  `D10` float DEFAULT NULL,
+  `D15` float DEFAULT NULL,
+  `D30` float DEFAULT NULL,
+  `D60` float DEFAULT NULL,
+  `D85` float DEFAULT NULL,
+  `Cc` float DEFAULT NULL,
+  `Cu` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `grain_size_coarse_aggregate`
+--
+
+INSERT INTO `grain_size_coarse_aggregate` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Date_Material_Arrive`, `Date_of_improvement`, `Improvement`, `Samples_usig_for_improvement_No1`, `Samples_usig_for_improvement_No2`, `Container`, `Tare_Wet_Soil`, `Tare_Dry_Soil`, `Tare`, `Dry_Soil`, `Washed`, `Wash_Pan`, `Wt_Ret_5_127`, `Porce_Ret_5_127`, `Cum_Ret_5_127`, `Porce_Pass_5_127`, `Specs_5_127`, `Wt_Ret_4_101`, `Porce_Ret_4_101`, `Cum_Ret_4_101`, `Porce_Pass_4_101`, `Specs_4_101`, `Wt_Ret_3p5_89`, `Porce_Ret_3p5_89`, `Cum_Ret_3p5_89`, `Porce_Pass_3p5_89`, `Specs_3p5_89`, `Wt_Ret_3_75`, `Porce_Ret_3_75`, `Cum_Ret_3_75`, `Porce_Pass_3_75`, `Specs_3_75`, `Wt_Ret_2p5_63`, `Porce_Ret_2p5_63`, `Cum_Ret_2p5_63`, `Porce_Pass_2p5_63`, `Specs_2p5_63`, `Wt_Ret_2_50`, `Porce_Ret_2_50`, `Cum_Ret_2_50`, `Porce_Pass_2_50`, `Specs_2_50`, `Wt_Ret_1p5_37`, `Porce_Ret_1p5_37`, `Cum_Ret_1p5_37`, `Porce_Pass_1p5_37`, `Specs_1p5_37`, `Wt_Ret_1_25`, `Porce_Ret_1_25`, `Cum_Ret_1_25`, `Porce_Pass_1_25`, `Specs_1_25`, `Wt_Ret_3p4_19`, `Porce_Ret_3p4_19`, `Cum_Ret_3p4_19`, `Porce_Pass_3p4_19`, `Specs_3p4_19`, `Wt_Ret_1p2_12`, `Porce_Ret_1p2_12`, `Cum_Ret_1p2_12`, `Porce_Pass_1p2_12`, `Specs_1p2_12`, `Wt_Ret_3p8_9`, `Porce_Ret_3p8_9`, `Cum_Ret_3p8_9`, `Porce_Pass_3p8_9`, `Specs_3p8_9`, `Wt_Ret_No4_4`, `Porce_Ret_No4_4`, `Cum_Ret_No4_4`, `Porce_Pass_No4_4`, `Specs_No4_4`, `Wt_Ret_No10_2`, `Porce_Ret_No10_2`, `Cum_Ret_No10_2`, `Porce_Pass_No10_2`, `Specs_No10_2`, `Wt_Ret_No16_1`, `Porce_Ret_No16_1`, `Cum_Ret_No16_1`, `Porce_Pass_No16_1`, `Specs_No16_1`, `Wt_Ret_No20_0p85`, `Porce_Ret_No20_0p85`, `Cum_Ret_No20_0p85`, `Porce_Pass_No20_0p85`, `Specs_No20_0p85`, `Wt_Ret_No50_0p3`, `Porce_Ret_No50_0p3`, `Cum_Ret_No50_0p3`, `Porce_Pass_No50_0p3`, `Specs_No50_0p3`, `Wt_Ret_No60_0p25`, `Porce_Ret_No60_0p25`, `Cum_Ret_No60_0p25`, `Porce_Pass_No60_0p25`, `Specs_No60_0p25`, `Wt_Ret_No200_0p075`, `Porce_Ret_No200_0p075`, `Cum_Ret_No200_0p075`, `Porce_Pass_No200_0p075`, `Specs_No200_0p075`, `Wt_Ret_Pan`, `Porce_Ret_Pan`, `Wt_Ret_Total_Pan`, `Porce_Ret_Total_Pan`, `Cum_Ret_Total_Pan`, `Porce_Pass_Total_Pan`, `Total_Sample_Weight_g`, `Weight_used_for_the_Test_g`, `A_Particles_Reactive`, `B_Particles_Reactive`, `C_Particles_Reactive`, `Weight_Mat_Ret_No_4_If_Applicable`, `Wt_Reactive_Part_Ret_No4_If_Applicable`, `Percent_Reactive_Particles_If_Applicable`, `Average_Particles_Reactive`, `Reaction_Strength_Result`, `Acid_Reactivity_Test_Result`, `Grain_Size_Test_Result`, `Fine_Grained_Classification_using_the_USCS`, `Coarser_than_Gravel`, `Gravel`, `Sand`, `Fines`, `D10`, `D15`, `D30`, `D60`, `D85`, `Cc`, `Cu`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM- C136', 'Oven_Dried', 'Mech_Split', '2023-09-07', '2023-09-08', 'Yes', '1', '2', 'lab', 45, 5, 2.45, 2.55, 2, 0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-08', '2023-09-08', 'Cooments', 'GS-Coarse', 'AS'),
+(2, 'TP-BGC23-NTSF-100', 'G3', 'ASTM- C136', 'Oven_Dried', 'Mech_Split', '2023-09-07', '2023-09-08', 'Yes', '1', '2', 'lab', 45, 5, 2.45, 2.55, 2, 0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-08', '2023-09-08', 'Cooments', 'GS-Coarse', 'AS'),
+(3, 'TP-BGC23-NTSF-100', 'G3', 'ASTM- C136', 'Oven_Dried', 'Man_Split', '2023-09-08', '2023-09-08', 'Yes', '1', '2', 'lab', 45, 852, 52, 800, 420, 380, 0, 0, 0, 100, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 87, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 'Rejected', 'Error: No se pudo clasificar el suelo.', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-08', '2023-09-08', 'Cooments', 'GS-Coarse', 'AS'),
+(4, 'TP-BGC23-NTSF-100', 'G3', 'ASTM- C136', 'Oven_Dried', 'Mech_Split', '2023-09-09', '2023-09-08', 'Yes', '1', '1', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 87, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'No Reaction', 'Accepted', 'Rejected', 'Error: No se pudo clasificar el suelo.', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-17', '2023-09-08', '5', 'GS-Coarse', 'AS');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `grain_size_fine_aggregate`
+--
+
+CREATE TABLE `grain_size_fine_aggregate` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Date_Material_Arrive` date NOT NULL,
+  `Date_of_improvement` date NOT NULL,
+  `Improvement` varchar(20) NOT NULL,
+  `Samples_usig_for_improvement_No1` varchar(20) NOT NULL,
+  `Samples_usig_for_improvement_No2` varchar(20) NOT NULL,
+  `Container` varchar(20) DEFAULT NULL,
+  `Tare_Wet_Soil` float DEFAULT NULL,
+  `Tare_Dry_Soil` float DEFAULT NULL,
+  `Tare` float DEFAULT NULL,
+  `Dry_Soil` float DEFAULT NULL,
+  `Washed` float DEFAULT NULL,
+  `Wash_Pan` float DEFAULT NULL,
+  `Wt_Ret_5_127` float DEFAULT NULL,
+  `Porce_Ret_5_127` float DEFAULT NULL,
+  `Cum_Ret_5_127` float DEFAULT NULL,
+  `Porce_Pass_5_127` float DEFAULT NULL,
+  `Specs_5_127` float DEFAULT NULL,
+  `Wt_Ret_4_101` float DEFAULT NULL,
+  `Porce_Ret_4_101` float DEFAULT NULL,
+  `Cum_Ret_4_101` float DEFAULT NULL,
+  `Porce_Pass_4_101` float DEFAULT NULL,
+  `Specs_4_101` float DEFAULT NULL,
+  `Wt_Ret_3_75` float DEFAULT NULL,
+  `Porce_Ret_3_75` float DEFAULT NULL,
+  `Cum_Ret_3_75` float DEFAULT NULL,
+  `Porce_Pass_3_75` float DEFAULT NULL,
+  `Specs_3_75` float DEFAULT NULL,
+  `Wt_Ret_2p5_63` float DEFAULT NULL,
+  `Porce_Ret_2p5_63` float DEFAULT NULL,
+  `Cum_Ret_2p5_63` float DEFAULT NULL,
+  `Porce_Pass_2p5_63` float DEFAULT NULL,
+  `Specs_2p5_63` float DEFAULT NULL,
+  `Wt_Ret_2_50` float DEFAULT NULL,
+  `Porce_Ret_2_50` float DEFAULT NULL,
+  `Cum_Ret_2_50` float DEFAULT NULL,
+  `Porce_Pass_2_50` float DEFAULT NULL,
+  `Specs_2_50` float DEFAULT NULL,
+  `Wt_Ret_1p5_37` float DEFAULT NULL,
+  `Porce_Ret_1p5_37` float DEFAULT NULL,
+  `Cum_Ret_1p5_37` float DEFAULT NULL,
+  `Porce_Pass_1p5_37` float DEFAULT NULL,
+  `Specs_1p5_37` float DEFAULT NULL,
+  `Wt_Ret_1_25` float DEFAULT NULL,
+  `Porce_Ret_1_25` float DEFAULT NULL,
+  `Cum_Ret_1_25` float DEFAULT NULL,
+  `Porce_Pass_1_25` float DEFAULT NULL,
+  `Specs_1_25` float DEFAULT NULL,
+  `Wt_Ret_3p4_19` float DEFAULT NULL,
+  `Porce_Ret_3p4_19` float DEFAULT NULL,
+  `Cum_Ret_3p4_19` float DEFAULT NULL,
+  `Porce_Pass_3p4_19` float DEFAULT NULL,
+  `Specs_3p4_19` float DEFAULT NULL,
+  `Wt_Ret_1p2_12` float DEFAULT NULL,
+  `Porce_Ret_1p2_12` float DEFAULT NULL,
+  `Cum_Ret_1p2_12` float DEFAULT NULL,
+  `Porce_Pass_1p2_12` float DEFAULT NULL,
+  `Specs_1p2_12` float DEFAULT NULL,
+  `Wt_Ret_3p8_9` float DEFAULT NULL,
+  `Porce_Ret_3p8_9` float DEFAULT NULL,
+  `Cum_Ret_3p8_9` float DEFAULT NULL,
+  `Porce_Pass_3p8_9` float DEFAULT NULL,
+  `Specs_3p8_9` float DEFAULT NULL,
+  `Wt_Ret_No4_4` float DEFAULT NULL,
+  `Porce_Ret_No4_4` float DEFAULT NULL,
+  `Cum_Ret_No4_4` float DEFAULT NULL,
+  `Porce_Pass_No4_4` float DEFAULT NULL,
+  `Specs_No4_4` float DEFAULT NULL,
+  `Wt_Ret_No10_2` float DEFAULT NULL,
+  `Porce_Ret_No10_2` float DEFAULT NULL,
+  `Cum_Ret_No10_2` float DEFAULT NULL,
+  `Porce_Pass_No10_2` float DEFAULT NULL,
+  `Specs_No10_2` float DEFAULT NULL,
+  `Wt_Ret_No16_1` float DEFAULT NULL,
+  `Porce_Ret_No16_1` float DEFAULT NULL,
+  `Cum_Ret_No16_1` float DEFAULT NULL,
+  `Porce_Pass_No16_1` float DEFAULT NULL,
+  `Specs_No16_1` float DEFAULT NULL,
+  `Wt_Ret_No20_0p85` float DEFAULT NULL,
+  `Porce_Ret_No20_0p85` float DEFAULT NULL,
+  `Cum_Ret_No20_0p85` float DEFAULT NULL,
+  `Porce_Pass_No20_0p85` float DEFAULT NULL,
+  `Specs_No20_0p85` float DEFAULT NULL,
+  `Wt_Ret_No50_0p3` float DEFAULT NULL,
+  `Porce_Ret_No50_0p3` float DEFAULT NULL,
+  `Cum_Ret_No50_0p3` float DEFAULT NULL,
+  `Porce_Pass_No50_0p3` float DEFAULT NULL,
+  `Specs_No50_0p3` float DEFAULT NULL,
+  `Wt_Ret_No60_0p25` float DEFAULT NULL,
+  `Porce_Ret_No60_0p25` float DEFAULT NULL,
+  `Cum_Ret_No60_0p25` float DEFAULT NULL,
+  `Porce_Pass_No60_0p25` float DEFAULT NULL,
+  `Specs_No60_0p25` float DEFAULT NULL,
+  `Wt_Ret_No200_0p075` float DEFAULT NULL,
+  `Porce_Ret_No200_0p075` float DEFAULT NULL,
+  `Cum_Ret_No200_0p075` float DEFAULT NULL,
+  `Porce_Pass_No200_0p075` float DEFAULT NULL,
+  `Specs_No200_0p075` float DEFAULT NULL,
+  `Wt_Ret_Pan` float DEFAULT NULL,
+  `Porce_Ret_Pan` float DEFAULT NULL,
+  `Wt_Ret_Total_Pan` float DEFAULT NULL,
+  `Porce_Ret_Total_Pan` float DEFAULT NULL,
+  `Cum_Ret_Total_Pan` float DEFAULT NULL,
+  `Porce_Pass_Total_Pan` float DEFAULT NULL,
+  `Weight_used_for_the_Test_g` float DEFAULT NULL,
+  `A_Particles_Reactive` float DEFAULT NULL,
+  `B_Particles_Reactive` float DEFAULT NULL,
+  `C_Particles_Reactive` float DEFAULT NULL,
+  `D_Particles_Reactive` float DEFAULT NULL,
+  `E_Particles_Reactive` float DEFAULT NULL,
+  `Average_Particles_Reactive` float DEFAULT NULL,
+  `Reaction_Strength_Result` float DEFAULT NULL,
+  `Acid_Reactivity_Test_Result` varchar(25) DEFAULT NULL,
+  `Grain_Size_Test_Result_No1` float DEFAULT NULL,
+  `Grain_Size_Test_Result_No2` float DEFAULT NULL,
+  `Coarser_than_Gravel` float DEFAULT NULL,
+  `Gravel` float DEFAULT NULL,
+  `Sand` float DEFAULT NULL,
+  `Fines` float DEFAULT NULL,
+  `D10` float DEFAULT NULL,
+  `D15` float DEFAULT NULL,
+  `D30` float DEFAULT NULL,
+  `D60` float DEFAULT NULL,
+  `D85` float DEFAULT NULL,
+  `Cc` float DEFAULT NULL,
+  `Cu` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `grain_size_fine_aggregate`
+--
+
+INSERT INTO `grain_size_fine_aggregate` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Date_Material_Arrive`, `Date_of_improvement`, `Improvement`, `Samples_usig_for_improvement_No1`, `Samples_usig_for_improvement_No2`, `Container`, `Tare_Wet_Soil`, `Tare_Dry_Soil`, `Tare`, `Dry_Soil`, `Washed`, `Wash_Pan`, `Wt_Ret_5_127`, `Porce_Ret_5_127`, `Cum_Ret_5_127`, `Porce_Pass_5_127`, `Specs_5_127`, `Wt_Ret_4_101`, `Porce_Ret_4_101`, `Cum_Ret_4_101`, `Porce_Pass_4_101`, `Specs_4_101`, `Wt_Ret_3_75`, `Porce_Ret_3_75`, `Cum_Ret_3_75`, `Porce_Pass_3_75`, `Specs_3_75`, `Wt_Ret_2p5_63`, `Porce_Ret_2p5_63`, `Cum_Ret_2p5_63`, `Porce_Pass_2p5_63`, `Specs_2p5_63`, `Wt_Ret_2_50`, `Porce_Ret_2_50`, `Cum_Ret_2_50`, `Porce_Pass_2_50`, `Specs_2_50`, `Wt_Ret_1p5_37`, `Porce_Ret_1p5_37`, `Cum_Ret_1p5_37`, `Porce_Pass_1p5_37`, `Specs_1p5_37`, `Wt_Ret_1_25`, `Porce_Ret_1_25`, `Cum_Ret_1_25`, `Porce_Pass_1_25`, `Specs_1_25`, `Wt_Ret_3p4_19`, `Porce_Ret_3p4_19`, `Cum_Ret_3p4_19`, `Porce_Pass_3p4_19`, `Specs_3p4_19`, `Wt_Ret_1p2_12`, `Porce_Ret_1p2_12`, `Cum_Ret_1p2_12`, `Porce_Pass_1p2_12`, `Specs_1p2_12`, `Wt_Ret_3p8_9`, `Porce_Ret_3p8_9`, `Cum_Ret_3p8_9`, `Porce_Pass_3p8_9`, `Specs_3p8_9`, `Wt_Ret_No4_4`, `Porce_Ret_No4_4`, `Cum_Ret_No4_4`, `Porce_Pass_No4_4`, `Specs_No4_4`, `Wt_Ret_No10_2`, `Porce_Ret_No10_2`, `Cum_Ret_No10_2`, `Porce_Pass_No10_2`, `Specs_No10_2`, `Wt_Ret_No16_1`, `Porce_Ret_No16_1`, `Cum_Ret_No16_1`, `Porce_Pass_No16_1`, `Specs_No16_1`, `Wt_Ret_No20_0p85`, `Porce_Ret_No20_0p85`, `Cum_Ret_No20_0p85`, `Porce_Pass_No20_0p85`, `Specs_No20_0p85`, `Wt_Ret_No50_0p3`, `Porce_Ret_No50_0p3`, `Cum_Ret_No50_0p3`, `Porce_Pass_No50_0p3`, `Specs_No50_0p3`, `Wt_Ret_No60_0p25`, `Porce_Ret_No60_0p25`, `Cum_Ret_No60_0p25`, `Porce_Pass_No60_0p25`, `Specs_No60_0p25`, `Wt_Ret_No200_0p075`, `Porce_Ret_No200_0p075`, `Cum_Ret_No200_0p075`, `Porce_Pass_No200_0p075`, `Specs_No200_0p075`, `Wt_Ret_Pan`, `Porce_Ret_Pan`, `Wt_Ret_Total_Pan`, `Porce_Ret_Total_Pan`, `Cum_Ret_Total_Pan`, `Porce_Pass_Total_Pan`, `Weight_used_for_the_Test_g`, `A_Particles_Reactive`, `B_Particles_Reactive`, `C_Particles_Reactive`, `D_Particles_Reactive`, `E_Particles_Reactive`, `Average_Particles_Reactive`, `Reaction_Strength_Result`, `Acid_Reactivity_Test_Result`, `Grain_Size_Test_Result_No1`, `Grain_Size_Test_Result_No2`, `Coarser_than_Gravel`, `Gravel`, `Sand`, `Fines`, `D10`, `D15`, `D30`, `D60`, `D85`, `Cc`, `Cu`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM- C136', 'Oven_Dried', 'Man_Split', '2023-09-08', '2023-09-08', 'Yes', 'A', 's', 'lab', 900, 850, 350, 500, 420, 80, 1, 0.2, 0.2, 99.8, 6, 1, 0.2, 0.4, 99.6, 5, 1, 0.2, 0.8, 99.2, 5, 1.5, 0.3, 1.1, 98.9, 6, 1.5, 0.3, 1.4, 98.6, 4, 1.6, 0.32, 1.72, 98.28, 5, 1, 0.2, 1.92, 98.08, 6, 2, 0.4, 2.32, 97.68, 5, 3, 0.6, 2.92, 97.08, 4, 4, 0.8, 3.72, 96.28, 100, 5, 1, 4.72, 95.28, 95, 6, 1.2, 5.92, 94.08, 75, 7, 1.4, 7.32, 92.68, 50, 8, 1.6, 8.92, 91.08, 4, 9, 1.8, 10.72, 89.28, 5, 2, 0.4, 11.12, 88.88, 0, 3, 0.6, 11.72, 88.28, 0, 50, 10, 130, 26, 37.72, 62.28, 45, 5, 5, 4, 5, 3, 4, 0, 'Accepted', 0, 0, 0.8, 3.92, 7, 88.28, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-08', '2023-09-08', 'Commen', 'UCS-grout', 'AS');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `grain_size_sieved_coarse_aggregate`
+--
+
+CREATE TABLE `grain_size_sieved_coarse_aggregate` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(10) NOT NULL,
+  `Standard` varchar(10) NOT NULL,
+  `Preparation_Method` varchar(20) NOT NULL,
+  `Split_Method` varchar(20) NOT NULL,
+  `Date_Material_Arrive` date NOT NULL,
+  `Date_of_improvement` date NOT NULL,
+  `Improvement` varchar(20) NOT NULL,
+  `Samples_usig_for_improvement_No1` varchar(20) NOT NULL,
+  `Samples_usig_for_improvement_No2` varchar(20) NOT NULL,
+  `Container` varchar(20) DEFAULT NULL,
+  `Tare_Wet_Soil` float DEFAULT NULL,
+  `Tare_Dry_Soil` float DEFAULT NULL,
+  `Tare` float DEFAULT NULL,
+  `Dry_Soil` float DEFAULT NULL,
+  `Washed` float DEFAULT NULL,
+  `Wash_Pan` float DEFAULT NULL,
+  `Wt_Ret_5_127` float DEFAULT NULL,
+  `Porce_Ret_5_127` float DEFAULT NULL,
+  `Cum_Ret_5_127` float DEFAULT NULL,
+  `Porce_Pass_5_127` float DEFAULT NULL,
+  `Specs_5_127` float DEFAULT NULL,
+  `Wt_Ret_4_101` float DEFAULT NULL,
+  `Porce_Ret_4_101` float DEFAULT NULL,
+  `Cum_Ret_4_101` float DEFAULT NULL,
+  `Porce_Pass_4_101` float DEFAULT NULL,
+  `Specs_4_101` float DEFAULT NULL,
+  `Wt_Ret_3p5_89` float DEFAULT NULL,
+  `Porce_Ret_3p5_89` float DEFAULT NULL,
+  `Cum_Ret_3p5_89` float DEFAULT NULL,
+  `Porce_Pass_3p5_89` float DEFAULT NULL,
+  `Specs_3p5_89` float DEFAULT NULL,
+  `Wt_Ret_3_75` float DEFAULT NULL,
+  `Porce_Ret_3_75` float DEFAULT NULL,
+  `Cum_Ret_3_75` float DEFAULT NULL,
+  `Porce_Pass_3_75` float DEFAULT NULL,
+  `Specs_3_75` float DEFAULT NULL,
+  `Wt_Ret_2p5_63` float DEFAULT NULL,
+  `Porce_Ret_2p5_63` float DEFAULT NULL,
+  `Cum_Ret_2p5_63` float DEFAULT NULL,
+  `Porce_Pass_2p5_63` float DEFAULT NULL,
+  `Specs_2p5_63` float DEFAULT NULL,
+  `Wt_Ret_2_50` float DEFAULT NULL,
+  `Porce_Ret_2_50` float DEFAULT NULL,
+  `Cum_Ret_2_50` float DEFAULT NULL,
+  `Porce_Pass_2_50` float DEFAULT NULL,
+  `Specs_2_50` float DEFAULT NULL,
+  `Wt_Ret_1p5_37` float DEFAULT NULL,
+  `Porce_Ret_1p5_37` float DEFAULT NULL,
+  `Cum_Ret_1p5_37` float DEFAULT NULL,
+  `Porce_Pass_1p5_37` float DEFAULT NULL,
+  `Specs_1p5_37` float DEFAULT NULL,
+  `Wt_Ret_1_25` float DEFAULT NULL,
+  `Porce_Ret_1_25` float DEFAULT NULL,
+  `Cum_Ret_1_25` float DEFAULT NULL,
+  `Porce_Pass_1_25` float DEFAULT NULL,
+  `Specs_1_25` float DEFAULT NULL,
+  `Wt_Ret_3p4_19` float DEFAULT NULL,
+  `Porce_Ret_3p4_19` float DEFAULT NULL,
+  `Cum_Ret_3p4_19` float DEFAULT NULL,
+  `Porce_Pass_3p4_19` float DEFAULT NULL,
+  `Specs_3p4_19` float DEFAULT NULL,
+  `Wt_Ret_3p8_9` float DEFAULT NULL,
+  `Porce_Ret_3p8_9` float DEFAULT NULL,
+  `Cum_Ret_3p8_9` float DEFAULT NULL,
+  `Porce_Pass_3p8_9` float DEFAULT NULL,
+  `Specs_3p8_9` float DEFAULT NULL,
+  `Wt_Ret_No4_4` float DEFAULT NULL,
+  `Porce_Ret_No4_4` float DEFAULT NULL,
+  `Cum_Ret_No4_4` float DEFAULT NULL,
+  `Porce_Pass_No4_4` float DEFAULT NULL,
+  `Specs_No4_4` float DEFAULT NULL,
+  `Wt_Ret_No10_2` float DEFAULT NULL,
+  `Porce_Ret_No10_2` float DEFAULT NULL,
+  `Cum_Ret_No10_2` float DEFAULT NULL,
+  `Porce_Pass_No10_2` float DEFAULT NULL,
+  `Specs_No10_2` float DEFAULT NULL,
+  `Wt_Ret_No200_0p075` float DEFAULT NULL,
+  `Porce_Ret_No200_0p075` float DEFAULT NULL,
+  `Cum_Ret_No200_0p075` float DEFAULT NULL,
+  `Porce_Pass_No200_0p075` float DEFAULT NULL,
+  `Specs_No200_0p075` float DEFAULT NULL,
+  `Wt_Ret_Pan` float DEFAULT NULL,
+  `Porce_Ret_Pan` float DEFAULT NULL,
+  `Wt_Ret_Total_Pan` float DEFAULT NULL,
+  `Porce_Ret_Total_Pan` float DEFAULT NULL,
+  `Cum_Ret_Total_Pan` float DEFAULT NULL,
+  `Porce_Pass_Total_Pan` float DEFAULT NULL,
+  `Total_Sample_Weight_g` float DEFAULT NULL,
+  `Weight_used_for_the_Test_g` float DEFAULT NULL,
+  `A_Particles_Reactive` float DEFAULT NULL,
+  `B_Particles_Reactive` float DEFAULT NULL,
+  `C_Particles_Reactive` float DEFAULT NULL,
+  `Weight_Mat_Ret_No_4_If_Applicable` float DEFAULT NULL,
+  `Wt_Reactive_Part_Ret_No4_If_Applicable` float DEFAULT NULL,
+  `Average_Particles_Reactive` float DEFAULT NULL,
+  `Reaction_Strength_Result` varchar(20) NOT NULL,
+  `Acid_Reactivity_Test_Result` varchar(20) NOT NULL,
+  `Grain_Size_Test_Result` varchar(50) NOT NULL,
+  `Fine_Grained_Classification_using_the_USCS` varchar(50) NOT NULL,
+  `Coarser_than_Gravel` float DEFAULT NULL,
+  `Gravel` float DEFAULT NULL,
+  `Sand` float DEFAULT NULL,
+  `Fines` float DEFAULT NULL,
+  `D10` float DEFAULT NULL,
+  `D15` float DEFAULT NULL,
+  `D30` float DEFAULT NULL,
+  `D60` float DEFAULT NULL,
+  `D85` float DEFAULT NULL,
+  `Cc` float DEFAULT NULL,
+  `Cu` float DEFAULT NULL,
+  `Structure` varchar(10) NOT NULL,
+  `Area` varchar(10) NOT NULL,
+  `Source` varchar(10) NOT NULL,
+  `Depth_From` float DEFAULT NULL,
+  `Depth_To` float DEFAULT NULL,
+  `Material_Type` varchar(10) NOT NULL,
+  `Sample_Type` varchar(10) NOT NULL,
+  `North` float DEFAULT NULL,
+  `East` float DEFAULT NULL,
+  `Elev` float DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Test_Start_Date` date NOT NULL,
+  `Report_Date` date NOT NULL,
+  `Comments` varchar(100) NOT NULL,
+  `test_type` varchar(10) NOT NULL,
+  `Technician` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `grain_size_sieved_coarse_aggregate`
+--
+
+INSERT INTO `grain_size_sieved_coarse_aggregate` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Date_Material_Arrive`, `Date_of_improvement`, `Improvement`, `Samples_usig_for_improvement_No1`, `Samples_usig_for_improvement_No2`, `Container`, `Tare_Wet_Soil`, `Tare_Dry_Soil`, `Tare`, `Dry_Soil`, `Washed`, `Wash_Pan`, `Wt_Ret_5_127`, `Porce_Ret_5_127`, `Cum_Ret_5_127`, `Porce_Pass_5_127`, `Specs_5_127`, `Wt_Ret_4_101`, `Porce_Ret_4_101`, `Cum_Ret_4_101`, `Porce_Pass_4_101`, `Specs_4_101`, `Wt_Ret_3p5_89`, `Porce_Ret_3p5_89`, `Cum_Ret_3p5_89`, `Porce_Pass_3p5_89`, `Specs_3p5_89`, `Wt_Ret_3_75`, `Porce_Ret_3_75`, `Cum_Ret_3_75`, `Porce_Pass_3_75`, `Specs_3_75`, `Wt_Ret_2p5_63`, `Porce_Ret_2p5_63`, `Cum_Ret_2p5_63`, `Porce_Pass_2p5_63`, `Specs_2p5_63`, `Wt_Ret_2_50`, `Porce_Ret_2_50`, `Cum_Ret_2_50`, `Porce_Pass_2_50`, `Specs_2_50`, `Wt_Ret_1p5_37`, `Porce_Ret_1p5_37`, `Cum_Ret_1p5_37`, `Porce_Pass_1p5_37`, `Specs_1p5_37`, `Wt_Ret_1_25`, `Porce_Ret_1_25`, `Cum_Ret_1_25`, `Porce_Pass_1_25`, `Specs_1_25`, `Wt_Ret_3p4_19`, `Porce_Ret_3p4_19`, `Cum_Ret_3p4_19`, `Porce_Pass_3p4_19`, `Specs_3p4_19`, `Wt_Ret_3p8_9`, `Porce_Ret_3p8_9`, `Cum_Ret_3p8_9`, `Porce_Pass_3p8_9`, `Specs_3p8_9`, `Wt_Ret_No4_4`, `Porce_Ret_No4_4`, `Cum_Ret_No4_4`, `Porce_Pass_No4_4`, `Specs_No4_4`, `Wt_Ret_No10_2`, `Porce_Ret_No10_2`, `Cum_Ret_No10_2`, `Porce_Pass_No10_2`, `Specs_No10_2`, `Wt_Ret_No200_0p075`, `Porce_Ret_No200_0p075`, `Cum_Ret_No200_0p075`, `Porce_Pass_No200_0p075`, `Specs_No200_0p075`, `Wt_Ret_Pan`, `Porce_Ret_Pan`, `Wt_Ret_Total_Pan`, `Porce_Ret_Total_Pan`, `Cum_Ret_Total_Pan`, `Porce_Pass_Total_Pan`, `Total_Sample_Weight_g`, `Weight_used_for_the_Test_g`, `A_Particles_Reactive`, `B_Particles_Reactive`, `C_Particles_Reactive`, `Weight_Mat_Ret_No_4_If_Applicable`, `Wt_Reactive_Part_Ret_No4_If_Applicable`, `Average_Particles_Reactive`, `Reaction_Strength_Result`, `Acid_Reactivity_Test_Result`, `Grain_Size_Test_Result`, `Fine_Grained_Classification_using_the_USCS`, `Coarser_than_Gravel`, `Gravel`, `Sand`, `Fines`, `D10`, `D15`, `D30`, `D60`, `D85`, `Cc`, `Cu`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM- C136', 'Oven_Dried', 'Mech_Split', '2023-09-08', '2023-09-19', 'Yes', '1', '2', 'LAB', 1250, 529.25, 52.36, 476.89, 12.56, 464.33, 0, 0, 0, -17.71, 0, 0, 0, 0, 100, 0, 0, 0, 0, 100, 0, 0, 0, 0, 100, 0, 0, 0, 0, 100, 0, 0, 0, 0, 100, 0, 0, 0, 0, 100, 0, 23, 4.82, 4.82, 95.18, 0, 12, 2.52, 7.34, 92.66, 0, 10, 2.1, 9.44, 90.56, 0, 8, 1.68, 11.11, 88.89, 0, 10, 2.1, 13.21, 86.79, 0, 2, 0.42, 13.63, 86.37, 0, 32, 6.71, 496.33, 104.08, 117.71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'No Reaction', 'Accepted', 'Rejected', 'Error: No se pudo clasificar el suelo.', 0, 11.11, 2.52, 86.37, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-08', '2023-09-08', 'Comentario', 'GS-Coarse', 'AS');
 
 -- --------------------------------------------------------
 
@@ -913,7 +1398,7 @@ CREATE TABLE `los_angeles_abrasion_large` (
 --
 
 INSERT INTO `los_angeles_abrasion_large` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Selected_Grading`, `Weight_of_The_Spheres`, `Revolutions`, `Initial_Weight`, `Final_Weight`, `Weight_Loss`, `Weight_Loss_Porce`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
-(0, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D854', 'Oven_Dried', 'Mech_Split', '1', 50, 50, 10, 5, 5, 50, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-04', '2023-09-04', 'Comentario', 'NOSE', 'A-S');
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D854', 'Oven_Dried', 'Mech_Split', '1', 50, 50, 10, 5, 5, 50, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-04', '2023-09-04', 'Comentario', 'NOSE', 'A-S');
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1629,7 @@ CREATE TABLE `moisture_scale` (
 --
 
 INSERT INTO `moisture_scale` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Comment`, `Technician`, `Test_Start_Date`, `Trial`, `Tare_Name`, `scale_Model`, `Mc`, `Report_Date`, `test_type`) VALUES
-(0, 'TP-BGC23-NTSF-100', 'GG3', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07 00:00:00.000000', 'probando', 'wd', '2023-07-14 00:00:00.000000', '1', '1', 'scale', 35, '2023-07-15 14:02:20.000000', 'MC-Scale');
+(1, 'TP-BGC23-NTSF-100', 'GG3', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07 00:00:00.000000', 'probando', 'wd', '2023-07-14 00:00:00.000000', '1', '1', 'scale', 35, '2023-07-15 14:02:20.000000', 'MC-Scale');
 
 -- --------------------------------------------------------
 
@@ -1581,6 +2066,7 @@ INSERT INTO `point_load_test` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `
 --
 
 CREATE TABLE `sand_density` (
+  `id` int(11) NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
   `Sample_Number` varchar(10) NOT NULL,
   `Standard` varchar(10) NOT NULL,
@@ -1643,10 +2129,10 @@ CREATE TABLE `sand_density` (
 -- Volcado de datos para la tabla `sand_density`
 --
 
-INSERT INTO `sand_density` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Weight_Sand_Mold_1`, `Weight_Sand_Mold_2`, `Weight_Sand_Mold_3`, `Mold_1`, `Mold_2`, `Mold_3`, `Weight_Mold_1`, `Weight_Mold_2`, `Weight_Mold_3`, `Weight_Sand_In_Mold_1`, `Weight_Sand_In_Mold_2`, `Weight_Sand_In_Mold_3`, `Volume_Mold_cm3_1`, `Volume_Mold_cm3_2`, `Volume_Mold_cm3_3`, `Bulk_Density_Sand_gcm3_1`, `Bulk_Density_Sand_gcm3_2`, `Bulk_Density_Sand_gcm3_3`, `Average_Bulk_Density_Sand`, `Weight_Sand_Container_Before_Test_1`, `Weight_Sand_Container_Before_Test_2`, `Weight_Sand_Container_Before_Test_3`, `Weight_Sand_Container_After_Test_1`, `Weight_Sand_Container_After_Test_2`, `Weight_Sand_Container_After_Test_3`, `Weight_Sand_Used_1`, `Weight_Sand_Used_2`, `Weight_Sand_Used_3`, `Bulk_Density_of_Sand_1`, `Bulk_Density_of_Sand_2`, `Bulk_Density_of_Sand_3`, `Volume_Funnel_1`, `Volume_Funnel_2`, `Volume_Funnel_3`, `Average_Volume_Funnel`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
-('TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 999.99, 999.98, 999.97, 888, 888, 888, 500, 502, 503, 499.99, 497.98, 496.97, 1, 2, 3, 499.99, 248.99, 165.657, 304.879, 999.99, 999.98, 999.99, 888, 888, 888, 111.99, 111.98, 111.99, 10, 12, 113, 11.2, 9.33, 0.99, 7.1739, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S');
+INSERT INTO `sand_density` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Weight_Sand_Mold_1`, `Weight_Sand_Mold_2`, `Weight_Sand_Mold_3`, `Mold_1`, `Mold_2`, `Mold_3`, `Weight_Mold_1`, `Weight_Mold_2`, `Weight_Mold_3`, `Weight_Sand_In_Mold_1`, `Weight_Sand_In_Mold_2`, `Weight_Sand_In_Mold_3`, `Volume_Mold_cm3_1`, `Volume_Mold_cm3_2`, `Volume_Mold_cm3_3`, `Bulk_Density_Sand_gcm3_1`, `Bulk_Density_Sand_gcm3_2`, `Bulk_Density_Sand_gcm3_3`, `Average_Bulk_Density_Sand`, `Weight_Sand_Container_Before_Test_1`, `Weight_Sand_Container_Before_Test_2`, `Weight_Sand_Container_Before_Test_3`, `Weight_Sand_Container_After_Test_1`, `Weight_Sand_Container_After_Test_2`, `Weight_Sand_Container_After_Test_3`, `Weight_Sand_Used_1`, `Weight_Sand_Used_2`, `Weight_Sand_Used_3`, `Bulk_Density_of_Sand_1`, `Bulk_Density_of_Sand_2`, `Bulk_Density_of_Sand_3`, `Volume_Funnel_1`, `Volume_Funnel_2`, `Volume_Funnel_3`, `Average_Volume_Funnel`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S'),
+(2, 'TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S'),
+(3, 'TP-BGC23-NTSF-100', 'G3', 'ASTM D1556', 'Air_Dried', 'Mech_Split', 999.99, 999.98, 999.97, 888, 888, 888, 500, 502, 503, 499.99, 497.98, 496.97, 1, 2, 3, 499.99, 248.99, 165.657, 304.879, 999.99, 999.98, 999.99, 888, 888, 888, 111.99, 111.98, 111.99, 10, 12, 113, 11.2, 9.33, 0.99, 7.1739, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-29', '2023-08-29', 'Comentario', 'NOSE', 'A-S');
 
 -- --------------------------------------------------------
 
@@ -1967,6 +2453,7 @@ INSERT INTO `splitting_tensile_strenght` (`id`, `Sample_ID`, `Sample_Number`, `S
 --
 
 CREATE TABLE `standard_proctor` (
+  `id` int(11) NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
   `Sample_Number` varchar(10) NOT NULL,
   `Standard` varchar(10) NOT NULL,
@@ -2098,12 +2585,12 @@ CREATE TABLE `standard_proctor` (
 -- Volcado de datos para la tabla `standard_proctor`
 --
 
-INSERT INTO `standard_proctor` (`Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Natural_MC`, `SG_NMC`, `Wt_Wet_Soil_Mold_1`, `Wt_Wet_Soil_Mold_2`, `Wt_Wet_Soil_Mold_3`, `Wt_Wet_Soil_Mold_4`, `Wt_Wet_Soil_Mold_5`, `Wt_Wet_Soil_Mold_6`, `Wt_Mold_g_1`, `Wt_Mold_g_2`, `Wt_Mold_g_3`, `Wt_Mold_g_4`, `Wt_Mold_g_5`, `Wt_Mold_g_6`, `Wt_Wet_Soil_g_1`, `Wt_Wet_Soil_g_2`, `Wt_Wet_Soil_g_3`, `Wt_Wet_Soil_g_4`, `Wt_Wet_Soil_g_5`, `Wt_Wet_Soil_g_6`, `Vol_Mold_cm3_1`, `Vol_Mold_cm3_2`, `Vol_Mold_cm3_3`, `Vol_Mold_cm3_4`, `Vol_Mold_cm3_5`, `Vol_Mold_cm3_6`, `Wet_Density_kgm3_1`, `Wet_Density_kgm3_2`, `Wet_Density_kgm3_3`, `Wet_Density_kgm3_4`, `Wet_Density_kgm3_5`, `Wet_Density_kgm3_6`, `Dry_Density_kgm3_1`, `Dry_Density_kgm3_2`, `Dry_Density_kgm3_3`, `Dry_Density_kgm3_4`, `Dry_Density_kgm3_5`, `Dry_Density_kgm3_6`, `Dry_Density_Corrected_kgm3_1`, `Dry_Density_Corrected_kgm3_2`, `Dry_Density_Corrected_kgm3_3`, `Dry_Density_Corrected_kgm3_4`, `Dry_Density_Corrected_kgm3_5`, `Dry_Density_Corrected_kgm3_6`, `MC_Container_1`, `MC_Container_2`, `MC_Container_3`, `MC_Container_4`, `MC_Container_5`, `MC_Container_6`, `MC_Wt_Wet_Soil_Tare_1`, `MC_Wt_Wet_Soil_Tare_2`, `MC_Wt_Wet_Soil_Tare_3`, `MC_Wt_Wet_Soil_Tare_4`, `MC_Wt_Wet_Soil_Tare_5`, `MC_Wt_Wet_Soil_Tare_6`, `MC_Wt_Dry_Soil_Tare_1`, `MC_Wt_Dry_Soil_Tare_2`, `MC_Wt_Dry_Soil_Tare_3`, `MC_Wt_Dry_Soil_Tare_4`, `MC_Wt_Dry_Soil_Tare_5`, `MC_Wt_Dry_Soil_Tare_6`, `Wt_Water_g_1`, `Wt_Water_g_2`, `Wt_Water_g_3`, `Wt_Water_g_4`, `Wt_Water_g_5`, `Wt_Water_g_6`, `Tare_g_1`, `Tare_g_2`, `Tare_g_3`, `Tare_g_4`, `Tare_g_5`, `Tare_g_6`, `MC_Wt_Dry_Soil_g_1`, `MC_Wt_Dry_Soil_g_2`, `MC_Wt_Dry_Soil_g_3`, `MC_Wt_Dry_Soil_g_4`, `MC_Wt_Dry_Soil_g_5`, `MC_Wt_Dry_Soil_g_6`, `MC_Porce_1`, `MC_Porce_2`, `MC_Porce_3`, `MC_Porce_4`, `MC_Porce_5`, `MC_Porce_6`, `MC_Porce_Corrected_1`, `MC_Porce_Corrected_2`, `MC_Porce_Corrected_3`, `MC_Porce_Corrected_4`, `MC_Porce_Corrected_5`, `MC_Porce_Corrected_6`, `Max_Dry_Density_kgm3`, `Optimun_MC_Porce`, `Wc_Porce`, `GM_Porce`, `PC_Porce`, `PF_Porce`, `YDF_Porce`, `YDT_Porce`, `Yw_KnM3`, `Corrected_Dry_Unit_Weigt`, `Corrected_Water_Content_Finer`, `SP_Graphic`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
-('TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'Choose...', 'manual', 26.2, 2.65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'RUN', 'SP', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'wet', 'mechanical', 26.2, 2.65, 10, 10, 10, 10, 10, 10, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 100, 100, 100, 100, 100, 100, 90, 90, 90, 90, 90, 90, 9, 18, 9, 18, 9, 18, 824.37, 1520.93, 824.37, 1520.93, 824.37, 1520.93, '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'Run', 'SP', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'Choose...', 'wet', 'manual', 26.2, 2.65, 10, 10, 10, 10, 10, 10, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 100, 100, 100, 100, 100, 100, 90, 90, 90, 90, 90, 90, 9, 18, 9, 18, 9, 18, 824.37, 1520.93, 824.37, 1520.93, 824.37, 1520.93, 'A', 'b', 'c', 'd', 'e', 'z', 10, 10, 10, 10, 10, 10, 1, 2, 1, 2, 1, 2, 9, 8, 9, 8, 9, 8, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 1, 2, 900, 400, 900, 400, 900, 400, 9.01, 4.01, 9.01, 4.01, 9.01, 4.01, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'Run', 'SP', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'wet', 'mechanical', 29.43, 2.65, 5797, 5908, 5958, 5966, 5952, 5938, 4195, 4195, 4195, 4195, 4195, 4195, 1602, 1713, 1763, 1771, 1757, 1743, 946, 946, 946, 946, 946, 946, 1693.45, 1810.78, 1863.64, 1872.09, 1857.29, 1842.49, 1341.85, 1404.93, 1425.82, 1414.57, 1378.58, 1352.35, 9141.67, 9169.72, 9178.49, 9173.8, 9158.29, 9146.51, 'LAB-1', 'LAB-2', 'LAB-3', 'LAB-4', 'LAB-5', 'LAB-6', 547.58, 564.92, 558.03, 554.31, 522.77, 585.45, 452.01, 457.54, 447.36, 439.99, 410.25, 452.65, 95.57, 107.38, 110.67, 114.32, 112.52, 132.8, 87.27, 85.82, 86.95, 86.54, 86.22, 86.24, 364.74, 371.72, 360.41, 353.45, 324.03, 366.41, 26.2, 28.89, 30.71, 32.34, 34.73, 36.24, 0.27, 0.3, 0.32, 0.33, 0.36, 0.37, 1425.82, 30.71, 1, 1, 1, 1, 1, 1, 1, 9178.49, 0.32, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'Run GOoo', 'SP', 'A-S'),
-('TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'wet', 'mechanical', 25, 2.65, 380, 380, 380, 380, 380, 380, 120, 120, 120, 120, 120, 120, 260, 260, 260, 260, 260, 260, 86, 86, 86, 86, 86, 86, 3023.26, 3023.26, 3023.26, 3023.26, 3023.26, 3023.26, 1742.94, 1742.94, 1742.94, 1742.94, 1742.94, 1742.94, 9287.27, 9287.27, 9287.27, 9287.27, 9287.27, 9287.27, '1', '2', '3', '4', '5', '6', 895, 895, 895, 895, 895, 895, 538, 538, 538, 538, 538, 538, 357, 357, 357, 357, 357, 357, 52, 52, 52, 52, 52, 52, 486, 486, 486, 486, 486, 486, 73.46, 73.46, 73.46, 73.46, 73.46, 73.46, 0.74, 0.74, 0.74, 0.74, 0.74, 0.74, 1742.94, 73.46, 1, 1, 1, 1, 1, 1, 1, 9287.27, 0.74, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'SXZ', 'SP', 's');
+INSERT INTO `standard_proctor` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Natural_MC`, `SG_NMC`, `Wt_Wet_Soil_Mold_1`, `Wt_Wet_Soil_Mold_2`, `Wt_Wet_Soil_Mold_3`, `Wt_Wet_Soil_Mold_4`, `Wt_Wet_Soil_Mold_5`, `Wt_Wet_Soil_Mold_6`, `Wt_Mold_g_1`, `Wt_Mold_g_2`, `Wt_Mold_g_3`, `Wt_Mold_g_4`, `Wt_Mold_g_5`, `Wt_Mold_g_6`, `Wt_Wet_Soil_g_1`, `Wt_Wet_Soil_g_2`, `Wt_Wet_Soil_g_3`, `Wt_Wet_Soil_g_4`, `Wt_Wet_Soil_g_5`, `Wt_Wet_Soil_g_6`, `Vol_Mold_cm3_1`, `Vol_Mold_cm3_2`, `Vol_Mold_cm3_3`, `Vol_Mold_cm3_4`, `Vol_Mold_cm3_5`, `Vol_Mold_cm3_6`, `Wet_Density_kgm3_1`, `Wet_Density_kgm3_2`, `Wet_Density_kgm3_3`, `Wet_Density_kgm3_4`, `Wet_Density_kgm3_5`, `Wet_Density_kgm3_6`, `Dry_Density_kgm3_1`, `Dry_Density_kgm3_2`, `Dry_Density_kgm3_3`, `Dry_Density_kgm3_4`, `Dry_Density_kgm3_5`, `Dry_Density_kgm3_6`, `Dry_Density_Corrected_kgm3_1`, `Dry_Density_Corrected_kgm3_2`, `Dry_Density_Corrected_kgm3_3`, `Dry_Density_Corrected_kgm3_4`, `Dry_Density_Corrected_kgm3_5`, `Dry_Density_Corrected_kgm3_6`, `MC_Container_1`, `MC_Container_2`, `MC_Container_3`, `MC_Container_4`, `MC_Container_5`, `MC_Container_6`, `MC_Wt_Wet_Soil_Tare_1`, `MC_Wt_Wet_Soil_Tare_2`, `MC_Wt_Wet_Soil_Tare_3`, `MC_Wt_Wet_Soil_Tare_4`, `MC_Wt_Wet_Soil_Tare_5`, `MC_Wt_Wet_Soil_Tare_6`, `MC_Wt_Dry_Soil_Tare_1`, `MC_Wt_Dry_Soil_Tare_2`, `MC_Wt_Dry_Soil_Tare_3`, `MC_Wt_Dry_Soil_Tare_4`, `MC_Wt_Dry_Soil_Tare_5`, `MC_Wt_Dry_Soil_Tare_6`, `Wt_Water_g_1`, `Wt_Water_g_2`, `Wt_Water_g_3`, `Wt_Water_g_4`, `Wt_Water_g_5`, `Wt_Water_g_6`, `Tare_g_1`, `Tare_g_2`, `Tare_g_3`, `Tare_g_4`, `Tare_g_5`, `Tare_g_6`, `MC_Wt_Dry_Soil_g_1`, `MC_Wt_Dry_Soil_g_2`, `MC_Wt_Dry_Soil_g_3`, `MC_Wt_Dry_Soil_g_4`, `MC_Wt_Dry_Soil_g_5`, `MC_Wt_Dry_Soil_g_6`, `MC_Porce_1`, `MC_Porce_2`, `MC_Porce_3`, `MC_Porce_4`, `MC_Porce_5`, `MC_Porce_6`, `MC_Porce_Corrected_1`, `MC_Porce_Corrected_2`, `MC_Porce_Corrected_3`, `MC_Porce_Corrected_4`, `MC_Porce_Corrected_5`, `MC_Porce_Corrected_6`, `Max_Dry_Density_kgm3`, `Optimun_MC_Porce`, `Wc_Porce`, `GM_Porce`, `PC_Porce`, `PF_Porce`, `YDF_Porce`, `YDT_Porce`, `Yw_KnM3`, `Corrected_Dry_Unit_Weigt`, `Corrected_Water_Content_Finer`, `SP_Graphic`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
+(1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'Choose...', 'manual', 26.2, 2.65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'RUN', 'SP', 'A-S'),
+(2, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'wet', 'mechanical', 26.2, 2.65, 10, 10, 10, 10, 10, 10, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 100, 100, 100, 100, 100, 100, 90, 90, 90, 90, 90, 90, 9, 18, 9, 18, 9, 18, 824.37, 1520.93, 824.37, 1520.93, 824.37, 1520.93, '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'Run', 'SP', 'A-S'),
+(3, 'TP-BGC23-NTSF-100', 'G3', 'Choose...', 'wet', 'manual', 26.2, 2.65, 10, 10, 10, 10, 10, 10, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 100, 100, 100, 100, 100, 100, 90, 90, 90, 90, 90, 90, 9, 18, 9, 18, 9, 18, 824.37, 1520.93, 824.37, 1520.93, 824.37, 1520.93, 'A', 'b', 'c', 'd', 'e', 'z', 10, 10, 10, 10, 10, 10, 1, 2, 1, 2, 1, 2, 9, 8, 9, 8, 9, 8, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 1, 2, 900, 400, 900, 400, 900, 400, 9.01, 4.01, 9.01, 4.01, 9.01, 4.01, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'Run', 'SP', 'A-S'),
+(4, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'wet', 'mechanical', 29.43, 2.65, 5797, 5908, 5958, 5966, 5952, 5938, 4195, 4195, 4195, 4195, 4195, 4195, 1602, 1713, 1763, 1771, 1757, 1743, 946, 946, 946, 946, 946, 946, 1693.45, 1810.78, 1863.64, 1872.09, 1857.29, 1842.49, 1341.85, 1404.93, 1425.82, 1414.57, 1378.58, 1352.35, 9141.67, 9169.72, 9178.49, 9173.8, 9158.29, 9146.51, 'LAB-1', 'LAB-2', 'LAB-3', 'LAB-4', 'LAB-5', 'LAB-6', 547.58, 564.92, 558.03, 554.31, 522.77, 585.45, 452.01, 457.54, 447.36, 439.99, 410.25, 452.65, 95.57, 107.38, 110.67, 114.32, 112.52, 132.8, 87.27, 85.82, 86.95, 86.54, 86.22, 86.24, 364.74, 371.72, 360.41, 353.45, 324.03, 366.41, 26.2, 28.89, 30.71, 32.34, 34.73, 36.24, 0.27, 0.3, 0.32, 0.33, 0.36, 0.37, 1425.82, 30.71, 1, 1, 1, 1, 1, 1, 1, 9178.49, 0.32, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'Run GOoo', 'SP', 'A-S'),
+(5, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-D4318', 'wet', 'mechanical', 25, 2.65, 380, 380, 380, 380, 380, 380, 120, 120, 120, 120, 120, 120, 260, 260, 260, 260, 260, 260, 86, 86, 86, 86, 86, 86, 3023.26, 3023.26, 3023.26, 3023.26, 3023.26, 3023.26, 1742.94, 1742.94, 1742.94, 1742.94, 1742.94, 1742.94, 9287.27, 9287.27, 9287.27, 9287.27, 9287.27, 9287.27, '1', '2', '3', '4', '5', '6', 895, 895, 895, 895, 895, 895, 538, 538, 538, 538, 538, 538, 357, 357, 357, 357, 357, 357, 52, 52, 52, 52, 52, 52, 486, 486, 486, 486, 486, 486, 73.46, 73.46, 73.46, 73.46, 73.46, 73.46, 0.74, 0.74, 0.74, 0.74, 0.74, 0.74, 1742.94, 73.46, 1, 1, 1, 1, 1, 1, 1, 9287.27, 0.74, NULL, 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-08-24', '2023-08-24', 'SXZ', 'SP', 's');
 
 -- --------------------------------------------------------
 
@@ -2178,7 +2665,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Admin Users', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-09-07 14:14:10'),
+(1, 'Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-09-08 15:45:42'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2023-03-20 03:13:43'),
 (3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2023-07-19 21:21:18');
 
@@ -2221,6 +2708,24 @@ ALTER TABLE `concrete_specimens`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `count_gama`
+--
+ALTER TABLE `count_gama`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `density_bulk`
+--
+ALTER TABLE `density_bulk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `density_weigth`
+--
+ALTER TABLE `density_weigth`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `ensayos_en_revision`
 --
 ALTER TABLE `ensayos_en_revision`
@@ -2241,6 +2746,12 @@ ALTER TABLE `ensayo_en_repeticion`
   ADD UNIQUE KEY `Sample_ID` (`Sample_ID`);
 
 --
+-- Indices de la tabla `ensayo_gama`
+--
+ALTER TABLE `ensayo_gama`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `eventoscalendar`
 --
 ALTER TABLE `eventoscalendar`
@@ -2250,6 +2761,24 @@ ALTER TABLE `eventoscalendar`
 -- Indices de la tabla `grain_size`
 --
 ALTER TABLE `grain_size`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `grain_size_coarse_aggregate`
+--
+ALTER TABLE `grain_size_coarse_aggregate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `grain_size_fine_aggregate`
+--
+ALTER TABLE `grain_size_fine_aggregate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `grain_size_sieved_coarse_aggregate`
+--
+ALTER TABLE `grain_size_sieved_coarse_aggregate`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2268,6 +2797,12 @@ ALTER TABLE `lab_test_requisition_form`
 -- Indices de la tabla `leeb_hardness`
 --
 ALTER TABLE `leeb_hardness`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `los_angeles_abrasion_large`
+--
+ALTER TABLE `los_angeles_abrasion_large`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2293,6 +2828,12 @@ ALTER TABLE `moisture_content_constant_mass`
 -- Indices de la tabla `moisture_content_microwave`
 --
 ALTER TABLE `moisture_content_microwave`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `moisture_scale`
+--
+ALTER TABLE `moisture_scale`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2328,6 +2869,12 @@ ALTER TABLE `point_load_test`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `sand_density`
+--
+ALTER TABLE `sand_density`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `specific_gravity`
 --
 ALTER TABLE `specific_gravity`
@@ -2352,9 +2899,27 @@ ALTER TABLE `splitting_tensile_strenght`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `standard_proctor`
+--
+ALTER TABLE `standard_proctor`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `uniaxial_compressive_strength`
 --
 ALTER TABLE `uniaxial_compressive_strength`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `user_groups`
+--
+ALTER TABLE `user_groups`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2365,12 +2930,30 @@ ALTER TABLE `uniaxial_compressive_strength`
 -- AUTO_INCREMENT de la tabla `atterberg_limit`
 --
 ALTER TABLE `atterberg_limit`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `concrete_specimens`
 --
 ALTER TABLE `concrete_specimens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `count_gama`
+--
+ALTER TABLE `count_gama`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `density_bulk`
+--
+ALTER TABLE `density_bulk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `density_weigth`
+--
+ALTER TABLE `density_weigth`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -2392,6 +2975,12 @@ ALTER TABLE `ensayo_en_repeticion`
   MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `ensayo_gama`
+--
+ALTER TABLE `ensayo_gama`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `eventoscalendar`
 --
 ALTER TABLE `eventoscalendar`
@@ -2402,6 +2991,24 @@ ALTER TABLE `eventoscalendar`
 --
 ALTER TABLE `grain_size`
   MODIFY `id` int(25) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `grain_size_coarse_aggregate`
+--
+ALTER TABLE `grain_size_coarse_aggregate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `grain_size_fine_aggregate`
+--
+ALTER TABLE `grain_size_fine_aggregate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `grain_size_sieved_coarse_aggregate`
+--
+ALTER TABLE `grain_size_sieved_coarse_aggregate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `grout_specimens`
@@ -2419,6 +3026,12 @@ ALTER TABLE `lab_test_requisition_form`
 -- AUTO_INCREMENT de la tabla `leeb_hardness`
 --
 ALTER TABLE `leeb_hardness`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `los_angeles_abrasion_large`
+--
+ALTER TABLE `los_angeles_abrasion_large`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -2444,6 +3057,12 @@ ALTER TABLE `moisture_content_constant_mass`
 --
 ALTER TABLE `moisture_content_microwave`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `moisture_scale`
+--
+ALTER TABLE `moisture_scale`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `muestra_en_preparacion`
@@ -2476,6 +3095,12 @@ ALTER TABLE `point_load_test`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `sand_density`
+--
+ALTER TABLE `sand_density`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `specific_gravity`
 --
 ALTER TABLE `specific_gravity`
@@ -2500,10 +3125,28 @@ ALTER TABLE `splitting_tensile_strenght`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `standard_proctor`
+--
+ALTER TABLE `standard_proctor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `uniaxial_compressive_strength`
 --
 ALTER TABLE `uniaxial_compressive_strength`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `user_groups`
+--
+ALTER TABLE `user_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
