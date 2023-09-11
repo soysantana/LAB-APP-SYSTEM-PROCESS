@@ -1673,75 +1673,48 @@ function calcular() {
 
    var TWRf = WDS - TWRg;
 
-   var PRN4f = ( WRN4f / TWRf) * 100 ;
-   var PRN8 = ( WRN8/ TWRf) * 100 ;
-   var PRN16 = ( WRN16 / TWRf) * 100 ;
-   var PRN30 = ( WRN30 / TWRf) * 100 ;
-   var PRN50 = ( WRN50 / TWRf) * 100 ;
-   var PRN100 = ( WRN100 / TWRf) * 100 ;
-   var PRpan = ( Wpan / TWRf) * 100 ;
+   var pRN4f = ( WRN4f / TWRf) * 100 ;
+   var pRN8 = ( WRN8/ TWRf) * 100 ;
+   var pRN16 = ( WRN16 / TWRf) * 100 ;
+   var pRN30 = ( WRN30 / TWRf) * 100 ;
+   var pRN50 = ( WRN50 / TWRf) * 100 ;
+   var pRN100 = ( WRN100 / TWRf) * 100 ;
+   var pRpan = ( Wpan / TWRf) * 100 ;
 
-   var PTf = PRN4f + PRN8 + PRN16 + PRN30 + PRN50 + PRN100 + PRpan;
+   var PTf = pRN4f + pRN8 + pRN16 + pRN30 + pRN50 + pRN100 + pRpan;
 
-   // SEGUNDA DISTRIBUCION.
+   
+  //SEGUNDA DISTRIBUCION
+  var TWRg1 = WR4 + WR3P5 + WR3 + WR2P5 + WR2 + WR1P5 + WR1 + WR3P4 + WR1P2 + WR3P8 + WRN4;
 
-   var WR41 = WR4;
-    var WR3P51 = WR3P5;
-    var WR31 = WR3 ;
-    var WR2P51= WR2P5;
-    var WR21 = WR2;
-    var WR1P51 = WR1P5 ;
-    var WR11 = WR1;
-    var WR3P41 = WR3P4;
-    var WR1P21= WR1P2;
-    var WR3P81 = WR3P8;
-    var WRN41 = WRN4;
+  var wr41 = WR4;
 
-  // Calculamos los % Ret de la parte gruesa.
-
-  var TWRg1 = TWRg
-  var PR41 = ( WR41 / TWRg1) * 100 ;
-  var PR3P51 = ( WR3P51 / TWRg1) * 100 ;
-  var PR31 = ( WR31 / TWRg1) * 100 ;
-  var PR2P51 = ( WR2P51 / TWRg1) * 100 ;
-  var PR21 = ( WR21 / TWRg1) * 100 ;
-  var PR1P51 = ( WR1P51 / TWRg1) * 100 ;
-  var PR11 = ( WR11 / TWRg1) * 100 ;
-  var PR3P41 = ( WR3P41 / TWRg1) * 100 ;
-  var PR1P21 = ( WR1P21 / TWRg1) * 100 ;
-  var PR3P81 = ( WR3P81 / TWRg1) * 100 ;
-  var PRN41 = ( WRN41 / TWRg1) * 100 ;
-
- var PTg1 = (TWRg1 / TWRg1) * 100;
-
-
-  // obtenemos los valores de la parte fina.
-
-    var WRN4f1 = WRN4g ;
-    var WRN81 = WRN8 ;
-    var WRN161 = WRN16;
-    var WRN301 = WRN30 ;
-    var WRN501 = WRN50;
-    var WRN1001 = WRN100;
-    var Wpan1= Wpan;
-    
-    var TRRf1 = WRN4f1 +  WRN81 + WRN161 + WRN301 + WRN501 + WRN1001 + Wpan1;
-
-  // Calculamos los % Ret de la parte fina
-
+  var pR41 = ( WR4 / TWRg1) * 100 ;
+  var pR3P51 = ( WR3P5 / TWRg1) * 100 ;
+  var pR31 = ( WR3 / TWRg1) * 100 ;
+  var pR2P51 = ( WR2P5 / TWRg1) * 100 ;
+  var pR21 = ( WR2 / TWRg1) * 100 ;
+  var pR1P51 = ( WR1P5 / TWRg1) * 100 ;
+  var pR11 = ( WR1 / TWRg1) * 100 ;
+  var pR3P41 = ( WR3P4 / TWRg1) * 100 ;
+  var pR1P21 = ( WR1P2 / TWRg1) * 100 ;
+  var pR3P81 = ( WR3P8 / TWRg1) * 100 ;
+  var pRN41 = ( WRN4 / TWRg1) * 100 ;
   
+  var PTg1 = (TWRg1 / TWRg1) * 100;
 
-   var PRN4f1 = ( WRN4f1 / WDS) * 100 ;
-   var PRN81 = ( WRN81/ WDS) * 100 ;
-   var PRN161 = ( WRN161 / WDS) * 100 ;
-   var PRN301 = ( WRN301 / WDS) * 100 ;
-   var PRN501 = ( WRN501 / WDS) * 100 ;
-   var PRN1001 = ( WRN1001 / WDS) * 100 ;
-   var PRpan1 = ( Wpan1 / TWDS )* 100 ;
 
-   var PTf1 = PRN4f1 + PRN81 + PRN161 + PRN301 + PRN501 + PRN1001 + PRpan1;
+   var pRN4f1 = ( WRN4f / WDS) * 100 ;
+   var pRN81 = ( WRN8/ WDS) * 100 ;
+   var pRN161 = ( WRN16 / WDS) * 100 ;
+   var pRN301 = ( WRN30 / WDS) * 100 ;
+   var pRN501 = ( WRN50 / WDS) * 100 ;
+   var pRN1001 = ( WRN100 / WDS) * 100 ;
+   var pRpan1 = ( Wpan / WDS) * 100 ;
 
-    
+   var PTf1 = pRN4f1 + pRN81 + pRN161 + pRN301 + pRN501 + pRN1001 + pRpan1;
+
+
 
       
 
@@ -1760,16 +1733,52 @@ document.getElementById("29").value = PR1P2.toFixed(2);
 document.getElementById("32").value = PR3P8.toFixed(2);
 document.getElementById("35").value = PRN4.toFixed(2);
 
-document.getElementById("5.1").value = PRN4f.toFixed(2);
-document.getElementById("8.1").value = PRN8.toFixed(2);
-document.getElementById("11.1").value = PRN16  .toFixed(2);
-document.getElementById("14.1").value = PRN30.toFixed(2);
-document.getElementById("17.1").value = PRN50.toFixed(2);
-document.getElementById("20.1").value = PRN100.toFixed(2);
-document.getElementById("23.1").value = PRpan.toFixed(2);
+document.getElementById("5.1").value = pRN4f.toFixed(2);
+document.getElementById("8.1").value = pRN8.toFixed(2);
+document.getElementById("11.1").value = pRN16  .toFixed(2);
+document.getElementById("14.1").value = pRN30.toFixed(2);
+document.getElementById("17.1").value = pRN50.toFixed(2);
+document.getElementById("20.1").value = pRN100.toFixed(2);
+document.getElementById("23.1").value = pRpan.toFixed(2);
 
-document.getElementById("24.1").value = TWRf.toFixed(2);
-document.getElementById("25.1").value = PTf.toFixed(2);
+document.getElementById("24.1").value = TWRf1.toFixed(2);
+document.getElementById("25.1").value = PTf1.toFixed(2);
+
+document.getElementById("37.2").value = TWRg1.toFixed(2);
+document.getElementById("38.2").value = PTg1.toFixed(2);
+
+
+document.getElementById("4.2").value = wr41.tofixed(2) ;
+/*document.getElementById("7.2").value = ;
+document.getElementById("10.2").value = ;
+document.getElementById("13.2").value = ;
+document.getElementById("16.2").value = ;
+document.getElementById("19.2").value = ;
+document.getElementById("22.2").value = ;*/
+    
+
+document.getElementById("5.2").value = pR41.toFixed(2);
+document.getElementById("8.2").value = pR3P51.toFixed(2);
+document.getElementById("11.2").value = pR31 .toFixed(2);
+document.getElementById("14.2").value = pR2P51.toFixed(2);
+document.getElementById("17.2").value = pR21.toFixed(2);
+document.getElementById("20.2").value = pR1P51.toFixed(2);
+document.getElementById("23.2").value = pR11.toFixed(2);
+document.getElementById("26.2").value = pR3P41.toFixed(2);
+document.getElementById("29.2").value = pR1P21.toFixed(2);
+document.getElementById("32.2").value = pR3P81.toFixed(2);
+document.getElementById("35.2").value = pRN41.toFixed(2);
+
+document.getElementById("5.3").value = pRN4f1.toFixed(2);
+document.getElementById("8.3").value = pRN81.toFixed(2);
+document.getElementById("11.3").value = pRN161  .toFixed(2);
+document.getElementById("14.3").value = pRN301.toFixed(2);
+document.getElementById("17.3").value = pRN501.toFixed(2);
+document.getElementById("20.3").value = pRN1001.toFixed(2);
+document.getElementById("23.3").value = pRpan1.toFixed(2);
+
+document.getElementById("24.3").value = TWRf1.toFixed(2);
+document.getElementById("25.3").value = PTf1.toFixed(2);
 
 
 
