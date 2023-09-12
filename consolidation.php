@@ -3,6 +3,10 @@ $page_title = 'Consolidation';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/Consolidation.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -32,10 +36,16 @@ page_require_level(3);
         </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="#" onsubmit="calcular()">
+        <form method="post" action="consolidation.php" onsubmit="calcular()">
 
+        <div>
             <table class="table table-bordered">
                 <thead>
+                    <tbody id="product_info"> </tbody>
+                </thead>
+            </table>
+       
+
           </div>
           <div class="col-xs-4">
             <label>Standard</label>
@@ -46,7 +56,7 @@ page_require_level(3);
           </div>
           <div class="col-xs-4">
             <label>Method</label>
-            <select class="form-control" type = "text" name="method" id="">
+            <select class="form-control" type = "text" name="PreparationMethod" id="">
               <option selected>Choose...</option>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -66,7 +76,7 @@ page_require_level(3);
     
           <div class="col-xs-4">
             <label>Test Start Date</label>
-            <input class="form-control" name="Test_Start_Date" type="date">
+            <input class="form-control" name="TestStartDate" type="date">
           </div>
 
           <div class="panel-body">
@@ -88,12 +98,12 @@ page_require_level(3);
                 <th style="text-align: center;" scope="row" colspan="6">Mass on hangar</th>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo5" oninput="calcular()"></td>
+                <td><input type="text" name="Name_Mass_on_Hangar_Colum1" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo" oninput="calcular()"></td>
+                <td><input type="text" name="Name_Mass_on_Hangar_Colum2" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo1" oninput="calcular()"></td>
+                <td><input type="text" name="Name_Mass_on_Hangar_Colum3" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo2" oninput="calcular()"></td>
+                <td><input type="text" name="Name_Mass_on_Hangar_Colum4" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo3" oninput="calcular()"></td>
+                <td><input type="text" name="Name_Mass_on_Hangar_Colum5" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo4" oninput="calcular()"></td>
+                <td><input type="text" name="Name_Mass_on_Hangar_Colum6" style="border: none; background: transparent;" size="4" id="MaxKgLeeNo5" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="text-align: center;" scope="row">mm</th>
@@ -104,164 +114,164 @@ page_require_level(3);
                 <th style="text-align: center;" scope="row">mm</th>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No1" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">Initial</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no1"  oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no1" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No1" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no1"  oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No1" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no1" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No1" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no1" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No1" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no1" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No1" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no1" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No1" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no1" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No2" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">6 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no2" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No2" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no2" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No2" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no2" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No2" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no2" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No2" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no2" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No2" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no2" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No2" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no2" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No3" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">15 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no3" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No3" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no3" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No3" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no3" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No3" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no3" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No3" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no3" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No3" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no3" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No3" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no3" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No4" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">30 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no4" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No4" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no4" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No4" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no4" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No4" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no4" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No4" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no4" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No4" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no4" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No4" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no4" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No5" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">60 sec</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no5" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No5" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no5" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No5" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no5" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No5" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no5" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No5" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no5" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No5" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no5" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No5" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no5" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No6" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">2 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no6" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No6" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no6" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No6" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no6" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No6" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no6" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No6" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no6" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No6" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no6" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No6" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no6" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No7" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">4 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no7" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No7" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no7" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No7" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no7" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No7" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no7" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No7" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no7" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No7" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no7" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No7" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no7" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No8" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">8 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no8" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No8" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no8" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No8" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no8" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No8" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no8" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No8" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no8" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No8" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no8" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No8" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no8" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No9" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">15 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no9" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No9" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no9" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No9" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no9" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No9" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no9" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No9" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no9" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No9" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no9" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No9" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no9" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No10" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">30 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no10" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No10" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no10" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No10" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no10" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No10" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no10" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No10" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no10" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No10" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no10" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No10" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no10" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No11" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">60 min</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no11" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no11" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No11" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no11" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No11" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no11" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No11" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no11" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No11" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no11" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No11" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no11" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No11" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no11" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No12" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">2 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no12" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no12" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No12" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no12" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No12" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no12" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No12" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no12" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No12" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no12" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No12" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no12" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No12" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no12" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No13" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">4 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no13" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no13" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No13" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no13" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No13" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no13" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No13" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no13" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No13" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no13" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No13" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no13" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No13" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no13" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No14" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">8 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no14" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no14" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No14" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no14" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No14" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no14" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No14" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no14" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No14" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no14" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No14" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no14" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No14" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no14" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No15" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">16 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no15" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no15" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No15" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no15" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No15" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no15" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No15" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no15" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No15" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no15" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No15" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no15" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No15" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no15" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="date" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
+                <td><input type="date" name="Date_No16" style="border: none; background: transparent;" size="4" name="" oninput="calcular()"></td>
                 <th style="text-align: center;" scope="row">24 hr</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no16" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum1_No16" style="border: none; background: transparent;" size="4" name="MaxNum1" id="6-sec-no16" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum2_No16" style="border: none; background: transparent;" size="4" name="MaxNum2" id="Val2-kg-no16" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum3_No16" style="border: none; background: transparent;" size="4" name="MaxNum3" id="Val3-kg-no16" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum4_No16" style="border: none; background: transparent;" size="4" name="MaxNum4" id="Val4-kg-no16" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum5_No16" style="border: none; background: transparent;" size="4" name="MaxNum5" id="Val5-kg-no16" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_on_Hangar_Colum6_No16" style="border: none; background: transparent;" size="4" name="MaxNum6" id="Val6-kg-no16" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -281,31 +291,31 @@ page_require_level(3);
         <tbody>
             <tr>
                 <th>Tare No.</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
+                <td><input type="text" name="Tare_No" style="border: none; background: transparent;" size="4" id="" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Mass of tare (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Tare-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_of_Tare_gr" style="border: none; background: transparent;" size="4" id="Mass-Tare-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Mass of wet soil + tare (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Soil-Tare-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_of_Wet_Soil_Tare_gr" style="border: none; background: transparent;" size="4" id="Mass-Soil-Tare-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Mass of dry soil + tare</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Dry-Tare-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_of_Dry_Soil_Tare" style="border: none; background: transparent;" size="4" id="Mass-Dry-Tare-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Mass of water  (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Water-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_of_Water" style="border: none; background: transparent;" size="4" id="Mass-Water-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Mass of dry soil (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Dry-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_of_Dry_Soil_gr" style="border: none; background: transparent;" size="4" id="Mass-Dry-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Initial Moisture conten (%) Wfp</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="initial-MC-wfp" oninput="calcular()"></td>
+                <td><input type="text" name="Initial_Moisture_Conten_Porce_Wfp" style="border: none; background: transparent;" size="4" id="initial-MC-wfp" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -325,23 +335,23 @@ page_require_level(3);
         <tbody>
             <tr>
                 <th scope="row">Diameter, cm</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Diameter-cm" oninput="calcular()"></td>
+                <td><input type="text" name="Diameter_cm" style="border: none; background: transparent;" size="4" id="Diameter-cm" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Height, cm</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Height-cm" oninput="calcular()"></td>
+                <td><input type="text" name="Height_cm" style="border: none; background: transparent;" size="4" id="Height-cm" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Area A, cm2</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Area-cm2" oninput="calcular()"></td>
+                <td><input type="text" name="Area_A_cm2" style="border: none; background: transparent;" size="4" id="Area-cm2" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Volume, Vo, cm3</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Volume-cm3" oninput="calcular()"></td>
+                <td><input type="text" name="Volume_Vo_cm3" style="border: none; background: transparent;" size="4" id="Volume-cm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight, (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Weight-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Weight_gr" style="border: none; background: transparent;" size="4" id="Weight-gr" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -362,31 +372,31 @@ page_require_level(3);
         <tbody>
             <tr>
                 <th scope="row">Initial Mois mass + Ring (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="8" id="In-Ms-Mass-Rg-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Initial_Mois_Mass_Ring_gr" style="border: none; background: transparent;" size="8" id="In-Ms-Mass-Rg-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Initial Mois Mass</th>
-                <td><input type="text" style="border: none; background: transparent;" size="8" id="In-Ms-Mass" oninput="calcular()"></td>
+                <td><input type="text" name="Initial_Mois_Mass" style="border: none; background: transparent;" size="8" id="In-Ms-Mass" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Final Dry mass + Ring (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="8" id="Fin-Dry-Mass-Rg-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Final_Dry_Mass_Ring_gr" style="border: none; background: transparent;" size="8" id="Fin-Dry-Mass-Rg-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">final Dry mass (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="8" id="Fin-Dry-Mass" oninput="calcular()"></td>
+                <td><input type="text" name="Final_Dry_Mass_gr" style="border: none; background: transparent;" size="8" id="Fin-Dry-Mass" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Initial Dry Density (g/cm3)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="8" id="In-Dry-Density-gcm3" oninput="calcular()"></td>
+                <td><input type="text" name="Initial_Dry_Density_g_cm3" style="border: none; background: transparent;" size="8" id="In-Dry-Density-gcm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Dry Unit Weight ϒd (KN/m3)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="8" id="Dry-Unit-Wt-knm3" oninput="calcular()"></td>
+                <td><input type="text" name="Dry_Unit_Weight_Yd_KN_m3" style="border: none; background: transparent;" size="8" id="Dry-Unit-Wt-knm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Density of water ᵨw ( gr/cm3)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="8" id="Density-Water-grcm3" oninput="calcular()"></td>
+                <td><input type="text" name="Density_of_Water_pW_gr_cm3" style="border: none; background: transparent;" size="8" id="Density-Water-grcm3" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -402,24 +412,24 @@ page_require_level(3);
         </tr></thead>
         <tbody>
             <tr>
-                <th style="text-align: center;"><p id="NameLoNo" oninput="calcular()"></p></th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N1" oninput="calcular()"></td>
+                <th style="text-align: center;"><p id="NameLoNo" name="Loading_Decrements_Name_Kg_No1" oninput="calcular()"></p></th>
+                <td><input type="text" name="Loading_Decrements_Value_No1" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N1" oninput="calcular()"></td>
             </tr>
             <tr>
-                <th style="text-align: center;"><p id="NameLoNo1" oninput="calcular()"></p></th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N2" oninput="calcular()"></td>
+                <th style="text-align: center;"><p id="NameLoNo1" name="Loading_Decrements_Name_Kg_No2" oninput="calcular()"></p></th>
+                <td><input type="text" name="Loading_Decrements_Value_No2" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N2" oninput="calcular()"></td>
             </tr>
             <tr>
-                <th style="text-align: center;"><p id="NameLoNo2" oninput="calcular()"></p></th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N3" oninput="calcular()"></td>
+                <th style="text-align: center;"><p id="NameLoNo2" name="Loading_Decrements_Name_Kg_No3" oninput="calcular()"></p></th>
+                <td><input type="text" name="Loading_Decrements_Value_No3" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N3" oninput="calcular()"></td>
             </tr>
             <tr>
-                <th style="text-align: center;"><p id="NameLoNo3" oninput="calcular()"></p></th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N4" oninput="calcular()"></td>
+                <th style="text-align: center;"><p id="NameLoNo3" name="Loading_Decrements_Name_Kg_No4" oninput="calcular()"></p></th>
+                <td><input type="text" name="Loading_Decrements_Value_No4" style="border: none; background: transparent;" size="4" id="Loand-Decrem-N4" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="text-align: center;">Factor Dial</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Factor-Dial" oninput="calcular()"></td>
+                <td><input type="text" name="Factor_Dial" style="border: none; background: transparent;" size="4" id="Factor-Dial" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -445,46 +455,46 @@ page_require_level(3);
             </tr>
             <tr>
                 <th>mass weight of Tare (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Wet-Tare-gr" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Wet-Tare-gr-Fin" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_Weight_of_Tare_gr_Initial" style="border: none; background: transparent;" size="4" id="Mass-Wet-Tare-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_Weight_of_Tare_gr_Final" style="border: none; background: transparent;" size="4" id="Mass-Wet-Tare-gr-Fin" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>mass weight wet soil + tare, (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Wet-Soil-Tare-gr" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Wet-Soil-Tare-gr-Fin" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_Weight_Wet_Soil_Tare_gr_Initial" style="border: none; background: transparent;" size="4" id="Mass-Wet-Soil-Tare-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_Weight_Wet_Soil_Tare_gr_Final" style="border: none; background: transparent;" size="4" id="Mass-Wet-Soil-Tare-gr-Fin" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>mass weight  dry soil + tare (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Dry-Soil-Tare-gr" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mass-Dry-Soil-Tare-gr-Fin" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_Weight_Dry_Soil_Tare_gr_Initial" style="border: none; background: transparent;" size="4" id="Mass-Dry-Soil-Tare-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_Weight_Dry_Soil_Tare_gr_Final" style="border: none; background: transparent;" size="4" id="Mass-Dry-Soil-Tare-gr-Fin" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>mass of water (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mss-Water-gr" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Mss-Water-gr-Fin" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_of_Water_gr_Initial" style="border: none; background: transparent;" size="4" id="Mss-Water-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Mass_of_Water_gr_Final" style="border: none; background: transparent;" size="4" id="Mss-Water-gr-Fin" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Weight  wet soil (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Wet-Wt-Soil-gr" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Wet-Wt-Soil-gr-Fin" oninput="calcular()"></td>
+                <td><input type="text" name="Weight_Wet_Soil_gr_Initial" style="border: none; background: transparent;" size="4" id="Wet-Wt-Soil-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Weight_Wet_Soil_gr_Final" style="border: none; background: transparent;" size="4" id="Wet-Wt-Soil-gr-Fin" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Weight Dry soil (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Wet-Dry-Soil-gr" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Wet-Dry-Soil-gr-Fin" oninput="calcular()"></td>
+                <td><input type="text" name="Weight_Dry_Soil_gr_Initial" style="border: none; background: transparent;" size="4" id="Wet-Dry-Soil-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Weight_Dry_Soil_gr_Final" style="border: none; background: transparent;" size="4" id="Wet-Dry-Soil-gr-Fin" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Moisture Content (%)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MC-Porce" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="MC-Porce-Fin" oninput="calcular()"></td>
+                <td><input type="text" name="Moisture_Content_Porce_Initial" style="border: none; background: transparent;" size="4" id="MC-Porce" oninput="calcular()"></td>
+                <td><input type="text" name="Moisture_Content_Porce_Final" style="border: none; background: transparent;" size="4" id="MC-Porce-Fin" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Initial degree of Saturation (%)</th>
-                <td colspan="2"><input type="text" style="border: none; background: transparent;" id="In-Degree-Saturation-Porce" oninput="calcular()"></td>
+                <td colspan="2"><input type="text" name="Initial_Degree_of_Saturation_Porce" style="border: none; background: transparent;" id="In-Degree-Saturation-Porce" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Final degree of Saturation (%)</th>
-                <td colspan="2"><input type="text" style="border: none; background: transparent;" id="Fin-Degree-Saturation-Porce" oninput="calcular()"></td>
+                <td colspan="2"><input type="text" name="Final_Degree_of_Saturation_Porce" style="border: none; background: transparent;" id="Fin-Degree-Saturation-Porce" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -506,35 +516,35 @@ page_require_level(3);
         <tbody>
             <tr>
                 <th>Specific Gravity, Gs</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Specific-Gravity-gs" oninput="calcular()"></td>
+                <td><input type="text" name="Specific_Gravity_Gs" style="border: none; background: transparent;" size="4" id="Specific-Gravity-gs" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Dry mass of the total specimen, Md (gr)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Dry-Mass-T-Specimen-Md-gr" oninput="calcular()"></td>
+                <td><input type="text" name="Dry_Mass_Of_The_Total_Specimen_Md_gr" style="border: none; background: transparent;" size="4" id="Dry-Mass-T-Specimen-Md-gr" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Volume of Solids, Vs (cm3)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Vol-of-Solids-Vs-cm3" oninput="calcular()"></td>
+                <td><input type="text" name="Volume_of_Solids_Vs_cm3" style="border: none; background: transparent;" size="4" id="Vol-of-Solids-Vs-cm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>equivalent Height of Solids, Hs (cm)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Equi-Heig-Solids-Hs-cm" oninput="calcular()"></td>
+                <td><input type="text" name="Equivalent_Height_of_Solids_Hs_cm" style="border: none; background: transparent;" size="4" id="Equi-Heig-Solids-Hs-cm" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Initial specimen height Ho, (cm)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="In-Specimen-Heig-Ho-cm" oninput="calcular()"></td>
+                <td><input type="text" name="Initial_specimen_height_Ho_cm" style="border: none; background: transparent;" size="4" id="In-Specimen-Heig-Ho-cm" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Final specimen height  Hf, (cm)</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Fin-Specimen-Heig-Hf-cm" oninput="calcular()"></td>
+                <td><input type="text" name="Final_specimen_height_Hf_cm" style="border: none; background: transparent;" size="4" id="Fin-Specimen-Heig-Hf-cm" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Void ratio before test, e0</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Void-Ratio-Before-eo" oninput="calcular()"></td>
+                <td><input type="text" name="Void_ratio_before_test_Eo" style="border: none; background: transparent;" size="4" id="Void-Ratio-Before-eo" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th>Void ratio after test, ef</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Void-Ratio-After-ef" oninput="calcular()"></td>
+                <td><input type="text" name="Void_ratio_after_test_ef" style="border: none; background: transparent;" size="4" id="Void-Ratio-After-ef" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -560,64 +570,64 @@ page_require_level(3);
                 <th style="text-align: center;">e</th>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No1" style="border: none; background: transparent;" size="4" id="Load-No" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No1" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No1" style="border: none; background: transparent;" size="4" id="Read-Dial-No" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No1" style="border: none; background: transparent;" size="4" id="Ah-mm-No" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No1" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No1" style="border: none; background: transparent;" size="4" id="Ah-Hs-No" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No1" style="border: none; background: transparent;" size="4" id="Ov-xE-No" oninput="calcular()"></td>
+                <td><input type="text" name="e_No1" style="border: none; background: transparent;" size="4" id="e-No" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No1" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No2" style="border: none; background: transparent;" size="4" id="Load-No1" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No2" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No1" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No2" style="border: none; background: transparent;" size="4" id="Read-Dial-No1" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No2" style="border: none; background: transparent;" size="4" id="Ah-mm-No1" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No2" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No1" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No2" style="border: none; background: transparent;" size="4" id="Ah-Hs-No1" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No2" style="border: none; background: transparent;" size="4" id="Ov-xE-No1" oninput="calcular()"></td>
+                <td><input type="text" name="e_No2" style="border: none; background: transparent;" size="4" id="e-No1" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No2" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No3" style="border: none; background: transparent;" size="4" id="Load-No2" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No3" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No2" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No3" style="border: none; background: transparent;" size="4" id="Read-Dial-No2" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No3" style="border: none; background: transparent;" size="4" id="Ah-mm-No2" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No3" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No2" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No3" style="border: none; background: transparent;" size="4" id="Ah-Hs-No2" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No3" style="border: none; background: transparent;" size="4" id="Ov-xE-No2" oninput="calcular()"></td>
+                <td><input type="text" name="e_No3" style="border: none; background: transparent;" size="4" id="e-No2" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No3" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No4" style="border: none; background: transparent;" size="4" id="Load-No3" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No4" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No3" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No4" style="border: none; background: transparent;" size="4" id="Read-Dial-No3" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No4" style="border: none; background: transparent;" size="4" id="Ah-mm-No3" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No4" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No3" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No4" style="border: none; background: transparent;" size="4" id="Ah-Hs-No3" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No4" style="border: none; background: transparent;" size="4" id="Ov-xE-No3" oninput="calcular()"></td>
+                <td><input type="text" name="e_No4" style="border: none; background: transparent;" size="4" id="e-No3" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No4" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No5" style="border: none; background: transparent;" size="4" id="Load-No4" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No5" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No4" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No5" style="border: none; background: transparent;" size="4" id="Read-Dial-No4" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No5" style="border: none; background: transparent;" size="4" id="Ah-mm-No4" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No5" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No4" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No5" style="border: none; background: transparent;" size="4" id="Ah-Hs-No4" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No5" style="border: none; background: transparent;" size="4" id="Ov-xE-No4" oninput="calcular()"></td>
+                <td><input type="text" name="e_No5" style="border: none; background: transparent;" size="4" id="e-No4" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No5" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No6" style="border: none; background: transparent;" size="4" id="Load-No5" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No6" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No5" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No6" style="border: none; background: transparent;" size="4" id="Read-Dial-No5" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No6" style="border: none; background: transparent;" size="4" id="Ah-mm-No5" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No6" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No5" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No6" style="border: none; background: transparent;" size="4" id="Ah-Hs-No5" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No6" style="border: none; background: transparent;" size="4" id="Ov-xE-No5" oninput="calcular()"></td>
+                <td><input type="text" name="e_No6" style="border: none; background: transparent;" size="4" id="e-No5" oninput="calcular()"></td>
             </tr>
 <!--            <tr>
                 <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No6" oninput="calcular()"></td>
@@ -630,44 +640,44 @@ page_require_level(3);
                 <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No6" oninput="calcular()"></td>
             </tr>
             <tr> -->
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No7" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No7" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No7" style="border: none; background: transparent;" size="4" id="Load-No7" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No7" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No7" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No7" style="border: none; background: transparent;" size="4" id="Read-Dial-No7" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No7" style="border: none; background: transparent;" size="4" id="Ah-mm-No7" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No7" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No7" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No7" style="border: none; background: transparent;" size="4" id="Ah-Hs-No7" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No7" style="border: none; background: transparent;" size="4" id="Ov-xE-No7" oninput="calcular()"></td>
+                <td><input type="text" name="e_No7" style="border: none; background: transparent;" size="4" id="e-No7" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No8" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No8" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No8" style="border: none; background: transparent;" size="4" id="Load-No8" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No8" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No8" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No8" style="border: none; background: transparent;" size="4" id="Read-Dial-No8" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No8" style="border: none; background: transparent;" size="4" id="Ah-mm-No8" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No8" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No8" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No8" style="border: none; background: transparent;" size="4" id="Ah-Hs-No8" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No8" style="border: none; background: transparent;" size="4" id="Ov-xE-No8" oninput="calcular()"></td>
+                <td><input type="text" name="e_No8" style="border: none; background: transparent;" size="4" id="e-No8" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No9" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No9" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No9" style="border: none; background: transparent;" size="4" id="Load-No9" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No9" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No9" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No9" style="border: none; background: transparent;" size="4" id="Read-Dial-No9" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No9" style="border: none; background: transparent;" size="4" id="Ah-mm-No9" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No9" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No9" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No9" style="border: none; background: transparent;" size="4" id="Ah-Hs-No9" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No9" style="border: none; background: transparent;" size="4" id="Ov-xE-No9" oninput="calcular()"></td>
+                <td><input type="text" name="e_No9" style="border: none; background: transparent;" size="4" id="e-No9" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Load-No10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Read-Dial-No10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-mm-No10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ah-Hs-No10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Ov-xE-No10" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="e-No10" oninput="calcular()"></td>
+                <td><input type="text" name="Load_Increment_Kg_No10" style="border: none; background: transparent;" size="4" id="Load-No10" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_Kg_cm2_No10" style="border: none; background: transparent;" size="4" id="Ov-Kg-cm2-No10" oninput="calcular()"></td>
+                <td><input type="text" name="Reading_Dial_No10" style="border: none; background: transparent;" size="4" id="Read-Dial-No10" oninput="calcular()"></td>
+                <td><input type="text" name="AH_mm_No10" style="border: none; background: transparent;" size="4" id="Ah-mm-No10" oninput="calcular()"></td>
+                <td><input type="text" name="e_AH_Ho_No10" style="border: none; background: transparent;" size="4" id="E-Ah-Ho-No10" oninput="calcular()"></td>
+                <td><input type="text" name="AH_Hs_No10" style="border: none; background: transparent;" size="4" id="Ah-Hs-No10" oninput="calcular()"></td>
+                <td><input type="text" name="Ov_e_No10" style="border: none; background: transparent;" size="4" id="Ov-xE-No10" oninput="calcular()"></td>
+                <td><input type="text" name="e_No10" style="border: none; background: transparent;" size="4" id="e-No10" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -691,88 +701,88 @@ page_require_level(3);
                 <th style="text-align: center;">Cv (cm2 / Kg)</th>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="LecDiNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="DeformationNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="PesoKgNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="oKgcm2No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AoKgcm2No" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AhcmNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="EeNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeAoNo" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo" oninput="calcular()"></td>
+                <td><input type="text" name="Lectura_Dial_No1" style="border: none; background: transparent;" size="4" id="LecDiNo" oninput="calcular()"></td>
+                <td><input type="text" name="Deformacion_cm_No1" style="border: none; background: transparent;" size="4" id="DeformationNo" oninput="calcular()"></td>
+                <td><input type="text" name="Peso_Kg_No1" style="border: none; background: transparent;" size="4" id="PesoKgNo" oninput="calcular()"></td>
+                <td><input type="text" name="o_Kg_cm2_No1" style="border: none; background: transparent;" size="4" id="oKgcm2No" oninput="calcular()"></td>
+                <td><input type="text" name="Ao_Kg_cm2_No1" style="border: none; background: transparent;" size="4" id="AoKgcm2No" oninput="calcular()"></td>
+                <td><input type="text" name="Ah_mm_Col2_No1" style="border: none; background: transparent;" size="4" id="AhcmNo" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_No1" style="border: none; background: transparent;" size="4" id="AeNo" oninput="calcular()"></td>
+                <td><input type="text" name="e_Col2_No1" style="border: none; background: transparent;" size="4" id="EeNo" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_Ao_cm2_Kg_No1" style="border: none; background: transparent;" size="4" id="AeAoNo" oninput="calcular()"></td>
+                <td><input type="text" name="Cv_cm2_Kg_No1" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="LecDiNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="DeformationNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="PesoKgNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="oKgcm2No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AoKgcm2No1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AhcmNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="EeNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeAoNo1" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo1" oninput="calcular()"></td>
+                <td><input type="text" name="Lectura_Dial_No2" style="border: none; background: transparent;" size="4" id="LecDiNo1" oninput="calcular()"></td>
+                <td><input type="text" name="Deformacion_cm_No2" style="border: none; background: transparent;" size="4" id="DeformationNo1" oninput="calcular()"></td>
+                <td><input type="text" name="Peso_Kg_No2" style="border: none; background: transparent;" size="4" id="PesoKgNo1" oninput="calcular()"></td>
+                <td><input type="text" name="o_Kg_cm2_No2" style="border: none; background: transparent;" size="4" id="oKgcm2No1" oninput="calcular()"></td>
+                <td><input type="text" name="Ao_Kg_cm2_No2" style="border: none; background: transparent;" size="4" id="AoKgcm2No1" oninput="calcular()"></td>
+                <td><input type="text" name="Ah_mm_Col2_No2" style="border: none; background: transparent;" size="4" id="AhcmNo1" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_No2" style="border: none; background: transparent;" size="4" id="AeNo1" oninput="calcular()"></td>
+                <td><input type="text" name="e_Col2_No2" style="border: none; background: transparent;" size="4" id="EeNo1" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_Ao_cm2_Kg_No2" style="border: none; background: transparent;" size="4" id="AeAoNo1" oninput="calcular()"></td>
+                <td><input type="text" name="Cv_cm2_Kg_No2" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo1" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="LecDiNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="DeformationNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="PesoKgNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="oKgcm2No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AoKgcm2No2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AhcmNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="EeNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeAoNo2" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo2" oninput="calcular()"></td>
+                <td><input type="text" name="Lectura_Dial_No3" style="border: none; background: transparent;" size="4" id="LecDiNo2" oninput="calcular()"></td>
+                <td><input type="text" name="Deformacion_cm_No3" style="border: none; background: transparent;" size="4" id="DeformationNo2" oninput="calcular()"></td>
+                <td><input type="text" name="Peso_Kg_No3" style="border: none; background: transparent;" size="4" id="PesoKgNo2" oninput="calcular()"></td>
+                <td><input type="text" name="o_Kg_cm2_No3" style="border: none; background: transparent;" size="4" id="oKgcm2No2" oninput="calcular()"></td>
+                <td><input type="text" name="Ao_Kg_cm2_No3" style="border: none; background: transparent;" size="4" id="AoKgcm2No2" oninput="calcular()"></td>
+                <td><input type="text" name="Ah_mm_Col2_No3" style="border: none; background: transparent;" size="4" id="AhcmNo2" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_No3" style="border: none; background: transparent;" size="4" id="AeNo2" oninput="calcular()"></td>
+                <td><input type="text" name="e_Col2_No3" style="border: none; background: transparent;" size="4" id="EeNo2" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_Ao_cm2_Kg_No3" style="border: none; background: transparent;" size="4" id="AeAoNo2" oninput="calcular()"></td>
+                <td><input type="text" name="Cv_cm2_Kg_No3" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo2" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="LecDiNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="DeformationNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="PesoKgNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="oKgcm2No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AoKgcm2No3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AhcmNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="EeNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeAoNo3" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo3" oninput="calcular()"></td>
+                <td><input type="text" name="Lectura_Dial_No4" style="border: none; background: transparent;" size="4" id="LecDiNo3" oninput="calcular()"></td>
+                <td><input type="text" name="Deformacion_cm_No4" style="border: none; background: transparent;" size="4" id="DeformationNo3" oninput="calcular()"></td>
+                <td><input type="text" name="Peso_Kg_No4" style="border: none; background: transparent;" size="4" id="PesoKgNo3" oninput="calcular()"></td>
+                <td><input type="text" name="o_Kg_cm2_No4" style="border: none; background: transparent;" size="4" id="oKgcm2No3" oninput="calcular()"></td>
+                <td><input type="text" name="Ao_Kg_cm2_No4" style="border: none; background: transparent;" size="4" id="AoKgcm2No3" oninput="calcular()"></td>
+                <td><input type="text" name="Ah_mm_Col2_No4" style="border: none; background: transparent;" size="4" id="AhcmNo3" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_No4" style="border: none; background: transparent;" size="4" id="AeNo3" oninput="calcular()"></td>
+                <td><input type="text" name="e_Col2_No4" style="border: none; background: transparent;" size="4" id="EeNo3" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_Ao_cm2_Kg_No4" style="border: none; background: transparent;" size="4" id="AeAoNo3" oninput="calcular()"></td>
+                <td><input type="text" name="Cv_cm2_Kg_No4" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo3" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="LecDiNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="DeformationNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="PesoKgNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="oKgcm2No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AoKgcm2No4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AhcmNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="EeNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeAoNo4" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo4" oninput="calcular()"></td>
+                <td><input type="text" name="Lectura_Dial_No5" style="border: none; background: transparent;" size="4" id="LecDiNo4" oninput="calcular()"></td>
+                <td><input type="text" name="Deformacion_cm_No5" style="border: none; background: transparent;" size="4" id="DeformationNo4" oninput="calcular()"></td>
+                <td><input type="text" name="Peso_Kg_No5" style="border: none; background: transparent;" size="4" id="PesoKgNo4" oninput="calcular()"></td>
+                <td><input type="text" name="o_Kg_cm2_No5" style="border: none; background: transparent;" size="4" id="oKgcm2No4" oninput="calcular()"></td>
+                <td><input type="text" name="Ao_Kg_cm2_No5" style="border: none; background: transparent;" size="4" id="AoKgcm2No4" oninput="calcular()"></td>
+                <td><input type="text" name="Ah_mm_Col2_No5" style="border: none; background: transparent;" size="4" id="AhcmNo4" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_No5" style="border: none; background: transparent;" size="4" id="AeNo4" oninput="calcular()"></td>
+                <td><input type="text" name="e_Col2_No5" style="border: none; background: transparent;" size="4" id="EeNo4" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_Ao_cm2_Kg_No5" style="border: none; background: transparent;" size="4" id="AeAoNo4" oninput="calcular()"></td>
+                <td><input type="text" name="Cv_cm2_Kg_No5" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo4" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="LecDiNo5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="DeformationNo5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="PesoKgNo5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="oKgcm2No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AoKgcm2No5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AhcmNo5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeNo5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="EeNo5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeAoNo5" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo5" oninput="calcular()"></td>
+                <td><input type="text" name="Lectura_Dial_No6" style="border: none; background: transparent;" size="4" id="LecDiNo5" oninput="calcular()"></td>
+                <td><input type="text" name="Deformacion_cm_No6" style="border: none; background: transparent;" size="4" id="DeformationNo5" oninput="calcular()"></td>
+                <td><input type="text" name="Peso_Kg_No6" style="border: none; background: transparent;" size="4" id="PesoKgNo5" oninput="calcular()"></td>
+                <td><input type="text" name="o_Kg_cm2_No6" style="border: none; background: transparent;" size="4" id="oKgcm2No5" oninput="calcular()"></td>
+                <td><input type="text" name="Ao_Kg_cm2_No6" style="border: none; background: transparent;" size="4" id="AoKgcm2No5" oninput="calcular()"></td>
+                <td><input type="text" name="Ah_mm_Col2_No6" style="border: none; background: transparent;" size="4" id="AhcmNo5" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_No6" style="border: none; background: transparent;" size="4" id="AeNo5" oninput="calcular()"></td>
+                <td><input type="text" name="e_Col2_No6" style="border: none; background: transparent;" size="4" id="EeNo5" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_Ao_cm2_Kg_No6" style="border: none; background: transparent;" size="4" id="AeAoNo5" oninput="calcular()"></td>
+                <td><input type="text" name="Cv_cm2_Kg_No6" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo5" oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="LecDiNo6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="DeformationNo6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="PesoKgNo6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="oKgcm2No6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AoKgcm2No6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AhcmNo6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeNo6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="EeNo6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="AeAoNo6" oninput="calcular()"></td>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo6" oninput="calcular()"></td>
+                <td><input type="text" name="Lectura_Dial_No7" style="border: none; background: transparent;" size="4" id="LecDiNo6" oninput="calcular()"></td>
+                <td><input type="text" name="Deformacion_cm_No7" style="border: none; background: transparent;" size="4" id="DeformationNo6" oninput="calcular()"></td>
+                <td><input type="text" name="Peso_Kg_No7" style="border: none; background: transparent;" size="4" id="PesoKgNo6" oninput="calcular()"></td>
+                <td><input type="text" name="o_Kg_cm2_No7" style="border: none; background: transparent;" size="4" id="oKgcm2No6" oninput="calcular()"></td>
+                <td><input type="text" name="Ao_Kg_cm2_No7" style="border: none; background: transparent;" size="4" id="AoKgcm2No6" oninput="calcular()"></td>
+                <td><input type="text" name="Ah_mm_Col2_No7" style="border: none; background: transparent;" size="4" id="AhcmNo6" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_No7" style="border: none; background: transparent;" size="4" id="AeNo6" oninput="calcular()"></td>
+                <td><input type="text" name="e_Col2_No7" style="border: none; background: transparent;" size="4" id="EeNo6" oninput="calcular()"></td>
+                <td><input type="text" name="Ae_Ao_cm2_Kg_No7" style="border: none; background: transparent;" size="4" id="AeAoNo6" oninput="calcular()"></td>
+                <td><input type="text" name="Cv_cm2_Kg_No7" style="border: none; background: transparent;" size="4" id="Cvcm2KgNo6" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -781,7 +791,7 @@ page_require_level(3);
 <iframe src="collpse.php" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="graph-cassagrande-taylor"></iframe>
 
 <div class="button">
-    <button type="submit" name="Al" class="btn btn-danger">Registrar ensayo</button>
+    <button type="submit" name="Consolidation" class="btn btn-danger">Registrar ensayo</button>
     <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </div>
 
