@@ -3,6 +3,10 @@ $page_title = 'Double Hydrometer';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/DoubleHydrometer.php'); 
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -33,9 +37,12 @@ page_require_level(3);
       </div>
       <div class="panel-body">
         <form method="post" action="double_hydrometer.php" onsubmit="calcular()">
-
-            <table class="table table-bordered">
-                <thead>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tbody id="product_info"> </tbody>
+            </thead>
+          </table>
           </div>
           <div class="col-xs-4">
             <label>Standard</label>
@@ -46,7 +53,7 @@ page_require_level(3);
           </div>
           <div class="col-xs-4">
             <label>Method</label>
-            <select class="form-control" type = "text" name="method" id="">
+            <select class="form-control" type = "text" name="PreparationMethod" id="">
               <option selected>Choose...</option>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -66,7 +73,7 @@ page_require_level(3);
     
           <div class="col-xs-4">
             <label>Test Start Date</label>
-            <input class="form-control" name="Test_Start_Date" type="date">
+            <input class="form-control" name="TestStartDate" type="date">
           </div>
 
           <div class="panel-body">
@@ -82,39 +89,39 @@ page_require_level(3);
               <tbody>
               <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Dispersing Agent</th>
-              <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="1" value="(NaPO3)6" oninput="calcular()"></td>
+              <td><input type="text" name="Dispersing_Agent" style="border: none;" size="10" style="background: transparent;" id="1" value="(NaPO3)6" oninput="calcular()"></td>
              </tr>
              <tr>
              <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Amount used (g)</th>
-             <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="2"  value=""oninput="calcular()"></td>
+             <td><input type="text" name="Amount_Used_g" style="border: none;" size="10" style="background: transparent;" id="2"  value=""oninput="calcular()"></td>
              </tr>
               <tr>
                <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Temperature of test, T (ºC)</th>
-               <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="3" value ="" oninput="calcular()"></td>
+               <td><input type="text" name="Temperature_of_Test" style="border: none;" size="10" style="background: transparent;" id="3" value ="" oninput="calcular()"></td>
                </tr>
                <tr>
                <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Viscosity of water (g*s/cm2)</th>
-               <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="4" value ="0.01"oninput="calcular()"></td>
+               <td><input type="text" name="Viscosity_of_Water_gs_cm2" style="border: none;" size="10" style="background: transparent;" id="4" value ="0.01"oninput="calcular()"></td>
                </tr>
                <tr>
                <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Mass density of water Calibrated (ᵨc )</th>
-               <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="5" value ="" oninput="calcular()"></td>
+               <td><input type="text" name="Mass_Density_of_Water_Calibrated" style="border: none;" size="10" style="background: transparent;" id="5" value ="" oninput="calcular()"></td>
                </tr>
                <tr>
                <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Acceleration (cm/s2)</th>
-               <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="6" value ="980.7" oninput="calcular()"></td>
+               <td><input type="text" name="Acceleration_cm_s2" style="border: none;" size="10" style="background: transparent;" id="6" value ="980.7" oninput="calcular()"></td>
                </tr>
                <tr>
                <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Volume of suspension (Vsp) cm3</th>
-               <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="7" value ="1000" oninput="calcular()"></td>
+               <td><input type="text" name="Volume_of_Suspension_Vsp_cm3" style="border: none;" size="10" style="background: transparent;" id="7" value ="1000" oninput="calcular()"></td>
                </tr>
                <tr>
                <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Meniscus Correction, Cm</th>
-               <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="8" oninput="calcular()"></td>
+               <td><input type="text" name="Meniscus_Correction_Cm" style="border: none;" size="10" style="background: transparent;" id="8" oninput="calcular()"></td>
                </tr>
                <tr>
                <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Percent Passing No. 200 sieve</th>
-               <td><input type="text" style="border: none;" size="10" style="background: transparent;" id="9" oninput="calcular()"></td>
+               <td><input type="text" name="Percent_Passing_No_200_sieve" style="border: none;" size="10" style="background: transparent;" id="9" oninput="calcular()"></td>
               </tr>
             </tbody>
             </table>
@@ -134,38 +141,38 @@ page_require_level(3);
                 </tr>
                 <tr>
                  <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Name</th>
-                 <td><input type="text" value="" style="border: none;" size="4" style="background: transparent;" id="14" oninput="calcular()"></td>
-                 <td><input type="text" value="" style="border: none;" size="4" style="background: transparent;" id="14.1" oninput="calcular()"></td>
+                 <td><input type="text" name="Tare_Name_50gr" value="" style="border: none;" size="4" style="background: transparent;" id="14" oninput="calcular()"></td>
+                 <td><input type="text" name="Tare_Name_25gr" value="" style="border: none;" size="4" style="background: transparent;" id="14.1" oninput="calcular()"></td>
                 </tr>                
                 <tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Oven Temperature (°C)</th>
-                  <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="15" oninput="calcular()"></td>
-                  <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="15.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Oven_Temperature_50gr" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="15" oninput="calcular()"></td>
+                  <td><input type="text" name="Oven_Temperature_25gr" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="15.1" oninput="calcular()"></td>
                 </tr>
               <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Plus Wet Soil (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="16" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="16.1" oninput="calcular()"></td>
+                <td><input type="text" name="Tare_Plus_Wet_Soil_50gr" style="border: none;" size="4" style="background: transparent;" id="16" oninput="calcular()"></td>
+                <td><input type="text" name="Tare_Plus_Wet_Soil_25gr" style="border: none;" size="4" style="background: transparent;" id="16.1" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Plus Dry Soil (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="17" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="17.1" oninput="calcular()"></td>
+                <td><input type="text" name="Tare_Plus_Dry_Soil_50gr" style="border: none;" size="4" style="background: transparent;" id="17" oninput="calcular()"></td>
+                <td><input type="text" name="Tare_Plus_Dry_Soil_25gr" style="border: none;" size="4" style="background: transparent;" id="17.1" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Water, Ww (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="18" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="18.1" oninput="calcular()"></td>
+                <td><input type="text" name="Water_Ww_50gr" style="border: none;" size="4" style="background: transparent;" id="18" oninput="calcular()"></td>
+                <td><input type="text" name="Water_Ww_25gr" style="border: none;" size="4" style="background: transparent;" id="18.1" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="19" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="19.1" oninput="calcular()"></td>
+                <td><input type="text" name="Tare_50gr" style="border: none;" size="4" style="background: transparent;" id="19" oninput="calcular()"></td>
+                <td><input type="text" name="Tare_25gr" style="border: none;" size="4" style="background: transparent;" id="19.1" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Dry Soil, Ws (gr)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="20" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="20.1" oninput="calcular()"></td>
+                <td><input type="text" name="Dry_Soil_Ws_50gr" style="border: none;" size="4" style="background: transparent;" id="20" oninput="calcular()"></td>
+                <td><input type="text" name="Dry_Soil_Ws_25gr" style="border: none;" size="4" style="background: transparent;" id="20.1" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Moisture Content (%)</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="21" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="21.1" oninput="calcular()"></td>
+                <td><input type="text" name="Moisture_Content_Porce_50gr" style="border: none;" size="4" style="background: transparent;" id="21" oninput="calcular()"></td>
+                <td><input type="text" name="Moisture_Content_Porce_25gr" style="border: none;" size="4" style="background: transparent;" id="21.1" oninput="calcular()"></td>
               </tr>
               </tbody>
             </table>
@@ -179,7 +186,7 @@ page_require_level(3);
                   <caption>Specific Gravity</caption>
                   <tbody>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">SG</th>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="12" oninput="calcular()"></td>
+                    <td><input type="text" name="Specific_Gravity" style="border: none;" size="4" style="background: transparent;" id="12" oninput="calcular()"></td>
                   </tr>
                   </tbody>
                 </table>
@@ -208,52 +215,52 @@ page_require_level(3);
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Temperature (ºC)</th>
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Actual Reading</th>
                   </tr>
-                  <td><input type="text" style="border: none;" size="9" style="background: transparent;" id="24.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="25.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="26.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="27.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No1" style="border: none;" size="9" style="background: transparent;" id="24.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No1" style="border: none;" size="4" style="background: transparent;" id="25.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No1" style="border: none;" size="4" style="background: transparent;" id="26.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No1" style="border: none;" size="4" style="background: transparent;" id="27.1" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="28.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="29.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="30.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="31.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No2" style="border: none;" size="4" style="background: transparent;" id="28.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No2" style="border: none;" size="4" style="background: transparent;" id="29.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No2" style="border: none;" size="4" style="background: transparent;" id="30.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No2" style="border: none;" size="4" style="background: transparent;" id="31.1" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="32.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="33.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="34.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="35.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No3" style="border: none;" size="4" style="background: transparent;" id="32.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No3" style="border: none;" size="4" style="background: transparent;" id="33.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No3" style="border: none;" size="4" style="background: transparent;" id="34.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No3" style="border: none;" size="4" style="background: transparent;" id="35.1" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="36.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="37.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="38.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="39.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No4" style="border: none;" size="4" style="background: transparent;" id="36.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No4" style="border: none;" size="4" style="background: transparent;" id="37.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No4" style="border: none;" size="4" style="background: transparent;" id="38.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No4" style="border: none;" size="4" style="background: transparent;" id="39.1" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="40.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="41.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="42.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="43.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No5" style="border: none;" size="4" style="background: transparent;" id="40.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No5" style="border: none;" size="4" style="background: transparent;" id="41.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No5" style="border: none;" size="4" style="background: transparent;" id="42.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No5" style="border: none;" size="4" style="background: transparent;" id="43.1" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="44.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="45.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="46.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="47.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No6" style="border: none;" size="4" style="background: transparent;" id="44.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No6" style="border: none;" size="4" style="background: transparent;" id="45.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No6" style="border: none;" size="4" style="background: transparent;" id="46.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No6" style="border: none;" size="4" style="background: transparent;" id="47.1" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="48.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="49.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="50.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="51.1" oninput="calcular()"></td>
-                </tr>
-                </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="52.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="53.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="54.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="55.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No7" style="border: none;" size="4" style="background: transparent;" id="48.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No7" style="border: none;" size="4" style="background: transparent;" id="49.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No7" style="border: none;" size="4" style="background: transparent;" id="50.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No7" style="border: none;" size="4" style="background: transparent;" id="51.1" oninput="calcular()"></td>
                 </tr>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="56.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="57.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="58.1" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="59.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No8" style="border: none;" size="4" style="background: transparent;" id="52.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No8" style="border: none;" size="4" style="background: transparent;" id="53.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No8" style="border: none;" size="4" style="background: transparent;" id="54.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No8" style="border: none;" size="4" style="background: transparent;" id="55.1" oninput="calcular()"></td>
+                </tr>
+                </tr>
+                  <td><input type="text" name="Hy_Calibration_25gr_Temperature_No9" style="border: none;" size="4" style="background: transparent;" id="56.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_25gr_Actual_Reading_No9" style="border: none;" size="4" style="background: transparent;" id="57.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Temperature_No9" style="border: none;" size="4" style="background: transparent;" id="58.1" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_25gr_Actual_Reading_No9" style="border: none;" size="4" style="background: transparent;" id="59.1" oninput="calcular()"></td>
                 </tr>
               </tbody>
             </table>
@@ -279,52 +286,52 @@ page_require_level(3);
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Temperature (ºC)</th>
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Actual Reading</th>
                   </tr>
-                  <td><input type="text" style="border: none;" size="9" style="background: transparent;" id="24" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="25" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="26" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="27" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No1" style="border: none;" size="9" style="background: transparent;" id="24" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No1" style="border: none;" size="4" style="background: transparent;" id="25" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No1" style="border: none;" size="4" style="background: transparent;" id="26" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No1" style="border: none;" size="4" style="background: transparent;" id="27" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="28" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="29" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="30" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="31" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No2" style="border: none;" size="4" style="background: transparent;" id="28" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No2" style="border: none;" size="4" style="background: transparent;" id="29" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No2" style="border: none;" size="4" style="background: transparent;" id="30" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No2" style="border: none;" size="4" style="background: transparent;" id="31" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="32" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="33" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="34" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="35" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No3" style="border: none;" size="4" style="background: transparent;" id="32" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No3" style="border: none;" size="4" style="background: transparent;" id="33" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No3" style="border: none;" size="4" style="background: transparent;" id="34" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No3" style="border: none;" size="4" style="background: transparent;" id="35" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="36" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="37" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="38" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="39" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No4" style="border: none;" size="4" style="background: transparent;" id="36" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No4" style="border: none;" size="4" style="background: transparent;" id="37" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No4" style="border: none;" size="4" style="background: transparent;" id="38" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No4" style="border: none;" size="4" style="background: transparent;" id="39" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="40" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="41" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="42" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="43" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No5" style="border: none;" size="4" style="background: transparent;" id="40" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No5" style="border: none;" size="4" style="background: transparent;" id="41" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No5" style="border: none;" size="4" style="background: transparent;" id="42" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No5" style="border: none;" size="4" style="background: transparent;" id="43" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="44" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="45" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="46" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="47" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No6" style="border: none;" size="4" style="background: transparent;" id="44" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No6" style="border: none;" size="4" style="background: transparent;" id="45" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No6" style="border: none;" size="4" style="background: transparent;" id="46" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No6" style="border: none;" size="4" style="background: transparent;" id="47" oninput="calcular()"></td>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="48" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="49" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="50" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="51" oninput="calcular()"></td>
-                </tr>
-                </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="52" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="53" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="54" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="55" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No7" style="border: none;" size="4" style="background: transparent;" id="48" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No7" style="border: none;" size="4" style="background: transparent;" id="49" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No7" style="border: none;" size="4" style="background: transparent;" id="50" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No7" style="border: none;" size="4" style="background: transparent;" id="51" oninput="calcular()"></td>
                 </tr>
                 </tr>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="56" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="57" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="58" oninput="calcular()"></td>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="59" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No8" style="border: none;" size="4" style="background: transparent;" id="52" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No8" style="border: none;" size="4" style="background: transparent;" id="53" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No8" style="border: none;" size="4" style="background: transparent;" id="54" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No8" style="border: none;" size="4" style="background: transparent;" id="55" oninput="calcular()"></td>
+                </tr>
+                </tr>
+                  <td><input type="text" name="Hy_Calibration_50gr_Temperature_No9" style="border: none;" size="4" style="background: transparent;" id="56" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Calibration_50gr_Actual_Reading_No9" style="border: none;" size="4" style="background: transparent;" id="57" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Temperature_No9" style="border: none;" size="4" style="background: transparent;" id="58" oninput="calcular()"></td>
+                  <td><input type="text" name="Hy_Measure_Fluid_50gr_Actual_Reading_No9" style="border: none;" size="4" style="background: transparent;" id="59" oninput="calcular()"></td>
                 </tr>
                 </tbody>
               </table>
@@ -350,129 +357,129 @@ page_require_level(3);
                     <th style="font-size: 13px; text-align: center;" style="width: 350px; height: 25px;" scope="row">D, mm</th>
                   </tr>
                 <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="182.1" value="1" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="183.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="184.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="185.1" value="1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="186.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="187.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="188.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="189.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="190.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="191.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="192.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="182.1" value="1" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No1" style="border: none;" size="4" style="background: transparent;" id="183.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No1" style="border: none;" size="4" style="background: transparent;" id="184.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No1" style="border: none;" size="4" style="background: transparent;" id="185.1" value="1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No1" style="border: none;" size="4" style="background: transparent;" id="186.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No1" style="border: none;" size="4" style="background: transparent;" id="187.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No1" style="border: none;" size="4" style="background: transparent;" id="188.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No1" style="border: none;" size="4" style="background: transparent;" id="189.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No1" style="border: none;" size="4" style="background: transparent;" id="190.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No1" style="border: none;" size="4" style="background: transparent;" id="191.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No1" style="border: none;" size="4" style="background: transparent;" id="192.1" oninput="calcular()"></td>
                    
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="194.1" value="2" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="195.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="196.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="197.1" value="2" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="198.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="199.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="200.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="201.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="202.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="203.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="204.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="194.1" value="2" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No2" style="border: none;" size="4" style="background: transparent;" id="195.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No2" style="border: none;" size="4" style="background: transparent;" id="196.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No2" style="border: none;" size="4" style="background: transparent;" id="197.1" value="2" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No2" style="border: none;" size="4" style="background: transparent;" id="198.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No2" style="border: none;" size="4" style="background: transparent;" id="199.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No2" style="border: none;" size="4" style="background: transparent;" id="200.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No2" style="border: none;" size="4" style="background: transparent;" id="201.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No2" style="border: none;" size="4" style="background: transparent;" id="202.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No2" style="border: none;" size="4" style="background: transparent;" id="203.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No2" style="border: none;" size="4" style="background: transparent;" id="204.1" oninput="calcular()"></td>
                    
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="206.1" value="3" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="207.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="208.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="209.1" value="4" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="210.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="211.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="212.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="213.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="214.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="215.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="216.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="206.1" value="3" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No3" style="border: none;" size="4" style="background: transparent;" id="207.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No3" style="border: none;" size="4" style="background: transparent;" id="208.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No3" style="border: none;" size="4" style="background: transparent;" id="209.1" value="4" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No3" style="border: none;" size="4" style="background: transparent;" id="210.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No3" style="border: none;" size="4" style="background: transparent;" id="211.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No3" style="border: none;" size="4" style="background: transparent;" id="212.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No3" style="border: none;" size="4" style="background: transparent;" id="213.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No3" style="border: none;" size="4" style="background: transparent;" id="214.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No3" style="border: none;" size="4" style="background: transparent;" id="215.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No3" style="border: none;" size="4" style="background: transparent;" id="216.1" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="218.1" value="4" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="219.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="220.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="221.1" value="15" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="222.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="223.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="224.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="225.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="226.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="227.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="228.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="218.1" value="4" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No4" style="border: none;" size="4" style="background: transparent;" id="219.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No4" style="border: none;" size="4" style="background: transparent;" id="220.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No4" style="border: none;" size="4" style="background: transparent;" id="221.1" value="15" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No4" style="border: none;" size="4" style="background: transparent;" id="222.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No4" style="border: none;" size="4" style="background: transparent;" id="223.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No4" style="border: none;" size="4" style="background: transparent;" id="224.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No4" style="border: none;" size="4" style="background: transparent;" id="225.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No4" style="border: none;" size="4" style="background: transparent;" id="226.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No4" style="border: none;" size="4" style="background: transparent;" id="227.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No4" style="border: none;" size="4" style="background: transparent;" id="228.1" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="230.1" value="5" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="231.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="232.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="233.1" value="30" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="234.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="235.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="236.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="237.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="238.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="239.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="240.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="230.1" value="5" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No5" style="border: none;" size="4" style="background: transparent;" id="231.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No5" style="border: none;" size="4" style="background: transparent;" id="232.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No5" style="border: none;" size="4" style="background: transparent;" id="233.1" value="30" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No5" style="border: none;" size="4" style="background: transparent;" id="234.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No5" style="border: none;" size="4" style="background: transparent;" id="235.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No5" style="border: none;" size="4" style="background: transparent;" id="236.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No5" style="border: none;" size="4" style="background: transparent;" id="237.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No5" style="border: none;" size="4" style="background: transparent;" id="238.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No5" style="border: none;" size="4" style="background: transparent;" id="239.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No5" style="border: none;" size="4" style="background: transparent;" id="240.1" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="242.1" value="6" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="243.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="244.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="245.1"  value="60" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="246.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="247.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="248.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="249.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="250.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="251.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="252.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="242.1" value="6" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No6" style="border: none;" size="4" style="background: transparent;" id="243.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No6" style="border: none;" size="4" style="background: transparent;" id="244.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No6" style="border: none;" size="4" style="background: transparent;" id="245.1"  value="60" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No6" style="border: none;" size="4" style="background: transparent;" id="246.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No6" style="border: none;" size="4" style="background: transparent;" id="247.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No6" style="border: none;" size="4" style="background: transparent;" id="248.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No6" style="border: none;" size="4" style="background: transparent;" id="249.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No6" style="border: none;" size="4" style="background: transparent;" id="250.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No6" style="border: none;" size="4" style="background: transparent;" id="251.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No6" style="border: none;" size="4" style="background: transparent;" id="252.1" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="254.1" value="7" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="255.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="256.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="257.1"  value="240" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="258.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="259.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="260.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="261.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="262.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="263.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="264.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="254.1" value="7" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No7" style="border: none;" size="4" style="background: transparent;" id="255.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No7" style="border: none;" size="4" style="background: transparent;" id="256.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No7" style="border: none;" size="4" style="background: transparent;" id="257.1"  value="240" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No7" style="border: none;" size="4" style="background: transparent;" id="258.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No7" style="border: none;" size="4" style="background: transparent;" id="259.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No7" style="border: none;" size="4" style="background: transparent;" id="260.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No7" style="border: none;" size="4" style="background: transparent;" id="261.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No7" style="border: none;" size="4" style="background: transparent;" id="262.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No7" style="border: none;" size="4" style="background: transparent;" id="263.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No7" style="border: none;" size="4" style="background: transparent;" id="264.1" oninput="calcular()"></td>
                    
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="266.1" value="8" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="267.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="268.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="269.1" value="340" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="270.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="271.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="272.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="273.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="274.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="275.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="276.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="266.1" value="8" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No8" style="border: none;" size="4" style="background: transparent;" id="267.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No8" style="border: none;" size="4" style="background: transparent;" id="268.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No8" style="border: none;" size="4" style="background: transparent;" id="269.1" value="340" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No8" style="border: none;" size="4" style="background: transparent;" id="270.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No8" style="border: none;" size="4" style="background: transparent;" id="271.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No8" style="border: none;" size="4" style="background: transparent;" id="272.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No8" style="border: none;" size="4" style="background: transparent;" id="273.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No8" style="border: none;" size="4" style="background: transparent;" id="274.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No8" style="border: none;" size="4" style="background: transparent;" id="275.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No8" style="border: none;" size="4" style="background: transparent;" id="276.1" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="278.1" value="9" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="279.1" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="280.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="281.1" value="1440" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="282.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="283.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="284.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="285.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="286.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="287.1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="288.1" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="278.1" value="9" oninput="calcular()"></td>
+                    <td><input type="date" name="gr25_Date_No9" style="border: none;" size="4" style="background: transparent;" id="279.1" oninput="calcular()"></td>
+                    <td><input type="time" name="gr25_Hour_No9" style="border: none;" size="4" style="background: transparent;" id="280.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Reading_Time_min_No9" style="border: none;" size="4" style="background: transparent;" id="281.1" value="1440" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Temp_No9" style="border: none;" size="4" style="background: transparent;" id="282.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Hydrometer_Readings_Rm_No9" style="border: none;" size="4" style="background: transparent;" id="283.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_A_or_B_depending_of_the_Hy_type_No9" style="border: none;" size="4" style="background: transparent;" id="284.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Offset_at_Reading_rdm_No9" style="border: none;" size="4" style="background: transparent;" id="285.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Mass_Percent_Finer_Nm_Porce_No9" style="border: none;" size="4" style="background: transparent;" id="286.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_Effective_Length_Hm_No9" style="border: none;" size="4" style="background: transparent;" id="287.1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr25_D_mm_No9" style="border: none;" size="4" style="background: transparent;" id="288.1" oninput="calcular()"></td>
                   </tr>
                 </tbody>
               </table>
@@ -498,129 +505,129 @@ page_require_level(3);
                     <th style="font-size: 13px; text-align: center;" style="width: 350px; height: 25px;" scope="row">D, mm</th>
                   </tr>
                 <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="182" value="1" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="183" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="184" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="185" value="1" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="186" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="187" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="188" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="189" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="190" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="191" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="192" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="182" value="1" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No1" style="border: none;" size="4" style="background: transparent;" id="183" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No1" style="border: none;" size="4" style="background: transparent;" id="184" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No1" style="border: none;" size="4" style="background: transparent;" id="185" value="1" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No1" style="border: none;" size="4" style="background: transparent;" id="186" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No1" style="border: none;" size="4" style="background: transparent;" id="187" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No1" style="border: none;" size="4" style="background: transparent;" id="188" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No1" style="border: none;" size="4" style="background: transparent;" id="189" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No1" style="border: none;" size="4" style="background: transparent;" id="190" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No1" style="border: none;" size="4" style="background: transparent;" id="191" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No1" style="border: none;" size="4" style="background: transparent;" id="192" oninput="calcular()"></td>
                    
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="194" value="2" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="195" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="196" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="197" value="2" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="198" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="199" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="200" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="201" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="202" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="203" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="204" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="194" value="2" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No2" style="border: none;" size="4" style="background: transparent;" id="195" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No2" style="border: none;" size="4" style="background: transparent;" id="196" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No2" style="border: none;" size="4" style="background: transparent;" id="197" value="2" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No2" style="border: none;" size="4" style="background: transparent;" id="198" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No2" style="border: none;" size="4" style="background: transparent;" id="199" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No2" style="border: none;" size="4" style="background: transparent;" id="200" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No2" style="border: none;" size="4" style="background: transparent;" id="201" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No2" style="border: none;" size="4" style="background: transparent;" id="202" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No2" style="border: none;" size="4" style="background: transparent;" id="203" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No2" style="border: none;" size="4" style="background: transparent;" id="204" oninput="calcular()"></td>
                    
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="206" value="3" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="207" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="208" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="209" value="4" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="210" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="211" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="212" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="213" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="214" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="215" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="216" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="206" value="3" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No3" style="border: none;" size="4" style="background: transparent;" id="207" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No3" style="border: none;" size="4" style="background: transparent;" id="208" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No3" style="border: none;" size="4" style="background: transparent;" id="209" value="4" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No3" style="border: none;" size="4" style="background: transparent;" id="210" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No3" style="border: none;" size="4" style="background: transparent;" id="211" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No3" style="border: none;" size="4" style="background: transparent;" id="212" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No3" style="border: none;" size="4" style="background: transparent;" id="213" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No3" style="border: none;" size="4" style="background: transparent;" id="214" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No3" style="border: none;" size="4" style="background: transparent;" id="215" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No3" style="border: none;" size="4" style="background: transparent;" id="216" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="218" value="4" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="219" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="220" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="221" value="15" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="222" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="223" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="224" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="225" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="226" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="227" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="228" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="218" value="4" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No4" style="border: none;" size="4" style="background: transparent;" id="219" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No4" style="border: none;" size="4" style="background: transparent;" id="220" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No4" style="border: none;" size="4" style="background: transparent;" id="221" value="15" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No4" style="border: none;" size="4" style="background: transparent;" id="222" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No4" style="border: none;" size="4" style="background: transparent;" id="223" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No4" style="border: none;" size="4" style="background: transparent;" id="224" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No4" style="border: none;" size="4" style="background: transparent;" id="225" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No4" style="border: none;" size="4" style="background: transparent;" id="226" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No4" style="border: none;" size="4" style="background: transparent;" id="227" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No4" style="border: none;" size="4" style="background: transparent;" id="228" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="230" value="5" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="231" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="232" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="233" value="30" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="234" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="235" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="236" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="237" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="238" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="239" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="240" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="230" value="5" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No5" style="border: none;" size="4" style="background: transparent;" id="231" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No5" style="border: none;" size="4" style="background: transparent;" id="232" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No5" style="border: none;" size="4" style="background: transparent;" id="233" value="30" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No5" style="border: none;" size="4" style="background: transparent;" id="234" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No5" style="border: none;" size="4" style="background: transparent;" id="235" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No5" style="border: none;" size="4" style="background: transparent;" id="236" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No5" style="border: none;" size="4" style="background: transparent;" id="237" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No5" style="border: none;" size="4" style="background: transparent;" id="238" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No5" style="border: none;" size="4" style="background: transparent;" id="239" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No5" style="border: none;" size="4" style="background: transparent;" id="240" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="242" value="6" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="243" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="244" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="245"  value="60" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="246" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="247" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="248" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="249" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="250" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="251" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="252" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="242" value="6" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No6" style="border: none;" size="4" style="background: transparent;" id="243" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No6" style="border: none;" size="4" style="background: transparent;" id="244" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No6" style="border: none;" size="4" style="background: transparent;" id="245"  value="60" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No6" style="border: none;" size="4" style="background: transparent;" id="246" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No6" style="border: none;" size="4" style="background: transparent;" id="247" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No6" style="border: none;" size="4" style="background: transparent;" id="248" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No6" style="border: none;" size="4" style="background: transparent;" id="249" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No6" style="border: none;" size="4" style="background: transparent;" id="250" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No6" style="border: none;" size="4" style="background: transparent;" id="251" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No6" style="border: none;" size="4" style="background: transparent;" id="252" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="254" value="7" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="255" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="256" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="257"  value="240" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="258" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="259" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="260" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="261" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="262" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="263" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="264" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="254" value="7" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No7" style="border: none;" size="4" style="background: transparent;" id="255" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No7" style="border: none;" size="4" style="background: transparent;" id="256" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No7" style="border: none;" size="4" style="background: transparent;" id="257"  value="240" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No7" style="border: none;" size="4" style="background: transparent;" id="258" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No7" style="border: none;" size="4" style="background: transparent;" id="259" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No7" style="border: none;" size="4" style="background: transparent;" id="260" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No7" style="border: none;" size="4" style="background: transparent;" id="261" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No7" style="border: none;" size="4" style="background: transparent;" id="262" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No7" style="border: none;" size="4" style="background: transparent;" id="263" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No7" style="border: none;" size="4" style="background: transparent;" id="264" oninput="calcular()"></td>
                    
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="266" value="8" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="267" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="268" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="269" value="340" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="270" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="271" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="272" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="273" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="274" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="275" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="276" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="266" value="8" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No8" style="border: none;" size="4" style="background: transparent;" id="267" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No8" style="border: none;" size="4" style="background: transparent;" id="268" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No8" style="border: none;" size="4" style="background: transparent;" id="269" value="340" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No8" style="border: none;" size="4" style="background: transparent;" id="270" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No8" style="border: none;" size="4" style="background: transparent;" id="271" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No8" style="border: none;" size="4" style="background: transparent;" id="272" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No8" style="border: none;" size="4" style="background: transparent;" id="273" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No8" style="border: none;" size="4" style="background: transparent;" id="274" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No8" style="border: none;" size="4" style="background: transparent;" id="275" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No8" style="border: none;" size="4" style="background: transparent;" id="276" oninput="calcular()"></td>
                     
                   </tr>
                   <tr>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="278" value="9" oninput="calcular()"></td>
-                    <td><input type="date" style="border: none;" size="4" style="background: transparent;" id="279" oninput="calcular()"></td>
-                    <td><input type="time" style="border: none;" size="4" style="background: transparent;" id="280" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="281" value="1440" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="282" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="283" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="284" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="285" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="286" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="287" oninput="calcular()"></td>
-                    <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="288" oninput="calcular()"></td>
+                    <td><input type="text" name="" style="border: none;" size="4" style="background: transparent;" id="278" value="9" oninput="calcular()"></td>
+                    <td><input type="date" name="gr50_Date_No9" style="border: none;" size="4" style="background: transparent;" id="279" oninput="calcular()"></td>
+                    <td><input type="time" name="gr50_Hour_No9" style="border: none;" size="4" style="background: transparent;" id="280" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Reading_Time_min_No9" style="border: none;" size="4" style="background: transparent;" id="281" value="1440" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Temp_No9" style="border: none;" size="4" style="background: transparent;" id="282" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Hydrometer_Readings_Rm_No9" style="border: none;" size="4" style="background: transparent;" id="283" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_A_or_B_depending_of_the_Hy_type_No9" style="border: none;" size="4" style="background: transparent;" id="284" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Offset_at_Reading_rdm_No9" style="border: none;" size="4" style="background: transparent;" id="285" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Mass_Percent_Finer_Nm_Porce_No9" style="border: none;" size="4" style="background: transparent;" id="286" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_Effective_Length_Hm_No9" style="border: none;" size="4" style="background: transparent;" id="287" oninput="calcular()"></td>
+                    <td><input type="text" name="gr50_D_mm_No9" style="border: none;" size="4" style="background: transparent;" id="288" oninput="calcular()"></td>
                   </tr>
                 </tbody>
               </table>
@@ -634,21 +641,31 @@ page_require_level(3);
                 <tbody>
                   <tr>
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Nm, 2µm not dispersed</th>
-                    <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="289" oninput="calcular()"></td>
+                    <td><input type="text" name="Nm_2um_Not_Dispersed" style="border: none;" size="8" style="background: transparent;" id="289" oninput="calcular()"></td>
                   </tr>
                   <tr>
                     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Nm, 2µm  dispersed</th>
-                    <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="289.1" oninput="calcular()"></td>
+                    <td><input type="text" name="Nm_2um_Dispersed" style="border: none;" size="8" style="background: transparent;" id="289.1" oninput="calcular()"></td>
                   </tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">% Dispersion</th>
-                  <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="290" oninput="calcular()"></td>
+                  <td><input type="text" name="Porce_Dispersion" style="border: none;" size="8" style="background: transparent;" id="290" oninput="calcular()"></td>
                 </tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Classification</th>
-                  <td><input type="text" style="border: none;" size="8" style="background: transparent;" id="291" oninput="calcular()"></td>
+                  <td><input type="text" name="Classification" style="border: none;" size="8" style="background: transparent;" id="291" oninput="calcular()"></td>
                 </tr>
                 </tbody>
               </table>
               </div>
+
+              <button type="submit" name="DoubleHydrometer" class="btn btn-danger">Registrar ensayo</button>
+                <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
+                </form>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
               <script>
         function calcular() {
         // obtenemos los valores
@@ -1223,17 +1240,6 @@ if (PerDisp >= 50) {
 
 
               </script>
-
-              
-
-
-                <button type="submit" name="add_mcoven" class="btn btn-danger">Registrar ensayo</button>
-                <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
-                </form>
-                </div>
-                </div>
-                </div>
-                </div>
                 
                 <script>
                     function enviarData(event) {
