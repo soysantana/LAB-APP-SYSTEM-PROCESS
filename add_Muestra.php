@@ -149,6 +149,8 @@ if (isset($_POST['add_Muestra'])) {
                 <option value="Truck">Truck</option>
                 <option value="Shelby">Shelby</option>
                 <option value="Lexan">Lexan</option>
+                <option value="Ring">Ring</option>
+                <option value="Maxier">Maxier</option>
               </select>
             </div>
             
