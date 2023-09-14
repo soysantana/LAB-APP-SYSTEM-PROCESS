@@ -30,6 +30,7 @@ if (isset($_POST['add_Muestra'])) {
     $sampledate = remove_junk($db->escape($_POST['Sample_Date']));
     $sampleby = remove_junk($db->escape($_POST['Sample_By']));
     $registerby = remove_junk($db->escape($_POST['Register_By']));
+    $Registed_Date = make_date();
 
     // Definir los checkboxes válidos
     $checkboxes = array(
@@ -53,7 +54,7 @@ if (isset($_POST['add_Muestra'])) {
     // Agregar los nombres de los checkboxes válidos a la consulta SQL
     $query .= implode(',', $checkboxes);
 
-    $query .= ", Comment, Sample_Date, Sample_By , Register_By";
+    $query .= ", Comment, Sample_Date, Sample_By , Register_By, Registed_Date";
     $query .= ") VALUES (";
     $query .= "'{$sampleid}','{$samplenumber}','{$structure}','{$area}','{$source}','{$depthfrom}','{$depthto}','{$materialtype}','{$sampletype}','{$north}','{$east}','{$elev}',";
 
@@ -63,7 +64,7 @@ if (isset($_POST['add_Muestra'])) {
     }, array_values($checkboxes_values));
     $query .= implode(',', $values);
 
-    $query .= ",'{$comment}','{$sampledate}','{$sampleby}','{$registerby}'";
+    $query .= ",'{$comment}','{$sampledate}','{$sampleby}','{$registerby}', '{$Registed_Date}'";
     $query .= ") ON DUPLICATE KEY UPDATE Sample_ID='{$sampleid}'";
 
     if ($db->query($query)) {
