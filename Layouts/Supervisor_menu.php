@@ -54,10 +54,13 @@ require_once('ensayos/mcoven.php');
         <li class="nav-item">
           <a class="nav-link glyphicon glyphicon-registration-mark" href="menuEnsayosRevision.php" style="font-size: 17px;"> Ensayos en Resivion</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="inventario.php" style="font-size: 17px;">
-            <span class="glyphicon glyphicon-shopping-cart" style="margin-right: 5px;"></span>Inventario
-          </a>
+        <li class="nav-item has-submenu">
+          <a class="nav-link  glyphicon glyphicon-shopping-cart submenu-toggle" href="inventario.php" style="font-size: 17px;">Inventarios</a>      
+            <ul class="submenu collapse">
+              <li><a class="nav-link" href="inventarioequipos.php" style="font-size: 16px;">Inventario de Equipos</a></li>
+              <li><a class="nav-link" href="inventariosample.php" style="font-size: 16px;">Inventario de Muestras</a></li>
+              
+            </ul>
         </li>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
