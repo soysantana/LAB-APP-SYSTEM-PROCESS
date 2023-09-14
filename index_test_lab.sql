@@ -2669,6 +2669,36 @@ INSERT INTO `hydrometer` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Prepa
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inalteraded_samples`
+--
+
+CREATE TABLE `inalteraded_samples` (
+  `id` int(11) NOT NULL,
+  `Sample_ID` varchar(255) NOT NULL,
+  `Sample_Number` varchar(255) NOT NULL,
+  `Sample_Type` varchar(255) DEFAULT NULL,
+  `Depth_From` decimal(10,2) DEFAULT NULL,
+  `Depth_To` decimal(10,2) DEFAULT NULL,
+  `Sample_Length` decimal(10,2) DEFAULT NULL,
+  `Sample_Weight` decimal(10,2) DEFAULT NULL,
+  `Sample_Date` date DEFAULT NULL,
+  `Store_In` varchar(255) DEFAULT NULL,
+  `Comment` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `inalteraded_samples`
+--
+
+INSERT INTO `inalteraded_samples` (`id`, `Sample_ID`, `Sample_Number`, `Sample_Type`, `Depth_From`, `Depth_To`, `Sample_Length`, `Sample_Weight`, `Sample_Date`, `Store_In`, `Comment`) VALUES
+(1, 'DH-BGC22-NTSF-055', 'R7', 'Lexan', 35.52, 35.80, 0.90, 6.30, '2022-11-28', 'Sample in PVDJ Laboratory - Seccion B.', 'Sample for TCS.');
+
+
+
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `lab_test_requisition_form`
 --
 
