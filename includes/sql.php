@@ -251,6 +251,12 @@ function tableExists($table){
     return $required_columns;
 }
 
+/*--------------------------------------------------------------*/
+  /* Funcion para mostrar listado de muestra inalteradas
+  /*--------------------------------------------------------------*/
+  
+  
+
 
 /*--------------------------------------------------------------*/
    /* Function for Finding all product name

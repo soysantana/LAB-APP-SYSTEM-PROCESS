@@ -17,10 +17,8 @@ $products = join_lab_test_requisition_form();
                 </strong>
             </div>
             <div class="panel-body">
-              <a href="categorie.php" class="btn btn-primary btn-lg btn-block">Categorias</a>
-              <a href="product.php" class="btn btn-primary btn-lg btn-block">Articulos</a>
-              <a href="media.php" class="btn btn-primary btn-lg btn-block">Imagenes</a>
-              <a href="inventariosample.php" class="btn btn-primary btn-lg btn-block">De Muestras</a>
+              <a href="inventarioequipos.php" class="btn btn-primary btn-lg btn-block">Inventarios de Equipos/Herramientas</a>
+              <a href="inventariosample.php" class="btn btn-primary btn-lg btn-block">Samples Inventory</a>
              
           </div>
         </div>
