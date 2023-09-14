@@ -6,6 +6,8 @@ page_require_level(3);
 
 <?php include_once('layouts/header.php'); ?>
 
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -16,9 +18,32 @@ page_require_level(3);
                 </strong>
             </div>
 
-            <div class="box-body">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Inalterated Sample Registed at the Lab</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModa2" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModa3" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Barra de búsqueda y botón -->
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="inputBusqueda" placeholder="Find.." aria-label="Find..." aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" id="btnBuscar" type="button">Find</button>
+          </div>
+        </div>
+      <div class="modal-body">
+        
+      <div class="box-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
+                    <table id = "tabla1" class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
                         <thead>
                             <tr>
                                 <th style="width:10px">#</th>
@@ -201,7 +226,7 @@ page_require_level(3);
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveChangesButton">Save Changes</button>
+                
             </div>
         </div>
     </div>
@@ -287,9 +312,41 @@ $('#saveChangesButton').click(function () {
             alert('Ocurrió un error al guardar los datos.');
         }
     });
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#btnBuscar").click(function () {
+      var inputBusqueda = $("#inputBusqueda").val().toLowerCase();
+      $("#tabla1 tbody tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(inputBusqueda) > -1);
+      });
+    });
+  });
+</script>
+
+
 });
 
 </script>
+
+
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+           
 
 <?php include_once('layouts/footer.php'); ?>
 
