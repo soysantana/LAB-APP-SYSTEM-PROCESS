@@ -2,6 +2,7 @@
 $page_title = 'listado de muestras inalteradas';
 require_once('includes/load.php');
 page_require_level(3);
+
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -15,6 +16,7 @@ page_require_level(3);
                     <span>Inalteraded Samples Registed List</span>
                 </strong>
             </div>
+            
 
             <div class="modal-body">
                 <!-- Barra de búsqueda y botón -->
@@ -143,7 +145,7 @@ page_require_level(3);
                         <label for="Status">Status</label>
                         <select class="form-control" id="Status" name="Status">
                         <option selected>Sample Status</option>
-                        <option value="Store_PVLab">Sample Store in PV Lab</option>
+                        <option value="Stored_PVLab">Sample Store in PV Lab</option>
                         <option value="Sended_To">Sample Sended </option>
                       </select>
                     </div>
@@ -241,6 +243,46 @@ page_require_level(3);
 });
     });
 </script>
+
+<div class="botones-flotantes">
+    <button class="boton-flotante" id="btSampleStored"><a href="sampleStored.php">Samples Stored In</a></button>
+    <button class="boton-flotante" id="btSampleSended"><a href="sampleSended.php">Samples Sended</a></button>
+</div>
+
+    
+</div>
+
+<style>
+    .botones-flotantes {
+        position: fixed;
+        bottom: 20px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
+        right: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
+    }
+
+    .boton-flotante {
+        display: block;
+        margin-bottom: 10px; /* Espacio entre los botones */
+        padding: 10px 20px; /* Tamaño del botón */
+        background-color: #007BFF; /* Color de fondo */
+        color: #fff; /* Color del texto */
+        border: none;
+        border-radius: 5px; /* Bordes redondeados */
+        cursor: pointer;
+    }
+
+    .boton-flotante:hover {
+        background-color: #0056b3; /* Cambio de color al pasar el mouse */
+    }
+
+    
+</style>
+
+
+
+
+
+
+
 
 <?php include_once('layouts/footer.php'); ?>
 

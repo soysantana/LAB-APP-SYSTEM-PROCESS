@@ -1,4 +1,5 @@
 <?php
+$sample_stored = muestras_enlab(); 
 // Verifica si se reciben los parámetros necesarios en la URL
 if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['depthfrom']) && isset($_GET['depthto']) && isset($_GET['sample_type'])) {
     $sample_id = $_GET['sampleid'];
@@ -12,16 +13,16 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['dep
 
     switch ($sample_type) { // Cambio aquí
         case 'Shelby':
-            $pagina_detalles = 'revisionensayoMCoven.php';
+            $pagina_detalles = '';
             break;
         case 'Lexan':
-            $pagina_detalles = 'revisionGS.php';
+            $pagina_detalles = '';
             break;
         case 'Ring':
-            $pagina_detalles = 'detalles_atterberg_limit.php';
+            $pagina_detalles = '';
             break;
         case 'Maxier':
-            $pagina_detalles = 'detalles_atterberg_limit.php';
+            $pagina_detalles = '';
             break;
         // Agrega más casos según los tipos de ensayo que tengas
         default:
@@ -34,3 +35,4 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['dep
     header('Location: ' . $pagina_detalles . '?sampleid=' . urlencode($sample_id) . '&samplenumber=' . urlencode($sample_number) . '&sample_type=' . urlencode($sample_type)); // Cambio aquí
     exit();
 }
+?>
