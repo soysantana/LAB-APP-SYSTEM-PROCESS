@@ -113,6 +113,37 @@ INSERT INTO `atterberg_limit` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, 
 (1, 'TP-BGC23-NTSF-100', 'G4', 'LL-NTSF', 'DS', 'Borrow N60', 0.5, 1.3, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'SDA', 'Manual', 'Oven_Dried', 34, 23, 16, 'C-11', 'C-41', 'C-8', 25, 24, 24, 21, 21, 20, 4, 4, 4, 14, 14, 14, 7, 7, 6, 56, 57, 59, 'H-7', 'H-22', 'H-11', 22, 21, 23, 21, 20, 21, 2, 2, 2, 14, 14, 14, 6, 5, 6, 29, 29, 29, 29, 57, 29, 29, 0, 'CH', NULL, NULL, 'OK', '2023-07-19', '2023-07-19', 'AL', 'ASTM-D4318'),
 (3, 'TP-BGC23-NTSF-100', '', 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'AS', 'Manual', 'Oven_Dried', 31, 25, 19, 'A1', 'A2', 'A3', 26.738, 26.347, 26.944, 22.902, 22.534, 22.65, 3.84, 3.81, 4.29, 15.686, 15.687, 15.422, 7.22, 6.85, 7.23, 53.16, 55.69, 59.41, 'X1', 'X2', 'X3', 24.35, 24.75, 25.16, 22.46, 22.77, 23.14, 1.89, 1.98, 2.02, 15.66, 15.64, 15.72, 6.8, 7.13, 7.42, 27.79, 27.77, 27.22, 27.6, 56, 28, 28, -0.9686, 'CH', NULL, NULL, 'cOMMEN', '2023-09-07', '2023-09-07', 'AL', 'ASTM-D4318');
 
+
+CREATE TABLE `categories` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Repuestos');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `media`
+--
+
+CREATE TABLE `media` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `media`
+--
+
+INSERT INTO `media` (`id`, `file_name`, `file_type`) VALUES
+(1, 'filter.jpg', 'image/jpeg');
 -- --------------------------------------------------------
 
 --
