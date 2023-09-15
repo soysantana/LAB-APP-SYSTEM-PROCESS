@@ -18,15 +18,17 @@ $products = join_lab_test_requisition_form();
                 </strong>
             </div>
             <div class="panel-body">
-              <a href="Grain_Size.php" class="btn btn-primary btn-lg btn-block">Granulometria por Tamizado para Suelos</a>
-              <a href="gs_fine_agg.php" class="btn btn-primary btn-lg btn-block">Granulometria por Tamizado de Agregados Finos</a>
-              <a href="gs_coarse_agg.php" class="btn btn-primary btn-lg btn-block">Granulometria por Tamizado de Agregados Gruesos</a>
-              <a href="gs_coarsethan_agg.php" class="btn btn-primary btn-lg btn-block">Granulometria por Tamizado de Agregados mas Gruesos</a>
-              <a href="gs_rock.php" class="btn btn-primary btn-lg btn-block">Granulometria por Tamizado de Rocas</a>
-              <a href="hydrometer.php" class="btn btn-primary btn-lg btn-block">Granulometria por Sedimentacion</a>
-          </div>
+                <div class="list-group">
+              <a href="Grain_Size.php" class="list-group-item">Granulometria por Tamizado para Suelos</a>
+              <a href="gs_fine_agg.php" class="list-group-item">Granulometria por Tamizado de Agregados Finos</a>
+              <a href="gs_coarse_agg.php" class="list-group-item">Granulometria por Tamizado de Agregados Gruesos</a>
+              <a href="gs_coarsethan_agg.php" class="list-group-item">Granulometria por Tamizado de Agregados mas Gruesos</a>
+              <a href="gs_rock.php" class="list-group-item">Granulometria por Tamizado de Rocas</a>
+              <a href="hydrometer.php" class="list-group-item">Granulometria por Sedimentacion</a>
+            </div>
         </div>
     </div>
+</div>
 </div>
 
 <?php include_once('layouts/footer.php'); ?>

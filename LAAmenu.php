@@ -18,8 +18,9 @@ $products = join_lab_test_requisition_form();
                 </strong>
             </div>
             <div class="panel-body">
-              <a href="laa_small.php" class="btn btn-primary btn-lg btn-block">Los Angeles Abrasion of Small Size Coarse Aggregate</a>
-              <a href="laa_large.php" class="btn btn-primary btn-lg btn-block">Los Angeles Abrasion of Large Size Coarse Aggregate</a>
+            <div class="list-group">
+              <a href="laa_small.php" class="list-group-item">Los Angeles Abrasion of Small Size Coarse Aggregate</a>
+              <a href="laa_large.php"class="list-group-item">Los Angeles Abrasion of Large Size Coarse Aggregate</a>
           </div>
         </div>
     </div>

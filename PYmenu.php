@@ -18,8 +18,9 @@ $products = join_lab_test_requisition_form();
                 </strong>
             </div>
             <div class="panel-body">
-              <a href="permeability_granular.php" class="btn btn-primary btn-lg btn-block">Permeabilidad Suelo Granular</a>
-              <a href="" class="btn btn-primary btn-lg btn-block">Permeabilidad</a>
+                <div class="list-group">
+              <a href="permeability_granular.php" class="list-group-item">Permeabilidad Suelo Granular</a>
+              <a href="" class="list-group-item">Permeabilidad</a>
           </div>
         </div>
     </div>
