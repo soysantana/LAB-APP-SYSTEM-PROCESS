@@ -8,19 +8,19 @@ $required_tests = ensayos_requeridos();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-12">
     <?php echo display_msg($msg); ?>
   </div>
+  <div class="row"></div>
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
-        <div class="pull-right">
-          <a href="add_Muestra.php" class="btn btn-primary">Agregar muestra</a>
+        <strong>
+          <span class="glyphicon glyphicon-th">
+          </span>Muestras Registradas</span>
+        </strong>
+          <a href="add_Muestra.php" class="btn btn-info pull-right btn-sm">Agregar muestra</a>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="box-body">
   <div class="table-responsive">
