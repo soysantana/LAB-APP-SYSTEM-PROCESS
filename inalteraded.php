@@ -231,12 +231,14 @@ page_require_level(3);
             });
         });
 
-        $("#btnBuscar").click(function () {
-            var inputBusqueda = $("#inputBusqueda").val().toLowerCase();
-            $("#tabla1 tbody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(inputBusqueda) > -1);
-            });
+        $(document).ready(function () {
+    $("#btnBuscar").click(function () {
+        var inputBusqueda = $("#inputBusqueda").val().toLowerCase();
+        $("#tabla1 tbody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(inputBusqueda) > -1);
         });
+    });
+});
     });
 </script>
 
