@@ -14,14 +14,16 @@ if(!$entrega){
 ?>
 <?php
  if(isset($_POST['enviar_entrega'])){
-   $req_field = array('entrega-Sample_ID', 'entrega-Tecnico');
+  $req_fields = array('entrega-Sample_ID', 'entrega-Sample_Number', 'entrega-Test_Type', 'entrega-Tecnico');
    validate_fields($req_field);
-   $sampleid = remove_junk($db->escape($_POST['entrega-Sample_ID']));
-   $tecnico = remove_junk($db->escape($_POST['entrega-Tecnico']));
+   $sample_id = remove_junk($db->escape($_POST['entrega-Sample_ID']));
+  $sample_number = remove_junk($db->escape($_POST['entrega-Sample_Number']));
+  $test_type = remove_junk($db->escape($_POST['entrega-Test_Type']));
+  $tecnico = remove_junk($db->escape($_POST['entrega-Tecnico']));
    if(empty($errors)){
     $date =make_date();
-      $sql  = "INSERT INTO ensayo_en_entrega (Sample_ID, Tecnico,  Fecha_de_Entrega)";
-      $sql .= " VALUES ('{$sampleid}', '{$tecnico}','{$date}')";
+      $sql  = "INSERT INTO ensayo_en_entrega (Sample_ID,  Sample_Number, Test_Type, Tecnico, Fecha_de_Entrega)";
+      $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}')";
       if($db->query($sql)){
         $session->msg("s", "Ensayo ensayo enviado a entrega exitosamente.");
         redirect('entregaEnsayo.php',false);
@@ -52,11 +54,17 @@ if(!$entrega){
     <div class="panel-body">
       <form method="post" action="enviar_a_entrega.php?id=<?php echo (int)$entrega['id'];?>">
         <div class="form-group">
-            <input type="text" class="form-control" name="entrega-Sample_ID" value="<?php echo remove_junk(ucfirst($entrega['Sample_ID']));?>">
+          <input type="text" class="form-control" name="entrega-Sample_ID" value="<?php echo remove_junk(ucfirst($entrega['Sample_ID'])); ?>">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" name="entrega-Tecnico" value="<?php echo remove_junk(ucfirst($entrega['Tecnico']));?>">
-      </div>
+          <input type="text" class="form-control" name="entrega-Sample_Number" value="<?php echo remove_junk(ucfirst($entrega['Sample_Number'])); ?>">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="entrega-Test_Type" value="<?php echo remove_junk(ucfirst($entrega['Test_Type'])); ?>">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="entrega-Tecnico" value="<?php echo remove_junk(ucfirst($entrega['Tecnico'])); ?>">
+        </div>
         <button type="submit" name="enviar_entrega" class="btn btn-primary">Enviar a Entrega</button>
     </form>
     </div>

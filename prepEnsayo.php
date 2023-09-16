@@ -8,14 +8,16 @@
 ?>
 <?php
  if(isset($_POST['add_prep'])){
-   $req_field = array('preparacion-Sample_ID', 'preparacion-Tecnico');
+   $req_field = array('preparacion-Sample_ID','preparacion-Sample_Number', 'preparacion-Test_Type', 'preparacion-Tecnico');
    validate_fields($req_field);
    $sampleid = remove_junk($db->escape($_POST['preparacion-Sample_ID']));
+   $samplenumber = remove_junk($db->escape($_POST['preparacion-Sample_Number']));
+   $testtype = remove_junk($db->escape($_POST['preparacion-Test_Type']));
    $tecnico = remove_junk($db->escape($_POST['preparacion-Tecnico']));
    if(empty($errors)){
       $date = make_date();
-      $sql  = "INSERT INTO muestra_en_preparacion (Sample_ID, Tecnico, Fecha_Inicio_Preparacion)";
-      $sql .= " VALUES ('{$sampleid}','{$tecnico}',  '{$date}')";
+      $sql  = "INSERT INTO muestra_en_preparacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Preparacion)";
+      $sql .= " VALUES ('{$sampleid}','{$samplenumber}','{$testtype}','{$tecnico}','{$date}')";
       $db->query($sql);
       if($db->query($sql)){
         $session->msg("s", "muestra en preparacion agregada exitosamente.");
@@ -49,8 +51,14 @@
         <div class="panel-body">
           <form method="post" action="prepEnsayo.php">
             <div class="form-group">
-                <input type="text" class="form-control" name="preparacion-Sample_ID" placeholder="Enviar muestra a preparacion" required>
+                <input type="text" class="form-control" name="preparacion-Sample_ID" placeholder="Identificacion de muestra" required>
             </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="preparacion-Sample_Number" placeholder="Numero de muestra" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="preparacion-Test_Type" placeholder="Tipo de Ensayo" required>
+        </div>
             <div class="form-group">
               <input type="text" class="form-control" name="preparacion-Tecnico" placeholder="Tecnico" required>
           </div>
@@ -72,9 +80,11 @@
             <thead>
                 <tr>
                     <th class="text-center" style="width: 50px;">#</th>
-                    <th class="text-center" style="width: 50px;">Sample_ID</th>
+                    <th class="text-center" style="width: 50px;">Id muestra</th>
+                    <th class="text-center" style="width: 50px;">Numero de muestra</th>
+                    <th class="text-center" style="width: 50px;">Tipo de ensayo</th>
                     <th class="text-center" style="width: 50px;">Tecnico</th>
-                    <th class="text-center" style="width: 50px;">Fecha_de_inicio</th>
+                    <th class="text-center" style="width: 50px;">Fecha de inicio</th>
                     <th class="text-center" style="width: 100px;">enviar muestra a Realizacion</th>
                 </tr>
              
@@ -85,6 +95,8 @@
                 <tr>
                     <td class="text-center"><?php echo count_id();?></td>
                     <td><?php echo remove_junk(ucfirst($prep['Sample_ID'])); ?></td>
+                    <td><?php echo remove_junk(ucfirst($prep['Sample_Number'])); ?></td>
+                    <td><?php echo remove_junk(ucfirst($prep['Test_Type'])); ?></td>
                     <td><?php echo remove_junk(ucfirst($prep['Tecnico'])); ?></td>
                     <td><?php echo remove_junk(ucfirst($prep['Fecha_Inicio_Preparacion'])); ?></td>
                  
