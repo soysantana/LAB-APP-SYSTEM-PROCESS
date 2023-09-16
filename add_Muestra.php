@@ -1,36 +1,26 @@
 <?php
 $page_title = 'Agregar Muestra';
 require_once('includes/load.php');
+require_once('includes/functions.php');
+require_once('includes/config.php');
 
-// Verificar el nivel de permiso del usuario para ver esta página
-page_require_level(3);
+$db_host = "Localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "index_test_lab";
 
-$all_sampleid = find_all('lab_test_requisition_form');
+// Comprobación de errores
+$errors = [];
 
-// Define your database credentials
-$db_host = 'localhost';
-$db_name = 'index_test_lab';
-$db_user = 'root';
-$db_pass = '';
+// Inicializar mensajes
+$msg = [];
 
-try {
-    // Create a new PDO instance
-    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
-
-    // Set PDO to throw exceptions on error
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    // Handle any database connection errors
-    die("Database connection failed: " . $e->getMessage());
-}
-
-// Now you can use $pdo for database operations
-
+// Comprobación de la solicitud POST
 if (isset($_POST['add_Muestra'])) {
-    // Rest of your code here...
-}
-if (isset($_POST['add_Muestra'])) {
-  $req_fields = array('Sample_ID', 'Sample_Number', 'Structure', 'Area', 'Source', 'Depth_From', 'Depth_To', 'Material_Type', 'Sample_Type', 'North', 'East', 'Elev', 'Comment', 'Sample_Date', 'Sample_By', 'Register_By');
+  $req_fields = array(
+    'Sample_ID', 'Sample_Number', 'Structure', 'Area', 'Source', 'Depth_From', 'Depth_To', 'Material_Type',
+    'Sample_Type', 'North', 'East', 'Elev', 'Comment', 'Sample_Date', 'Sample_By'
+  );
 
   validate_fields($req_fields);
 
@@ -50,88 +40,73 @@ if (isset($_POST['add_Muestra'])) {
     $comment = remove_junk($db->escape($_POST['Comment']));
     $sampledate = remove_junk($db->escape($_POST['Sample_Date']));
     $sampleby = remove_junk($db->escape($_POST['Sample_By']));
-    $registerby = remove_junk($db->escape($_POST['Register_By']));
-    $Registed_Date = make_date();
+    $registed_date = make_date();
 
     // Definir los checkboxes válidos
     $checkboxes = array(
-      'MC_Oven', 'MC_Stove', 'MC_Scale', 'Atterberg_Limit', 'Grain_Size', 'Standard_Proctor', 'Specific_Gravity',
-      'Acid_Reactivity', 'Sand_Castle', 'Los_Angeles_Abrasion', 'Soundness', 'UCS', 'PLT', 'BTS', 'Hydrometer',
-      'Double_Hydrometer', 'Pinhole', 'Consolidation', 'Permeability'
+       'Test_Type1', 'Test_Type2', 'Test_Type3', 'Test_Type4', 'Test_Type5',
+        'Test_Type6', 'Test_Type7', 'Test_Type8', 'Test_Type9',
+        'Test_Type10', 'Test_Type11', 'Test_Type12', 'Test_Type13', 'Test_Type14', 'Test_Type15',
+        'Test_Type16', 'Test_Type17', 'Test_Type18', 'Test_Type19'
     );
 
-    // Definir un array para guardar los valores seleccionados
-    $selected_values = array();
+    // Crear un array para almacenar los valores de los checkboxes seleccionados
+    $checkboxes_values = array();
 
     // Recorrer los checkboxes y guardar los valores seleccionados
     foreach ($checkboxes as $checkbox) {
       if (isset($_POST[$checkbox])) {
-        // Agregar el valor al array de valores seleccionados
-        $selected_values[$checkbox] = $_POST[$checkbox];
+        // Obtener el valor del checkbox
+        $checkbox_value = remove_junk($db->escape($_POST[$checkbox]));
+        // Guardar el valor en el array
+        $checkboxes_values[$checkbox] = $checkbox_value;
+      } else {
+        // Si el checkbox no está marcado, asignar un valor predeterminado (en este caso, cadena vacía)
+        $checkboxes_values[$checkbox] = '';
       }
     }
 
-    // Define the placeholders for the prepared statement
-    $placeholders = implode(', ', array_fill(0, count($req_fields), '?'));
+    $query  = "INSERT INTO lab_test_requisition_form (";
+    $query .= "Sample_ID,Sample_Number,Structure,Area,Source, Depth_From, Depth_To, Material_Type, Sample_Type, North, East, Elev, ";
 
-    // Define the list of column names for the INSERT statement
-    $columns = implode(', ', $req_fields);
+    // Agregar los nombres de las columnas de los checkboxes a la consulta SQL
+    $query .= implode(',', $checkboxes);
 
-    // Create the SQL statement
-    $sql = "INSERT INTO lab_test_requisition_form ($columns) VALUES ($placeholders)";
+    $query .= ", Comment, Sample_Date, Sample_By, Registed_Date";
+    $query .= ") VALUES (";
+    $query .= "'{$sampleid}', '{$samplenumber}', '{$structure}', '{$area}', '{$source}', '{$depthfrom}', '{$depthto}', '{$materialtype}', '{$sampletype}', '{$north}', '{$east}', '{$elev}', ";
 
-    $stmt->execute([
-    $sampleid,
-    $samplenumber,
-    $structure,
-    $area,
-    $source,
-    $depthfrom,
-    $depthto,
-    $materialtype,
-    $sampletype,
-    $north,
-    $east,
-    $elev,
-    // Agrega valores para otras columnas también
-]);
+    // Agregar los valores de los checkboxes a la consulta SQL
+    $query .= implode(',', array_map(function($value) {
+      return "'" . $value . "'";
+    }, array_values($checkboxes_values)));
 
+    $query .= ",'{$comment}','{$sampledate}','{$sampleby}','{$registed_date}'";
+    $query .= ") ON DUPLICATE KEY UPDATE Sample_ID='{$sampleid}'";
 
-    // Bind the rest of the parameters dynamically using a loop
-    $paramIndex = 13;
-    foreach ($selected_values as $value) {
-      $stmt->bindParam($paramIndex++, $value);
-    }
-
-    $stmt->bindParam($paramIndex++, $comment);
-    $stmt->bindParam($paramIndex++, $sampledate);
-    $stmt->bindParam($paramIndex++, $sampleby);
-    $stmt->bindParam($paramIndex++, $registerby);
-    $stmt->bindParam($paramIndex++, $Registed_Date);
-
-    // Execute the prepared statement
-    if ($stmt->execute()) {
+    if ($db->query($query)) {
       $session->msg('s', 'Muestra agregada exitosamente.');
       redirect('add_Muestra.php', false);
     } else {
-      // Handle the SQL error
-      $errorInfo = $stmt->errorInfo();
-      $error_message = $errorInfo[2];
-      $session->msg('d', 'Error en la consulta SQL: ' . $error_message);
+      $session->msg('d', 'Lo siento, el registro falló.');
       redirect('add_Muestra.php', false);
     }
+  } else {
+    $session->msg("d", $errors);
+    redirect('add_Muestra.php', false);
   }
 }
-
 ?>
 
-
-
-
 <?php include_once('layouts/header.php'); ?>
+
 <div class="row">
-  <div class="col-md-12">
-    <?php echo display_msg($msg); ?>
+    <div class="col-md-12">
+        <?php
+        foreach ($msg as $message) {
+            echo display_msg($message);
+        }
+        ?>
   </div>
 </div>
   <div class="mb-4 row"><div class="col-md-224"><div class="panel panel-default"><div class="panel-heading">
@@ -219,83 +194,83 @@ if (isset($_POST['add_Muestra'])) {
           
          
           <div class="form-check form-check-inline col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="MC_Oven" value="MC_Oven">
+          <input class="form-check-input" type="checkbox" name="Test_Type1" value="MC_Oven">
           <label class="form-check-label" for="inlineCheckbox1">Contenido de humedad con horno</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="MC_Stove" value="MC_Stove">
+          <input class="form-check-input" type="checkbox" name="Test_Type2" value="MC_Stove">
           <label class="form-check-label" for="inlineCheckbox2">Contenido de humedad con estufa</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="MC_Scale" value="MC_Stove">
+          <input class="form-check-input" type="checkbox" name="Test_Type3" value="MC_Stove">
          <label class="form-check-label" for="inlineCheckbox3">Contenido de humedad con balanza</label>
         </div>
       
 
       <div class="form-check form-check-inline col-xs-4  panel-body">
-        <input class="form-check-input" type="checkbox" name="Atterberg_Limit" value="AL">
+        <input class="form-check-input" type="checkbox" name="Test_Type4" value="AL">
         <label class="form-check-label" for="inlineCheckbox1">Limite de Atterberg</label>
         </div>
         <div class="form-check form-check-inline  col-xs-4 panel-body">
-        <input class="form-check-input" type="checkbox" name="Grain_size" value="GS">
+        <input class="form-check-input" type="checkbox" name="Test_Type5" value="GS">
         <label class="form-check-label" for="inlineCheckbox2">Granulometria por Tamizado</label>
         </div>
         <div class="form-check form-check-inline  col-xs-4  panel-body">
-        <input class="form-check-input" type="checkbox" name="Standard_Proctor" value="SP">
+        <input class="form-check-input" type="checkbox" name="Test_Type6" value="SP">
        <label class="form-check-label" for="inlineCheckbox3">Standard Proctor</label>
       </div>
     
     <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="Specific_Gravity" value="SG">
+      <input class="form-check-input" type="checkbox" name="Test_Type7" value="SG">
       <label class="form-check-label" for="inlineCheckbox1">Gravedad Especifica</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="Acid_Reactivity" value="AR">
+      <input class="form-check-input" type="checkbox" name="Test_Type8" value="AR">
       <label class="form-check-label" for="inlineCheckbox2">Reactividad acidad</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="Sand_Castle" value="SC">
+      <input class="form-check-input" type="checkbox" name="Test_Type9" value="SC">
      <label class="form-check-label" for="inlineCheckbox3">Castillo de Arena</label>
     </div>
   
     <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="Los_Angeles_Abrasion" value="LAA">
+      <input class="form-check-input" type="checkbox" name="Test_Type10" value="LAA">
       <label class="form-check-label" for="inlineCheckbox1">Abrasion de Los Angeles</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="Soundness" value="SND">
+      <input class="form-check-input" type="checkbox" name="Test_Type11" value="SND">
       <label class="form-check-label" for="inlineCheckbox2">Sanidad</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="UCS" value="UCS">
+      <input class="form-check-input" type="checkbox" name="Test_Type12" value="UCS">
      <label class="form-check-label" for="inlineCheckbox3">UCS</label>
     </div>
      <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="PLT" value="PLT">
+      <input class="form-check-input" type="checkbox" name="Test_Type13 value="PLT">
       <label class="form-check-label" for="inlineCheckbox1">PLT</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="BTS" value="BTS">
+      <input class="form-check-input" type="checkbox" name="Test_Type14" value="BTS">
       <label class="form-check-label" for="inlineCheckbox2">Brazilian</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="Hydrometer" value="HY">
+      <input class="form-check-input" type="checkbox" name="Test_Type15" value="HY">
      <label class="form-check-label" for="inlineCheckbox3">Hidrometro</label>
     </div>
      <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="Double_Hydrometer" value="DHY">
+      <input class="form-check-input" type="checkbox" name="Test_Type16" value="DHY">
       <label class="form-check-label" for="inlineCheckbox1">Doble Hidrometro</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="Pinhole" value="PH">
+      <input class="form-check-input" type="checkbox" name="Test_Type17" value="PH">
       <label class="form-check-label" for="inlineCheckbox2">Pinhole</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="Consolidation" value="Cons">
+      <input class="form-check-input" type="checkbox" name="Test_Type18" value="Cons">
       <label class="form-check-label" for="inlineCheckbox3">Consolidacion</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="Permeability" value="Perm">
+      <input class="form-check-input" type="checkbox" name="Test_Type19" value="Perm">
       <label class="form-check-label" for="inlineCheckbox3">Permeabilidad</label>
 </div>
 

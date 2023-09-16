@@ -13,9 +13,9 @@ if (!$editmuestra) {
 
 if (isset($_POST['edit_regMuestra'])) {
   $req_fields = array('Sample_ID', 'Structure', 'Area', 'Source', 'Depth_From', 'Depth_To', 'Material_Type',
-    'Sample_Type', 'North', 'East', 'Elev', 'MC_Oven', 'MC_Stove', 'MC_Scale', 'Atterberg_Limit', 'Grain_size',
-    'Standard_Proctor', 'Specific_Gravity', 'Acid_Reactivity', 'Sand_Castle', 'Los_Angeles_Abrasion', 'Soundness',
-    'UCS', 'PLT', 'BTS', 'Hydrometer', 'Double_Hydrometer', 'Pinhole', 'Consolidation', 'Permeability', 'Comment',
+    'Sample_Type', 'North', 'East', 'Elev', 'Test_Type1', 'Test_Type2', 'Test_Type3', 'Test_Type4', 'Test_Type5',
+    'Test_Type6', 'Test_Type7', 'Test_Type8', 'Test_Type9', 'Test_Type10', 'Test_Type11',
+    'Test_Type12', 'Test_Type13', 'Test_Type14', 'Test_Type15', 'Test_Type16', 'Test_Type17', 'Test_Type18', 'Test_Type19', 'Comment',
     'Sample_By', 'Sample_Date');
 
   validate_fields($req_fields);
@@ -32,25 +32,25 @@ if (isset($_POST['edit_regMuestra'])) {
     $north = remove_junk($db->escape($_POST['North']));
     $east = remove_junk($db->escape($_POST['East']));
     $elev = remove_junk($db->escape($_POST['Elev']));
-    $mc_oven = isset($_POST['MC_Oven']) ? 1 : 0;
-    $mc_stove = isset($_POST['MC_Stove']) ? 1 : 0;
-    $mc_scale = isset($_POST['MC_Scale']) ? 1 : 0;
-    $attlimit = isset($_POST['Atterberg_Limit']) ? 1 : 0;
-    $grain_size = isset($_POST['Grain_size']) ? 1 : 0;
-    $std_proctor = isset($_POST['Standard_Proctor']) ? 1 : 0;
-    $spec_gravi = isset($_POST['Specific_Gravity']) ? 1 : 0;
-    $acid_rea = isset($_POST['Acid_Reactivity']) ? 1 : 0;
-    $sandcastle = isset($_POST['Sand_Castle']) ? 1 : 0;
-    $LAA = isset($_POST['Los_Angeles_Abrasion']) ? 1 : 0;
-    $soundness = isset($_POST['Soundness']) ? 1 : 0;
-    $UCS = isset($_POST['UCS']) ? 1 : 0;
-    $PLT = isset($_POST['PLT']) ? 1 : 0;
-    $bts = isset($_POST['BTS']) ? 1 : 0;
-    $HY = isset($_POST['Hydrometer']) ? 1 : 0;
-    $DHY = isset($_POST['Double_Hydrometer']) ? 1 : 0;
-    $PH = isset($_POST['Pinhole']) ? 1 : 0;
-    $consolid = isset($_POST['Consolidation']) ? 1 : 0;
-    $Permea = isset($_POST['Permeability']) ? 1 : 0;
+    $mc_oven = isset($_POST['Test_Type1']) ? 1 : 0;
+    $mc_stove = isset($_POST['Test_Type2']) ? 1 : 0;
+    $mc_scale = isset($_POST['Test_Type3']) ? 1 : 0;
+    $attlimit = isset($_POST['Test_Type4']) ? 1 : 0;
+    $grain_size = isset($_POST['Test_Type5']) ? 1 : 0;
+    $std_proctor = isset($_POST['Test_Type6']) ? 1 : 0;
+    $spec_gravi = isset($_POST['Test_Type7']) ? 1 : 0;
+    $acid_rea = isset($_POST['Test_Type8']) ? 1 : 0;
+    $sandcastle = isset($_POST['Test_Type9']) ? 1 : 0;
+    $LAA = isset($_POST['Test_Type10']) ? 1 : 0;
+    $soundness = isset($_POST['Test_Type11']) ? 1 : 0;
+    $UCS = isset($_POST['Test_Type12']) ? 1 : 0;
+    $PLT = isset($_POST['Test_Type13']) ? 1 : 0;
+    $bts = isset($_POST['Test_Type14']) ? 1 : 0;
+    $HY = isset($_POST['Test_Type15']) ? 1 : 0;
+    $DHY = isset($_POST['Test_Type16']) ? 1 : 0;
+    $PH = isset($_POST['Test_Type17']) ? 1 : 0;
+    $consolid = isset($_POST['Test_Type18']) ? 1 : 0;
+    $Permea = isset($_POST['Test_Type19']) ? 1 : 0;
     $comment = remove_junk($db->escape($_POST['Comment']));
     $sampleby = remove_junk($db->escape($_POST['Sample_By']));
     $sampledate = remove_junk($db->escape($_POST['Sample_Date']));
@@ -58,12 +58,12 @@ if (isset($_POST['edit_regMuestra'])) {
     $sql = "UPDATE lab_test_requisition_form SET Sample_ID='{$sampleid}', Structure='{$structure}', 
     Area='{$area}', Source='{$source}', Depth_From='{$depthfrom}', Depth_To='{$depthto}', 
     Material_Type='{$materialtype}', Sample_Type='{$sampletype}', North='{$north}', East='{$east}', 
-    Elev='{$elev}', MC_Oven='{$mc_oven}', MC_Stove='{$mc_stove}', MC_Scale='{$mc_scale}', 
-    Atterberg_Limit='{$attlimit}', Grain_Size='{$grain_size}', Standard_Proctor='{$std_proctor}', 
-    Specific_Gravity='{$spec_gravi}', Acid_Reactivity='{$acid_rea}', Sand_Castle='{$sandcastle}', 
-    Los_Angeles_Abrasion='{$LAA}', Soundness='{$soundness}', UCS='{$UCS}', PLT='{$PLT}',
-     BTS='{$bts}', Hydrometer='{$HY}', Double_Hydrometer='{$DHY}', Pinhole='{$PH}', 
-     Consolidation='{$consolid}', Permeability='{$Permea}', Comment='{$comment}', 
+    Elev='{$elev}', Test_Type1='{$mc_oven}', Test_Type2='{$mc_stove}', Test_Type3='{$mc_scale}', 
+    Test_Type4='{$attlimit}', Test_Type5='{$grain_size}', Test_Type6='{$std_proctor}', 
+    Test_Type7='{$spec_gravi}', Test_Type8='{$acid_rea}', Test_Type9='{$sandcastle}', 
+    Test_Type10='{$LAA}', Test_Type11='{$soundness}', Test_Type12='{$UCS}', Test_Type13='{$PLT}',
+    Test_Type14='{$bts}', Test_Type15='{$HY}', Test_Type16='{$DHY}', Test_Type17='{$PH}', 
+    Test_Type18='{$consolid}', Test_Type19='{$Permea}', Comment='{$comment}', 
      Sample_By='{$sampleby}', Sample_Date='{$sampledate}' 
      WHERE id='{$db->escape($id)}'";
 
@@ -178,17 +178,17 @@ if (isset($_POST['edit_regMuestra'])) {
           </div>
 
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="MC_Oven" value="" <?php if ($editmuestra['MC_Oven']  == 'Required') echo 'checked'; ?>>
+            <input class="form-check-input" type="checkbox" name="Test_Type1" value="" <?php if ($editmuestra['est_Type1'] == '1') echo 'checked'; ?>>
             <label class="form-check-label" for="inlineCheckbox1">Moisture Content Oven</label>
-          </div>
-          <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="MC_Stove" value="" <?php if ($editmuestra['MC_Stove'] == 'Required') echo 'checked'; ?>>
+        </div>
+        <div class="form-check form-check-inline col-xs-4 panel-body">
+            <input class="form-check-input" type="checkbox" name="Test_Type2" value="" <?php if ($editmuestra['Test_Type2'] == '1') echo 'checked'; ?>>
             <label class="form-check-label" for="inlineCheckbox2">Moisture Content Stove</label>
-          </div>
-          <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="MC_Scale" value="" <?php if ($editmuestra['MC_Scale'] == 'Required') echo 'checked'; ?>>
+        </div>
+        <div class="form-check form-check-inline col-xs-4 panel-body">
+            <input class="form-check-input" type="checkbox" name="Test_Type3" value="" <?php if ($editmuestra['MC_Scale'] == '1') echo 'checked'; ?>>
             <label class="form-check-label" for="inlineCheckbox3">Moisture Content Scale</label>
-          </div>
+        </div>
 
           <div class="form-check form-check-inline col-xs-4 panel-body">
             <input class="form-check-input" type="checkbox" name="Atterberg_Limit" <?php if ($editmuestra['Atterberg_Limit'] == 'Required') echo 'checked'; ?>>

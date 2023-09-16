@@ -240,16 +240,18 @@ function tableExists($table){
     foreach ($result as $column_info) {
         $column_name = $column_info['Field'];
 
-        $select_query = "SELECT COUNT(*) AS count FROM lab_test_requisition_form WHERE $column_name = 'Required'";
-        $count_result = find_by_sql($select_query);
+        $select_query = "SELECT $column_name FROM lab_test_requisition_form WHERE $column_name IS NOT NULL";
+        $column_values = find_by_sql($select_query);
 
-        if (!empty($count_result) && $count_result[0]['count'] > 0) {
-            $required_columns[] = $column_name;
+        // Verificar si hay valores en la columna y agregarlos a la lista de valores requeridos
+        if (!empty($column_values)) {
+            $required_columns[$column_name] = $column_values;
         }
     }
 
     return $required_columns;
 }
+
 
 
   

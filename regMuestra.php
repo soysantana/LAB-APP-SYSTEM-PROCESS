@@ -66,11 +66,12 @@ $required_tests = ensayos_requeridos();
               <h3>Ensayos Solicitados:</h3>
 
               <ul>
-                <?php foreach ($required_tests as $column) { ?>
-                  <?php if (isset($product[$column]) && $product[$column] === 'Required') { ?>
-                    <li><?php echo remove_junk($column) . ': Required'; ?></li>
-                  <?php } ?>
-                <?php } ?>
+                <?php for ($i = 1; $i <= 19; $i++) { 
+                  $column_name = 'Test_Type' . $i;
+                  if (isset($product[$column_name]) && !empty($product[$column_name])) { ?>
+                    <li><?php echo remove_junk($product[$column_name]); ?></li>
+                  <?php } 
+                } ?>
               </ul>
 
               <h3>Fecha de muestreo: <?php echo remove_junk($product['Sample_Date']); ?></h3>

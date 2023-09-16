@@ -43,20 +43,21 @@ function validate_fields($var){
 /* Function for Display Session Message
    Ex echo displayt_msg($message);
 /*--------------------------------------------------------------*/
-function display_msg($msg =''){
-   $output = array();
-   if(!empty($msg)) {
+function display_msg($msg = '') {
+  $output = '';
+
+  if (!empty($msg) && is_array($msg)) {
       foreach ($msg as $key => $value) {
-         $output  = "<div class=\"alert alert-{$key}\">";
-         $output .= "<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>";
-         $output .= remove_junk(first_character($value));
-         $output .= "</div>";
+          $output .= "<div class=\"alert alert-{$key}\">";
+          $output .= "<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>";
+          $output .= remove_junk(first_character($value));
+          $output .= "</div>";
       }
-      return $output;
-   } else {
-     return "" ;
-   }
+  }
+
+  return $output;
 }
+
 /*--------------------------------------------------------------*/
 /* Function for redirect
 /*--------------------------------------------------------------*/
