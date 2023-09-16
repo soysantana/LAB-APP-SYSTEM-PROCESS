@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2023 at 07:41 AM
--- Server version: 10.4.27-MariaDBss
+-- Generation Time: Sep 16, 2023 at 04:33 AM
+-- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `index_test_lab`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alteraded_samples`
+--
+
+CREATE TABLE `alteraded_samples` (
+  `id` int(150) NOT NULL,
+  `Sample_ID` varchar(125) NOT NULL,
+  `Sample_Number` varchar(150) NOT NULL,
+  `Sample_Type` varchar(25) NOT NULL,
+  `Depth_From` decimal(10,2) NOT NULL,
+  `Depth_To` decimal(10,2) NOT NULL,
+  `Sample_Weight` decimal(10,2) DEFAULT NULL,
+  `Sample_Date` date NOT NULL,
+  `Store_In` varchar(25) NOT NULL,
+  `Comment` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `alteraded_samples`
+--
+
+INSERT INTO `alteraded_samples` (`id`, `Sample_ID`, `Sample_Number`, `Sample_Type`, `Depth_From`, `Depth_To`, `Sample_Weight`, `Sample_Date`, `Store_In`, `Comment`) VALUES
+(0, 'TP-BGC23-NTSF-100', 'G3', 'Grab', '1.00', '2.00', '0.00', '2023-07-07', 'Stored_PVLab', 'Material for comparison with CQC'),
+(0, 'TP-BGC23-NTSF-101', 'G1', 'Grab', '4.00', '4.00', '1.00', '2023-07-17', 'Sended_To', 'Ohters');
 
 -- --------------------------------------------------------
 
@@ -2767,8 +2794,8 @@ CREATE TABLE `lab_test_requisition_form` (
 --
 
 INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `MC_Oven`, `MC_Stove`, `MC_Scale`, `Atterberg_Limit`, `Grain_size`, `Standard_Proctor`, `Specific_Gravity`, `Acid_Reactivity`, `Sand_Castle`, `Los_Angeles_Abrasion`, `Soundness`, `UCS`, `PLT`, `BTS`, `Hydrometer`, `Double_Hydrometer`, `Pinhole`, `Consolidation`, `Permeability`, `Comment`, `Statuss`, `Sample_Date`, `Sample_By`, `Registed_Date`, `test_inicio`, `Sample_Number`, `Register_By`) VALUES
-(1, 'TP-BGC23-NTSF-100', 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, 'Required', 'Not', 'Not', 'Required', 'Not', 'Required', 'Required', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Required', 'Required', 'Required', 'Not', 'Not', 'Material for comparison with CQC', '', '2023-07-07', 'WD', '0000-00-00', '0000-00-00 00:00:00.000000', 'G3', 'WD'),
-(2, 'TP-BGC23-NTSF-101', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, 'Required', 'Not', 'Not ', 'Required', 'Not ', 'Required', 'Required', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not', 'Required', 'Not ', 'Required', 'Not ', 'Not ', 'Ohters', '', '2023-07-17', 'Wi', '0000-00-00', '0000-00-00 00:00:00.000000', 'G1', 'WD'),
+(1, 'TP-BGC23-NTSF-100', 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grab', 20232500, 376589, 125, 'Required', 'Not', 'Not', 'Required', 'Not', 'Required', 'Required', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Required', 'Required', 'Required', 'Not', 'Not', 'Material for comparison with CQC', '', '2023-07-07', 'WD', '2023-07-11', '0000-00-00 00:00:00.000000', 'G3', 'WD'),
+(2, 'TP-BGC23-NTSF-101', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, 'Required', 'Not', 'Not ', 'Required', 'Not ', 'Required', 'Required', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not', 'Required', 'Not ', 'Required', 'Not ', 'Not ', 'Ohters', '', '2023-07-17', 'Wi', '2023-06-13', '0000-00-00 00:00:00.000000', 'G1', 'WD'),
 (3, 'DH-BGC22-S14-100', 'Site Investigation', 'TSF Naranjo', 'NA', 0.45, 2.25, 'Rock', 'Maxier', 0, 0, 0, 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'sample for TCS ', '', '2023-09-06', 'AR', '2023-09-15', '0000-00-00 00:00:00.000000', 'MX2', 'WD'),
 (4, 'DH-BGC23-NTSF-001', 'Site Investigation', 'TSF Naranjo', 'N/A', 24.45, 25.6, 'Rock', 'Lexan', 0, 0, 0, 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Sample For TCS', '', '2023-09-05', 'AS', '2023-09-15', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
 (5, 'DH-BGC23-NTSF-001', 'Site Investigation', 'TSF Naranjo', 'N/A', 27.3, 28.9, 'Rock', 'Lexan', 0, 0, 0, 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Sample For TCS', '', '2023-09-12', 'AD', '2023-09-15', '0000-00-00 00:00:00.000000', 'LX5', 'WD');
@@ -4170,7 +4197,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-09-15 01:48:48'),
+(1, 'Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-09-15 16:55:47'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2023-03-20 03:13:43'),
 (3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2023-07-19 21:21:18');
 
