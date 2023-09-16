@@ -26,7 +26,7 @@ if ($conn->connect_error) {
 }
 
 // Prepara la consulta SQL para insertar los datos en la tabla "Inalteraded_Samples"
-$sql = "INSERT INTO inalteraded_samples (Sample_ID, Sample_Number, Sample_Type, Depth_From, Depth_To, Sample_Length, Sample_Weight, Sample_Date, Store_In, Comment)
+$sql = "INSERT INTO Inalteraded_Samples (Sample_ID, Sample_Number, Sample_Type, Depth_From, Depth_To, Sample_Length, Sample_Weight, Sample_Date, Store_In, Comment)
         VALUES ('$sampleID', '$sampleNumber', '$sampleType', '$depthFrom', '$depthTo', '$sampleLength', '$sampleWeight', '$sampleDate', '$status', '$comment')";
 
 if ($conn->query($sql) === TRUE) {

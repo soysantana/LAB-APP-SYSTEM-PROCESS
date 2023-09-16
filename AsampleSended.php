@@ -59,7 +59,7 @@ if (!$rtv) {
 $fechaLimite = date('Y-m-d H:i:s', strtotime('-1065 days'));
 
 // Array con los nombres de las tablas deseadas
-$tablas = array('inalteraded_samples');
+$tablas = array('alteraded_samples');
 
 foreach ($tablas as $tabla) {
     $query = "SELECT id, Sample_ID, Sample_Number, Sample_Type, Depth_From, Depth_To, Sample_Weight, Comment, Sample_Date, Store_In FROM $tabla WHERE Store_In = 'Sended_To'";
