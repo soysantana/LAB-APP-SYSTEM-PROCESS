@@ -15,16 +15,26 @@ page_require_level(3);
                     <span class="glyphicon glyphicon-th"></span>
                     <span>Inalteraded Samples Registed List</span>
                 </strong>
-            </div>
-            
-
-            <div class="modal-body">
-                <!-- Barra de búsqueda y botón -->
-                <div class="custom-input-group">
-                    <input type="text" class="form-control" id="inputBusqueda" placeholder="Find.." aria-label="Find..." aria-describedby="btnBuscar">
-                    <button class="btn btn-outline-secondary" id="btnBuscar" type="button">Find</button>
+                <div class="pull-right">
+                    <a href="sampleStored.php" class="btn btn-info btn-sm">Samples Stored In</a>
+                    <a href="sampleSended.php" class="btn btn-info btn-sm">Samples Sended</a>
                 </div>
             </div>
+
+            <div class="modal-body">
+    <!-- Barra de búsqueda y botón -->
+   
+    <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" id="btnBuscar">Find</button>
+          </span>
+          <input type="text" id="inputBusqueda" class="form-control" name="title" placeholder="Find inalteraded samples Registed">
+       </div>
+       <div id="result" class="list-group"></div>
+      </div>
+    
+
 
             <div class="box-body">
                 <div class="table-responsive">
@@ -243,43 +253,6 @@ page_require_level(3);
 });
     });
 </script>
-
-<div class="botones-flotantes">
-    <button class="boton-flotante" id="btSampleStored"><a href="sampleStored.php">Samples Stored In</a></button>
-    <button class="boton-flotante" id="btSampleSended"><a href="sampleSended.php">Samples Sended</a></button>
-</div>
-
-    
-</div>
-
-<style>
-    .botones-flotantes {
-        position: fixed;
-        bottom: 20px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
-        right: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
-    }
-
-    .boton-flotante {
-        display: block;
-        margin-bottom: 10px; /* Espacio entre los botones */
-        padding: 10px 20px; /* Tamaño del botón */
-        background-color: #007BFF; /* Color de fondo */
-        color: #fff; /* Color del texto */
-        border: none;
-        border-radius: 5px; /* Bordes redondeados */
-        cursor: pointer;
-    }
-
-    .boton-flotante:hover {
-        background-color: #0056b3; /* Cambio de color al pasar el mouse */
-    }
-
-    
-</style>
-
-
-
-
 
 
 

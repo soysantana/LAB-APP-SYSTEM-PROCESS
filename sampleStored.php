@@ -20,10 +20,15 @@ page_require_level(3);
 
             <div class="modal-body">
                 <!-- Barra de búsqueda y botón -->
-                <div class="custom-input-group">
-                    <input type="text" class="form-control" id="inputBusqueda" placeholder="Find.." aria-label="Find..." aria-describedby="btnBuscar">
-                    <button class="btn btn-outline-secondary" id="btnBuscar" type="button">Find</button>
-                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary" id="btnBuscar">Find</button>
+                      </span>
+                      <input type="text" id="inputBusqueda" class="form-control" name="title" placeholder="Find inalteraded samples Registed">
+                   </div>
+                   <div id="result" class="list-group"></div>
+                  </div>
             </div>
 
             <div class="box-body">
