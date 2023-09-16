@@ -1,5 +1,5 @@
 <?php
-$page_title = 'listado de muestras inalteradas';
+$page_title = 'listado de muestras alteradas';
 require_once('includes/load.php');
 page_require_level(3);
 
@@ -13,11 +13,11 @@ page_require_level(3);
             <div class="panel-heading clearfix">
                 <strong>
                     <span class="glyphicon glyphicon-th"></span>
-                    <span>Inalteraded Samples Registed List</span>
+                    <span>Alteraded Samples Registed List</span>
                 </strong>
                 <div class="pull-right">
-                    <a href="sampleStored.php" class="btn btn-info btn-sm">Samples Stored In</a>
-                    <a href="sampleSended.php" class="btn btn-info btn-sm">Samples Sended</a>
+                    <a href="AsampleStored.php" class="btn btn-info btn-sm">Samples Stored In</a>
+                    <a href="AsampleSended.php" class="btn btn-info btn-sm">Samples Sended</a>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@ page_require_level(3);
                                 $query = "SELECT id, Sample_ID, Sample_Number, Sample_Type, Depth_From, Depth_To, Comment, Sample_Date 
                                 FROM $tabla 
                                 WHERE Registed_Date >= '$fechaLimite' 
-                                AND Sample_Type IN ('Lexan', 'Maxier', 'Shelby', 'Ring')";
+                                AND Sample_Type IN ('Grab', 'Bulk', 'Truck')";
                                 $result = mysqli_query($rtv, $query);
                                 if (!$result) {
                                     die("Error al consultar la base de datos: " . mysqli_error($rtv));
@@ -142,10 +142,7 @@ page_require_level(3);
                         <label for="editDepthTo">Depth To (mt)</label>
                         <input type="text" class="form-control" id="editDepthTo" name="editDepthTo">
                     </div>
-                    <div class="form-group">
-                        <label for="editSampleLength">Sample Length (mt)</label>
-                        <input type="text" class="form-control" id="editSampleLength" name="editSampleLength">
-                    </div>
+                   
                     <div class="form-group">
                         <label for="editSampleWeight">Sample Weight (Kg)</label>
                         <input type="text" class="form-control" id="editSampleWeigth" name="editSampleWeigth">
@@ -212,7 +209,6 @@ page_require_level(3);
             var sampleType = $('#editSampleType').val();
             var depthFrom = $('#editDepthFrom').val();
             var depthTo = $('#editDepthTo').val();
-            var sampleLength = $('#editSampleLength').val();
             var sampleWeight = $('#editSampleWeigth').val();
             var sampleDate = $('#editSampleDate').val();
             var status = $('#Status').val();
@@ -220,7 +216,7 @@ page_require_level(3);
 
 
             $.ajax({
-                url: 'add_Inalteradedsample.php',
+                url: 'add_Alteradedsample.php',
                 type: 'POST',
                 data: {
                     id: id,
@@ -229,7 +225,6 @@ page_require_level(3);
                     sampleType: sampleType,
                     depthFrom: depthFrom,
                     depthTo: depthTo,
-                    sampleLength: sampleLength,
                     sampleWeight: sampleWeight,
                     sampleDate: sampleDate,
                     status: status,
@@ -261,4 +256,3 @@ page_require_level(3);
 
 
 <?php include_once('layouts/footer.php'); ?>
-

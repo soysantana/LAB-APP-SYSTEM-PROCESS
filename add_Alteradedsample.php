@@ -6,7 +6,6 @@ $sampleNumber = $_POST['sampleNumber'];
 $sampleType = $_POST['sampleType'];
 $depthFrom = $_POST['depthFrom'];
 $depthTo = $_POST['depthTo'];
-$sampleLength = $_POST['sampleLength'];
 $sampleWeight = $_POST['sampleWeight'];
 $sampleDate = $_POST['sampleDate'];
 $status = $_POST['status'];
@@ -25,9 +24,9 @@ if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
 
-// Prepara la consulta SQL para insertar los datos en la tabla "Inalteraded_Samples"
-$sql = "INSERT INTO inalteraded_samples (Sample_ID, Sample_Number, Sample_Type, Depth_From, Depth_To, Sample_Length, Sample_Weight, Sample_Date, Store_In, Comment)
-        VALUES ('$sampleID', '$sampleNumber', '$sampleType', '$depthFrom', '$depthTo', '$sampleLength', '$sampleWeight', '$sampleDate', '$status', '$comment')";
+// Prepara la consulta SQL para insertar los datos en la tabla "Alteraded_Samples"
+$sql = "INSERT INTO alteraded_samples (Sample_ID, Sample_Number, Sample_Type, Depth_From, Depth_To, Sample_Weight, Sample_Date, Store_In, Comment)
+        VALUES ('$sampleID', '$sampleNumber', '$sampleType', '$depthFrom', '$depthTo', '$sampleWeight', '$sampleDate', '$status', '$comment')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Datos guardados exitosamente";
