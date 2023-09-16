@@ -54,6 +54,9 @@ require_once('ensayos/mcoven.php');
         <li class="nav-item">
           <a class="nav-link glyphicon glyphicon-registration-mark" href="menuEnsayosRevision.php" style="font-size: 17px;"> Ensayos en Resivion</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link glyphicon glyphicon-rub" href="ensayospendientes.php" style="font-size: 17px;"> Ensayos Pendientes</a>
+        </li>
         <li class="nav-item has-submenu">
           <a class="nav-link  glyphicon glyphicon-shopping-cart submenu-toggle" href="inventario.php" style="font-size: 17px;">Inventarios</a>      
             <ul class="submenu collapse">
