@@ -101,15 +101,16 @@ if (isset($_POST['edit_regMuestra'])) {
         <div class="col-md-14">
           <form method="post" action="edit_regMuestra.php" class="clearfix">
             <div class="col-xs-4">
-              <label>Sample ID</label>
+              <label>ID de muestra</label>
               <input class="form-control" name="Sample_ID" type="text" value="<?php echo $editmuestra['Sample_ID']; ?>">
             </div>
             <div class="col-xs-4">
-              <label>Sample Number</label>
-              <input class="form-control" name="Sample_Number" type="text" value="<?php echo $editmuestra['Sample_Number]; ?>">
+              <label>Numero de muestra</label>
+              <input class="form-control" name="Sample_Number" type="text" value="<?php echo $editmuestra['Sample_Number']; ?>">
+
             </div>
             <div class="col-xs-4">
-              <label>Structure</label>
+              <label>Estructura</label>
               <input class="form-control" name="Structure" type="text" value="<?php echo $editmuestra['Structure']; ?>">
             </div>
             <div class="col-xs-4">
@@ -122,15 +123,15 @@ if (isset($_POST['edit_regMuestra'])) {
             <div class="col-md-12"></div>
 
             <div class="col-xs-4">
-              <label>Source</label>
+              <label>Fuente</label>
               <input class="form-control" name="Source" type="text" value="<?php echo $editmuestra['Source']; ?>">
             </div>
             <div class="col-xs-4">
-              <label>Depth From</label>
+              <label>Profundidad desde</label>
               <input class="form-control" name="Depth_From" type="text" value="<?php echo $editmuestra['Depth_From']; ?>">
             </div>
             <div class="col-xs-4">
-              <label>Depth To</label>
+              <label>Profundidad hasta</label>
               <input class="form-control" name="Depth_To" type="text" value="<?php echo $editmuestra['Depth_To']; ?>">
             </div>
           </div>
@@ -140,7 +141,7 @@ if (isset($_POST['edit_regMuestra'])) {
               <div></div>
             </div>
             <div class="col-xs-4">
-              <label>Material Type</label>
+              <label>Tipo de material</label>
               <select class="form-control" name="Material_Type">
                 <option <?php if ($editmuestra['Material_Type'] == "Soil") echo "selected"; ?>>Soil</option>
                 <option <?php if ($editmuestra['Material_Type'] == "Rock") echo "selected"; ?>>Rock</option>
@@ -148,7 +149,7 @@ if (isset($_POST['edit_regMuestra'])) {
               </select>
             </div>
             <div class="col-xs-4">
-              <label>Sample Type</label>
+              <label>Tipo de muestra</label>
               <select class="form-control" name="Sample_Type">
                 <option <?php if ($editmuestra['Sample_Type'] == "Bulk") echo "selected"; ?>>Bulk</option>
                 <option <?php if ($editmuestra['Sample_Type'] == "Grab") echo "selected"; ?>>Grab</option>
@@ -164,99 +165,99 @@ if (isset($_POST['edit_regMuestra'])) {
             <div class="col-md-12">
             </div>
             <div class="col-xs-4">
-              <label>North</label>
+              <label>Coordenada Norte</label>
               <input class="form-control" name="North" type="text" value="<?php echo $editmuestra['North']; ?>">
             </div>
             <div class="col-xs-4">
-              <label>East</label>
+              <label>Coordenada Este</label>
               <input class="form-control" name="East" type="text" value="<?php echo $editmuestra['East']; ?>">
             </div>
             <div class="col-xs-4">
-              <label>Elevation</label>
+              <label>Elevacion</label>
               <input class="form-control" name="Elev" type="text" value="<?php echo $editmuestra['Elev']; ?>">
             </div>
           </div>
 
           <div class="form-check form-check-inline col-xs-4 panel-body">
             <input class="form-check-input" type="checkbox" name="Test_Type1" value="" <?php if ($editmuestra['est_Type1'] == '1') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox1">Moisture Content Oven</label>
+            <label class="form-check-label" for="inlineCheckbox1">Humedad en Horno</label>
         </div>
         <div class="form-check form-check-inline col-xs-4 panel-body">
             <input class="form-check-input" type="checkbox" name="Test_Type2" value="" <?php if ($editmuestra['Test_Type2'] == '1') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox2">Moisture Content Stove</label>
+            <label class="form-check-label" for="inlineCheckbox2">Humedad en estufa</label>
         </div>
         <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Test_Type3" value="" <?php if ($editmuestra['MC_Scale'] == '1') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox3">Moisture Content Scale</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type3" value="" <?php if ($editmuestra['Test_Type3'] == '1') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox3">Humedad en Balanza</label>
         </div>
 
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Atterberg_Limit" <?php if ($editmuestra['Atterberg_Limit'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox1">Atterberg Limit</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type4" <?php if ($editmuestra['Test_Type4'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox1">Limite de Atterberg</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Grain_size" value="" <?php if ($editmuestra['Grain_size']  == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox2">Sieved Grain Size</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type5" value="" <?php if ($editmuestra['Test_Type5']  == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox2">Granulometria por Tamizado</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Standard_Proctor" value="" <?php if ($editmuestra['Standard_Proctor'] == 'Required') echo 'checked'; ?>
+            <input class="form-check-input" type="checkbox" name="Test_Type6" value="" <?php if ($editmuestra['Test_Type6'] == 'Required') echo 'checked'; ?>
             <label class="form-check-label" for="inlineCheckbox3">Standard Proctor</label>
           </div>
 
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Specific_Gravity" value="" <?php if ($editmuestra['Specific_Gravity'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox1">Specific Gravity</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type7" value="" <?php if ($editmuestra['Test_Type7'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox1">Gravedad Especifica</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Acid_Reactivity" value="" <?php if ($editmuestra['Acid_Reactivity'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox2">Acid Reactivity</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type8" value="" <?php if ($editmuestra['Test_Type8'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox2">Reactividad Acida</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Sand_Castle" value="" <?php if ($editmuestra['Sand_Castle'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox3">Sand Castle</label>
-          </div>
-
-          <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Los_Angeles_Abrasion" value="" <?php if ($editmuestra['Los_Angeles_Abrasion'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox1">Los Angeles Abrasion</label>
-          </div>
-          <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Soundness" value="" <?php if ($editmuestra['Soundness'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox2">Soundness</label>
-          </div>
-          <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="UCS" value="" <?php if ($editmuestra['UCS'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox3">Unconfined Compressive Strength (UCS)</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type9" value="" <?php if ($editmuestra['Test_Type9'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox3">Castillo de Arena</label>
           </div>
 
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="PLT" value="" <?php if ($editmuestra['PLT'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox1">Point Load Test (PLT)</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type10" value="" <?php if ($editmuestra['Test_Type10'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox1">Abrasion de Los Angeles</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="BTS" value="" <?php if ($editmuestra['BTS'] == 'Required')  echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox2">Splitting Tensile Strength Test (Brazilian)</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type11" value="" <?php if ($editmuestra['Test_Type11'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox2">Sanidad</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Hydrometer" value="" <?php if ($editmuestra['Hydrometer'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox3">Hydrometer</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type12" value="" <?php if ($editmuestra['Test_Type12'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox3">Esfuerzo a compresion (UCS)</label>
           </div>
 
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Double_Hydrometer" value="" <?php if ($editmuestra['Double_Hydrometer'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox1">Double Hydrometer</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type13" value="" <?php if ($editmuestra['Test_Type13'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox1">Carga Puntual (PLT)</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Pinhole" value="" <?php if ($editmuestra['Pinhole'] == 'Required') echo 'checked'; ?>>
+            <input class="form-check-input" type="checkbox" name="Test_Type14" value="" <?php if ($editmuestra['Test_Type14'] == 'Required')  echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox2">Esfuerzo a tension (Brazilian)</label>
+          </div>
+          <div class="form-check form-check-inline col-xs-4 panel-body">
+            <input class="form-check-input" type="checkbox" name="Test_Type15" value="" <?php if ($editmuestra['Test_Type15'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox3">Hidrometro</label>
+          </div>
+
+          <div class="form-check form-check-inline col-xs-4 panel-body">
+            <input class="form-check-input" type="checkbox" name="Test_Type16" value="" <?php if ($editmuestra['Test_Type16'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox1">Doble Hidrometro</label>
+          </div>
+          <div class="form-check form-check-inline col-xs-4 panel-body">
+            <input class="form-check-input" type="checkbox" name="Test_Type17" value="" <?php if ($editmuestra['Test_Type17'] == 'Required') echo 'checked'; ?>>
             <label class="form-check-label" for="inlineCheckbox2">Pinhole</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Consolidation" value="" <?php if ($editmuestra['Consolidation'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox3">Consolidation</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type18" value="" <?php if ($editmuestra['Test_Type18'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox3">Consolidacion</label>
           </div>
           <div class="form-check form-check-inline col-xs-4 panel-body">
-            <input class="form-check-input" type="checkbox" name="Permeability" value="" <?php if ($editmuestra['Permeability'] == 'Required') echo 'checked'; ?>>
-            <label class="form-check-label" for="inlineCheckbox3">Permeability</label>
+            <input class="form-check-input" type="checkbox" name="Test_Type19" value="" <?php if ($editmuestra['Test_Type19'] == 'Required') echo 'checked'; ?>>
+            <label class="form-check-label" for="inlineCheckbox3">Permeabilidad</label>
           </div>
 
           <div class="panel-body">
@@ -264,12 +265,12 @@ if (isset($_POST['edit_regMuestra'])) {
             </div>
 
             <div class="col-xs-4">
-              <label>Comment</label>
+              <label>Comentario</label>
               <input class="form-control" name="Comment" type="textarea" value="<?php echo $editmuestra['Comment']; ?>">
             </div>
 
             <div class="col-xs-4">
-              <label>Sample By</label>
+              <label>Muestreado por</label>
               <input class="form-control" name="Sample_By" type="text" value="<?php echo $editmuestra['Sample_By']; ?>">
             </div>
           </div>
@@ -278,7 +279,7 @@ if (isset($_POST['edit_regMuestra'])) {
             <div class="col-md-12">
             </div>
             <div class="col-xs-4">
-              <label>Sample Date</label>
+              <label>Fecha de Muestreo</label>
               <input class="form-control" name="Sample_Date" type="date" value="<?php echo $editmuestra['Sample_Date']; ?>">
             </div>
 
