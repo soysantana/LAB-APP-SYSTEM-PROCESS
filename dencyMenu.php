@@ -18,11 +18,12 @@ $products = join_lab_test_requisition_form();
                 </strong>
             </div>
             <div class="panel-body">
-              <a href="density_weigth.php" class="btn btn-primary btn-lg btn-block">Densidades De Especimenes De Suelo</a>
-              <a href="density_bulk.php" class="btn btn-primary btn-lg btn-block">Densidad Bulk</a>
-              <a href="conteo_gama.php" class="btn btn-primary btn-lg btn-block">Conteo Gamma Densimetro</a>
-              <a href="ensayo_gama.php" class="btn btn-primary btn-lg btn-block">Ensayo Gamma Densimetro</a>
-              <a href="sand_density.php" class="btn btn-primary btn-lg btn-block">Calibracion de Arena</a>
+                <div class="list-group">
+              <a href="density_weigth.php" class="list-group-item">Densidades De Especimenes De Suelo</a>
+              <a href="density_bulk.php" class="list-group-item">Densidad Bulk</a>
+              <a href="conteo_gama.php" class="list-group-item">Conteo Gamma Densimetro</a>
+              <a href="ensayo_gama.php" class="list-group-item">Ensayo Gamma Densimetro</a>
+              <a href="sand_density.php" class="list-group-item">Calibracion de Arena</a>
           </div>
         </div>
     </div>

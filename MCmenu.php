@@ -9,19 +9,21 @@ $products = join_lab_test_requisition_form();
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading clearfix">
-                <strong>
-                    <span class="glyphicon glyphicon-th"></span>
-                    <span>Menu de Ensayos de Contenido de Humedad</span>
-                </strong>
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <strong>
+            <span class="glyphicon glyphicon-th"></span>
+                <span>Menu de Ensayos de Contenido de Humedad</span> 
+            </strong>
             </div>
             <div class="panel-body">
-              <a href="mcoven.php" class="btn btn-primary btn-lg btn-block">Contenido de humedad en Horno</a>
-              <a href="mc_microwave.php" class="btn btn-primary btn-lg btn-block">Contenido de humedad en Microhonda</a>
-              <a href="mc_constant_mass.php" class="btn btn-primary btn-lg btn-block">Contenido de humedad en 60°C</a>
-              <a href="mc_scale.php" class="btn btn-primary btn-lg btn-block">Contenido de humedad en Scale</a>
-          </div>
+                <div class="list-group">
+                    <a href="mcoven.php" class="list-group-item">Contenido de humedad en Horno</a>
+                    <a href="mc_microwave.php" class="list-group-item">Contenido de humedad en Microhonda</a>
+                    <a href="mc_constant_mass.php" class="list-group-item">Contenido de humedad en 60°C</a>
+                    <a href="mc_scale.php" class="list-group-item">Contenido de humedad en Scale</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

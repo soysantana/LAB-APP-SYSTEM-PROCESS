@@ -3,6 +3,10 @@ $page_title = 'Grain size for Rocks';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/GrainSizeRock.php'); 
+  }
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -34,17 +38,13 @@ page_require_level(2);
 <div class="panel-body">
 <form method="post" action="gs_rock.php" onsubmit="calcular();calcularD();">
 
-    <div>
-        <table class="table table-bordered" style="width: 100%;">
-          <thead>
-            <caption></caption>
-          </thead>
-          <tbody>
-            <tr></tr>
-          </tbody>
-          <tbody id="product_info"></tbody>
-        </table>
-      </div>
+<div>
+<table class="table table-bordered">
+<thead>
+<tbody id="product_info"> </tbody>
+</thead>
+</table>
+</div>
       
       <table class="table table-bordered">
       <thead>
@@ -61,7 +61,7 @@ page_require_level(2);
       
       <div class="col-xs-4">
       <label >Preparation Method</label>
-      <select class="form-control" name="Preparation_Method">
+      <select class="form-control" name="PreparationMethod">
       <option selected>Choose...</option>
       <option value="Oven_Dried">Oven Dried</option>
       <option value="Air_Dried">Air Dried</option>
@@ -70,7 +70,7 @@ page_require_level(2);
       
       <div class="col-xs-4">
       <label >Split Method</label>
-      <select class="form-control" name="Split">
+      <select class="form-control" name="SplitMethod">
       <option selected>Choose...</option>
       <option value="Mech_Split">Mech. Split</option>
       <option value="Man_Split">Manual Split</option>
@@ -89,7 +89,7 @@ page_require_level(2);
           
       <div class="col-xs-4">
       <label>Test Start Date</label>
-      <input class="form-control" name="Test_Start_Date" type="date">
+      <input class="form-control" name="TestStartDate" type="date">
       </div>
       </div>
       
@@ -107,113 +107,113 @@ page_require_level(2);
                   <th style="font-size: 12px; text-align: center;" scope="row">Total</th>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 150px; height: 25px;"scope="row">40"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="1"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="2"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="3"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="4"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="5"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="6"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="7"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="71"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_40_No1" style="border: none;" size="12" style="background: transparent;"id="1"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_40_No2" style="border: none;" size="12" style="background: transparent;"id="2"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_40_No3" style="border: none;" size="12" style="background: transparent;"id="3"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_40_No4" style="border: none;" size="12" style="background: transparent;"id="4"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_40_No5" style="border: none;" size="12" style="background: transparent;"id="5"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_40_No6" style="border: none;" size="12" style="background: transparent;"id="6"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_40_No7" style="border: none;" size="12" style="background: transparent;"id="7"oninput="calcular()"></td>
+                <td><input type="text" name="Total_40_No8" style="border: none;" size="12" style="background: transparent;"id="71"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">30"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="8"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="9"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="10"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="11"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="12"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="13"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="14"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="72"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_30_No1" style="border: none;" size="12" style="background: transparent;"id="8"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_30_No2" style="border: none;" size="12" style="background: transparent;"id="9"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_30_No3" style="border: none;" size="12" style="background: transparent;"id="10"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_30_No4" style="border: none;" size="12" style="background: transparent;"id="11"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_30_No5" style="border: none;" size="12" style="background: transparent;"id="12"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_30_No6" style="border: none;" size="12" style="background: transparent;"id="13"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_30_No7" style="border: none;" size="12" style="background: transparent;"id="14"oninput="calcular()"></td>
+                <td><input type="text" name="Total_30_No8" style="border: none;" size="12" style="background: transparent;"id="72"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">20"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="15"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="16"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="17"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="18"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="19"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="20"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="21"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="73"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_20_No1" style="border: none;" size="12" style="background: transparent;"id="15"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_20_No2" style="border: none;" size="12" style="background: transparent;"id="16"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_20_No3" style="border: none;" size="12" style="background: transparent;"id="17"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_20_No4" style="border: none;" size="12" style="background: transparent;"id="18"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_20_No5" style="border: none;" size="12" style="background: transparent;"id="19"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_20_No6" style="border: none;" size="12" style="background: transparent;"id="20"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_20_No7" style="border: none;" size="12" style="background: transparent;"id="21"oninput="calcular()"></td>
+                <td><input type="text" name="Total_20_No8" style="border: none;" size="12" style="background: transparent;"id="73"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">13"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="22"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="23"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="24"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="25"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="26"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="27"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="28"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="74"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_13_No1" style="border: none;" size="12" style="background: transparent;"id="22"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_13_No2" style="border: none;" size="12" style="background: transparent;"id="23"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_13_No3" style="border: none;" size="12" style="background: transparent;"id="24"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_13_No4" style="border: none;" size="12" style="background: transparent;"id="25"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_13_No5" style="border: none;" size="12" style="background: transparent;"id="26"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_13_No6" style="border: none;" size="12" style="background: transparent;"id="27"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_13_No7" style="border: none;" size="12" style="background: transparent;"id="28"oninput="calcular()"></td>
+                <td><input type="text" name="Total_13_No8" style="border: none;" size="12" style="background: transparent;"id="74"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">12"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="29"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="30"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="31"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="32"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="33"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="34"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="35"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="75"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_12_No1" style="border: none;" size="12" style="background: transparent;"id="29"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_12_No2" style="border: none;" size="12" style="background: transparent;"id="30"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_12_No3" style="border: none;" size="12" style="background: transparent;"id="31"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_12_No4" style="border: none;" size="12" style="background: transparent;"id="32"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_12_No5" style="border: none;" size="12" style="background: transparent;"id="33"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_12_No6" style="border: none;" size="12" style="background: transparent;"id="34"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_12_No7" style="border: none;" size="12" style="background: transparent;"id="35"oninput="calcular()"></td>
+                <td><input type="text" name="Total_12_No8" style="border: none;" size="12" style="background: transparent;"id="75"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">10"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="36"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="37"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="38"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="39"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="40"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="41"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="42"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="76"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_10_No1" style="border: none;" size="12" style="background: transparent;"id="36"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_10_No2" style="border: none;" size="12" style="background: transparent;"id="37"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_10_No3" style="border: none;" size="12" style="background: transparent;"id="38"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_10_No4" style="border: none;" size="12" style="background: transparent;"id="39"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_10_No5" style="border: none;" size="12" style="background: transparent;"id="40"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_10_No6" style="border: none;" size="12" style="background: transparent;"id="41"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_10_No7" style="border: none;" size="12" style="background: transparent;"id="42"oninput="calcular()"></td>
+                <td><input type="text" name="Total_10_No8" style="border: none;" size="12" style="background: transparent;"id="76"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">8"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="43"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="44"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="45"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="46"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="47"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="48"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="49"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="77"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_8_No1" style="border: none;" size="12" style="background: transparent;"id="43"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_8_No2" style="border: none;" size="12" style="background: transparent;"id="44"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_8_No3" style="border: none;" size="12" style="background: transparent;"id="45"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_8_No4" style="border: none;" size="12" style="background: transparent;"id="46"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_8_No5" style="border: none;" size="12" style="background: transparent;"id="47"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_8_No6" style="border: none;" size="12" style="background: transparent;"id="48"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_8_No7" style="border: none;" size="12" style="background: transparent;"id="49"oninput="calcular()"></td>
+                <td><input type="text" name="Total_8_No8" style="border: none;" size="12" style="background: transparent;"id="77"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">6"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="50"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="51"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="52"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="53"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="54"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="55"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="56"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="78"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_6_No1" style="border: none;" size="12" style="background: transparent;"id="50"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_6_No2" style="border: none;" size="12" style="background: transparent;"id="51"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_6_No3" style="border: none;" size="12" style="background: transparent;"id="52"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_6_No4" style="border: none;" size="12" style="background: transparent;"id="53"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_6_No5" style="border: none;" size="12" style="background: transparent;"id="54"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_6_No6" style="border: none;" size="12" style="background: transparent;"id="55"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_6_No7" style="border: none;" size="12" style="background: transparent;"id="56"oninput="calcular()"></td>
+                <td><input type="text" name="Total_6_No8" style="border: none;" size="12" style="background: transparent;"id="78"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="57"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="58"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="59"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="60"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="61"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="62"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="63"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="79"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_4_No1" style="border: none;" size="12" style="background: transparent;"id="57"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_4_No2" style="border: none;" size="12" style="background: transparent;"id="58"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_4_No3" style="border: none;" size="12" style="background: transparent;"id="59"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_4_No4" style="border: none;" size="12" style="background: transparent;"id="60"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_4_No5" style="border: none;" size="12" style="background: transparent;"id="61"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_4_No6" style="border: none;" size="12" style="background: transparent;"id="62"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_4_No7" style="border: none;" size="12" style="background: transparent;"id="63"oninput="calcular()"></td>
+                <td><input type="text" name="Total_4_No8" style="border: none;" size="12" style="background: transparent;"id="79"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="64"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="65"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="66"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="67"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="68"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="69"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="70"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="80" oninput="calcular()"></td>
+                <td><input type="text" name="Screen_3_No1" style="border: none;" size="12" style="background: transparent;"id="64"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_3_No2" style="border: none;" size="12" style="background: transparent;"id="65"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_3_No3" style="border: none;" size="12" style="background: transparent;"id="66"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_3_No4" style="border: none;" size="12" style="background: transparent;"id="67"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_3_No5" style="border: none;" size="12" style="background: transparent;"id="68"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_3_No6" style="border: none;" size="12" style="background: transparent;"id="69"oninput="calcular()"></td>
+                <td><input type="text" name="Screen_3_No7" style="border: none;" size="12" style="background: transparent;"id="70"oninput="calcular()"></td>
+                <td><input type="text" name="Total_3_No8" style="border: none;" size="12" style="background: transparent;"id="80" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -229,8 +229,8 @@ page_require_level(2);
             <th style="font-size: 12px; text-align: center;" scope="row">Kg</th>
             <th style="font-size: 12px; text-align: center;" scope="row">gr</th>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="81"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="82"oninput="calcular()"></td> 
+                <td><input type="text" name="Total_De_Muestra_Mayor_de_3_Kg" style="border: none;" size="12" style="background: transparent;"id="81"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Muestra_Mayor_de_3_Gr" style="border: none;" size="12" style="background: transparent;"id="82"oninput="calcular()"></td> 
             </tr>
         </tbody>
     </table>
@@ -243,104 +243,104 @@ page_require_level(2);
         </thead>
         <tbody>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="83"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="84"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="85"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="86"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="87"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="88"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="89"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="90"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No1" style="border: none;" size="12" style="background: transparent;"id="83"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No2" style="border: none;" size="12" style="background: transparent;"id="84"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No3" style="border: none;" size="12" style="background: transparent;"id="85"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No4" style="border: none;" size="12" style="background: transparent;"id="86"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No5" style="border: none;" size="12" style="background: transparent;"id="87"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No6" style="border: none;" size="12" style="background: transparent;"id="88"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No7" style="border: none;" size="12" style="background: transparent;"id="89"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum1_No8" style="border: none;" size="12" style="background: transparent;"id="90"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="91"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="92"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="93"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="94"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="95"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="96"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="97"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="98"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No1" style="border: none;" size="12" style="background: transparent;"id="91"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No2" style="border: none;" size="12" style="background: transparent;"id="92"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No3" style="border: none;" size="12" style="background: transparent;"id="93"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No4" style="border: none;" size="12" style="background: transparent;"id="94"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No5" style="border: none;" size="12" style="background: transparent;"id="95"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No6" style="border: none;" size="12" style="background: transparent;"id="96"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No7" style="border: none;" size="12" style="background: transparent;"id="97"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum2_No8" style="border: none;" size="12" style="background: transparent;"id="98"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="99"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="100"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="101"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="102"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="103"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="104"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="105"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="106"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No1" style="border: none;" size="12" style="background: transparent;"id="99"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No2" style="border: none;" size="12" style="background: transparent;"id="100"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No3" style="border: none;" size="12" style="background: transparent;"id="101"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No4" style="border: none;" size="12" style="background: transparent;"id="102"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No5" style="border: none;" size="12" style="background: transparent;"id="103"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No6" style="border: none;" size="12" style="background: transparent;"id="104"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No7" style="border: none;" size="12" style="background: transparent;"id="105"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum3_No8" style="border: none;" size="12" style="background: transparent;"id="106"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="107"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="108"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="109"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="110"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="111"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="112"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="113"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="114"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No1" style="border: none;" size="12" style="background: transparent;"id="107"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No2" style="border: none;" size="12" style="background: transparent;"id="108"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No3" style="border: none;" size="12" style="background: transparent;"id="109"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No4" style="border: none;" size="12" style="background: transparent;"id="110"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No5" style="border: none;" size="12" style="background: transparent;"id="111"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No6" style="border: none;" size="12" style="background: transparent;"id="112"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No7" style="border: none;" size="12" style="background: transparent;"id="113"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum4_No8" style="border: none;" size="12" style="background: transparent;"id="114"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="115"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="116"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="117"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="118"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="119"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="120"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="121"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="122"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No1" style="border: none;" size="12" style="background: transparent;"id="115"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No2" style="border: none;" size="12" style="background: transparent;"id="116"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No3" style="border: none;" size="12" style="background: transparent;"id="117"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No4" style="border: none;" size="12" style="background: transparent;"id="118"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No5" style="border: none;" size="12" style="background: transparent;"id="119"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No6" style="border: none;" size="12" style="background: transparent;"id="120"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No7" style="border: none;" size="12" style="background: transparent;"id="121"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum5_No8" style="border: none;" size="12" style="background: transparent;"id="122"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="123"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="124"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="125"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="126"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="127"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="128"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="129"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="130"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No1" style="border: none;" size="12" style="background: transparent;"id="123"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No2" style="border: none;" size="12" style="background: transparent;"id="124"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No3" style="border: none;" size="12" style="background: transparent;"id="125"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No4" style="border: none;" size="12" style="background: transparent;"id="126"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No5" style="border: none;" size="12" style="background: transparent;"id="127"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No6" style="border: none;" size="12" style="background: transparent;"id="128"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No7" style="border: none;" size="12" style="background: transparent;"id="129"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum6_No8" style="border: none;" size="12" style="background: transparent;"id="130"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="131"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="132"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="133"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="134"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="135"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="136"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="137"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="138"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No1" style="border: none;" size="12" style="background: transparent;"id="131"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No2" style="border: none;" size="12" style="background: transparent;"id="132"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No3" style="border: none;" size="12" style="background: transparent;"id="133"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No4" style="border: none;" size="12" style="background: transparent;"id="134"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No5" style="border: none;" size="12" style="background: transparent;"id="135"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No6" style="border: none;" size="12" style="background: transparent;"id="136"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No7" style="border: none;" size="12" style="background: transparent;"id="137"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum7_No8" style="border: none;" size="12" style="background: transparent;"id="138"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="139"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="140"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="141"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="142"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="143"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="144"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="145"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="146"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No1" style="border: none;" size="12" style="background: transparent;"id="139"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No2" style="border: none;" size="12" style="background: transparent;"id="140"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No3" style="border: none;" size="12" style="background: transparent;"id="141"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No4" style="border: none;" size="12" style="background: transparent;"id="142"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No5" style="border: none;" size="12" style="background: transparent;"id="143"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No6" style="border: none;" size="12" style="background: transparent;"id="144"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No7" style="border: none;" size="12" style="background: transparent;"id="145"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum8_No8" style="border: none;" size="12" style="background: transparent;"id="146"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="147"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="148"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="149"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="150"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="151"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="152"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="153"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="154"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No1" style="border: none;" size="12" style="background: transparent;"id="147"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No2" style="border: none;" size="12" style="background: transparent;"id="148"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No3" style="border: none;" size="12" style="background: transparent;"id="149"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No4" style="border: none;" size="12" style="background: transparent;"id="150"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No5" style="border: none;" size="12" style="background: transparent;"id="151"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No6" style="border: none;" size="12" style="background: transparent;"id="152"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No7" style="border: none;" size="12" style="background: transparent;"id="153"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum9_No8" style="border: none;" size="12" style="background: transparent;"id="154"oninput="calcular()"></td>
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="155"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="156"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="157"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="158"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="159"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="160"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="161"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="162"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No1" style="border: none;" size="12" style="background: transparent;"id="155"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No2" style="border: none;" size="12" style="background: transparent;"id="156"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No3" style="border: none;" size="12" style="background: transparent;"id="157"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No4" style="border: none;" size="12" style="background: transparent;"id="158"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No5" style="border: none;" size="12" style="background: transparent;"id="159"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No6" style="border: none;" size="12" style="background: transparent;"id="160"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No7" style="border: none;" size="12" style="background: transparent;"id="161"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Material_Pasante_Menos_3_Colum10_No8" style="border: none;" size="12" style="background: transparent;"id="162"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -356,8 +356,8 @@ page_require_level(2);
             <th style="font-size: 12px; text-align: center;" scope="row">Kg</th>
             <th style="font-size: 12px; text-align: center;" scope="row">gr</th>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="163"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="164"oninput="calcular()"></td> 
+                <td><input type="text" name="Total_De_Muestra_Menor_de_3_Kg" style="border: none;" size="12" style="background: transparent;"id="163"oninput="calcular()"></td>
+                <td><input type="text" name="Total_De_Muestra_Menor_de_3_Gr" style="border: none;" size="12" style="background: transparent;"id="164"oninput="calcular()"></td> 
             </tr>
         </tbody>
     </table>
@@ -380,50 +380,50 @@ page_require_level(2);
       </tr>
       <tr>
        <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Name</th>
-       <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
-       <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
-       <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+       <td><input type="text" name="Tare_Name_No1" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+       <td><input type="text" name="Tare_Name_No2" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+       <td><input type="text" name="Tare_Name_No3" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
       </tr>                
       <tr>
         <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Oven Temperature (°C)</th>
-        <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
-        <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
-        <td><input type="text" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+        <td><input type="text" name="Oven_Temperature_No1" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+        <td><input type="text" name="Oven_Temperature_No2" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
+        <td><input type="text" name="Oven_Temperature_No3" value="110 º C" style="border: none;" size="4" style="background: transparent;" id="" oninput="calcular()"></td>
       </tr>
     <tr>
     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Plus Wet Soil (gr)</th>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="165" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="166" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="167" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Plus_Wet_Soil_Gr_No1" style="border: none;" size="4" style="background: transparent;" id="165" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Plus_Wet_Soil_Gr_No2" style="border: none;" size="4" style="background: transparent;" id="166" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Plus_Wet_Soil_Gr_No3" style="border: none;" size="4" style="background: transparent;" id="167" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare Plus Dry Soil (gr)</th>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="168" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="169" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="170" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Plus_Dry_Soil_Gr_No1" style="border: none;" size="4" style="background: transparent;" id="168" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Plus_Dry_Soil_Gr_No2" style="border: none;" size="4" style="background: transparent;" id="169" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Plus_Dry_Soil_Gr_No3" style="border: none;" size="4" style="background: transparent;" id="170" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Water, Ww (gr)</th>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="171" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="172" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="173" oninput="calcular()"></td>
+      <td><input type="text" name="Water_Ww_Gr_No1" style="border: none;" size="4" style="background: transparent;" id="171" oninput="calcular()"></td>
+      <td><input type="text" name="Water_Ww_Gr_No2" style="border: none;" size="4" style="background: transparent;" id="172" oninput="calcular()"></td>
+      <td><input type="text" name="Water_Ww_Gr_No3" style="border: none;" size="4" style="background: transparent;" id="173" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Tare (gr)</th>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="174" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="175" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="176" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Gr_No1" style="border: none;" size="4" style="background: transparent;" id="174" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Gr_No2" style="border: none;" size="4" style="background: transparent;" id="175" oninput="calcular()"></td>
+      <td><input type="text" name="Tare_Gr_No3" style="border: none;" size="4" style="background: transparent;" id="176" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Dry Soil, Ws (gr)</th>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="177" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="178" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="179" oninput="calcular()"></td>
+      <td><input type="text" name="Dry_Soil_Ws_Gr_No1" style="border: none;" size="4" style="background: transparent;" id="177" oninput="calcular()"></td>
+      <td><input type="text" name="Dry_Soil_Ws_Gr_No2" style="border: none;" size="4" style="background: transparent;" id="178" oninput="calcular()"></td>
+      <td><input type="text" name="Dry_Soil_Ws_Gr_No3" style="border: none;" size="4" style="background: transparent;" id="179" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Moisture Content (%)</th>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="180" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="181" oninput="calcular()"></td>
-      <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="182" oninput="calcular()"></td>
+      <td><input type="text" name="Moisture_Content_Porce_No1" style="border: none;" size="4" style="background: transparent;" id="180" oninput="calcular()"></td>
+      <td><input type="text" name="Moisture_Content_Porce_No2" style="border: none;" size="4" style="background: transparent;" id="181" oninput="calcular()"></td>
+      <td><input type="text" name="Moisture_Content_Porce_No3" style="border: none;" size="4" style="background: transparent;" id="182" oninput="calcular()"></td>
     </tr>
 </tr>
 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row"colspan="3">Moisture Content Average (%)</th>
-  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="183" oninput="calcular()"></td>
+  <td><input type="text" name="Moisture_Content_Average_Porce" style="border: none;" size="4" style="background: transparent;" id="183" oninput="calcular()"></td>
   
 </tr>
     </tbody>
@@ -437,23 +437,23 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" scope="row">Mayor a 3" (gr)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="184" oninput="calcular()"></td> 
+                <td><input type="text" name="Mayor_a_3_Gr" style="border: none;" size="12" style="background: transparent;"id="184" oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Menor a  3" (gr)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="185" oninput="calcular()"></td> 
+                <td><input type="text" name="Menor_a_3_Gr" style="border: none;" size="12" style="background: transparent;"id="185" oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Total Peso Seco Sucio (gr)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="186" oninput="calcular()"></td> 
+                <td><input type="text" name="Total_Peso_Seco_Sucio_Gr" style="border: none;" size="12" style="background: transparent;"id="186" oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Total Peso Lavado (gr)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="187" oninput="calcular()"></td> 
+                <td><input type="text" name="Total_Peso_Lavado_Gr" style="border: none;" size="12" style="background: transparent;"id="187" oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Perdida por Lavado (gr)</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="188" oninput="calcular()"></td> 
+                <td><input type="text" name="Perdida_Por_Lavado_Gr" style="border: none;" size="12" style="background: transparent;"id="188" oninput="calcular()"></td> 
             </tr>
         </tbody>
     </table>
@@ -467,15 +467,15 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" scope="row">Peso Seco Sucio</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="189"oninput="calcular()"></td> 
+                <td><input type="text" name="Peso_Seco_Sucio" style="border: none;" size="12" style="background: transparent;"id="189"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Peso Lavado</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="190"oninput="calcular()"></td> 
+                <td><input type="text" name="Peso_Lavado" style="border: none;" size="12" style="background: transparent;"id="190"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Pan Lavado</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="191"oninput="calcular()"></td> 
+                <td><input type="text" name="Pan_Lavado" style="border: none;" size="12" style="background: transparent;"id="191"oninput="calcular()"></td> 
             </tr>
         </tbody>
     </table>
@@ -497,136 +497,136 @@ page_require_level(2);
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="192" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="193" oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="194" oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="195" oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_3" style="border: none;" size="12" style="background: transparent;"id="192" oninput="calcular()"></td>
+                <td><input type="text" name="Ret_3" style="border: none;" size="12" style="background: transparent;"id="193" oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_3" style="border: none;" size="12" style="background: transparent;"id="194" oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_3" style="border: none;" size="12" style="background: transparent;"id="195" oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">21/2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="196"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="197"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="198"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="199"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_21p2" style="border: none;" size="12" style="background: transparent;"id="196"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_21p2" style="border: none;" size="12" style="background: transparent;"id="197"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_21p2" style="border: none;" size="12" style="background: transparent;"id="198"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_21p2" style="border: none;" size="12" style="background: transparent;"id="199"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="200"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="201"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="202"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="203"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_2" style="border: none;" size="12" style="background: transparent;"id="200"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_2" style="border: none;" size="12" style="background: transparent;"id="201"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_2" style="border: none;" size="12" style="background: transparent;"id="202"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_2" style="border: none;" size="12" style="background: transparent;"id="203"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">1.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="204"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="205"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="206"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="207"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="204"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="205"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="206"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_1p5" style="border: none;" size="12" style="background: transparent;"id="207"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="208"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="209"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="210"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="211"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_1" style="border: none;" size="12" style="background: transparent;"id="208"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_1" style="border: none;" size="12" style="background: transparent;"id="209"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_1" style="border: none;" size="12" style="background: transparent;"id="210"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_1" style="border: none;" size="12" style="background: transparent;"id="211"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="212"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="213"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="214"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="215"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="212"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="213"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="214"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_3p4" style="border: none;" size="12" style="background: transparent;"id="215"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="216"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="217"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="218"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="219"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="216"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="217"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="218"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_1p2" style="border: none;" size="12" style="background: transparent;"id="219"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="220"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="221"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="222"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="223"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="220"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="221"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="222"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_3p8" style="border: none;" size="12" style="background: transparent;"id="223"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="224"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="225"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="226"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="227"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="224"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No4" style="border: none;" size="12" style="background: transparent;"id="225"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="226"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No4" style="border: none;" size="12" style="background: transparent;"id="227"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.10</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="228"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="229"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="230"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="231"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No10" style="border: none;" size="12" style="background: transparent;"id="228"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No10" style="border: none;" size="12" style="background: transparent;"id="229"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No10" style="border: none;" size="12" style="background: transparent;"id="230"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No10" style="border: none;" size="12" style="background: transparent;"id="231"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.16</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="232"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="233"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="234"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="235"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No16" style="border: none;" size="12" style="background: transparent;"id="232"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No16" style="border: none;" size="12" style="background: transparent;"id="233"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No16" style="border: none;" size="12" style="background: transparent;"id="234"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No16" style="border: none;" size="12" style="background: transparent;"id="235"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.20</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="236"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="237"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="238"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="239"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="236"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No20" style="border: none;" size="12" style="background: transparent;"id="237"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="238"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No20" style="border: none;" size="12" style="background: transparent;"id="239"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.50</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="240"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="241"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="242"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="243"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No50" style="border: none;" size="12" style="background: transparent;"id="240"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No50" style="border: none;" size="12" style="background: transparent;"id="241"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No50" style="border: none;" size="12" style="background: transparent;"id="242"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No50" style="border: none;" size="12" style="background: transparent;"id="243"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.60</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="244"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="245"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="246"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="247"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No60" style="border: none;" size="12" style="background: transparent;"id="244"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No60" style="border: none;" size="12" style="background: transparent;"id="245"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No60" style="border: none;" size="12" style="background: transparent;"id="246"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No60" style="border: none;" size="12" style="background: transparent;"id="247"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.100</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="248"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="249"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="250"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="251"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No100" style="border: none;" size="12" style="background: transparent;"id="248"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No100" style="border: none;" size="12" style="background: transparent;"id="249"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No100" style="border: none;" size="12" style="background: transparent;"id="250"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No100" style="border: none;" size="12" style="background: transparent;"id="251"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">No. 140</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="252" name="" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="253" name="" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="254" name="" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="255" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Wt_Ret_No140" style="border: none;" size="4" style="background: transparent;"id="252" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No140" style="border: none;" size="4" style="background: transparent;"id="253" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Cum_Ret_No140" style="border: none;" size="4" style="background: transparent;"id="254" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Pass_No140" style="border: none;" size="4" style="background: transparent;"id="255" name="" oninput="calcular()"></td>
               </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">No.200</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="256"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="257"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="258"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="259"oninput="calcular()"></td> 
+                <td><input type="text" name="Wt_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="256"oninput="calcular()"></td>
+                <td><input type="text" name="Ret_No200" style="border: none;" size="12" style="background: transparent;"id="257"oninput="calcular()"></td> 
+                <td><input type="text" name="Cum_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="258"oninput="calcular()"></td> 
+                <td><input type="text" name="Pass_No200" style="border: none;" size="12" style="background: transparent;"id="259"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Pan</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="260"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="261"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="262"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="263"oninput="calcular()"></td> 
+                <td><input type="text" name="Pan_Wt_Ret" style="border: none;" size="12" style="background: transparent;"id="260"oninput="calcular()"></td>
+                <td><input type="text" name="Pan_Ret" style="border: none;" size="12" style="background: transparent;"id="261"oninput="calcular()"></td> 
+                <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="262"oninput="calcular()"></td> 
+                <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="263"oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Total</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="264"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="265"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="266"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="267"oninput="calcular()"></td> 
+                <td><input type="text" name="Total_Wt_Ret" style="border: none;" size="12" style="background: transparent;"id="264"oninput="calcular()"></td>
+                <td><input type="text" name="Total_Ret" style="border: none;" size="12" style="background: transparent;"id="265"oninput="calcular()"></td> 
+                <td><input type="text" name="Total_Cum_Ret" style="border: none;" size="12" style="background: transparent;"id="266"oninput="calcular()"></td> 
+                <td><input type="text" name="Total_Pass" style="border: none;" size="12" style="background: transparent;"id="267"oninput="calcular()"></td> 
             </tr>
         </tbody>
     </table>
@@ -640,7 +640,7 @@ page_require_level(2);
         </thead>
         <tbody>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="394"oninput="calcular()"></td> 
+                <td><input type="text" name="Factor_De_Conversion" style="border: none;" size="12" style="background: transparent;"id="394"oninput="calcular()"></td> 
             </tr>
         </tbody>
     </table>
@@ -663,210 +663,210 @@ page_require_level(2);
             <tr>
                 <th style="font-size: 15px;" scope="row">1270</th>
                 <th style="font-size: 15px;" scope="row">50"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="268"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="269"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="270"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="271"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_50" style="border: none;" size="12" style="background: transparent;"id="268"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_50" style="border: none;" size="12" style="background: transparent;"id="269"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_50" style="border: none;" size="12" style="background: transparent;"id="270"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_50" style="border: none;" size="12" style="background: transparent;"id="271"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">1000</th>
                 <th style="font-size: 15px;" scope="row">40"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="272"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="273"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="274"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="275"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_40" style="border: none;" size="12" style="background: transparent;"id="272"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_40" style="border: none;" size="12" style="background: transparent;"id="273"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_40" style="border: none;" size="12" style="background: transparent;"id="274"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_40" style="border: none;" size="12" style="background: transparent;"id="275"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">304.8</th>
                 <th style="font-size: 15px;" scope="row">12"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="276"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="277"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="278"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="279"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_12" style="border: none;" size="12" style="background: transparent;"id="276"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_12" style="border: none;" size="12" style="background: transparent;"id="277"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_12" style="border: none;" size="12" style="background: transparent;"id="278"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_12" style="border: none;" size="12" style="background: transparent;"id="279"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">250</th>
                 <th style="font-size: 15px;" scope="row">10"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="280"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="281"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="282"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="283"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_10" style="border: none;" size="12" style="background: transparent;"id="280"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_10" style="border: none;" size="12" style="background: transparent;"id="281"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_10" style="border: none;" size="12" style="background: transparent;"id="282"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_10" style="border: none;" size="12" style="background: transparent;"id="283"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">200</th>
                 <th style="font-size: 15px;" scope="row">8"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="284"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="285"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="286"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="287"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_8" style="border: none;" size="12" style="background: transparent;"id="284"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_8" style="border: none;" size="12" style="background: transparent;"id="285"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_8" style="border: none;" size="12" style="background: transparent;"id="286"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_8" style="border: none;" size="12" style="background: transparent;"id="287"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">150</th>
                 <th style="font-size: 15px;" scope="row">6"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="288"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="289"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="291"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="292"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_6" style="border: none;" size="12" style="background: transparent;"id="288"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_6" style="border: none;" size="12" style="background: transparent;"id="289"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_6" style="border: none;" size="12" style="background: transparent;"id="291"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_6" style="border: none;" size="12" style="background: transparent;"id="292"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">101.6</th>
                 <th style="font-size: 15px;" scope="row">4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="293"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="294"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="295"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="296"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_4" style="border: none;" size="12" style="background: transparent;"id="293"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_4" style="border: none;" size="12" style="background: transparent;"id="294"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_4" style="border: none;" size="12" style="background: transparent;"id="295"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_4" style="border: none;" size="12" style="background: transparent;"id="296"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">75</th>
                 <th style="font-size: 15px;" scope="row">3"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="297"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="298"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="299"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="300"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_3" style="border: none;" size="12" style="background: transparent;"id="297"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_3" style="border: none;" size="12" style="background: transparent;"id="298"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_3" style="border: none;" size="12" style="background: transparent;"id="299"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_3" style="border: none;" size="12" style="background: transparent;"id="300"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">63.5</th>
                 <th style="font-size: 15px;" scope="row">2.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="301"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="302"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="303"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="304"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_2p5" style="border: none;" size="12" style="background: transparent;"id="301"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_2p5" style="border: none;" size="12" style="background: transparent;"id="302"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_2p5" style="border: none;" size="12" style="background: transparent;"id="303"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_2p5" style="border: none;" size="12" style="background: transparent;"id="304"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">50</th>
                 <th style="font-size: 15px;" scope="row">2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="305"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="306"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="307"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="308"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_2" style="border: none;" size="12" style="background: transparent;"id="305"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_2" style="border: none;" size="12" style="background: transparent;"id="306"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_2" style="border: none;" size="12" style="background: transparent;"id="307"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_2" style="border: none;" size="12" style="background: transparent;"id="308"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">37.5</th>
                 <th style="font-size: 15px;" scope="row">1.5"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="309"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="310"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="311"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="312"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="309"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="310"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="311"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_1p5" style="border: none;" size="12" style="background: transparent;"id="312"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">25</th>
                 <th style="font-size: 15px;" scope="row">1"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="313"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="314"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="315"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="316"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_1" style="border: none;" size="12" style="background: transparent;"id="313"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_1" style="border: none;" size="12" style="background: transparent;"id="314"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_1" style="border: none;" size="12" style="background: transparent;"id="315"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_1" style="border: none;" size="12" style="background: transparent;"id="316"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">19</th>
                 <th style="font-size: 15px;" scope="row">3/4"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="317"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="318"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="319"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="320"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="317"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="318"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="319"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_3p4" style="border: none;" size="12" style="background: transparent;"id="320"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">12.5</th>
                 <th style="font-size: 15px;" scope="row">1/2"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="331"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="332"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="333"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="334"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="331"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="332"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="333"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_1p2" style="border: none;" size="12" style="background: transparent;"id="334"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">9.5</th>
                 <th style="font-size: 15px;" scope="row">3/8"</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="335"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="336"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="337"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="338"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="335"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="336"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="337"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_3p8" style="border: none;" size="12" style="background: transparent;"id="338"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">4.75</th>
                 <th style="font-size: 15px;" scope="row">No.4</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="339"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="340"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="341"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="342"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="339"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="340"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="341"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No4" style="border: none;" size="12" style="background: transparent;"id="342"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">2</th>
                 <th style="font-size: 15px;" scope="row">No.10</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="343"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="344"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="345"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="346"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No10" style="border: none;" size="12" style="background: transparent;"id="343"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No10" style="border: none;" size="12" style="background: transparent;"id="344"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No10" style="border: none;" size="12" style="background: transparent;"id="345"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No10" style="border: none;" size="12" style="background: transparent;"id="346"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">1.18</th>
                 <th style="font-size: 15px;" scope="row">No.16</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="347"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="348"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="349"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="350"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No16" style="border: none;" size="12" style="background: transparent;"id="347"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No16" style="border: none;" size="12" style="background: transparent;"id="348"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No16" style="border: none;" size="12" style="background: transparent;"id="349"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No16" style="border: none;" size="12" style="background: transparent;"id="350"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">0.85</th>
                 <th style="font-size: 15px;" scope="row">No.20</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="351"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="352"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="353"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="354"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="351"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="352"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="353"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No20" style="border: none;" size="12" style="background: transparent;"id="354"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">0.3</th>
                 <th style="font-size: 15px;" scope="row">No.50</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="355"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="356"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="357"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="358"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No50" style="border: none;" size="12" style="background: transparent;"id="355"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No50" style="border: none;" size="12" style="background: transparent;"id="356"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No50" style="border: none;" size="12" style="background: transparent;"id="357"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No50" style="border: none;" size="12" style="background: transparent;"id="358"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">0.25</th>
                 <th style="font-size: 15px;" scope="row">No.60</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="359"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="360"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="361"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="362"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No60" style="border: none;" size="12" style="background: transparent;"id="359"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No60" style="border: none;" size="12" style="background: transparent;"id="360"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No60" style="border: none;" size="12" style="background: transparent;"id="361"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No60" style="border: none;" size="12" style="background: transparent;"id="362"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">0.15</th>
                 <th style="font-size: 15px;" scope="row">No.100</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="363"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="364"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="365"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="366"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No100" style="border: none;" size="12" style="background: transparent;"id="363"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No100" style="border: none;" size="12" style="background: transparent;"id="364"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No100" style="border: none;" size="12" style="background: transparent;"id="365"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No100" style="border: none;" size="12" style="background: transparent;"id="366"oninput="calcular()"></td>  
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">No. 140</th>
                 <td>0.106</td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="367" name="" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="368" name="" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="369" name="" oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="370" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Wt_Ret_No140" style="border: none;" size="4" style="background: transparent;"id="367" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No140" style="border: none;" size="4" style="background: transparent;"id="368" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Cum_Ret_No140" style="border: none;" size="4" style="background: transparent;"id="369" name="" oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Pass_No140" style="border: none;" size="4" style="background: transparent;"id="370" name="" oninput="calcular()"></td>
               </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">0.075</th>
                 <th style="font-size: 15px;" scope="row">No.200</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="371"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="372"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="373"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="374"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Wt_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="371"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="372"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Cum_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="373"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Pass_No200" style="border: none;" size="12" style="background: transparent;"id="374"oninput="calcular()"></td>  
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px;" scope="row">Pan</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="375"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="376"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="377"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="378"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Pan_Wt_Ret" style="border: none;" size="12" style="background: transparent;"id="375"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Pan_Ret" style="border: none;" size="12" style="background: transparent;"id="376"oninput="calcular()"></td> 
+                <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="377"oninput="calcular()"></td> 
+                <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="378"oninput="calcular()"></td>  
             </tr>
             <tr>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px;" scope="row">Total Pan</th>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="979"oninput="calcular()"></td>
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="980"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="981"oninput="calcular()"></td> 
-                <td><input type="text" style="border: none;" size="12" style="background: transparent;"id="982"oninput="calcular()"></td>  
+                <td><input type="text" name="Gs_Total_Wt_Ret" style="border: none;" size="12" style="background: transparent;"id="979"oninput="calcular()"></td>
+                <td><input type="text" name="Gs_Total_Ret" style="border: none;" size="12" style="background: transparent;"id="980"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Total_Cum_Ret" style="border: none;" size="12" style="background: transparent;"id="981"oninput="calcular()"></td> 
+                <td><input type="text" name="Gs_Total_Pass" style="border: none;" size="12" style="background: transparent;"id="982"oninput="calcular()"></td>  
             </tr>
         </tbody>
     </table>
@@ -881,51 +881,64 @@ page_require_level(2);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" scope="row">Coarser than Gravel %:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="383"oninput="calcularDiametro"></td>
+                <td><input type="text" name="Coarser_than_Gravel" style="border: none;" size="4" style="background: transparent; "id="383"oninput="calcularDiametro"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Gravel %:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="384"oninput="calcular()"></td>
+                <td><input type="text" name="Gravel" style="border: none;" size="4" style="background: transparent; "id="384"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Sand %:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="385"oninput="calcular()"></td>
+                <td><input type="text" name="Sand" style="border: none;" size="4" style="background: transparent; "id="385"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Fines %:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="386"oninput="calcular()"></td>
+                <td><input type="text" name="Fines" style="border: none;" size="4" style="background: transparent; "id="386"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D10 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="387"oninput="calcularD()"></td>
+                <td><input type="text" name="D10" style="border: none;" size="4" style="background: transparent; "id="387"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D15 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="388"oninput="calcularD()"></td>
+                <td><input type="text" name="D15" style="border: none;" size="4" style="background: transparent; "id="388"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D30 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="389"oninput="calcularD()"></td>
+                <td><input type="text" name="D30" style="border: none;" size="4" style="background: transparent; "id="389"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D60 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="390"oninput="calcularD()"></td>
+                <td><input type="text" name="D60" style="border: none;" size="4" style="background: transparent; "id="390"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">D85 (mm):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="391"oninput="calcularD()"></td>
+                <td><input type="text" name="D85" style="border: none;" size="4" style="background: transparent; "id="391"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Cc:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="392"oninput="calcularD()"></td>
+                <td><input type="text" name="Cc" style="border: none;" size="4" style="background: transparent; "id="392"oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">Cu:</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent; "id="393"oninput="calcularD()"></td>
+                <td><input type="text" name="Cu" style="border: none;" size="4" style="background: transparent; "id="393"oninput="calcularD()"></td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<div style="display: flex; justify-content: center; margin-left: 20%; margin-top: -1%;">
+    <div id="gs_rock" style="width: 1080px; height: 700px;"></div>
+</div>
+
+<button type="submit" name="GrainSizeRocks" class="btn btn-danger">Registrar ensayo</button>
+<button type="submit" name="gs_rock" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+
 <script>
     function calcular() {
         //calcular el total de material mayor de 3 pulgadas
@@ -1662,21 +1675,6 @@ var Cu = (d60 / d10)||0;
 
     }
     </script>
-    
-    
-<div style="display: flex; justify-content: center; margin-left: 20%; margin-top: -1%;">
-    <div id="gs_rock" style="width: 1080px; height: 700px;"></div>
-</div>
-
-
-
-<button type="submit" name="gs_rock" class="btn btn-danger">Registrar ensayo</button>
-<button type="submit" name="gs_rock" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
-</form>
-</div>
-</div>
-</div>
-</div>
 
 <script>
     function enviarData(event) {

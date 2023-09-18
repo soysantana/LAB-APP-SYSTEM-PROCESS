@@ -73,37 +73,53 @@ option = {
     }
   ],
   title: {
-    subtext: "MULTI-POINT LIQUID LIMIT PLOT",
-    left: "center",
+    subtext: 'MULTI-POINT LIQUID LIMIT PLOT',
+    left: 'center',
     subtextStyle: {
       fontSize: 15,
-      color: "black",
-      fontWeight: "bold"
+      color: 'black',
+      fontWeight: 'bold'
     }
   },
   xAxis: {
     type: 'log',
-    name: "Number of Blows",
-    nameLocation: "center",
+    name: 'Number of Blows',
+    nameLocation: 'center',
     nameTextStyle: {
-      color: "black",
-      fontWeight: "bold",
+      color: 'black',
+      fontWeight: 'bold',
       lineHeight: 20
     }
   },
   yAxis: {
-    name: "Moisture Content (%)",
-    nameLocation: "center",
+    name: 'Moisture Content (%)',
+    splitNumber: 8,
+    min: 30,
+    nameLocation: 'center',
     nameTextStyle: {
-      color: "black",
-      fontWeight: "bold",
+      color: 'black',
+      fontWeight: 'bold',
       lineHeight: 35
+    },
+    splitLine: {
+      lineStyle: {
+        color: 'gray', // Color de las líneas horizontales en el eje y
+        width: 1 // Grosor de las líneas horizontales en el eje y
+      }
+    }
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {}
     }
   },
   series: [
     {
       type: 'scatter',
       symbolSize: 12,
+      data: [[30, 48.29], [23, 49.73], [15, 52.25]],
+      z: 5, // Ajusta el valor z de la serie para que sea mayor que las líneas verticales
       symbol: 'diamond'
     },
     {
@@ -113,6 +129,7 @@ option = {
       smooth: true,
       datasetIndex: 1,
       symbolSize: 0,
+      z: 5, // Ajusta el valor z de la serie para que sea mayor que las líneas verticales
       symbol: 'circle',
       label: { show: true, fontSize: 16 },
       labelLayout: { dy: -30 },
@@ -122,6 +139,7 @@ option = {
       name: 'RSQ',
       type: 'line',
       symbolSize: 0,
+      z: 5, // Ajusta el valor z de la serie para que sea mayor que las líneas verticales
       symbol: 'circle',
       data: sourceData.map((item, index) => {
         if (item[0] === blowsN1 && item[1] === McN1) {
@@ -138,6 +156,36 @@ option = {
         }
       })
       // Resto de la configuración para la serie RSQ...
+    },
+
+    // Agregar líneas verticales en el eje x para McN1, McN2 y McN3
+    {
+      name: 'Vertical Line Interval',
+      type: 'line',
+      symbolSize: 0,
+      symbol: 'none',
+      markLine: {
+        symbol: 'none',
+        silent: true, // Desactivar la animación
+        label: {
+          show: false // Ocultar los números en las líneas verticales
+        },
+        lineStyle: {
+          type: 'line',
+          color: 'gray', // Color de las líneas verticales
+          width: 1 // Grosor de las líneas verticales
+        },
+        data: [
+          { xAxis: 15 },
+          { xAxis: 20 },
+          { xAxis: 30 },
+          { xAxis: 40 },
+          { xAxis: 50 },
+          { xAxis: 60 },
+          { xAxis: 70 },
+          { xAxis: 100 }
+        ]
+      }
     }
   ]
 };

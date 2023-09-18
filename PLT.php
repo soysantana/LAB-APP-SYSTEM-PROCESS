@@ -3,6 +3,10 @@ $page_title = 'PLT Calculation ';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/PointLoad.php'); 
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -36,6 +40,7 @@ page_require_level(2);
 
             <table class="table table-bordered">
                 <thead>
+                <tbody id="product_info"></tbody>
           </div>
           <div class="col-xs-4">
             <label>Standard</label>
@@ -46,7 +51,7 @@ page_require_level(2);
           </div>
           <div class="col-xs-4">
             <label>Method</label>
-            <select class="form-control" type = "text" name="method" id="1">
+            <select class="form-control" type = "text" name="Method" id="1">
               <option selected>Choose...</option>
               <option value="diametral">Diametral</option>
               <option value="axial">Axial</option>
@@ -57,20 +62,20 @@ page_require_level(2);
     
           <div class="col-xs-4">
             <label>Extraction Equipment:</label>
-            <input class="form-control" name="Extraequip" type="text" value="">
+            <input class="form-control" name="ExtraEquip" type="text">
           </div>
 
           <div class="col-xs-4">
             <label>Cutter Equipment:</label>
-            <input class="form-control" name="cuttrequip" type="text" value="">
+            <input class="form-control" name="CutterEquip" type="text">
           </div>
           <div class="col-xs-4">
             <label>Test Device:</label>
-            <input class="form-control" name="testdevice" type="text" value="">
+            <input class="form-control" name="TestDevice" type="text">
           </div>
           <div class="col-xs-4">
             <label>Temperature:</label>
-            <input class="form-control" name="temperature" type="text" value="">
+            <input class="form-control" name="Temperature" type="text">
           </div>
     
           <div class="col-xs-4">
@@ -85,7 +90,7 @@ page_require_level(2);
     
           <div class="col-xs-4">
             <label>Test Start Date</label>
-            <input class="form-control" name="Test_Start_Date" type="date">
+            <input class="form-control" name="TestStartDate" type="date">
           </div>
 
           <div class="panel-body">
@@ -100,36 +105,36 @@ page_require_level(2);
               <tbody>
                 <tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Effective Area of Jack Piston (m²)</th>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" name="EffectiveAreaofJackPistonm2" oninput="calcular()"></td>
                 </tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">k₁ value (assumed value to correlate Is50 to UCS):</th>
-                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" name="K1ValueAssumedValueToCorrelateIs50ToUCS" oninput="calcular()"></td>
                 </tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">k₂ value (assumed)::</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" name="K2ValueAssumed" oninput="calcular()"></td>
               </tr>
               
               <table class="table table-bordered border-primary" style="width: 450px;">
                 <caption>Testing Information</caption>
                 <tr>
                   <th style="font-size: 16px; width: 350px; height: 25px;" scope="row" colspan="3">Test Type (A, B, C, D):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="5" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="5" name="TestTypeABCD" oninput="calcular()"></td>
                 </tr>
                 <tr>
                   <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Dimension L (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="6" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="6" name="DimensionLmm" oninput="calcular()"></td>
                 
                 
                   <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Dimension D or W (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="7" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="7" name="DimensionDorWmm" oninput="calcular()"></td>
                 
                 <tr>
                   <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Plattens Separation (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="8" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="8" name="PlattensSeparationmm" oninput="calcular()"></td>
                 
                   <th style="font-size: 15px; width: 450px; height: 25px;" scope="row">Load Direction:</th>
                   <td>
-                    <select class="form-control" name="loadirection">
+                    <select class="form-control" name="LoadDirection">
                       <option selected>Choose...</option>
                       <option value="Perpendicular">⊥</option>
                       <option value="Parallel">//</option>
@@ -137,36 +142,37 @@ page_require_level(2);
                   </td>
                 </tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Gauge Reading (Mpa):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="9" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="9" name="GaugeReadingMpa" oninput="calcular()"></td>
                 
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Failure Laod (MN):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="10" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="10" name="FailureLaodMN" oninput="calcular()"></td>
                 </tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">De (mm):</th>
-                  <td><input type="text" style="border: none; background: transparent;" size="4" id="11" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none; background: transparent;" size="4" id="11" name="Demm" oninput="calcular()"></td>
              
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Is (Mpa):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="12" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="12" name="IsMpa" oninput="calcular()"></td>
               </tr>
               <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">F:</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="13" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="13" name="F" oninput="calcular()"></td>
               
               <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">Is 50:</th>
-              <td><input type="text" style="border: none; background: transparent;" size="4" id="14" oninput="calcular()"></td>
+              <td><input type="text" style="border: none; background: transparent;" size="4" id="14" name="Is50" oninput="calcular()"></td>
             </tr>
             <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">UCS From k1 (Mpa):</th>
-                <td><input type="text" style="border: none; background: transparent;" size="4" id="15" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="4" id="15" name="UCSFromK1Mpa" oninput="calcular()"></td>
               
               <th style="font-size: 15px; width: 350px; height: 25px;" scope="row">UCS From k2 (Mpa):</th>
-              <td><input type="text" style="border: none; background: transparent;" size="4" id="16" oninput="calcular()"></td>
+              <td><input type="text" style="border: none; background: transparent;" size="4" id="16" name="UCSFromK2Mpa" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; width: 350px; height: 25px;" scope="row" colspan="3">Strenght Classification :</th>
-                <td><input type="text" style="border: none; background: transparent;" size="6" id="17" oninput="calcular()"></td>
+                <td><input type="text" style="border: none; background: transparent;" size="6" id="17" name="StrenghtClassification" oninput="calcular()"></td>
               </tr>
               </table>
            
               <div id="PointLoadGraph" style="height: 500px; width: 500px;"></div>
+              <button type="submit" name="PointLoad" class="btn btn-danger">Registrar ensayo</button>
 
               <script>
                 function calcular() {
@@ -284,7 +290,7 @@ page_require_level(2);
                     </div>
                   </div>
                 </div>
-                  <button type="submit" name="add_mcoven" class="btn btn-danger">Registrar ensayo</button>
+                  
                   </form>
                 
                 </div>

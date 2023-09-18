@@ -17,9 +17,10 @@ $products = join_lab_test_requisition_form();
                 </strong>
             </div>
             <div class="panel-body">
-              <a href="pinhole.php" class="btn btn-primary btn-lg btn-block">Pinhole</a>
-              <a href="double_hydrometer.php" class="btn btn-primary btn-lg btn-block">Doble Hidrometro</a>
-              <a href="pagina3.php" class="btn btn-primary btn-lg btn-block">Crumb</a>
+                <div class="list-group">
+              <a href="pinhole.php" class="list-group-item">Pinhole</a>
+              <a href="double_hydrometer.php" class="list-group-item">Doble Hidrometro</a>
+              <a href="pagina3.php" class="list-group-item">Crumb</a>
               
           </div>
         </div>

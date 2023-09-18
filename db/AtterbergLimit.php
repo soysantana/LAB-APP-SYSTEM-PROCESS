@@ -3,7 +3,7 @@
 // Recuperamos los datos del formulario
 if (isset($_POST['Al'])) {
   $req_fields = array(
-'sampleid', 'structure', 'Sample_Number', 'area', 'source', 'depthfrom', 'depthto', 'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate',
+'sampleid', 'structure', 'samplenumber', 'area', 'source', 'depthfrom', 'depthto', 'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate',
 'standard', 'technician', 'comments', 'test_start_date', 'LLBlows1', 'LLBlows2', 'LLBlows3', 'LLContainer1', 'LLContainer2', 'LLContainer3',
 'LLWetSoil1', 'LLWetSoil2', 'LLWetSoil3', 'LLDrysoiltare1', 'LLDrysoiltare2', 'LLDrysoiltare3', 'LLWater1', 'LLWater2', 'LLWater3', 'LLTare1',
 'LLTare2', 'LLTare3', 'LLWtDrySoil1', 'LLWtDrySoil2', 'LLWtDrySoil3', 'LLMCPorce1', 'LLMCPorce2', 'LLMCPorce3', 'PLContainer1', 'PLContainer2', 'PLContainer3',

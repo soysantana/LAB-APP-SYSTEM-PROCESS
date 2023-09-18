@@ -24,4 +24,14 @@
         </div>
     </form>
 </div>
+
+<style>
+    body {
+        background-image: url('uploads/img/backhome.jpg'); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta de tu imagen de fondo */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+
 <?php include_once('layouts/footer.php'); ?>

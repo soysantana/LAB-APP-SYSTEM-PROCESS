@@ -8,14 +8,16 @@
 ?>
 <?php
  if(isset($_POST['add_real'])){
-   $req_field = array('realizacion-Sample_ID', 'realizacion-Tecnico');
+  $req_field = array('realizacion-Sample_ID','realizacion-Sample_Number','realizacion-Test_Type','realizacion-Tecnico');
    validate_fields($req_field);
    $sampleid = remove_junk($db->escape($_POST['realizacion-Sample_ID']));
+   $samplenumber = remove_junk($db->escape($_POST['realizacion-Sample_Number']));
+   $testtype = remove_junk($db->escape($_POST['realizacion-Test_Type']));
    $tecnico = remove_junk($db->escape($_POST['realizacion-Tecnico']));
    if(empty($errors)){
     $date =make_date();
-      $sql  = "INSERT INTO muestra_en_realizacion (Sample_ID, Tecnico, Fecha_Inicio_Realizacion)";
-      $sql .= " VALUES ('{$sampleid}', '{$tecnico}', '{$date}')";
+      $sql  = "INSERT INTO muestra_en_realizacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Realizacion)";
+      $sql .= " VALUES ('{$sampleid}','{$samplenumber}','{$testtype}','{$tecnico}','{$date}')";
       if($db->query($sql)){
         $session->msg("s", "muestra en realizacion agregada exitosamente.");
         redirect('realizaEnsayo.php',false);
@@ -43,11 +45,13 @@
           <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th class="text-center" style="width: 50px;">#</th>
-                    <th class="text-center" style="width: 50px;">Sample_ID</th>
-                    <th class="text-center" style="width: 50px;">Tecnico</th>
-                    <th class="text-center" style="width: 50px;">Fecha de inicio</th>
-                    <th class="text-center" style="width: 100px;">enviar muestra a Entrega</th>
+                  <th class="text-center" style="width: 50px;">#</th>
+                  <th class="text-center" style="width: 50px;">Id muestra</th>
+                  <th class="text-center" style="width: 50px;">Numero de muestra</th>
+                  <th class="text-center" style="width: 50px;">Tipo de ensayo</th>
+                  <th class="text-center" style="width: 50px;">Tecnico</th>
+                  <th class="text-center" style="width: 50px;">Fecha de inicio</th>
+                  <th class="text-center" style="width: 100px;">enviar muestra a Realizacion</th>
                 </tr>
              
             </thead>
@@ -55,10 +59,12 @@
              
               <?php foreach ($all_realizacion as $real):?>
                 <tr>
-                    <td class="text-center"><?php echo count_id();?></td>
-                    <td><?php echo remove_junk(ucfirst($real['Sample_ID'])); ?></td>
-                    <td><?php echo remove_junk(ucfirst($real['Tecnico'])); ?></td>
-                    <td><?php echo remove_junk(ucfirst($real['Fecha_Inicio_Realizacion'])); ?></td>
+                  <td class="text-center"><?php echo count_id();?></td>
+                  <td><?php echo remove_junk(ucfirst($real['Sample_ID'])); ?></td>
+                  <td><?php echo remove_junk(ucfirst($real['Sample_Number'])); ?></td>
+                  <td><?php echo remove_junk(ucfirst($real['Test_Type'])); ?></td>
+                  <td><?php echo remove_junk(ucfirst($real['Tecnico'])); ?></td>
+                  <td><?php echo remove_junk(ucfirst($real['Fecha_Inicio_Realizacion'])); ?></td>
                  
                     <td class="text-center">
                       <div class="btn-group">

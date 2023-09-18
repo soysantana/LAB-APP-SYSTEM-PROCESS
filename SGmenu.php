@@ -18,9 +18,10 @@ $products = join_lab_test_requisition_form();
                 </strong>
             </div>
             <div class="panel-body">
-              <a href="specific_gravity.php" class="btn btn-primary btn-lg btn-block">Specific Gravity By Pycnometer</a>
-              <a href="sg_absortion.php" class="btn btn-primary btn-lg btn-block">Specific Gravity and Absortion In Coarse Aggregate</a>
-              <a href="sg_fine.php" class="btn btn-primary btn-lg btn-block">Specific Gravity For Fine Aggregate</a>
+                <div class="list-group">
+              <a href="specific_gravity.php" class="list-group-item">Specific Gravity By Pycnometer</a>
+              <a href="sg_absortion.php" class="list-group-item">Specific Gravity and Absortion In Coarse Aggregate</a>
+              <a href="sg_fine.php" class="list-group-item">Specific Gravity For Fine Aggregate</a>
           </div>
         </div>
     </div>
