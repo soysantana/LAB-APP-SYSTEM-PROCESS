@@ -185,27 +185,28 @@ function tableExists($table){
   /*--------------------------------------------------------------*/
   /* Function for checking which user level has access to page
   /*--------------------------------------------------------------*/
-   function page_require_level($require_level){
-     global $session;
-     $current_user = current_user();
-     $login_level = find_by_groupLevel($current_user['user_level']);
-     //if user not login
-     if (!$session->isUserLoggedIn(true)):
-            $session->msg('d','Por favor Iniciar sesión...');
-            redirect('index.php', false);
-      //if Group status Deactive
-     elseif($login_level['group_status'] === '0'):
-           $session->msg('d','Este nivel de usaurio esta inactivo!');
-           redirect('home.php',false);
-      //cheackin log in User level and Require level is Less than or equal to
-     elseif($current_user['user_level'] <= (int)$require_level):
-              return true;
-      else:
-            $session->msg("d", "¡Lo siento!  no tienes permiso para ver la página.");
-            redirect('home.php', false);
-        endif;
+  function page_require_level($require_level){
+    global $session;
+    $current_user = current_user();
+    $login_level = find_by_groupLevel($current_user['user_level']);
+    //if user not login
+    if (!$session->isUserLoggedIn(true)):
+           $session->msg('d','Por favor Iniciar sesión...');
+           redirect('index.php', false);
+     //if Group status Deactive
+    elseif(is_array($login_level) && isset($login_level['group_status']) && $login_level['group_status'] === '0'):
+          $session->msg('d','Este nivel de usuario está inactivo!');
+          redirect('home.php',false);
+     //cheacking log in User level and Require level is Less than or equal to
+    elseif($current_user['user_level'] <= (int)$require_level):
+             return true;
+     else:
+           $session->msg("d", "¡Lo siento! No tienes permiso para ver la página.");
+           redirect('home.php', false);
+       endif;
 
-     }
+}
+
    /*--------------------------------------------------------------*/
    /* Function for Finding all product name
    /* JOIN with categorie  and media database table

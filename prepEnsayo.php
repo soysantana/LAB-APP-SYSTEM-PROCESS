@@ -1,11 +1,12 @@
 <?php
-  $page_title = 'Lista de muestra en Preparacion';
-  require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
-  page_require_level(1);
-  
-  $all_preparacion = find_all('muestra_en_preparacion')
+$page_title = 'Lista de muestra en Preparacion';
+require_once('includes/load.php');
+// Checkin What level user has permission to view this page
+page_require_level(1);
+
+$all_preparacion = find_all('muestra_en_preparacion')
 ?>
+
 <?php
 //Configuración de la conexión a la base de datos (ajusta estos valores según tu configuración)
 $servername = "localhost";
@@ -20,31 +21,40 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
- if(isset($_POST['add_prep'])){
-   $req_field = array('preparacion-Sample_ID','preparacion-Sample_Number', 'preparacion-Test_Type', 'preparacion-Tecnico');
-   validate_fields($req_field);
-   $sampleid = remove_junk($db->escape($_POST['preparacion-Sample_ID']));
-   $samplenumber = remove_junk($db->escape($_POST['preparacion-Sample_Number']));
-   $testtype = remove_junk($db->escape($_POST['preparacion-Test_Type']));
-   $tecnico = remove_junk($db->escape($_POST['preparacion-Tecnico']));
-   if(empty($errors)){
-      $date = make_date();
-      $sql  = "INSERT INTO muestra_en_preparacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Preparacion)";
-      $sql .= " VALUES ('{$sampleid}','{$samplenumber}','{$testtype}','{$tecnico}','{$date}')";
-      $db->query($sql);
-      if($db->query($sql)){
-        $session->msg("s", "muestra en preparacion agregada exitosamente.");
-        redirect('prepEnsayo.php',false);
-      } else {
-        $session->msg("d", "Lo siento, registro falló");
-        redirect('prepEnsayo.php',false);
-      }
-   } else {
-     $session->msg("d", $errors);
-     redirect('prepEnsayo.php',false);
-   }
- }
+if (isset($_POST['add_prep'])) {
+    $req_field = array('preparacion-Sample_ID', 'preparacion-Sample_Number', 'preparacion-Test_Type', 'preparacion-Tecnico');
+    validate_fields($req_field);
+    $sampleid = remove_junk($db->escape($_POST['preparacion-Sample_ID']));
+    $samplenumber = remove_junk($db->escape($_POST['preparacion-Sample_Number']));
+    $testtype = remove_junk($db->escape($_POST['preparacion-Test_Type']));
+    $tecnico = remove_junk($db->escape($_POST['preparacion-Tecnico']));
+
+    // Verificar si el Test_Type ya existe en la base de datos
+    $existing_test_type_query = "SELECT Test_Type FROM muestra_en_preparacion WHERE Test_Type = '{$testtype}'";
+    $existing_test_type_result = $conn->query($existing_test_type_query);
+
+    if ($existing_test_type_result->num_rows > 0) {
+        $session->msg("d", "El Test_Type ya existe en la base de datos.");
+        redirect('prepEnsayo.php', false);
+    } else {
+        // Si no existe, insertar el nuevo registro
+        $date = make_date();
+        $sql = "INSERT INTO muestra_en_preparacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Preparacion)";
+        $sql .= " VALUES ('{$sampleid}','{$samplenumber}','{$testtype}','{$tecnico}','{$date}')";
+
+        if ($conn->query($sql) === TRUE) {
+            $session->msg("s", "Muestra en preparación agregada exitosamente.");
+            redirect('prepEnsayo.php', false);
+        } else {
+            $session->msg("d", "Lo siento, registro falló");
+            redirect('prepEnsayo.php', false);
+        }
+    }
+}
 ?>
+
+
+
 <?php include_once('layouts/header.php'); ?>
 
   <div class="row">

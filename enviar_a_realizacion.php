@@ -1,8 +1,8 @@
 <?php
-  $page_title = 'Enviar muestra a realización';
-  require_once('includes/load.php');
-  // Verificar el nivel de permisos del usuario para ver esta página
-  page_require_level(3);
+$page_title = 'Enviar muestra a realización';
+require_once('includes/load.php');
+// Verificar el nivel de permisos del usuario para ver esta página
+page_require_level(3);
 ?>
 <?php
 $realizacion = find_by_id('muestra_en_preparacion', (int)$_GET['id']);
@@ -20,6 +20,7 @@ if (isset($_POST['enviar_realizacion'])) {
   $sample_number = remove_junk($db->escape($_POST['realizacion-Sample_Number']));
   $test_type = remove_junk($db->escape($_POST['realizacion-Test_Type']));
   $tecnico = remove_junk($db->escape($_POST['realizacion-Tecnico']));
+
   if (empty($errors)) {
     $date = make_date();
     $sql = "INSERT INTO muestra_en_realizacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Realizacion)";
@@ -37,6 +38,7 @@ if (isset($_POST['enviar_realizacion'])) {
   }
 }
 ?>
+
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
