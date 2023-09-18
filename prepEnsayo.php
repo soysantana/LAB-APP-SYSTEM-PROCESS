@@ -2,11 +2,24 @@
   $page_title = 'Lista de muestra en Preparacion';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-  page_require_level(3);
+  page_require_level(1);
   
   $all_preparacion = find_all('muestra_en_preparacion')
 ?>
 <?php
+//Configuración de la conexión a la base de datos (ajusta estos valores según tu configuración)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "index_test_lab";
+
+// Crear una conexión a la base de datos
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
  if(isset($_POST['add_prep'])){
    $req_field = array('preparacion-Sample_ID','preparacion-Sample_Number', 'preparacion-Test_Type', 'preparacion-Tecnico');
    validate_fields($req_field);
