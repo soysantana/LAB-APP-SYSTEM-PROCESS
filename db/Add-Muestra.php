@@ -65,7 +65,29 @@ if (isset($_POST['ADD_Muestra'])) {
         $Test_Type18 = get_post_data('Cons');
         $Test_Type19 = get_post_data('Perm');
 
-        $sql = "INSERT INTO lab_test_requisition_form (
+        $testTypes = array(
+            'Mc_Oven',
+            'Mc_Stove',
+            'Mc_Balanza',
+            'AL',
+            'GS',
+            'SP',
+            'SG',
+            'AR',
+            'SC',
+            'LAA',
+            'SND',
+            'UCS',
+            'PLT',
+            'BTS',
+            'HY',
+            'DHY',
+            'PH',
+            'Cons',
+            'Perm'
+        );
+
+        $sql_lab_test = "INSERT INTO lab_test_requisition_form (
             Sample_ID,
             Sample_Number, 
             Structure, 
@@ -141,14 +163,37 @@ if (isset($_POST['ADD_Muestra'])) {
             '$Test_Type18',
             '$Test_Type19'
         )";
-
-        if ($db->query($sql)) {
-            $session->msg('s', "Ensayo agregado exitosamente.");
-            redirect('./add_Muestra.php', false);
+        
+        if ($db->query($sql_lab_test)) {
+            $session->msg('s', "Lab data added successfully.");
         } else {
-            $session->msg('d', 'Lo siento, no se pudo agregar el ensayo.');
-            redirect('./add_Muestra.php', false);
+            $session->msg('d', 'Sorry, lab data could not be added.');
         }
+        
+        // Itera a través de los test_types y agrega una fila en la tabla "lista_de_pendiente" solo si no está vacío
+        foreach ($testTypes as $testType) {
+            $testTypeValue = get_post_data($testType);
+            if (!empty($testTypeValue)) {
+                $sql_lista_pendiente = "INSERT INTO lista_de_pendiente (
+                    Sample_ID,
+                    Sample_Number, 
+                    Test_Type, 
+                    Sample_Date
+
+                ) VALUES (
+                    '$sampleid', 
+                    '$samplenumber', 
+                    '$testTypeValue',
+                    '$sampledate' 
+                )";
+                
+                if (!$db->query($sql_lista_pendiente)) {
+                    $session->msg('d', 'Sorry, the essay could not be added for ' . $testType);
+                }
+            }
+        }
+
+        redirect('./add_Muestra.php', false);
     } else {
         $session->msg("d", $errors);
         redirect('./add_Muestra.php', false);
