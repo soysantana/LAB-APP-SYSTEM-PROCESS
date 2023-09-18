@@ -49,7 +49,7 @@
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Agregar muestra a Preparación</span>
+          <span>Agregar muestra a Revision</span>
        </strong>
       </div>
       <div class="panel-body">
@@ -66,7 +66,7 @@
           <div class="form-group">
             <input type="text" class="form-control" name="preparacion-Tecnico" placeholder="Tecnico" required>
         </div>
-          <button type="submit" name="add_prep" class="btn btn-primary">Enviar a Preparación</button>
+          <button type="submit" name="add_prep" class="btn btn-primary">Enviar a Revision</button>
       </form>
       </div>
     </div>
@@ -76,7 +76,7 @@
     <div class="panel-heading">
       <strong>
         <span class="glyphicon glyphicon-th"></span>
-        <span>Lista de muestras en Preparación</span>
+        <span>Lista de muestras en Revision</span>
      </strong>
     </div>
       <div class="panel-body">
@@ -89,7 +89,7 @@
                   <th class="text-center" style="width: 50px;">Tipo de ensayo</th>
                   <th class="text-center" style="width: 50px;">Tecnico</th>
                   <th class="text-center" style="width: 50px;">Fecha de inicio</th>
-                  <th class="text-center" style="width: 100px;">enviar muestra a Realizacion</th>
+                  <th class="text-center" style="width: 100px;">enviar muestra a Revision</th>
               </tr>
            
           </thead>
