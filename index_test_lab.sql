@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2023 at 04:33 AM
+-- Generation Time: Sep 18, 2023 at 03:41 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -1116,18 +1116,12 @@ INSERT INTO `double_hydrometer` (`id`, `Sample_ID`, `Sample_Number`, `Standard`,
 CREATE TABLE `ensayos_en_revision` (
   `id` int(10) UNSIGNED NOT NULL,
   `Sample_ID` varchar(150) NOT NULL,
+  `Sample_Number` varchar(15) NOT NULL,
+  `Test_Type` varchar(15) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
   `Fecha_Inicio` datetime NOT NULL,
   `Fecha_final` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `ensayos_en_revision`
---
-
-INSERT INTO `ensayos_en_revision` (`id`, `Sample_ID`, `Tecnico`, `Fecha_Inicio`, `Fecha_final`) VALUES
-(9, 'PVDC-AGG23-NTSF-001', 'WD', '2023-07-10 00:37:26', '0000-00-00 00:00:00'),
-(10, 'PVDC-AGG23-NTSF-001', 'WD', '2023-07-10 00:37:26', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1139,15 +1133,10 @@ CREATE TABLE `ensayo_en_entrega` (
   `id` int(15) UNSIGNED NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
+  `Sample_Number` varchar(25) NOT NULL,
+  `Test_Type` varchar(15) NOT NULL,
   `Fecha_de_Entrega` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `ensayo_en_entrega`
---
-
-INSERT INTO `ensayo_en_entrega` (`id`, `Sample_ID`, `Tecnico`, `Fecha_de_Entrega`) VALUES
-(10, 'PVDC-AGG23-001-GS', 'WD', '2023-07-10 00:35:16');
 
 -- --------------------------------------------------------
 
@@ -1158,6 +1147,8 @@ INSERT INTO `ensayo_en_entrega` (`id`, `Sample_ID`, `Tecnico`, `Fecha_de_Entrega
 CREATE TABLE `ensayo_en_repeticion` (
   `id` int(15) UNSIGNED NOT NULL,
   `Sample_ID` varchar(25) NOT NULL,
+  `Sample_Number` varchar(15) NOT NULL,
+  `Test_Type` varchar(15) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
   `Fecha_Inicio` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1381,7 +1372,7 @@ CREATE TABLE `grain_size` (
 INSERT INTO `grain_size` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Preparation_Method`, `Technician`, `Container`, `Tare_Wet_Soil`, `Tare_Dry_Soil`, `Tare`, `Dry_Soil`, `Washed`, `Wash_Pan`, `Wt_Ret_40_1016`, `Porce_Ret_40_1016`, `Cum_Ret_40_1016`, `Porce_Pass_40_1016`, `Wt_Ret_12_304`, `Porce_Ret_12_304`, `Cum_Ret_12_304`, `Porce_Pass_12_304`, `Wt_Ret_10_254`, `Porce_Ret_10_254`, `Cum_Ret_10_254`, `Porce_Pass_10_254`, `Wt_Ret_8_203`, `Porce_Ret_8_203`, `Cum_Ret_8_203`, `Porce_Pass_8_203`, `Wt_Ret_6_152`, `Porce_Ret_6_152`, `Cum_Ret_6_152`, `Porce_Pass_6_152`, `Wt_Ret_5_127`, `Porce_Ret_5_127`, `Cum_Ret_5_127`, `Porce_Pass_5_127`, `Wt_Ret_4_101`, `Porce_Ret_4_101`, `Cum_Ret_4_101`, `Porce_Pass_4_101`, `Wt_Ret_3_75`, `Porce_Ret_3_75`, `Cum_Ret_3_75`, `Porce_Pass_3_75`, `Wt_Ret_2p5_63`, `Porce_Ret_2p5_63`, `Cum_Ret_2p5_63`, `Porce_Pass_2p5_63`, `Wt_Ret_2_50`, `Porce_Ret_2_50`, `Cum_Ret_2_50`, `Porce_Pass_2_50`, `Wt_Ret_1p5_37`, `Porce_Ret_1p5_37`, `Cum_Ret_1p5_37`, `Porce_Pass_1p5_37`, `Wt_Ret_1_25`, `Porce_Ret_1_25`, `Cum_Ret_1_25`, `Porce_Pass_1_25`, `Wt_Ret_3p4_19`, `Porce_Ret_3p4_19`, `Cum_Ret_3p4_19`, `Porce_Pass_3p4_19`, `Wt_Ret_1p2_12`, `Porce_Ret_1p2_12`, `Cum_Ret_1p2_12`, `Porce_Pass_1p2_12`, `Wt_Ret_3p8_9`, `Porce_Ret_3p8_9`, `Cum_Ret_3p8_9`, `Porce_Pass_3p8_9`, `Wt_Ret_No4_4`, `Porce_Ret_No4_4`, `Cum_Ret_No4_4`, `Porce_Pass_No4_4`, `Wt_Ret_No10_2`, `Porce_Ret_No10_2`, `Cum_Ret_No10_2`, `Porce_Pass_No10_2`, `Wt_Ret_No16_1`, `Porce_Ret_No16_1`, `Cum_Ret_No16_1`, `Porce_Pass_No16_1`, `Wt_Ret_No20_0p85`, `Porce_Ret_No20_0p85`, `Cum_Ret_No20_0p85`, `Porce_Pass_No20_0p85`, `Wt_Ret_No50_0p3`, `Porce_Ret_No50_0p3`, `Cum_Ret_No50_0p3`, `Porce_Pass_No50_0p3`, `Wt_Ret_No60_0p25`, `Porce_Ret_No60_0p25`, `Cum_Ret_No60_0p25`, `Porce_Pass_No60_0p25`, `Wt_Ret_No100_0p15`, `Porce_Ret_No100_0p15`, `Cum_Ret_No100_0p15`, `Porce_Pass_No100_0p15`, `Wt_Ret_No140_0p106`, `Porce_Ret_No140_0p106`, `Cum_Ret_No140_0p106`, `Porce_Pass_No140_0p106`, `Wt_Ret_No200_0p075`, `Porce_Ret_No200_0p075`, `Cum_Ret_No200_0p075`, `Porce_Pass_No200_0p075`, `Wt_Ret_Pan`, `Porce_Ret_Pan`, `Wt_Ret_Total_Pan`, `Porce_Ret_Total_Pan`, `Cum_Ret_Total_Pan`, `Porce_Pass_Total_Pan`, `Coarser_than_Gravel`, `Gravel`, `Sand`, `Fines`, `D10`, `D15`, `D30`, `D60`, `D85`, `Cc`, `Cu`, `Comments`, `Graphic`, `Test_Start_Date`, `Report_Date`, `test_type`, `Split_Method`, `Standard`) VALUES
 (7, 'TP-BGC23-NTSF-101', 'G7', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, '2023-07-17', 'Oven_Dried', 'AR/SD', 'K-7', 1331, 1209, 533, 675, 343, 332, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 2, 0, 0, 100, 8, 1, 1, 99, 27, 4, 5, 95, 27, 4, 9, 91, 24, 3, 13, 87, 108, 16, 29, 71, 24, 4, 32, 68, 58, 9, 41, 59, 0, 0, 41, 59, 65, 10, 51, 49, 1, 0, 333, 49, 100, 0, 0, 1, 49, 49, 0, 0, 0, 0, 0, 0, 0, 'Runs  conducted to avoid sieve overloading as per  ASTM D6913-17, Clause 11.3.1 and table for maximu', NULL, '2023-07-19', '2023-07-19', 'GS-Soil', 'Man_Split', 'ASTM-D6913'),
 (11, 'TP-BGC23-NTSF-100', 'G3', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'Oven_Dried', 'A-S', 'B-150', 921.67, 864.88, 309.23, 555.65, 217.55, 338.1, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 3.21, 0.58, 0.58, 99.42, 14.16, 2.55, 3.13, 96.87, 18.31, 3.3, 6.42, 93.58, 15.71, 2.83, 9.25, 90.751, 70.75, 12.73, 21.98, 78.02, 13.2, 2.38, 24.36, 75.64, 37.17, 6.69, 31.05, 68.953, 0, 0, 31.05, 68.953, 43.13, 7.76, 38.81, 61.19, 1.9, 0.34, 340, 61.19, 100, 0, 0, 0.58, 38.23, 61.19, 0, 0, 0, 0, 0.54, 0, 0, 'Run Go', NULL, '2023-08-24', '2023-08-24', 'GS-Soil', 'Man_Split', 'ASTM-D6913'),
-(12, 'TP-BGC23-NTSF-100', 'G3', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'Oven_Dried', 'A-S', 'Container', 3586, 2598, 1256, 1342, 859.56, 482.44, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 482.44, 35.95, 35.95, 64.05, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 'comentario', NULL, '2023-08-28', '2023-08-28', 'GS-Soil', 'Mech_Split', 'ASTM-D6913');
+(12, 'TP-BGC23-NTSF-100', 'G3', 'LL-NTSF', 'DS', 'Borrow N60', 0, 1, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', 'Oven_Dried', 'A-S', 'Container', 3586, 2598, 1256, 1342, 859.56, 482.44, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 482.44, 35.95, 35.95, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 'comentario', NULL, '2023-08-28', '2023-08-28', 'GS-Soil', 'Mech_Split', 'ASTM-D6913');
 
 -- --------------------------------------------------------
 
@@ -2760,25 +2751,25 @@ CREATE TABLE `lab_test_requisition_form` (
   `North` float NOT NULL,
   `East` float NOT NULL,
   `Elev` float NOT NULL,
-  `MC_Oven` varchar(15) NOT NULL,
-  `MC_Stove` varchar(15) NOT NULL,
-  `MC_Scale` varchar(15) NOT NULL,
-  `Atterberg_Limit` varchar(15) NOT NULL,
-  `Grain_size` varchar(15) NOT NULL,
-  `Standard_Proctor` varchar(15) NOT NULL,
-  `Specific_Gravity` varchar(15) NOT NULL,
-  `Acid_Reactivity` varchar(15) NOT NULL,
-  `Sand_Castle` varchar(15) NOT NULL,
-  `Los_Angeles_Abrasion` varchar(15) NOT NULL,
-  `Soundness` varchar(15) NOT NULL,
-  `UCS` varchar(15) NOT NULL,
-  `PLT` varchar(15) NOT NULL,
-  `BTS` varchar(15) NOT NULL,
-  `Hydrometer` varchar(15) NOT NULL,
-  `Double_Hydrometer` varchar(15) NOT NULL,
-  `Pinhole` varchar(15) NOT NULL,
-  `Consolidation` varchar(15) NOT NULL,
-  `Permeability` varchar(15) NOT NULL,
+  `Test_Type1` varchar(15) NOT NULL,
+  `Test_Type2` varchar(15) NOT NULL,
+  `Test_Type3` varchar(15) NOT NULL,
+  `Test_Type4` varchar(15) NOT NULL,
+  `Test_Type5` varchar(15) NOT NULL,
+  `Test_Type6` varchar(15) NOT NULL,
+  `Test_Type7` varchar(15) NOT NULL,
+  `Test_Type8` varchar(15) NOT NULL,
+  `Test_Type9` varchar(15) NOT NULL,
+  `Test_Type10` varchar(15) NOT NULL,
+  `Test_Type11` varchar(15) NOT NULL,
+  `Test_Type12` varchar(15) NOT NULL,
+  `Test_Type13` varchar(15) NOT NULL,
+  `Test_Type14` varchar(15) NOT NULL,
+  `Test_Type15` varchar(15) NOT NULL,
+  `Test_Type16` varchar(15) NOT NULL,
+  `Test_Type17` varchar(15) NOT NULL,
+  `Test_Type18` varchar(15) NOT NULL,
+  `Test_Type19` varchar(15) NOT NULL,
   `Comment` text NOT NULL,
   `Statuss` varchar(50) NOT NULL,
   `Sample_Date` date NOT NULL,
@@ -2793,12 +2784,9 @@ CREATE TABLE `lab_test_requisition_form` (
 -- Dumping data for table `lab_test_requisition_form`
 --
 
-INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `MC_Oven`, `MC_Stove`, `MC_Scale`, `Atterberg_Limit`, `Grain_size`, `Standard_Proctor`, `Specific_Gravity`, `Acid_Reactivity`, `Sand_Castle`, `Los_Angeles_Abrasion`, `Soundness`, `UCS`, `PLT`, `BTS`, `Hydrometer`, `Double_Hydrometer`, `Pinhole`, `Consolidation`, `Permeability`, `Comment`, `Statuss`, `Sample_Date`, `Sample_By`, `Registed_Date`, `test_inicio`, `Sample_Number`, `Register_By`) VALUES
-(1, 'TP-BGC23-NTSF-100', 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grab', 20232500, 376589, 125, 'Required', 'Not', 'Not', 'Required', 'Not', 'Required', 'Required', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Not', 'Required', 'Required', 'Required', 'Not', 'Not', 'Material for comparison with CQC', '', '2023-07-07', 'WD', '2023-07-11', '0000-00-00 00:00:00.000000', 'G3', 'WD'),
-(2, 'TP-BGC23-NTSF-101', 'Qa Lab', 'DS', 'Borrow', 4, 4, 'Aggregates', 'Grab', 125, 126, 127, 'Required', 'Not', 'Not ', 'Required', 'Not ', 'Required', 'Required', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not ', 'Not', 'Required', 'Not ', 'Required', 'Not ', 'Not ', 'Ohters', '', '2023-07-17', 'Wi', '2023-06-13', '0000-00-00 00:00:00.000000', 'G1', 'WD'),
-(3, 'DH-BGC22-S14-100', 'Site Investigation', 'TSF Naranjo', 'NA', 0.45, 2.25, 'Rock', 'Maxier', 0, 0, 0, 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'sample for TCS ', '', '2023-09-06', 'AR', '2023-09-15', '0000-00-00 00:00:00.000000', 'MX2', 'WD'),
-(4, 'DH-BGC23-NTSF-001', 'Site Investigation', 'TSF Naranjo', 'N/A', 24.45, 25.6, 'Rock', 'Lexan', 0, 0, 0, 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Sample For TCS', '', '2023-09-05', 'AS', '2023-09-15', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
-(5, 'DH-BGC23-NTSF-001', 'Site Investigation', 'TSF Naranjo', 'N/A', 27.3, 28.9, 'Rock', 'Lexan', 0, 0, 0, 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Not required', 'Sample For TCS', '', '2023-09-12', 'AD', '2023-09-15', '0000-00-00 00:00:00.000000', 'LX5', 'WD');
+INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Test_Type1`, `Test_Type2`, `Test_Type3`, `Test_Type4`, `Test_Type5`, `Test_Type6`, `Test_Type7`, `Test_Type8`, `Test_Type9`, `Test_Type10`, `Test_Type11`, `Test_Type12`, `Test_Type13`, `Test_Type14`, `Test_Type15`, `Test_Type16`, `Test_Type17`, `Test_Type18`, `Test_Type19`, `Comment`, `Statuss`, `Sample_Date`, `Sample_By`, `Registed_Date`, `test_inicio`, `Sample_Number`, `Register_By`) VALUES
+(13, 'TP-BGC23-NTSF-101', 'Site Investigation', 'TSF Naranjo', 'NA', 0.5, 1.2, 'Soil', 'Grab', 0, 0, 0, 'MC_Oven', '', '', 'AL', 'GS', 'SP', 'SG', '', '', '', '', '', '', '', 'HY', '', '', '', '', 'Probando', '', '2023-09-12', 'AS', '2023-09-17', '0000-00-00 00:00:00.000000', 'G1', 'WD'),
+(14, 'TP-BGC23-NTSF-102', 'SIte Investigation', 'Naranjo', 'NA', 0.4, 1.2, 'Soil', 'Grab', 0, 0, 0, 'MC_Oven', '', '', 'AL', 'GS', 'SP', 'SG', '', '', '', '', '', '', '', 'HY', 'DHY', 'PH', '', '', 'Probando', '', '2023-09-05', 'WD', '2023-09-18', '0000-00-00 00:00:00.000000', 'G2', '');
 
 -- --------------------------------------------------------
 
@@ -2849,6 +2837,20 @@ CREATE TABLE `leeb_hardness` (
 
 INSERT INTO `leeb_hardness` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Method`, `Sample`, `Depth_m`, `Leeb_Hardness_Number1`, `Leeb_Hardness_Number2`, `Leeb_Hardness_Number3`, `Leeb_Hardness_Number4`, `Leeb_Hardness_Number5`, `Leeb_Hardness_Number6`, `Leeb_Hardness_Number7`, `Leeb_Hardness_Number8`, `Leeb_Hardness_Number9`, `Leeb_Hardness_Number10`, `Average`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`) VALUES
 (1, 'TP-BGC23-NTSF-100', 'G3', 'ASTM-A956', 'A', 'sc', '1.20-2.0', 32.12, 10.12, 35.6, 85.1, 25.3, 20.1, 12, 23.12, 12.5, 52.3, 30.83, 'LL-NTSF', 'DS', 'Borrow N65', 0.5, 1.5, 'Soil', 'Grap', 20232500, 376589, 125, '2023-07-07', '2023-09-06', '2023-09-06', 'Comment', 'NOSE', 'A-S');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lista_de_pendiente`
+--
+
+CREATE TABLE `lista_de_pendiente` (
+  `id` int(15) UNSIGNED NOT NULL,
+  `Sample_ID` varchar(15) NOT NULL,
+  `Sample_Number` varchar(15) NOT NULL,
+  `Sample_Type` varchar(15) NOT NULL,
+  `Sample_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3154,16 +3156,11 @@ INSERT INTO `moisture_scale` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `
 CREATE TABLE `muestra_en_preparacion` (
   `id` int(15) UNSIGNED NOT NULL,
   `Sample_ID` varchar(50) NOT NULL,
+  `Sample_Number` varchar(25) NOT NULL,
+  `Test_Type` varchar(15) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
   `Fecha_Inicio_Preparacion` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `muestra_en_preparacion`
---
-
-INSERT INTO `muestra_en_preparacion` (`id`, `Sample_ID`, `Tecnico`, `Fecha_Inicio_Preparacion`) VALUES
-(21, 'PVDC-AGG23-001-GS', 'WD', '2023-07-10 00:13:56');
 
 -- --------------------------------------------------------
 
@@ -3174,17 +3171,11 @@ INSERT INTO `muestra_en_preparacion` (`id`, `Sample_ID`, `Tecnico`, `Fecha_Inici
 CREATE TABLE `muestra_en_realizacion` (
   `id` int(15) UNSIGNED NOT NULL,
   `Sample_ID` varchar(50) NOT NULL,
+  `Sample_Number` varchar(15) NOT NULL,
+  `Test_Type` varchar(25) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
   `Fecha_Inicio_Realizacion` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `muestra_en_realizacion`
---
-
-INSERT INTO `muestra_en_realizacion` (`id`, `Sample_ID`, `Tecnico`, `Fecha_Inicio_Realizacion`) VALUES
-(19, 'PVDC-AGG23-001-GS', 'WD', '2023-07-10 00:33:27'),
-(20, 'PVDC-AGG23-001-G1-GS', 'WD', '2023-07-19 21:30:31');
 
 -- --------------------------------------------------------
 
@@ -4197,7 +4188,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-09-15 16:55:47'),
+(1, 'Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-09-18 00:19:19'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2023-03-20 03:13:43'),
 (3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2023-07-19 21:21:18');
 
@@ -4353,6 +4344,12 @@ ALTER TABLE `lab_test_requisition_form`
 -- Indexes for table `leeb_hardness`
 --
 ALTER TABLE `leeb_hardness`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lista_de_pendiente`
+--
+ALTER TABLE `lista_de_pendiente`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4534,7 +4531,7 @@ ALTER TABLE `ensayos_en_revision`
 -- AUTO_INCREMENT for table `ensayo_en_entrega`
 --
 ALTER TABLE `ensayo_en_entrega`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `ensayo_en_repeticion`
@@ -4600,13 +4597,19 @@ ALTER TABLE `hydrometer`
 -- AUTO_INCREMENT for table `lab_test_requisition_form`
 --
 ALTER TABLE `lab_test_requisition_form`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `leeb_hardness`
 --
 ALTER TABLE `leeb_hardness`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `lista_de_pendiente`
+--
+ALTER TABLE `lista_de_pendiente`
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `los_angeles_abrasion_large`
@@ -4648,13 +4651,13 @@ ALTER TABLE `moisture_scale`
 -- AUTO_INCREMENT for table `muestra_en_preparacion`
 --
 ALTER TABLE `muestra_en_preparacion`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `muestra_en_realizacion`
 --
 ALTER TABLE `muestra_en_realizacion`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `permeability_of_granular_soils`
