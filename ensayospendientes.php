@@ -19,32 +19,67 @@ if ($conn->connect_error) {
 
 // Consulta SQL para obtener los ensayos pendientes
 $sql = "SELECT
-            lab_test_requisition_form.Sample_ID,
-            lab_test_requisition_form.Sample_Number,
-            lab_test_requisition_form.Test_Type
+            ltrf.Sample_ID,
+            ltrf.Sample_Number,
+            ltrf.Sample_Date,
+            ltrf.Test_Type1,
+            ltrf.Test_Type2,
+            ltrf.Test_Type3,
+            ltrf.Test_Type4,
+            ltrf.Test_Type5,
+            ltrf.Test_Type6,
+            ltrf.Test_Type7,
+            ltrf.Test_Type8,
+            ltrf.Test_Type9,
+            ltrf.Test_Type10,
+            ltrf.Test_Type11,
+            ltrf.Test_Type12,
+            ltrf.Test_Type13,
+            ltrf.Test_Type14,
+            ltrf.Test_Type15,
+            ltrf.Test_Type16,
+            ltrf.Test_Type17,
+            ltrf.Test_Type18,
+            ltrf.Test_Type19
         FROM
-            lab_test_requisition_form
+            lab_test_requisition_form ltrf
         LEFT JOIN
             muestra_en_preparacion preparacion
-            ON lab_test_requisition_form.Sample_ID = preparacion.Sample_ID
-            AND lab_test_requisition_form.Sample_Number = preparacion.Sample_Number
+            ON ltrf.Sample_ID = preparacion.Sample_ID
+            AND ltrf.Sample_Number = preparacion.Sample_Number
         LEFT JOIN
             muestra_en_realizacion realizacion
-            ON lab_test_requisition_form.Sample_ID = realizacion.Sample_ID
-            AND lab_test_requisition_form.Sample_Number = realizacion.Sample_Number
+            ON ltrf.Sample_ID = realizacion.Sample_ID
+            AND ltrf.Sample_Number = realizacion.Sample_Number
         LEFT JOIN
             ensayo_en_entrega entrega
-            ON lab_test_requisition_form.Sample_ID = entrega.Sample_ID
-            AND lab_test_requisition_form.Sample_Number = entrega.Sample_Number
-        LEFT JOIN
-            ensayo_en_repeticion repeticion
-            ON lab_test_requisition_form.Sample_ID = repeticion.Sample_ID
-            AND lab_test_requisition_form.Sample_Number = repeticion.Sample_Number
+            ON ltrf.Sample_ID = entrega.Sample_ID
+            AND ltrf.Sample_Number = entrega.Sample_Number
         WHERE
-            Porcentaje_Completado = 100
-            AND COUNT(repeticion.id) = 0";
-
-
+            preparacion.Sample_ID IS NULL
+            AND realizacion.Sample_ID IS NULL
+            AND entrega.Sample_ID IS NULL
+            AND (
+                ltrf.Test_Type1 IS NOT NULL OR
+                ltrf.Test_Type2 IS NOT NULL OR
+                ltrf.Test_Type3 IS NOT NULL OR
+                ltrf.Test_Type4 IS NOT NULL OR
+                ltrf.Test_Type5 IS NOT NULL OR
+                ltrf.Test_Type6 IS NOT NULL OR
+                ltrf.Test_Type7 IS NOT NULL OR
+                ltrf.Test_Type8 IS NOT NULL OR
+                ltrf.Test_Type9 IS NOT NULL OR
+                ltrf.Test_Type10 IS NOT NULL OR
+                ltrf.Test_Type11 IS NOT NULL OR
+                ltrf.Test_Type12 IS NOT NULL OR
+                ltrf.Test_Type13 IS NOT NULL OR
+                ltrf.Test_Type14 IS NOT NULL OR
+                ltrf.Test_Type15 IS NOT NULL OR
+                ltrf.Test_Type16 IS NOT NULL OR
+                ltrf.Test_Type17 IS NOT NULL OR
+                ltrf.Test_Type18 IS NOT NULL OR
+                ltrf.Test_Type19 IS NOT NULL
+            )";
 
 // Ejecutar la consulta
 $result = $conn->query($sql);
@@ -62,27 +97,50 @@ $result = $conn->query($sql);
                 </strong>
             </div>
             <div class="panel-body">
-                <ul class="list-group">
-                    <?php $result = $conn->query($sql);
+                <?php
+                // Verificar si la consulta fue exitosa
+                if (!$result) {
+                    die("Error en la consulta: " . $conn->error);
+                }
+                ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Fecha de Muestreo</th>
+                            <th>ID Muestra</th>
+                            <th>Número de Muestra</th>
+                            <th>Ensayo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($row = $result->fetch_assoc()) {
+                            $sample_id = $row['Sample_ID'];
+                            $sample_number = $row['Sample_Number'];
+                            $sample_date = $row['Sample_Date'];
 
-                    
-                    // Verificar si la consulta fue exitosa
-                    if (!$result) {
-                        die("Error en la consulta: " . $conn->error);
-                    } ?>
-                     
-                        <?php while ($row = $result->fetch_assoc()) : ?>
-                            <li class="list-group-item">
-                                <strong>Sample ID:</strong> <?php echo $row['Sample_ID']; ?><br>
-                                <strong>Sample Number:</strong> <?php echo $row['Sample_Number']; ?><br>
-                                <strong>Test Type:</strong> <?php echo $row['Tipo_de_ensayo']; ?><br>
-                                <!-- Puedes agregar más detalles si es necesario -->
-                            </li>
-                        <?php endwhile; ?>
-                    
-                        <li class="list-group-item">No hay ensayos pendientes.</li>
-                    
-                </ul>
+                            // Iterar a través de las columnas Test_Type y mostrarlas si tienen un valor
+                            for ($i = 1; $i <= 19; $i++) {
+                                $testType = $row["Test_Type$i"];
+                                if (!empty($testType)) {
+                                    echo "<tr>";
+                                    echo "<td>$sample_date</td>";
+                                    echo "<td>$sample_id</td>";
+                                    echo "<td>$sample_number</td>";
+                                    echo "<td> $testType</td>";
+                                    echo "</tr>";
+                                }
+                            }
+                        }
+
+                        if ($result->num_rows == 0) {
+                            echo "<tr>";
+                            echo "<td colspan='4'>No hay ensayos pendientes.</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
