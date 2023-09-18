@@ -15,7 +15,7 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['tes
         case 'GS-Soil':
             $pagina_detalles = 'revisionGS.php';
             break;
-        case 'atterberg_limit':
+        case 'Al':
             $pagina_detalles = 'detalles_atterberg_limit.php';
             break;
         // Agrega más casos según los tipos de ensayo que tengas
