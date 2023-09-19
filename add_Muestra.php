@@ -98,15 +98,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           
          
           <div class="form-check form-check-inline col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="Mc_Oven" value="MC_Oven">
+          <input class="form-check-input" type="checkbox" name="Mc_Oven" value="Mc_Oven">
           <label class="form-check-label" for="inlineCheckbox1">Contenido de humedad con horno</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="Mc_Stove" value="MC_Stove">
+          <input class="form-check-input" type="checkbox" name="Mc_Stove" value="Mc_Stove">
           <label class="form-check-label" for="inlineCheckbox2">Contenido de humedad con estufa</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="Mc_Balanza" value="MC_Balanza">
+          <input class="form-check-input" type="checkbox" name="Mc_Scale" value="Mc_Scale">
          <label class="form-check-label" for="inlineCheckbox3">Contenido de humedad con balanza</label>
         </div>
       

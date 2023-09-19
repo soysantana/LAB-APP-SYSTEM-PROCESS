@@ -47,7 +47,7 @@ if (isset($_POST['ADD_Muestra'])) {
         $registed_date = make_date();
         $Test_Type1 = get_post_data('Mc_Oven');
         $Test_Type2 = get_post_data('Mc_Stove');
-        $Test_Type3 = get_post_data('Mc_Balanza');
+        $Test_Type3 = get_post_data('Mc_Scale');
         $Test_Type4 = get_post_data('AL');
         $Test_Type5 = get_post_data('GS');
         $Test_Type6 = get_post_data('SP');
@@ -68,7 +68,7 @@ if (isset($_POST['ADD_Muestra'])) {
         $testTypes = array(
             'Mc_Oven',
             'Mc_Stove',
-            'Mc_Balanza',
+            'Mc_Scale',
             'AL',
             'GS',
             'SP',
