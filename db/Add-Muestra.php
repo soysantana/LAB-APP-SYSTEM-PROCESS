@@ -45,48 +45,28 @@ if (isset($_POST['ADD_Muestra'])) {
         $sampleby = get_post_data('Sample_By');
         $Register_By = get_post_data('Register_By');
         $registed_date = make_date();
-        $Test_Type1 = get_post_data('Mc_Oven');
-        $Test_Type2 = get_post_data('Mc_Stove');
-        $Test_Type3 = get_post_data('Mc_Scale');
-        $Test_Type4 = get_post_data('AL');
-        $Test_Type5 = get_post_data('GS');
-        $Test_Type6 = get_post_data('SP');
-        $Test_Type7 = get_post_data('SG');
-        $Test_Type8 = get_post_data('AR');
-        $Test_Type9 = get_post_data('SC');
-        $Test_Type10 = get_post_data('LAA');
-        $Test_Type11 = get_post_data('SND');
-        $Test_Type12 = get_post_data('UCS');
-        $Test_Type13 = get_post_data('PLT');
-        $Test_Type14 = get_post_data('BTS');
-        $Test_Type15 = get_post_data('HY');
-        $Test_Type16 = get_post_data('DHY');
-        $Test_Type17 = get_post_data('PH');
-        $Test_Type18 = get_post_data('Cons');
-        $Test_Type19 = get_post_data('Perm');
-
-        $testTypes = array(
-            'Mc_Oven',
-            'Mc_Stove',
-            'Mc_Scale',
-            'AL',
-            'GS',
-            'SP',
-            'SG',
-            'AR',
-            'SC',
-            'LAA',
-            'SND',
-            'UCS',
-            'PLT',
-            'BTS',
-            'HY',
-            'DHY',
-            'PH',
-            'Cons',
-            'Perm'
-        );
-
+        
+        // Inicializa las variables de Test_Type con valores predeterminados
+        $Test_Type1 = isset($_POST['Test_Type1']) ? $_POST['Test_Type1'] : '';
+        $Test_Type2 = isset($_POST['Test_Type2']) ? $_POST['Test_Type2'] : '';
+        $Test_Type3 = isset($_POST['Test_Type3']) ? $_POST['Test_Type3'] : '';
+        $Test_Type4 = isset($_POST['Test_Type4']) ? $_POST['Test_Type4'] : '';
+        $Test_Type5 = isset($_POST['Test_Type5']) ? $_POST['Test_Type5'] : '';
+        $Test_Type6 = isset($_POST['Test_Type6']) ? $_POST['Test_Type6'] : '';
+        $Test_Type7 = isset($_POST['Test_Type7']) ? $_POST['Test_Type7'] : '';
+        $Test_Type8 = isset($_POST['Test_Type8']) ? $_POST['Test_Type8'] : '';
+        $Test_Type9 = isset($_POST['Test_Type9']) ? $_POST['Test_Type9'] : '';
+        $Test_Type10 = isset($_POST['Test_Type10']) ? $_POST['Test_Type10'] : '';
+        $Test_Type11 = isset($_POST['Test_Type11']) ? $_POST['Test_Type11'] : '';
+        $Test_Type12 = isset($_POST['Test_Type12']) ? $_POST['Test_Type12'] : '';
+        $Test_Type13 = isset($_POST['Test_Type13']) ? $_POST['Test_Type13'] : '';
+        $Test_Type14 = isset($_POST['Test_Type14']) ? $_POST['Test_Type14'] : '';
+        $Test_Type15 = isset($_POST['Test_Type15']) ? $_POST['Test_Type15'] : '';
+        $Test_Type16 = isset($_POST['Test_Type16']) ? $_POST['Test_Type16'] : '';
+        $Test_Type17 = isset($_POST['Test_Type17']) ? $_POST['Test_Type17'] : '';
+        $Test_Type18 = isset($_POST['Test_Type18']) ? $_POST['Test_Type18'] : '';
+        $Test_Type19 = isset($_POST['Test_Type19']) ? $_POST['Test_Type19'] : '';
+        
         $sql_lab_test = "INSERT INTO lab_test_requisition_form (
             Sample_ID,
             Sample_Number, 
@@ -171,24 +151,44 @@ if (isset($_POST['ADD_Muestra'])) {
         }
         
         // Itera a través de los test_types y agrega una fila en la tabla "lista_de_pendiente" solo si no está vacío
+        $testTypes = array(
+            'Test_Type1',
+            'Test_Type2',
+            'Test_Type3',
+            'Test_Type4',
+            'Test_Type5',
+            'Test_Type6',
+            'Test_Type7',
+            'Test_Type8',
+            'Test_Type9',
+            'Test_Type10',
+            'Test_Type11',
+            'Test_Type12',
+            'Test_Type13',
+            'Test_Type14',
+            'Test_Type15',
+            'Test_Type16',
+            'Test_Type17',
+            'Test_Type18',
+            'Test_Type19'
+        );
+
         foreach ($testTypes as $testType) {
-            $testTypeValue = get_post_data($testType);
-            if (!empty($testTypeValue)) {
+            if (!empty($$testType)) {
                 $sql_lista_pendiente = "INSERT INTO lista_de_pendiente (
                     Sample_ID,
                     Sample_Number, 
                     Test_Type, 
                     Sample_Date
-
                 ) VALUES (
                     '$sampleid', 
                     '$samplenumber', 
-                    '$testTypeValue',
+                    '$$testType',
                     '$sampledate' 
                 )";
                 
                 if (!$db->query($sql_lista_pendiente)) {
-                    $session->msg('d', 'Sorry, the essay could not be added for ' . $testType);
+                    $session->msg('d', 'Sorry, the essay could not be added for ' . $$testType);
                 }
             }
         }
@@ -199,5 +199,4 @@ if (isset($_POST['ADD_Muestra'])) {
         redirect('./add_Muestra.php', false);
     }
 }
-
 ?>

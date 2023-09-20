@@ -76,6 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="Truck">Truck</option>
                 <option value="Shelby">Shelby</option>
                 <option value="Lexan">Lexan</option>
+                <option value="Mazier">Mazier</option>
+                <option value="Ring">Ring</option>
+                <option value="Rock">Rock</option>
               </select>
             </div>
             

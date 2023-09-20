@@ -68,7 +68,7 @@ page_require_level(3);
                                 $query = "SELECT id, Sample_ID, Sample_Number, Sample_Type, Depth_From, Depth_To, Comment, Sample_Date 
                                 FROM $tabla 
                                 WHERE Registed_Date >= '$fechaLimite' 
-                                AND Sample_Type IN ('Lexan', 'Maxier', 'Shelby', 'Ring')";
+                                AND Sample_Type IN ('Lexan', 'Mazier', 'Shelby', 'Ring', 'Rock')";
                                 $result = mysqli_query($rtv, $query);
                                 if (!$result) {
                                     die("Error al consultar la base de datos: " . mysqli_error($rtv));
