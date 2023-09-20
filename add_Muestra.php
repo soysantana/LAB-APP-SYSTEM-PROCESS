@@ -101,83 +101,83 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           
          
           <div class="form-check form-check-inline col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="Mc_Oven" value="Mc_Oven">
+          <input class="form-check-input" type="checkbox" name="Test_Type1" value="Mc_Oven">
           <label class="form-check-label" for="inlineCheckbox1">Contenido de humedad con horno</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="Mc_Stove" value="Mc_Stove">
+          <input class="form-check-input" type="checkbox" name="Test_Type2" value="Mc_Stove">
           <label class="form-check-label" for="inlineCheckbox2">Contenido de humedad con estufa</label>
           </div>
           <div class="form-check form-check-inline  col-xs-4  panel-body">
-          <input class="form-check-input" type="checkbox" name="Mc_Scale" value="Mc_Scale">
+          <input class="form-check-input" type="checkbox" name="Test_Type3" value="Mc_Scale">
          <label class="form-check-label" for="inlineCheckbox3">Contenido de humedad con balanza</label>
         </div>
       
 
       <div class="form-check form-check-inline col-xs-4  panel-body">
-        <input class="form-check-input" type="checkbox" name="AL" value="AL">
+        <input class="form-check-input" type="checkbox" name="Test_Type4" value="AL">
         <label class="form-check-label" for="inlineCheckbox1">Limite de Atterberg</label>
         </div>
         <div class="form-check form-check-inline  col-xs-4 panel-body">
-        <input class="form-check-input" type="checkbox" name="GS" value="GS">
+        <input class="form-check-input" type="checkbox" name="Test_Type5" value="GS">
         <label class="form-check-label" for="inlineCheckbox2">Granulometria por Tamizado</label>
         </div>
         <div class="form-check form-check-inline  col-xs-4  panel-body">
-        <input class="form-check-input" type="checkbox" name="SP" value="SP">
+        <input class="form-check-input" type="checkbox" name="Test_Type6" value="SP">
        <label class="form-check-label" for="inlineCheckbox3">Standard Proctor</label>
       </div>
     
     <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="SG" value="SG">
+      <input class="form-check-input" type="checkbox" name="Test_Type7" value="SG">
       <label class="form-check-label" for="inlineCheckbox1">Gravedad Especifica</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="AR" value="AR">
+      <input class="form-check-input" type="checkbox" name="Test_Type8" value="AR">
       <label class="form-check-label" for="inlineCheckbox2">Reactividad acidad</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="SC" value="SC">
+      <input class="form-check-input" type="checkbox" name="Test_Type9" value="SC">
      <label class="form-check-label" for="inlineCheckbox3">Castillo de Arena</label>
     </div>
   
     <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="LAA" value="LAA">
+      <input class="form-check-input" type="checkbox" name="Test_Type10" value="LAA">
       <label class="form-check-label" for="inlineCheckbox1">Abrasion de Los Angeles</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="SND" value="SND">
+      <input class="form-check-input" type="checkbox" name="Test_Type11" value="SND">
       <label class="form-check-label" for="inlineCheckbox2">Sanidad</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="UCS" value="UCS">
+      <input class="form-check-input" type="checkbox" name="Test_Type12" value="UCS">
      <label class="form-check-label" for="inlineCheckbox3">UCS</label>
     </div>
      <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="PLT" value="PLT">
+      <input class="form-check-input" type="checkbox" name="Test_Type13" value="PLT">
       <label class="form-check-label" for="inlineCheckbox1">PLT</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="BTS" value="BTS">
+      <input class="form-check-input" type="checkbox" name="Test_Type14" value="BTS">
       <label class="form-check-label" for="inlineCheckbox2">Brazilian</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="HY" value="HY">
+      <input class="form-check-input" type="checkbox" name="Test_Type15" value="HY">
      <label class="form-check-label" for="inlineCheckbox3">Hidrometro</label>
     </div>
      <div class="form-check form-check-inline col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="DHY" value="DHY">
+      <input class="form-check-input" type="checkbox" name="Test_Type16" value="DHY">
       <label class="form-check-label" for="inlineCheckbox1">Doble Hidrometro</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4  panel-body">
-      <input class="form-check-input" type="checkbox" name="PH" value="PH">
+      <input class="form-check-input" type="checkbox" name="Test_Type17" value="PH">
       <label class="form-check-label" for="inlineCheckbox2">Pinhole</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="Cons" value="Cons">
+      <input class="form-check-input" type="checkbox" name="Test_Type18" value="Cons">
       <label class="form-check-label" for="inlineCheckbox3">Consolidacion</label>
       </div>
       <div class="form-check form-check-inline  col-xs-4 panel-body">
-      <input class="form-check-input" type="checkbox" name="Perm" value="Perm">
+      <input class="form-check-input" type="checkbox" name="Test_Type19" value="Perm">
       <label class="form-check-label" for="inlineCheckbox3">Permeabilidad</label>
 </div>
 
