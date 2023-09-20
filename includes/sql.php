@@ -213,7 +213,7 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_lab_test_requisition_form(){
      global $db;
-     $sql  =" SELECT Sample_ID, Sample_Number, Structure,Area,Source, Depth_From, Depth_To, Material_Type, Sample_Type, North, East, 
+     $sql  =" SELECT id, Sample_ID, Sample_Number, Structure,Area,Source, Depth_From, Depth_To, Material_Type, Sample_Type, North, East, 
      Elev, Test_Type1, Test_Type2, Test_Type3, Test_Type4, Test_Type5, Test_Type6, Test_Type7,
      Test_Type8, Test_Type9, Test_Type10, Test_Type11, Test_Type12, Test_Type13, Test_Type14, Test_Type15, Test_Type16, Test_Type17, 
      Test_Type18, Test_Type19, Comment, Sample_Date, Sample_By, Registed_Date, Register_By";
