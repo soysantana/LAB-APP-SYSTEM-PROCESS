@@ -55,24 +55,22 @@ require_once('ensayos/mcoven.php');
           <a class="nav-link glyphicon glyphicon-registration-mark" href="menuEnsayosRevision.php" style="font-size: 17px;"> Ensayos en Resivion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link glyphicon glyphicon-pushpin" href="ensayospendientes.php" style="font-size: 17px;"> Ensayos Pendientes</a>
+          <a class="nav-link glyphicon glyphicon-question-sign" href="ensayospendientes.php" style="font-size: 17px;"> Ensayos Pendientes</a>
         </li>
         <li class="nav-item has-submenu">
-          <a class="nav-link submenu-toggle" href="inventario.php" style="font-size: 17px;">
-            <span class="glyphicon glyphicon-shopping-cart" style="margin-right: 10px;"></span> Inventarios
-        </a>
-            <ul class="submenu collapse">
+          <a class="nav-link  glyphicon glyphicon-shopping-cart submenu-toggle" href="inventario.php" style="font-size: 17px;">Inventarios</a>
+          <ul class="submenu collapse">
               <li><a class="nav-link" href="inventarioequipos.php" style="font-size: 16px;">Inventario de Equipos</a></li>
               <li class="nav-item has-submenu">
-                <a class="" href="" style="font-size: 17px;">Samples Inventory</a>
-                <ul class="submenu collapse">
-                    <li><a class="nav-link" href="inalteraded.php" style="font-size: 16px;">Inalteraded Sample</a></li>
-                    <li><a class="nav-link" href="alteradedSample.php" style="font-size: 16px;">Alteraded Sample</a></li>
-                </ul>
-            </li>
-              
-            </ul>
-        </li>
+                  <a class="nav-link glyphicon glyphicon-shopping-cart submenu-toggle" href="" style="font-size: 17px;">Samples Inventory</a>
+                  <ul class="submenu collapse">
+                      <li><a class="nav-link" href="inalteraded.php" style="font-size: 16px;">Inalteraded Sample</a></li>
+                      <li><a class="nav-link" href="alteradedSample.php" style="font-size: 16px;">Alteraded Sample</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </li>
+      
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('.submenu-toggle').forEach(function(element) {
