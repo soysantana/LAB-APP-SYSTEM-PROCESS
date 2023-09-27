@@ -15,62 +15,13 @@ if ($conexion->connect_error) {
 }
 
 // Consulta para obtener la lista de muestras en lista_de_pendiente
-$queryMuestrasPendientes = "SELECT Sample_ID, Sample_Number, Test_Type FROM lista_de_pendiente";
-$resultadoMuestrasPendientes = $conexion->query($queryMuestrasPendientes);
 
 // Arreglo para almacenar las muestras y su progreso
 $muestrasConProgreso = array();
 
-if ($resultadoMuestrasPendientes) {
-    while ($filaMuestraPendiente = $resultadoMuestrasPendientes->fetch_assoc()) {
-        $sampleID = $filaMuestraPendiente['Sample_ID'];
-        $sampleNumber = $filaMuestraPendiente['Sample_Number'];
-        $testType = $filaMuestraPendiente['Test_Type'];
 
-        // Verificar si la muestra está en cualquiera de las tres tablas
-        $queryVerificarEnTablas = "SELECT COUNT(*) AS total
-                                   FROM muestra_en_preparacion
-                                   WHERE Sample_ID = $sampleID
-                                   AND Sample_Number = $sampleNumber
-                                   AND Test_Type = '$testType'
-                                   UNION
-                                   SELECT COUNT(*) AS total
-                                   FROM muestra_en_realizacion
-                                   WHERE Sample_ID = $sampleID
-                                   AND Sample_Number = $sampleNumber
-                                   AND Test_Type = '$testType'
-                                   UNION
-                                   SELECT COUNT(*) AS total
-                                   FROM ensayo_en_entrega
-                                   WHERE Sample_ID = $sampleID
-                                   AND Sample_Number = $sampleNumber
-                                   AND Test_Type = '$testType'";
 
-        $resultadoVerificarEnTablas = $conexion->query($queryVerificarEnTablas);
-
-        if ($resultadoVerificarEnTablas) {
-            $totalCoincidencias = 0;
-            while ($filaCoincidencia = $resultadoVerificarEnTablas->fetch_assoc()) {
-                $totalCoincidencias += $filaCoincidencia['total'];
-            }
-
-            // Calcular el progreso en porcentaje
-            $progresoMuestra = ($totalCoincidencias > 0) ? 100 : 0;
-
-            // Agregar la muestra y su progreso al arreglo
-            $muestrasConProgreso[] = array(
-                'Sample_ID' => $sampleID,
-                'Sample_Number' => $sampleNumber,
-                'Test_Type' => $testType,
-                'Progreso' => $progresoMuestra
-            );
-        } else {
-            echo "Error al ejecutar la consulta: " . $conexion->error;
-        }
-    }
-} else {
-    echo "Error al ejecutar la consulta: " . $conexion->error;
-}
+  
 
 // Cerrar la conexión
 $conexion->close();
@@ -113,11 +64,7 @@ $conexion->close();
               <tbody>
                   <?php foreach ($muestrasConProgreso as $muestra) : ?>
                       <tr>
-                          <td><?php echo $muestra['Sample_ID']; ?></td>
-                          <td><?php echo $muestra['Sample_Number']; ?></td>
-                          <td><?php echo $muestra['Test_Type']; ?></td>
-                          <td><?php echo $muestra['Progreso']; ?></td>
-                      </tr>
+                         
                   <?php endforeach; ?>
               </tbody>
           </table>

@@ -13,7 +13,7 @@ page_require_level(3);
             <div class="panel-heading clearfix">
                 <strong>
                     <span class="glyphicon glyphicon-th"></span>
-                    <span>Inalteraded Samples Registed List</span>
+                    <span>Undisturbed Samples Registed List</span>
                 </strong>
                 <div class="pull-right">
                     <a href="sampleStored.php" class="btn btn-info btn-sm">Samples Stored In</a>
@@ -112,7 +112,7 @@ page_require_level(3);
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Inalteraded Sample Informacion</h5>
+                <h5 class="modal-title" id="editModalLabel">Edit Undisturbed Sample Informacion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

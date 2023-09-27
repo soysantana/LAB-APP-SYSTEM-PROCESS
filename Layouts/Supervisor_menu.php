@@ -64,8 +64,8 @@ require_once('ensayos/mcoven.php');
               <li class="nav-item has-submenu">
                   <a class="nav-link glyphicon glyphicon-shopping-cart submenu-toggle" href="" style="font-size: 17px;">Samples Inventory</a>
                   <ul class="submenu collapse">
-                      <li><a class="nav-link" href="inalteraded.php" style="font-size: 16px;">Inalteraded Sample</a></li>
-                      <li><a class="nav-link" href="alteradedSample.php" style="font-size: 16px;">Alteraded Sample</a></li>
+                      <li><a class="nav-link" href="inalteraded.php" style="font-size: 16px;">Undisturbed Sample</a></li>
+                      <li><a class="nav-link" href="alteradedSample.php" style="font-size: 16px;">Disturbed Sample</a></li>
                   </ul>
               </li>
           </ul>
