@@ -13,7 +13,7 @@ page_require_level(3);
             <div class="panel-heading clearfix">
                 <strong>
                     <span class="glyphicon glyphicon-th"></span>
-                    <span>Inalteraded Samples Stored List</span>
+                    <span>Undisturbed Samples Stored List</span>
                 </strong>
             </div>
             

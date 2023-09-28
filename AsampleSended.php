@@ -13,7 +13,7 @@ page_require_level(3);
             <div class="panel-heading clearfix">
                 <strong>
                     <span class="glyphicon glyphicon-th"></span>
-                    <span>Alteraded Samples Sended List</span>
+                    <span>Disturbed Samples Sended List</span>
                 </strong>
             </div>
             

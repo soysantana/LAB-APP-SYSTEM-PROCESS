@@ -14,17 +14,7 @@ if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
 
-// Consulta para obtener la lista de muestras en lista_de_pendiente
 
-// Arreglo para almacenar las muestras y su progreso
-$muestrasConProgreso = array();
-
-
-
-  
-
-// Cerrar la conexión
-$conexion->close();
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -41,7 +31,7 @@ $conexion->close();
       <div class="col-md-12">
           <div class="panel">
               <div class="jumbotron text-center">
-                  <h1>Bienvenidos a QA Soil Test Index</h1>
+                  <h1>Bienvenidos a Soil Index Test</h1>
               </div>
           </div>
       </div>
@@ -56,16 +46,26 @@ $conexion->close();
               <thead>
                   <tr>
                       <th>Sample ID</th>
-                      <th>Sample Number</th>
-                      <th>Test Type</th>
+                      <th class="text-center">MC</th>
+                      <th class="text-center">GS</th>
+                      <th class="text-center">SP</th> 
+                      <th class="text-center">AL</th> 
+                      <th class="text-center">SG</th> 
+                      <th class="text-center">HY</th> 
+                      <th class="text-center">DHY</th> 
+                      <th class="text-center">PH</th> 
+                      <th class="text-center">UCS</th> 
+                      <th class="text-center">PLT</th> 
+                      <th class="text-center">BTS</th> 
                       <th>Progreso (%)</th>
                   </tr>
               </thead>
               <tbody>
-                  <?php foreach ($muestrasConProgreso as $muestra) : ?>
+                 
                       <tr>
-                         
-                  <?php endforeach; ?>
+                          
+                      </tr>
+                  
               </tbody>
           </table>
       </div>
@@ -77,3 +77,4 @@ $conexion->close();
 </div>
 
 <?php include_once('layouts/footer.php'); ?>
+
