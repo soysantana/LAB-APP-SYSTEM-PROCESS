@@ -204,6 +204,17 @@ if (isset($_POST['Grain_Size'])) {
     $CumRetPan = $db->escape($_POST['CumRetPan']);
     $PassnPan = $db->escape($_POST['PassnPan']);
 
+    // Verifica que la solicitud sea de tipo POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Lee el JSON enviado en el cuerpo de la solicitud
+  $postData = json_decode(file_get_contents("php://input"));
+
+  if ($postData && isset($postData->imageData)) {
+      // Obtén la imagen en base64 desde los datos JSON
+      $base64ImageData = $postData->imageData;
+
+      $binaryImageData = base64_decode($base64ImageData);}}
+
 
 // Componemos la sentencia SQL
     $sql = "INSERT INTO grain_size (
@@ -228,7 +239,7 @@ Wt_Ret_No50_0p3, Porce_Ret_No50_0p3, Cum_Ret_No50_0p3, Porce_Pass_No50_0p3, Wt_R
 Porce_Ret_No60_0p25, Cum_Ret_No60_0p25, Porce_Pass_No60_0p25, Wt_Ret_No100_0p15, Porce_Ret_No100_0p15,
 Cum_Ret_No100_0p15, Porce_Pass_No100_0p15, Wt_Ret_No140_0p106, Porce_Ret_No140_0p106, Cum_Ret_No140_0p106,
 Porce_Pass_No140_0p106, Wt_Ret_No200_0p075, Porce_Ret_No200_0p075, Cum_Ret_No200_0p075, Porce_Pass_No200_0p075,
-Wt_Ret_Pan, Porce_Ret_Pan, Wt_Ret_Total_Pan, Porce_Ret_Total_Pan, Cum_Ret_Total_Pan, Porce_Pass_Total_Pan
+Wt_Ret_Pan, Porce_Ret_Pan, Wt_Ret_Total_Pan, Porce_Ret_Total_Pan, Cum_Ret_Total_Pan, Porce_Pass_Total_Pan, Graphic
 )
       VALUES (
 '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', 
@@ -249,7 +260,7 @@ Wt_Ret_Pan, Porce_Ret_Pan, Wt_Ret_Total_Pan, Porce_Ret_Total_Pan, Cum_Ret_Total_
 '$WtRetn20', '$Retn20', '$CumRetn20', '$Passn20', '$WtRetn50', '$Retn50', '$CumRetn50', '$Passn50',
 '$WtRetn60', '$Retn60', '$CumRetn60', '$Passn60', '$WtRetn100', '$Retn100', '$CumRetn100', '$Passn100',
 '$WtRetn140', '$Retn140', '$CumRetn140', '$Passn140', '$WtRetn200', '$Retn200', '$CumRetn200', '$Passn200',
-'$WtRentPan', '$RetPan', '$WtRetTpan', '$RetTTPan', '$CumRetPan', '$PassnPan'
+'$WtRentPan', '$RetPan', '$WtRetTpan', '$RetTTPan', '$CumRetPan', '$PassnPan', '$imageData'
 )";
 
 // Ejecutamos la sentencia

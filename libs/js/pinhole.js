@@ -41,6 +41,13 @@ option = {
     }
   },
 
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: {}
+    }
+  },
+
   graphic: [
     {
       type: 'group',

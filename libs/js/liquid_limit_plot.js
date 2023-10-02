@@ -5,12 +5,14 @@ var myChart = echarts.init(dom, null, {
 });
 var app = {};
 
-blowsN1 = parseFloat(document.getElementById("2").value);
-blowsN2 = parseFloat(document.getElementById("3").value);
-blowsN3 = parseFloat(document.getElementById("4").value);
-McN1 = parseFloat(document.getElementById("23").value);
-McN2 = parseFloat(document.getElementById("24").value);
-McN3 = parseFloat(document.getElementById("25").value);
+// Variables de datos
+const blowsN1 = parseFloat(document.getElementById("2").value);
+const blowsN2 = parseFloat(document.getElementById("3").value);
+const blowsN3 = parseFloat(document.getElementById("4").value);
+const McN1 = parseFloat(document.getElementById("23").value);
+const McN2 = parseFloat(document.getElementById("24").value);
+const McN3 = parseFloat(document.getElementById("25").value);
+
 // Datos originales
 const datosX = [blowsN1, blowsN2, blowsN3];
 const datosY = [McN1, McN2, McN3];
@@ -118,7 +120,6 @@ option = {
     {
       type: 'scatter',
       symbolSize: 12,
-      data: [[30, 48.29], [23, 49.73], [15, 52.25]],
       z: 5, // Ajusta el valor z de la serie para que sea mayor que las líneas verticales
       symbol: 'diamond'
     },
@@ -161,7 +162,7 @@ option = {
     // Agregar líneas verticales en el eje x para McN1, McN2 y McN3
     {
       name: 'Vertical Line Interval',
-      type: 'line',
+      type: 'scatter',
       symbolSize: 0,
       symbol: 'none',
       markLine: {
