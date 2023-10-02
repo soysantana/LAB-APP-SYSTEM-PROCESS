@@ -326,6 +326,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   var PLP = parseFloat(document.getElementById("49").value);
                   var IP = parseFloat(document.getElementById("50").value);
 
+                  var golpe1 = parseFloat(document.getElementById("2").value);
+                  var golpe2 = parseFloat(document.getElementById("3").value);
+                  var golpe3 = parseFloat(document.getElementById("4").value);
+
 
 
                   //calcular
@@ -352,9 +356,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   var Lmc4 = (Ww4 / Ds4) * 100;
                   var Lmc5 = (Ww5 / Ds5) * 100;
                   var Lmc6 = (Ww6 / Ds6) * 100;
+                  var xValues = [golpe1, golpe2, golpe3];
+                  var yValues = [Lmc1, Lmc2, Lmc3];
 
-                  var PLL = (Lmc1 + Lmc2 + Lmc3) / 3;
-                  var PLP = (Lmc4 + Lmc5 + Lmc6) / 3;
+                   
+                  
+                   var sumXY = 0;
+                   var sumX2 = 0;
+
+                  // Calcular la suma de XY y la suma de X^2
+                  for (var i = 0; i < xValues.length; i++) {
+                      var lnX = Math.log(xValues[i]);
+                      sumXY += lnX * yValues[i];
+                      sumX2 += lnX * lnX;
+                  }
+
+                  // Calcular "c" (pendiente)
+                  var c = sumXY / sumX2;
+
+                  // Calcular la media de los valores de "y"
+                  var meanY = yValues.reduce((acc, currentValue) => acc + currentValue, 0) / yValues.length;
+
+                  // Calcular la media de los valores de "x" (en escala logarítmica)
+                  var meanX = xValues.map(x => Math.log(x)).reduce((acc, currentValue) => acc + currentValue, 0) / xValues.length;
+
+                  // Calcular "b" (intercepto)
+                  var b = meanY - c * meanX;
+
+                  // Calcular R^2
+                  var sse = 0;
+                  var sst = 0;
+
+                  for (var i = 0; i < xValues.length; i++) {
+                      var predictedY = c * Math.log(xValues[i]) + b;
+                      sse += Math.pow(yValues[i] - predictedY, 2);
+                      sst += Math.pow(yValues[i] - meanY, 2);
+                  }
+
+                  var rSquared = 1 - (sse / sst);
+
+                  // Valor de x (25 en este caso)
+                  var x = 25;
+
+                  // Calcular PLL
+                  var PLL = c * Math.log(x) + b;
+
+
+
+               
+                 var valores = [Lmc4, Lmc5, Lmc6];
+                 var valoresValidos = valores.filter(valor => !isNaN(valor));
+
+                var PLP = valoresValidos.reduce((total, valor) => total + valor, 0) / valoresValidos.length;
                   var IP = PLL - PLP;
                   var LI = ((Nmc - PLP) / IP)||0;
 
@@ -411,7 +464,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                   //average
-                  var average_plastic = (Lmc4 + Lmc5 + Lmc6) / 3;
+                  var average_plastic = PLP;
                   document.getElementById("52").value = average_plastic.toFixed(2);
 
                 }
