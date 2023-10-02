@@ -265,11 +265,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <tr>
             <th style="text-align: center;" scope="row">3.5"</th>
             <td>89</td>
-            <td><input type="text" name="" style="text-align: center; border: none;" size="4" style="background: transparent;"id="25" oninput="calcular()"></td>
-            <td><input type="text" name="" style="text-align: center; border: none;" size="4" style="background: transparent;"id="26" oninput="calcular()"></td>
-            <td><input type="text" name="" style="text-align: center; border: none;" size="4" style="background: transparent;"id="27" oninput="calcular()"></td>
-            <td><input type="text" name="" style="text-align: center; border: none;" size="4" style="background: transparent;"id="28" oninput="calcular()"></td>
-            <td><input type="text" name="" style="text-align: center; border: none;" size="4" style="background: transparent;"id="29" oninput="calcular()"></td>
+            <td><input type="text" name="WtRet3p589" style="text-align: center; border: none;" size="4" style="background: transparent;"id="25" oninput="calcular()"></td>
+            <td><input type="text" name="PorceRet3p589" style="text-align: center; border: none;" size="4" style="background: transparent;"id="26" oninput="calcular()"></td>
+            <td><input type="text" name="CumRet3p589" style="text-align: center; border: none;" size="4" style="background: transparent;"id="27" oninput="calcular()"></td>
+            <td><input type="text" name="PorcePass3p589" style="text-align: center; border: none;" size="4" style="background: transparent;"id="28" oninput="calcular()"></td>
+            <td><input type="text" name="Specs3p589" style="text-align: center; border: none;" size="4" style="background: transparent;"id="29" oninput="calcular()"></td>
           </tr>
           <tr>
             <th style="text-align: center;" scope="row">3"</th>
