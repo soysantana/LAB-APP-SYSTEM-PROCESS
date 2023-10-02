@@ -179,6 +179,11 @@ if (isset($_POST['GrainSizeFine'])) {
         $GrainSizeTestResultNo1 = get_post_data('GrainSizeTestResultNo1');
         $GrainSizeTestResultNo2 = get_post_data('GrainSizeTestResultNo2');
 
+        $WtRet3p589 = get_post_data('WtRet3p589');
+        $PorceRet3p589 = get_post_data('PorceRet3p589');
+        $CumRet3p589 = get_post_data('CumRet3p589');
+        $PorcePass3p589 = get_post_data('PorcePass3p589');
+
         $sql = "INSERT INTO grain_size_fine_aggregate (
             Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To,
             Material_Type, Sample_Type, North, East, Elev, Sample_Date, Report_Date,
@@ -308,7 +313,11 @@ if (isset($_POST['GrainSizeFine'])) {
             Reaction_Strength_Result,
             Acid_Reactivity_Test_Result,
             Grain_Size_Test_Result_No1,
-            Grain_Size_Test_Result_No2
+            Grain_Size_Test_Result_No2,
+            Wt_Ret_3p5_89,
+            Porce_Ret_3p5_89,
+            Cum_Ret_3p5_89,
+            Porce_Pass_3p5_89
         ) VALUES (
             '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom',
             '$depthto', '$materialtype', '$sampletype', '$north', '$east', '$elev',
@@ -438,7 +447,11 @@ if (isset($_POST['GrainSizeFine'])) {
             '$ReactionStrengthResult',
             '$AcidReactivityTestResult',
             '$GrainSizeTestResultNo1',
-            '$GrainSizeTestResultNo2'
+            '$GrainSizeTestResultNo2',
+            '$WtRet3p589',
+            '$PorceRet3p589',
+            '$CumRet3p589',
+            '$PorcePass3p589'
         )";
 
         if ($db->query($sql)) {
