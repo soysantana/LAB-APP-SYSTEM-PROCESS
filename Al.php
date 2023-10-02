@@ -403,7 +403,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-               
                  var valores = [Lmc4, Lmc5, Lmc6];
                  var valoresValidos = valores.filter(valor => !isNaN(valor));
 
@@ -411,23 +410,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   var IP = PLL - PLP;
                   var LI = ((Nmc - PLP) / IP)||0;
 
-                  function clasificarsuelo() {
-                    if (PLL < 50 && IP > 7) {
-                      return "CL";
-                    } else if (PLL < 50 && IP >= 4 && IP <= 7) {
-                      return "CL-ML";
-                    } else if (PLL < 50 && IP < 4) {
-                      return "ML";
+                  
+                  function clasificarsuelo(PLL, IP) {
+    if (PLL < 50 && IP > 7 && (0.73 * (PLL - 20)) <= IP) {
+        return "CL or OL";
+    } else if (PLL < 50 && IP >= 4 && (0.73 * (PLL - 20)) <= IP) {
+        return "CL or ML";
+    } else if (PLL < 50 && IP < 4 || (0.73 * (PLL - 20)) > IP) {
+        return "ML or OL";
+    } else if (PLL >= 50 && (0.73 * (PLL - 20)) <= IP) {
+        return "CH or OH";
+    } else if (PLL >= 50 && (0.73 * (PLL - 20)) > IP) {
+        return "MH or OH";
+    } else {
+        return "Error";
+    }
+}
 
-                      //Valores Mayores a 50
-                    } else if (PLL >= 50 && IP > 7) {
-                      return "CH";
-                    } else if (PLL >= 50 && IP < 4) {
-                      return "MH";
-                    } else {
-                      return "Error";
-                    }
-                  }
+
+
+
 
 
 
@@ -460,12 +462,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   document.getElementById("48").value = PLP.toFixed(0);
                   document.getElementById("49").value = IP.toFixed(0);
                   document.getElementById("50").value = LI.toFixed(4);
-                  document.getElementById("51").value = clasificarsuelo();
+                  document.getElementById("51").value = clasificarsuelo(PLL, IP);
 
 
                   //average
-                  var average_plastic = PLP;
-                  document.getElementById("52").value = average_plastic.toFixed(2);
+                  
+                  document.getElementById("52").value = PLP.toFixed(2);
 
                 }
               </script>
