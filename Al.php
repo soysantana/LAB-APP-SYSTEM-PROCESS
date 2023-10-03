@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   require_once('db/AtterbergLimit.php'); 
 }
 ?>
-
+<script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
   <div class="col-md-6">
@@ -271,12 +271,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Soil Classification as per Unified Soil Classification System,ASTM designation D2487-06</th>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="51" name="classification" oninput="calcular()"></td>
+               
               </tr>
-              
+             
               <div>
               
               </div>
-
+              <td><input type="hidden"  style="border: none;" size="4" style="background: transparent;" id="51.1" name="rsq" oninput="calcular()"></td>
 
               <script>
                 function calcular() {
@@ -361,45 +362,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                    
                   
-                   var sumXY = 0;
-                   var sumX2 = 0;
-
-                  // Calcular la suma de XY y la suma de X^2
-                  for (var i = 0; i < xValues.length; i++) {
-                      var lnX = Math.log(xValues[i]);
-                      sumXY += lnX * yValues[i];
-                      sumX2 += lnX * lnX;
-                  }
-
-                  // Calcular "c" (pendiente)
-                  var c = sumXY / sumX2;
-
-                  // Calcular la media de los valores de "y"
-                  var meanY = yValues.reduce((acc, currentValue) => acc + currentValue, 0) / yValues.length;
-
-                  // Calcular la media de los valores de "x" (en escala logarítmica)
-                  var meanX = xValues.map(x => Math.log(x)).reduce((acc, currentValue) => acc + currentValue, 0) / xValues.length;
-
-                  // Calcular "b" (intercepto)
-                  var b = meanY - c * meanX;
-
-                  // Calcular R^2
-                  var sse = 0;
-                  var sst = 0;
-
-                  for (var i = 0; i < xValues.length; i++) {
-                      var predictedY = c * Math.log(xValues[i]) + b;
-                      sse += Math.pow(yValues[i] - predictedY, 2);
-                      sst += Math.pow(yValues[i] - meanY, 2);
-                  }
-
-                  var rSquared = 1 - (sse / sst);
-
-                  // Valor de x (25 en este caso)
+                  var golpes = [31, 23, 15];
+                  var mc = [50.68, 53.19, 55.65];
                   var x = 25;
 
+                  // Crear un conjunto de datos
+                  var data = [];
+                  for (var i = 0; i < golpes.length; i++) {
+                      data.push([Math.log(golpes[i]), mc[i]]);
+                    }
+
+                  // Realizar la regresión lineal
+                  var result = regression.linear(data);
+
+                  // Obtener los coeficientes c y b
+                  var c = result.equation[0]; // Pendiente
+                  var b = result.equation[1]; // Intercepto
+
+                  // Calcular R^2
+                  var rSquared = result.r2;
+
                   // Calcular PLL
-                  var PLL = c * Math.log(x) + b;
+                  var lnX = Math.log(x);
+                  var PLL = c * lnX + b;
 
 
 
@@ -416,11 +401,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return "CL or OL";
     } else if (PLL < 50 && IP >= 4 && (0.73 * (PLL - 20)) <= IP) {
         return "CL or ML";
-    } else if (PLL < 50 && IP < 4 || (0.73 * (PLL - 20)) > IP) {
+    } else if (PLL < 50 && IP < 4 || IP < (0.73 * (PLL - 20))) {
         return "ML or OL";
-    } else if (PLL >= 50 && (0.73 * (PLL - 20)) <= IP) {
+    } else if (PLL >= 50 && IP >=(0.73 * (PLL - 20)) ) {
         return "CH or OH";
-    } else if (PLL >= 50 && (0.73 * (PLL - 20)) > IP) {
+    } else if (PLL >= 50 && IP < (0.73 * (PLL - 20))) {
         return "MH or OH";
     } else {
         return "Error";
@@ -463,6 +448,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   document.getElementById("49").value = IP.toFixed(0);
                   document.getElementById("50").value = LI.toFixed(4);
                   document.getElementById("51").value = clasificarsuelo(PLL, IP);
+                  document.getElementById("51.1").value = rSquared.toFixed(7);
 
 
                   //average

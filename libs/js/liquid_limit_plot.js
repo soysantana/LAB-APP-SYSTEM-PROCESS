@@ -6,6 +6,7 @@ var myChart = echarts.init(dom, null, {
 var app = {};
 
 // Variables de datos
+const r2 = parseFloat(document.getElementById("51.1").value);
 const blowsN1 = parseFloat(document.getElementById("2").value);
 const blowsN2 = parseFloat(document.getElementById("3").value);
 const blowsN3 = parseFloat(document.getElementById("4").value);
@@ -149,7 +150,7 @@ option = {
             label: {
               show: true,
               fontSize: 16,
-              formatter: 'R²= ' + rsq.toFixed(4),
+              formatter: 'R²= ' + r2.toFixed(4),
               position: 'top', // Colocar la etiqueta a la derecha del punto
               offset: [0, -10] // Ajustar el desplazamiento horizontal (puedes ajustar estos valores según tus necesidades)
             }
