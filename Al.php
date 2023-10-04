@@ -270,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </tr>
               <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Soil Classification as per Unified Soil Classification System,ASTM designation D2487-06</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="51" name="classification" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="6" style="background: transparent;" id="51" name="classification" oninput="calcular()"></td>
                
               </tr>
              
@@ -357,13 +357,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   var Lmc4 = (Ww4 / Ds4) * 100;
                   var Lmc5 = (Ww5 / Ds5) * 100;
                   var Lmc6 = (Ww6 / Ds6) * 100;
-                  var xValues = [golpe1, golpe2, golpe3];
-                  var yValues = [Lmc1, Lmc2, Lmc3];
+                  var golpes = [golpe1, golpe2, golpe3];
+                  var mc = [Lmc1, Lmc2, Lmc3];
 
-                   
                   
-                  var golpes = [31, 23, 15];
-                  var mc = [50.68, 53.19, 55.65];
                   var x = 25;
 
                   // Crear un conjunto de datos
@@ -391,27 +388,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  var valores = [Lmc4, Lmc5, Lmc6];
                  var valoresValidos = valores.filter(valor => !isNaN(valor));
 
-                var PLP = valoresValidos.reduce((total, valor) => total + valor, 0) / valoresValidos.length;
+                  var PLP = valoresValidos.reduce((total, valor) => total + valor, 0) / valoresValidos.length;
                   var IP = PLL - PLP;
                   var LI = ((Nmc - PLP) / IP)||0;
 
                   
                   function clasificarsuelo(PLL, IP) {
-    if (PLL < 50 && IP > 7 && (0.73 * (PLL - 20)) <= IP) {
-        return "CL or OL";
-    } else if (PLL < 50 && IP >= 4 && (0.73 * (PLL - 20)) <= IP) {
-        return "CL or ML";
-    } else if (PLL < 50 && IP < 4 || IP < (0.73 * (PLL - 20))) {
-        return "ML or OL";
-    } else if (PLL >= 50 && IP >=(0.73 * (PLL - 20)) ) {
-        return "CH or OH";
-    } else if (PLL >= 50 && IP < (0.73 * (PLL - 20))) {
-        return "MH or OH";
-    } else {
-        return "Error";
-    }
-}
+    var resultado = "Error"; // Valor predeterminado en caso de valores no válidos
 
+    if (!isNaN(PLL) && !isNaN(IP)) {
+        if (PLL < 50) {
+            if (IP > 7 && (0.73 * (PLL - 20)) <= IP) {
+                resultado = "CL or OL";
+            } else if (IP >= 4 && (0.73 * (PLL - 20)) <= IP) {
+                resultado = "CL or ML";
+            } else if (IP < 4 || (0.73 * (PLL - 20)) > IP) {
+                resultado = "ML or OL";
+            }
+        } else {
+            if ((0.73 * (PLL - 20)) <= IP) {
+                resultado = "CH or OH";
+            } else {
+                resultado = "MH or OH";
+            }
+        }
+    }
+
+    return resultado;
+}
 
 
 
