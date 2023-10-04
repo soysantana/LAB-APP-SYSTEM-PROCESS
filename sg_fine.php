@@ -171,7 +171,7 @@ function calcular() {
 
   var sg = (wtds / (calpyc + wtssda - wtpycsw)) * pn1;
   var sgssd = (wtssda / (calpyc + wtssda - wtpycsw)) * pn1;
-  var atsg = (wtds / (calpyc + wtssda - wtpycsw)) * pn1;
+  var atsg = (wtds / (calpyc + wtds - wtpycsw)) * pn1;
   var pnta = (wtssda - wtds) / wtds * mp100;
 
   // Resultado
