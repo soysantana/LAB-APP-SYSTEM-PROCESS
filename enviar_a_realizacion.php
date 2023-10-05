@@ -23,8 +23,9 @@ if (isset($_POST['enviar_realizacion'])) {
 
   if (empty($errors)) {
     $date = make_date();
-    $sql = "INSERT INTO muestra_en_realizacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Realizacion)";
-    $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}')";
+    $status = "Realizacion";
+    $sql = "INSERT INTO muestra_en_realizacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Realizacion, Estatus)";
+    $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}', '{$status}')";
     if ($db->query($sql)) {
       $session->msg("s", "Ensayo enviado a realización exitosamente.");
       redirect('realizaEnsayo.php', false);

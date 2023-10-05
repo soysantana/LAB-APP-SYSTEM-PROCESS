@@ -14,10 +14,12 @@
    $sample_number = remove_junk($db->escape($_POST['entrega-Sample_Number']));
    $test_type = remove_junk($db->escape($_POST['entrega-Test_Type']));
    $tecnico = remove_junk($db->escape($_POST['entrega-Tecnico']));
+   $status = "Preparacion";
    if(empty($errors)){
     $date =make_date();
-    $sql  = "INSERT INTO ensayo_en_entrega (Sample_ID,  Sample_Number, Test_Type, Tecnico, Fecha_de_Entrega)";
-    $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}')";
+    $status = "Entregado";
+    $sql  = "INSERT INTO ensayo_en_entrega (Sample_ID,  Sample_Number, Test_Type, Tecnico, Fecha_de_Entrega, Estatus)";
+    $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}', '{$status}')";
       if($db->query($sql)){
         $session->msg("s", "muestra en entrega agregada exitosamente.");
         redirect('entregaEnsayo.php',false);
