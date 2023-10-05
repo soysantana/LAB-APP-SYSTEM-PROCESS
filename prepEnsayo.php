@@ -39,8 +39,9 @@ if (isset($_POST['add_prep'])) {
     } else {
         // Si no existe, insertar el nuevo registro
         $date = make_date();
-        $sql = "INSERT INTO muestra_en_preparacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Preparacion)";
-        $sql .= " VALUES ('{$sampleid}','{$samplenumber}','{$testtype}','{$tecnico}','{$date}')";
+        $status = "Preparacion";
+        $sql = "INSERT INTO muestra_en_preparacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Preparacion, Estatus)";
+        $sql .= " VALUES ('{$sampleid}','{$samplenumber}','{$testtype}','{$tecnico}','{$date}', '{$status}')";
 
         if ($conn->query($sql) === TRUE) {
             $session->msg("s", "Muestra en preparación agregada exitosamente.");
