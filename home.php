@@ -32,6 +32,13 @@ $resultado_realizacion = $conexion->query($sql_realizacion);
 $sql_entregado = "SELECT * FROM ensayo_en_entrega";
 $resultado_entregado = $conexion->query($sql_entregado);
 
+$sql_revision = "SELECT * FROM ensayos_en_revision";
+$resultado_revision = $conexion->query($sql_revision);
+
+$sql_repeticion= "SELECT * FROM ensayo_en_repeticion";
+$resultado_repeticion = $conexion->query($sql_repeticion);
+
+
 foreach ($muestra_data as &$muestra) {
     $sample_id = $muestra['Sample_ID'];
     $sample_number = $muestra['Sample_Number'];
@@ -41,6 +48,8 @@ foreach ($muestra_data as &$muestra) {
     $en_preparacion = false;
     $en_realizacion = false;
     $ensayo_entregado = false;
+    $ensayo_revision = false;
+    $ensayo_repeticion = false;
 
     // Verificar si la muestra se encuentra en cada una de las tablas
     while ($fila = $resultado_preparacion->fetch_assoc()) {
@@ -63,11 +72,26 @@ foreach ($muestra_data as &$muestra) {
             break;
         }
     }
+    while ($fila = $resultado_revision->fetch_assoc()) {
+        if ($sample_id == $fila['Sample_ID'] && $sample_number == $fila['Sample_Number'] && $test_type == $fila['Test_Type']) {
+            $ensayo_revision = true;
+            break;
+        }
+    }
+    while ($fila = $resultado_repeticion->fetch_assoc()) {
+        if ($sample_id == $fila['Sample_ID'] && $sample_number == $fila['Sample_Number'] && $test_type == $fila['Test_Type']) {
+            $ensayo_repeticion = true;
+            break;
+        }
+    }
+
 
     // Marcar la fila correspondiente en la tabla
     $muestra['En_Preparacion'] = $en_preparacion;
     $muestra['En_Realizacion'] = $en_realizacion;
     $muestra['Ensayo_Entregado'] = $ensayo_entregado;
+    $muestra['En_Revision'] = $ensayo_revision;
+    $muestra['En_Repeticion'] = $ensayo_repeticion;
 }
 ?>
 
@@ -92,20 +116,26 @@ foreach ($muestra_data as &$muestra) {
       </div>
   </div>
   <div class="container">
-  <div class="row">
+
       <div class="col-md-12">
-          <h2>Proseso de muestras</h2>
+      <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>
+          <span class="glyphicon glyphicon-th"></span>
+          <span>Proceso de muestras</span>
       </div>
       <div class="col-md-12">
       <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Sample ID</th>
+            <th >Sample ID</th>
             <th>Sample Number</th>
             <th>Test Type</th>
-            <th>Preparacion</th>
-            <th>Realizacion</th>
-            <th>Entregado</th>
+            <th class='center-cell'>Preparacion</th>
+            <th class='center-cell'>Realizacion</th>
+            <th class='center-cell'>Entregado</th>
+            <th class='center-cell'>Revision</th>
+            <th class='center-cell'>Repeticion</th>
         </tr>
     </thead>
     <tbody>
@@ -121,6 +151,9 @@ foreach ($muestra_data as $muestra) {
     $enPreparacion = false;
     $enRealizacion = false;
     $ensayoEntregado = false;
+    $ensayoRepeticion = false;
+    $ensayoRevision = false;
+
 
     // Busca en la tabla muestra_en_preparacion
     $sql_preparacion = "SELECT * FROM muestra_en_preparacion WHERE Sample_ID = '{$muestra['Sample_ID']}' AND Sample_Number = '{$muestra['Sample_Number']}' AND Test_Type = '{$muestra['Test_Type']}'";
@@ -141,6 +174,19 @@ foreach ($muestra_data as $muestra) {
     $resultado_entregado = $conexion->query($sql_entregado);
     if ($resultado_entregado && $resultado_entregado->num_rows > 0) {
         $ensayoEntregado = true;
+    }
+    // Busca en la tabla ensayo_en_repeticion
+    $sql_revision = "SELECT * FROM ensayos_en_revision WHERE Sample_ID = '{$muestra['Sample_ID']}' AND Sample_Number = '{$muestra['Sample_Number']}' AND Test_Type = '{$muestra['Test_Type']}'";
+    $resultado_revision = $conexion->query($sql_repeticion);
+    if ($resultado_revision && $resultado_revision->num_rows > 0) {
+    $ensayoRevision = true;
+    }
+
+   // Busca en la tabla ensayo_en_entrega
+   $sql_repeticion = "SELECT * FROM ensayo_en_repeticion WHERE Sample_ID = '{$muestra['Sample_ID']}' AND Sample_Number = '{$muestra['Sample_Number']}' AND Test_Type = '{$muestra['Test_Type']}'";
+   $resultado_repeticion = $conexion->query($sql_repeticion);
+   if ($resultado_repeticion && $resultado_repeticion->num_rows > 0) {
+    $ensayoRepeticion = true;
     }
 
     // Columna de Preparación
@@ -170,7 +216,25 @@ foreach ($muestra_data as $muestra) {
     }
     echo "</td>";
 
-    echo "</tr>";
+  // Columna de Revision
+  echo "<td class='center-cell'>";
+  if ($ensayoRevision) {
+      echo '<img src="uploads/img/realizado.png"  alt="En Revision"width="30px">';
+  } else {
+      echo '<img src="uploads/img/norealizado.png"  alt=""width="30px">';
+  }
+  echo "</td>";
+
+    // Columna de Repeticion
+    echo "<td class='center-cell'>";
+    if ($ensayoRepeticion) {
+        echo '<img src="uploads/img/repeticion.png"  alt="En Repeticion"width="30px">';
+    } else {
+        echo '<img src=""  alt=""width="30px">';
+    }
+    echo "</td>";
+
+   
 }
 ?>
 
