@@ -487,7 +487,7 @@ page_require_level(2);
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col" colspan="2">Total</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="143.1"oninput="calcular()"></td>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id=""oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" scope="row">---</th>
                 <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="143"oninput="calcular()"></td>
@@ -1773,7 +1773,20 @@ function calcular() {
   var WpMn4 = (PPdn4 * pRN41) / 100;
 
 
- var TWpM = WpMn100 + WpMn50 + WpMn30 + WpMn16 + WpMn8 + WpMn4;*/
+ var TWpM = WpMn100 + WpMn50 + WpMn30 + WpMn16 + WpMn8 + WpMn4;
+
+
+ //obtenemos los valores de la parte fina de los resultados.
+
+ var swrN200 = parseFloat(document.getElementById("122.1").value);
+ var swrN100 = parseFloat(document.getElementById("125.1").value);
+ var swrN50 = parseFloat(document.getElementById("128.1").value);
+ var swrN30 = parseFloat(document.getElementById("131.1").value);
+ var swrN16 = parseFloat(document.getElementById("134.1").value);
+ var swrN8 = parseFloat(document.getElementById("137.1").value);
+ var swrN4 = parseFloat(document.getElementById("140.1").value);
+
+ var tswr = swrN200 + swrN100 + swrN50 + swrN30 + swrN16 + swrN8 + swrN4;
 
 
 
@@ -1865,6 +1878,8 @@ document.getElementById("121").value = PTf1.toFixed(2);
 document.getElementById("123").value = PPnd.toFixed(2);
 document.getElementById("126").value = PPnd100.toFixed(2);
 document.getElementById("129").value = PPnd50.toFixed(2);
+
+document.getElementById("143.1").value = tswr.toFixed(2);
 
 
 
