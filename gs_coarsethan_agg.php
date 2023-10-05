@@ -385,8 +385,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <td><input type="text" name="WtRetTotalPan" style="border: none;" size="4" style="background: transparent;"id="109" oninput="calcular()"></td>
             <td><input type="text" name="PorceRetTotalPan" style="border: none;" size="4" style="background: transparent;"id="110" oninput="calcular()"></td>
             <td><input type="text" name="CumRetTotalPan" style="border: none;" size="4" style="background: transparent;"id="111" oninput="calcular()"></td>
-            <td><input type="text" name="PorcePass5127" style="border: none;" size="4" style="background: transparent;"id="112" oninput="calcular()"></td>
-            <td><input type="text" name="PorcePassTotalPan" style="text-align: center; border: none;" size="4" style="background: transparent;"id="113" oninput="calcular()"></td>
+            <td><input type="text" name="PorcePassTotalPan" style="border: none;" size="4" style="background: transparent;"id="112" oninput="calcular()"></td>
+            <td><input type="text" name="" style="text-align: center; border: none;" size="4" style="background: transparent;"id="113" oninput="calcular()"></td>
           </tr>
         </tbody>
       </table>
