@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2023 at 10:14 PM
+-- Generation Time: Oct 05, 2023 at 10:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1114,8 +1114,16 @@ CREATE TABLE `ensayos_en_revision` (
   `Test_Type` varchar(15) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
   `Fecha_Inicio` datetime NOT NULL,
-  `Fecha_final` datetime NOT NULL
+  `Fecha_final` datetime NOT NULL,
+  `Estatus` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ensayos_en_revision`
+--
+
+INSERT INTO `ensayos_en_revision` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio`, `Fecha_final`, `Estatus`) VALUES
+(11, 'DH-BGC24-NTSF-0', 'G1', 'Mc_Oven', 'YM', '2023-10-05 17:18:40', '0000-00-00 00:00:00', 'Revision');
 
 -- --------------------------------------------------------
 
@@ -1130,15 +1138,16 @@ CREATE TABLE `ensayo_en_entrega` (
   `Sample_Number` varchar(25) NOT NULL,
   `Test_Type` varchar(15) NOT NULL,
   `Fecha_de_Entrega` datetime NOT NULL,
-  `Sample_Date` date NOT NULL
+  `Sample_Date` date NOT NULL,
+  `Estatus` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ensayo_en_entrega`
 --
 
-INSERT INTO `ensayo_en_entrega` (`id`, `Sample_ID`, `Tecnico`, `Sample_Number`, `Test_Type`, `Fecha_de_Entrega`, `Sample_Date`) VALUES
-(16, 'PH-BGC23-NTSF-1', 'WD', 'G8', 'SG', '2023-09-18 22:18:03', '0000-00-00');
+INSERT INTO `ensayo_en_entrega` (`id`, `Sample_ID`, `Tecnico`, `Sample_Number`, `Test_Type`, `Fecha_de_Entrega`, `Sample_Date`, `Estatus`) VALUES
+(17, 'DH-BGC24-NTSF-0', 'WD', 'G1', 'Mc_Oven', '2023-10-05 15:09:54', '0000-00-00', 'Entregado');
 
 -- --------------------------------------------------------
 
@@ -1152,8 +1161,16 @@ CREATE TABLE `ensayo_en_repeticion` (
   `Sample_Number` varchar(15) NOT NULL,
   `Test_Type` varchar(15) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
-  `Fecha_Inicio` datetime NOT NULL
+  `Fecha_Inicio` datetime NOT NULL,
+  `Estatus` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ensayo_en_repeticion`
+--
+
+INSERT INTO `ensayo_en_repeticion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio`, `Estatus`) VALUES
+(1, 'DH-BGC24-NTSF-0', 'G1', 'Mc_Oven', 'WD', '2023-10-05 00:00:00', 'Repeticion');
 
 -- --------------------------------------------------------
 
@@ -1220,8 +1237,7 @@ CREATE TABLE `eventoscalendar` (
 --
 
 INSERT INTO `eventoscalendar` (`id`, `tecnico`, `actividad`, `color_evento`, `fecha_inicio`, `fecha_fin`) VALUES
-(60, 'Victor - HY Y SG', NULL, '#FF5722', '2023-09-18', '2023-09-19'),
-(61, 'Wendin- Limpieza De Bandejas Y Areas Comunes', NULL, '#2196F3', '2023-09-19', '2023-09-20');
+(62, 'Wendin- Limpieza De Bandejas Y Areas Comunes', NULL, '#2196F3', '2023-09-28', '2023-09-29');
 
 -- --------------------------------------------------------
 
@@ -2792,9 +2808,6 @@ CREATE TABLE `lab_test_requisition_form` (
 --
 
 INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Test_Type1`, `Test_Type2`, `Test_Type3`, `Test_Type4`, `Test_Type5`, `Test_Type6`, `Test_Type7`, `Test_Type8`, `Test_Type9`, `Test_Type10`, `Test_Type11`, `Test_Type12`, `Test_Type13`, `Test_Type14`, `Test_Type15`, `Test_Type16`, `Test_Type17`, `Test_Type18`, `Test_Type19`, `Comment`, `Statuss`, `Sample_Date`, `Sample_By`, `Registed_Date`, `test_inicio`, `Sample_Number`, `Register_By`) VALUES
-(1, 'TP-BGC23-NTSF-101', 'Site Investigation', 'TSF Naranjo', 'NA', 0.5, 1.2, 'Soil', 'Grab', 0, 0, 0, 'MC_Oven', '', '', 'AL', 'GS', 'SP', 'SG', '', '', '', '', '', '', '', 'HY', '', '', '', '', 'Probando', '', '2023-09-12', 'AS', '2023-09-17', '0000-00-00 00:00:00.000000', 'G1', 'WD'),
-(2, 'TP-BGC23-NTSF-102', 'SIte Investigation', 'Naranjo', 'NA', 0.4, 1.2, 'Soil', 'Grab', 0, 0, 0, 'MC_Oven', '', '', 'AL', 'GS', 'SP', 'SG', '', '', '', '', '', '', '', 'HY', 'DHY', 'PH', '', '', 'Probando', '', '2023-09-05', 'WD', '2023-09-18', '0000-00-00 00:00:00.000000', 'G2', ''),
-(3, 'PH-BGC23-NTSF-182', 'Site Investigation', 'TSF Naranjo', 'N/A', 0.15, 2.5, 'Soil', 'Grab', 0, 0, 0, 'MC_Oven', '', '', 'AL', 'GS', 'SP', 'SG', '', '', '', '', '', '', '', 'HY', '', 'PH', '', '', 'Prueba', '', '2023-09-04', 'AS', '2023-09-18', '0000-00-00 00:00:00.000000', 'G8', 'WD'),
 (4, 'DH-BGC23-NTSF-118', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.5, 2.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-24', 'TT/CD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
 (5, 'DH-BGC23-NTSF-118', 'Site Investigation', 'TSF Naranjo', 'N/A', 4, 5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-24', 'TT/CD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
 (6, 'DH-BGC23-NTSF-118', 'Site Investigation', 'TSF Naranjo', 'N/A', 6.8, 7.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-24', 'TT/CD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
@@ -2814,7 +2827,6 @@ INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`,
 (20, 'DH-BGC23-NTSF-119', 'Site Investigation', 'TSF Naranjo', 'N/A', 189.22, 189.6, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'SG, W1-LL', '', '2023-06-20', 'LA', '2023-09-19', '0000-00-00 00:00:00.000000', 'R5', 'WD'),
 (21, 'DH-BGC23-NTSF-133A', 'Site Investigation', 'TSF Naranjo', 'N/A', 28.5, 28.8, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2023-06-21', 'CC', '2023-09-19', '0000-00-00 00:00:00.000000', 'R1', 'WD'),
 (22, 'DH-BGC23-NTSF-138', 'Site Investigation', 'TSF Naranjo', 'N/A', 3.8, 34.3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-06-20', 'MD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX12', 'WD'),
-(23, 'PH-BGC23-NTSF-138', 'Site Investigation', 'TSF Naranjo', 'N/A', 35, 36.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-06-20', 'MD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX13', 'WD'),
 (24, 'DH-BGC23-NTSF-138', 'Site Investigation', 'TSF Naranjo', 'N/A', 38, 39.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-06-20', 'MD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX14', 'WD'),
 (25, 'DH-BGC23-NTSF-138', 'Site Investigation', 'TSF Naranjo', 'N/A', 41, 42.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-06-20', 'MD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX15', 'WD'),
 (26, 'DH-BGC23-NTSF-138', 'Site Investigation', 'TSF Naranjo', 'N/A', 44, 45, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-06-20', 'MD', '2023-09-19', '0000-00-00 00:00:00.000000', 'LX16', 'WD'),
@@ -2910,7 +2922,121 @@ INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`,
 (116, 'DH-BGC22-NTSF-054', 'Site Investigation', 'TSF Naranjo', 'N/A', 57.22, 57.73, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2022-11-30', 'EP/SM', '2023-09-21', '0000-00-00 00:00:00.000000', 'R2', 'WD'),
 (117, 'DH-BGC22-NTSF-054', 'Site Investigation', 'TSF Naranjo', 'N/A', 59.89, 60.2, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Rock', '', '2022-11-30', 'EP/SM', '2023-09-21', '0000-00-00 00:00:00.000000', 'R3', 'WD'),
 (118, 'DH-BGC22-NTSF-054', 'Site Investigation', 'TSF Naranjo', 'N/A', 64.65, 64.96, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', 'BTS', '', '', '', '', '', 'Sample for TCS.', '', '2022-11-30', 'EP/SM', '2023-09-21', '0000-00-00 00:00:00.000000', 'R4', 'WD'),
-(119, 'DH-BGC22-NTSF-054', 'Site Investigation', 'TSF Naranjo', 'N/A', 79.14, 79.37, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Rock', '', '2022-11-30', 'EP/SM', '2023-09-21', '0000-00-00 00:00:00.000000', 'R5', 'WD');
+(119, 'DH-BGC22-NTSF-054', 'Site Investigation', 'TSF Naranjo', 'N/A', 79.14, 79.37, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Rock', '', '2022-11-30', 'EP/SM', '2023-09-21', '0000-00-00 00:00:00.000000', 'R5', 'WD'),
+(122, 'DH-BGC22-NTSF-058', 'Site Investigation', 'TSF Naranjo', 'N/A', 27.35, 27.87, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2022-11-30', 'CC/AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R1', 'WD'),
+(123, 'DH-BGC22-NTSF-058', 'Site Investigation', 'TSF Naranjo', 'N/A', 31.66, 32.22, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Shear and TCS', '', '2022-11-30', 'CC/AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R2', 'WD'),
+(124, 'DH-BGC22-NTSF-058', 'Site Investigation', 'TSF Naranjo', 'N/A', 39.27, 39.5, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2022-11-30', 'CC/AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R3', 'WD'),
+(125, 'DH-BGC22-NTSF-062', 'Site Investigation', 'TSF Naranjo', 'N/A', 43.66, 44.05, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2022-12-01', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R4', 'WD'),
+(126, 'DH-BGC22-NTSF-062', 'Site Investigation', 'TSF Naranjo', 'N/A', 49.54, 50, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2022-12-01', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R5', 'WD'),
+(127, 'DH-BGC22-NTSF-062', 'Site Investigation', 'TSF Naranjo', 'N/A', 16.25, 17.25, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-01', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX5', 'WD'),
+(128, 'DH-BGC22-NTSF-052', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.95, 2.95, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-17', 'SM/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(129, 'DH-BGC22-NTSF-052', 'Site Investigation', 'TSF Naranjo', 'N/A', 4.9, 5.9, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-17', 'SM/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(130, 'DH-BGC22-NTSF-052', 'Site Investigation', 'TSF Naranjo', 'N/A', 7.85, 8.85, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-18', 'SM/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(131, 'DH-BGC22-NTSF-047', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.95, 2.95, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-04', 'GB/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(132, 'DH-BGC22-NTSF-047', 'Site Investigation', 'TSF Naranjo', 'N/A', 7.3, 8.3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-04', 'GB/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(133, 'DH-BGC22-NTSF-047', 'Site Investigation', 'TSF Naranjo', 'N/A', 12.5, 13.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-07', 'GB/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(134, 'DH-BGC22-NTSF-047', 'Site Investigation', 'TSF Naranjo', 'N/A', 18, 19, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-08', 'GB/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(135, 'DH-BGC22-NTSF-047', 'Site Investigation', 'TSF Naranjo', 'N/A', 23.25, 24.25, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-08', 'GB/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX5', 'WD'),
+(136, 'DH-BGC22-NTSF-035A', 'Site Investigation', 'TSF Naranjo', 'N/A', 12.8, 13.8, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-04', 'GB/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(137, 'DH-BGC22-NTSF-048A', 'Site Investigation', 'TSF Naranjo', 'N/A', 29.8, 30.8, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-21', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(138, 'DH-BGC22-NTSF-048A', 'Site Investigation', 'TSF Naranjo', 'N/A', 32, 33.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-22', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(139, 'DH-BGC22-NTSF-047A', 'Site Investigation', 'TSF Naranjo', 'N/A', 12.85, 13.85, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-21', 'TT', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(140, 'DH-BGC22-NTSF-047A', 'Site Investigation', 'TSF Naranjo', 'N/A', 19.85, 20.85, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-21', 'TT', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX5', 'WD'),
+(141, 'DH-BGC22-NTSF-052', 'Site Investigation', 'TSF Naranjo', 'N/A', 13.9, 14.9, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-22', 'SM/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(142, 'DH-BGC22-NTSF-052', 'Site Investigation', 'TSF Naranjo', 'N/A', 29.3, 30.3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-21', 'SM/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX5', 'WD'),
+(143, 'DH-BGC22-NTSF-059W', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.5, 2.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-28', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(144, 'DH-BGC22-NTSF-059W', 'Site Investigation', 'TSF Naranjo', 'N/A', 4, 5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-28', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(145, 'DH-BGC22-NTSF-059W', 'Site Investigation', 'TSF Naranjo', 'N/A', 6.5, 7.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-29', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(146, 'DH-BGC22-NTSF-059W', 'Site Investigation', 'TSF Naranjo', 'N/A', 17.6, 18.6, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-30', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(147, 'DH-BGC22-NTSF-054A', 'Site Investigation', 'TSF Naranjo', 'N/A', 23, 24, 'Soil', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-01', 'SM/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(148, 'DH-BGC22-NTSF-015', 'Site Investigation', 'TSF Naranjo', 'N/A', 27.15, 28.15, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-11-27', 'TL', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX10', 'WD'),
+(149, 'DH-BGC22-NTSF-058A', 'Site Investigation', 'TSF Naranjo', 'N/A', 13.3, 14.3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-22', 'CC/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(150, 'DH-BGC22-NTSF-058A', 'Site Investigation', 'TSF Naranjo', 'N/A', 14.9, 15.9, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-22', 'CC/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(151, 'DH-BGC22-NTSF-058A', 'Site Investigation', 'TSF Naranjo', 'N/A', 17.4, 18.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-22', 'CC/EP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(152, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 2.45, 3.45, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-01', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(153, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 8.85, 9.95, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-01', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(154, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 10.3, 11.3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-01', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(155, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 14.75, 15.75, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2022-12-02', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(156, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 21.25, 21.55, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2022-12-21', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'R1', 'WD'),
+(157, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 22.75, 23.11, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear, TCS', '', '2022-12-21', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'R2', 'WD'),
+(158, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 23.18, 23.7, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2022-12-21', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'R3', 'WD'),
+(159, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 29.37, 29.65, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2022-12-21', 'TL/RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'R5', 'WD'),
+(160, 'DH-BGC22-NTSF-060', 'Site Investigation', 'TSF Naranjo', 'N/A', 37.1, 37.35, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2022-12-22', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R6', 'WD'),
+(161, 'DH-BGC23-NTSF-084', 'Site Investigation', 'TSF Naranjo', 'N/A', 18.5, 19.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-02-28', 'CC/AR', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(162, 'DH-BGC23-NTSF-077', 'Site Investigation', 'TSF Naranjo', 'N/A', 32.75, 33.25, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-02-18', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(163, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.95, 2.95, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-02-07', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(164, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 4.9, 5.95, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-02-07', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(165, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 9.3, 10.3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-02-08', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(166, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 13.8, 14.8, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-02-08', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(167, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 21.9, 23.1, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-02-08', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX5', 'WD'),
+(168, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 21.24, 21.5, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2023-02-13', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'R1', 'WD'),
+(169, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 34.8, 35.2, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2023-02-13', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'R2', 'WD'),
+(170, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 36.7, 37.23, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Rock', '', '2023-02-13', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'R3', 'WD'),
+(171, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 71.85, 72.18, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2023-02-13', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'R4', 'WD'),
+(172, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 86.12, 86.45, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2023-02-13', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'R5', 'WD'),
+(173, 'DH-BGC23-NTSF-075', 'Site Investigation', 'TSF Naranjo', 'N/A', 94.23, 94.46, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2023-02-13', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'R6', 'WD'),
+(175, 'DH-BGC23-NTSF-097', 'Site Investigation', 'TSF Naranjo', 'N/A', 5.85, 6.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-04-01', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(176, 'DH-BGC23-NTSF-097', 'Site Investigation', 'TSF Naranjo', 'N/A', 2.15, 3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-04-01', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(177, 'DH-BGC23-NTSF-097', 'Site Investigation', 'TSF Naranjo', 'N/A', 9, 9.7, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-04-01', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(178, 'DH-BGC23-NTSF-099', 'Site Investigation', 'TSF Naranjo', 'N/A', 3.45, 4.45, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-04-11', 'DC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(179, 'DH-BGC23-NTSF-099', 'Site Investigation', 'TSF Naranjo', 'N/A', 6.4, 7.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-04-11', 'DC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(180, 'DH-BGC23-NTSF-099', 'Site Investigation', 'TSF Naranjo', 'N/A', 10.95, 12, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-04-11', 'DC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(182, 'DH-BGC23-NTSF-102', 'Site Investigation', 'TSF Naranjo', 'N/A', 23.05, 24.05, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-04-18', 'GB/PC', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(183, 'DH-BGC23-NTSF-101A', 'Site Investigation', 'TSF Naranjo', 'N/A', 7.3, 8.3, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-09', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(184, 'DH-BGC23-NTSF-113', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.95, 2.95, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-18', 'SM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD');
+INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Test_Type1`, `Test_Type2`, `Test_Type3`, `Test_Type4`, `Test_Type5`, `Test_Type6`, `Test_Type7`, `Test_Type8`, `Test_Type9`, `Test_Type10`, `Test_Type11`, `Test_Type12`, `Test_Type13`, `Test_Type14`, `Test_Type15`, `Test_Type16`, `Test_Type17`, `Test_Type18`, `Test_Type19`, `Comment`, `Statuss`, `Sample_Date`, `Sample_By`, `Registed_Date`, `test_inicio`, `Sample_Number`, `Register_By`) VALUES
+(185, 'DH-BGC23-NTSF-113', 'Site Investigation', 'TSF Naranjo', 'N/A', 3.4, 4.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-18', 'SM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(186, 'DH-BGC23-NTSF-113', 'Site Investigation', 'TSF Naranjo', 'N/A', 6.35, 7.35, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-18', 'SM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(187, 'DH-BGC23-NTSF-106', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.5, 3, 'Rock', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-24', 'RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(188, 'DH-BGC23-NTSF-116', 'Site Investigation', 'TSF Naranjo', 'N/A', 22.61, 22.91, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2023-05-23', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R2', 'WD'),
+(189, 'DH-BGC23-NTSF-116', 'Site Investigation', 'TSF Naranjo', 'N/A', 31.98, 32.33, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2023-05-24', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R3', 'WD'),
+(190, 'DH-BGC23-NTSF-090', 'Site Investigation', 'TSF Naranjo', 'N/A', 248.75, 249.09, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2023-05-25', 'SP/JM', '2023-09-22', '0000-00-00 00:00:00.000000', 'SP01', 'WD'),
+(191, 'DH-BGC23-NTSF-115', 'Site Investigation', 'TSF Naranjo', 'N/A', 84.45, 84.85, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2023-05-30', 'RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'R4', 'WD'),
+(192, 'DH-BGC23-NTSF-086B', 'Site Investigation', 'TSF Naranjo', 'N/A', 33.55, 33.86, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2023-05-26', 'JM/SP', '2023-09-22', '0000-00-00 00:00:00.000000', 'SP01', 'WD'),
+(193, 'DH-BGC23-NTSF-115', 'Site Investigation', 'TSF Naranjo', 'N/A', 26.95, 28.45, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-30', 'RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(194, 'DH-BGC23-NTSF-115', 'Site Investigation', 'TSF Naranjo', 'N/A', 77.65, 78.65, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-30', 'RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(195, 'DH-BGC23-NTSF-115', 'Site Investigation', 'TSF Naranjo', 'N/A', 79.35, 80.35, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-30', 'RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX5', 'WD'),
+(196, 'DH-BGC23-NTSF-115', 'Site Investigation', 'TSF Naranjo', 'N/A', 81.05, 81.33, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2023-05-30', 'RM', '2023-09-22', '0000-00-00 00:00:00.000000', 'R3', 'WD'),
+(197, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 23.6, 24.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '20 cm intact section - Lexan Rock', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX6', 'WD'),
+(198, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 30, 31, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'no section > 20 cm', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX7', 'WD'),
+(199, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 32.2, 33.2, 'Aggregates', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX8', 'WD'),
+(200, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 38.8, 39.6, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock, pushed gauge from split', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX10', 'WD'),
+(201, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 40.15, 41.15, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'possibly beacher', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX11', 'WD'),
+(202, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 35.72, 36.05, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Rock', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'R05', 'WD'),
+(203, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 41.89, 42.24, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'R02', 'WD'),
+(204, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 37.17, 37.47, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2023-05-29', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'R03', 'WD'),
+(205, 'DH-BGC23-NTSF-120', 'Site Investigation', 'TSF Naranjo', 'N/A', 56.97, 57.35, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2023-05-30', 'CD', '2023-09-22', '0000-00-00 00:00:00.000000', 'R04', 'WD'),
+(206, 'DH-BGC23-NTSF-118', 'Site Investigation', 'TSF Naranjo', 'N/A', 31.55, 31.79, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Direct Shear', '', '2023-05-25', 'GB', '2023-09-22', '0000-00-00 00:00:00.000000', 'R1', 'WD'),
+(207, 'DH-BGC23-NTSF-121', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.5, 2.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-28', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(208, 'DH-BGC23-NTSF-121', 'Site Investigation', 'TSF Naranjo', 'N/A', 3.85, 4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-28', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(209, 'DH-BGC23-NTSF-121', 'Site Investigation', 'TSF Naranjo', 'N/A', 6.35, 7.35, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-28', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(210, 'DH-BGC23-NTSF-121', 'Site Investigation', 'TSF Naranjo', 'N/A', 8.85, 9.85, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-28', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX4', 'WD'),
+(211, 'DH-BGC23-NTSF-121', 'Site Investigation', 'TSF Naranjo', 'N/A', 13, 14, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-05-29', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX5', 'WD'),
+(212, 'DH-BGC23-NTSF-121', 'Site Investigation', 'TSF Naranjo', 'N/A', 17.57, 17.77, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Rock', '', '2023-05-30', 'AP', '2023-09-22', '0000-00-00 00:00:00.000000', 'R1', 'WD'),
+(213, 'DH-BGC23-NTSF-150', 'Site Investigation', 'TSF Naranjo', 'N/A', 23.8, 24.8, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-08-10', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX1', 'WD'),
+(214, 'DH-BGC23-NTSF-150', 'Site Investigation', 'TSF Naranjo', 'N/A', 29.75, 29.65, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-08-10', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX2', 'WD'),
+(215, 'DH-BGC23-NTSF-150', 'Site Investigation', 'TSF Naranjo', 'N/A', 25.1, 25.4, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', '', '', '', '', '', '', 'Sample for TCS.', '', '2023-08-10', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'R01', 'WD'),
+(216, 'DH-BGC23-NTSF-150', 'Site Investigation', 'TSF Naranjo', 'N/A', 35.65, 36.5, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-08-10', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX3', 'WD'),
+(217, 'DH-BGC23-NTSF-152', 'Site Investigation', 'TSF Naranjo', 'N/A', 60.79, 61.07, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2023-09-11', 'AP/GB', '2023-09-22', '0000-00-00 00:00:00.000000', 'R2', 'WD'),
+(218, 'DH-BGC23-NTSF-152', 'Site Investigation', 'TSF Naranjo', 'N/A', 67.35, 67.6, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'UCS', '', 'BTS', '', '', '', '', '', 'Rock', '', '2023-09-11', 'AP/GB', '2023-09-22', '0000-00-00 00:00:00.000000', 'R3', 'WD'),
+(219, 'DH-BGC23-NTSF-154', 'Site Investigation', 'TSF Naranjo', 'N/A', 15.4, 16.9, 'Rock', 'Lexan', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-09-11', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX7', 'WD'),
+(220, 'DH-BGC23-NTSF-154', 'Site Investigation', 'TSF Naranjo', 'N/A', 18.9, 19.9, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-09-11', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX8', 'WD'),
+(221, 'DH-BGC23-NTSF-154', 'Site Investigation', 'TSF Naranjo', 'N/A', 23.6, 24.6, 'Rock', 'Rock', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Lexan-Rock', '', '2023-09-11', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'LX9', 'WD'),
+(222, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '001', 'WD'),
+(223, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '002', 'WD'),
+(224, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '003', 'WD'),
+(225, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '003', 'WD'),
+(226, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '004', 'WD'),
+(227, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '005', 'WD'),
+(228, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '006', 'WD'),
+(229, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '007', 'WD'),
+(230, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '007', 'WD'),
+(231, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '008', 'WD'),
+(232, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '008', 'WD'),
+(233, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '009', 'WD'),
+(234, 'DH-BGC23-NTSF-DSL', 'Site Investigation', 'TSF Naranjo', 'N/A', 0, 0, 'Soil', 'Shelby', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'hold  for shipping to other lab', '', '2023-09-14', 'ML', '2023-09-22', '0000-00-00 00:00:00.000000', '010', 'WD'),
+(241, 'DH-BGC24-NTSF-001', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.95, 2.5, 'Soil', 'Grab', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2023-09-22', 'CC', '2023-09-22', '0000-00-00 00:00:00.000000', 'G1', 'WD'),
+(242, 'SD1-S18-124', 'Site Investigation', 'TSF Naranjo', 'N/A', 1.95, 2.95, 'Soil', 'Grab', 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2023-09-22', 'empty', '2023-09-22', '0000-00-00 00:00:00.000000', 'G8', 'WD');
 
 -- --------------------------------------------------------
 
@@ -2981,13 +3107,19 @@ CREATE TABLE `lista_de_pendiente` (
 --
 
 INSERT INTO `lista_de_pendiente` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Sample_Date`) VALUES
-(7, 'PH-BGC23-NTSF-1', 'G8', 'MC_Oven', '2023-09-04'),
-(8, 'PH-BGC23-NTSF-1', 'G8', 'AL', '2023-09-04'),
-(9, 'PH-BGC23-NTSF-1', 'G8', 'GS', '2023-09-04'),
-(10, 'PH-BGC23-NTSF-1', 'G8', 'SP', '2023-09-04'),
-(11, 'PH-BGC23-NTSF-1', 'G8', 'SG', '2023-09-04'),
-(12, 'PH-BGC23-NTSF-1', 'G8', 'HY', '2023-09-04'),
-(13, 'PH-BGC23-NTSF-1', 'G8', 'PH', '2023-09-04');
+(2, 'DH-BGC24-NTSF-0', 'G1', 'Mc_Oven', '2023-09-22'),
+(3, 'DH-BGC24-NTSF-0', 'G1', 'AL', '2023-09-22'),
+(4, 'DH-BGC24-NTSF-0', 'G1', 'GS', '2023-09-22'),
+(5, 'DH-BGC24-NTSF-0', 'G1', 'SP', '2023-09-22'),
+(6, 'DH-BGC24-NTSF-0', 'G1', 'SG', '2023-09-22'),
+(7, 'DH-BGC24-NTSF-0', 'G1', 'SC', '2023-09-22'),
+(8, 'DH-BGC24-NTSF-0', 'G1', 'HY', '2023-09-22'),
+(9, 'SD1-S18-124', 'G8', 'Mc_Oven', '2023-09-22'),
+(10, 'SD1-S18-124', 'G8', 'AL', '2023-09-22'),
+(11, 'SD1-S18-124', 'G8', 'GS', '2023-09-22'),
+(12, 'SD1-S18-124', 'G8', 'SP', '2023-09-22'),
+(13, 'SD1-S18-124', 'G8', 'SG', '2023-09-22'),
+(14, 'SD1-S18-124', 'G8', 'HY', '2023-09-22');
 
 -- --------------------------------------------------------
 
@@ -3296,17 +3428,17 @@ CREATE TABLE `muestra_en_preparacion` (
   `Sample_Number` varchar(25) NOT NULL,
   `Test_Type` varchar(15) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
-  `Fecha_Inicio_Preparacion` datetime NOT NULL
+  `Fecha_Inicio_Preparacion` datetime NOT NULL,
+  `Estatus` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `muestra_en_preparacion`
 --
 
-INSERT INTO `muestra_en_preparacion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio_Preparacion`) VALUES
-(69, 'PH-BGC23-NTSF-1', 'G8', 'SG', 'WD', '2023-09-18 22:11:27'),
-(70, 'PH-BGC23-NTSF-1', 'G8', 'SP', 'WD', '2023-09-18 22:11:50'),
-(71, 'PH-BGC23-NTSF-1', 'G8', 'PH', 'WD', '2023-09-21 22:09:08');
+INSERT INTO `muestra_en_preparacion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio_Preparacion`, `Estatus`) VALUES
+(79, 'SD1-S18-124', 'G8', 'Al', 'WD', '2023-10-05 13:45:57', 'Preparacion'),
+(80, 'DH-BGC24-NTSF-0', 'G1', 'Mc_Oven', 'WD', '2023-10-05 14:55:54', 'Preparacion');
 
 -- --------------------------------------------------------
 
@@ -3320,15 +3452,16 @@ CREATE TABLE `muestra_en_realizacion` (
   `Sample_Number` varchar(15) NOT NULL,
   `Test_Type` varchar(25) NOT NULL,
   `Tecnico` varchar(20) NOT NULL,
-  `Fecha_Inicio_Realizacion` datetime NOT NULL
+  `Fecha_Inicio_Realizacion` datetime NOT NULL,
+  `Estatus` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `muestra_en_realizacion`
 --
 
-INSERT INTO `muestra_en_realizacion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio_Realizacion`) VALUES
-(22, 'PH-BGC23-NTSF-1', 'G8', 'SG', 'WD', '2023-09-18 22:12:35');
+INSERT INTO `muestra_en_realizacion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio_Realizacion`, `Estatus`) VALUES
+(24, 'DH-BGC24-NTSF-0', 'G1', 'Mc_Oven', 'WD', '2023-10-05 15:09:51', 'Realizacion');
 
 -- --------------------------------------------------------
 
@@ -4342,7 +4475,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(1, 'Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-09-18 19:24:45'),
+(1, 'Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'pzg9wa7o1.jpg', 1, '2023-10-04 14:50:21'),
 (2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2023-03-20 03:13:43'),
 (3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2023-09-18 19:23:40');
 
@@ -4680,19 +4813,19 @@ ALTER TABLE `double_hydrometer`
 -- AUTO_INCREMENT for table `ensayos_en_revision`
 --
 ALTER TABLE `ensayos_en_revision`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ensayo_en_entrega`
 --
 ALTER TABLE `ensayo_en_entrega`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `ensayo_en_repeticion`
 --
 ALTER TABLE `ensayo_en_repeticion`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ensayo_gama`
@@ -4704,7 +4837,7 @@ ALTER TABLE `ensayo_gama`
 -- AUTO_INCREMENT for table `eventoscalendar`
 --
 ALTER TABLE `eventoscalendar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `grain_size`
@@ -4752,7 +4885,7 @@ ALTER TABLE `hydrometer`
 -- AUTO_INCREMENT for table `lab_test_requisition_form`
 --
 ALTER TABLE `lab_test_requisition_form`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `leeb_hardness`
@@ -4764,7 +4897,7 @@ ALTER TABLE `leeb_hardness`
 -- AUTO_INCREMENT for table `lista_de_pendiente`
 --
 ALTER TABLE `lista_de_pendiente`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `los_angeles_abrasion_large`
@@ -4806,13 +4939,13 @@ ALTER TABLE `moisture_scale`
 -- AUTO_INCREMENT for table `muestra_en_preparacion`
 --
 ALTER TABLE `muestra_en_preparacion`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `muestra_en_realizacion`
 --
 ALTER TABLE `muestra_en_realizacion`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `permeability_of_granular_soils`
