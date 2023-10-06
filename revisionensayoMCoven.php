@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Inserta la cadena en la columna "Sample_ID"
-        $query = "INSERT INTO ensayo_en_repeticion (Sample_ID, Tecnico, Fecha_Inicio ) VALUES ('$ensayo_repetir','$technician', '$repetirFecha')";
+        $query = "INSERT INTO ensayos_en_repeticion (Sample_ID, Tecnico, Fecha_Inicio ) VALUES ('$ensayo_repetir','$technician', '$repetirFecha')";
         echo "Query: $query"; // Mensaje de depuración
         $result = mysqli_query($rtv, $query);
         if ($result) {
@@ -93,6 +93,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); // Importante: salir del script después de generar el PDF
     }
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recuperar los datos del formulario
+    $tarename = $_POST["tarename"];
+    $tarename = $_POST["tarewet"];
+    $tarename = $_POST["taredry"];
+    $tarename = $_POST["water"];
+    $tarename = $_POST["weigthtare"];
+    $tarename = $_POST["drysoil"];
+    $tarename = $_POST["mccorrected"];
+   
+    $query1 = "INSERT INTO moisture_content (Tare_Name, Tare_Plus_Wet_Soil, Tare_Plus_Dry_Soil, Water, Weigth "
+  
+    // Realizar la actualización en la base de datos
+    // Aquí debes escribir el código para actualizar la información en la base de datos
+    // Por ejemplo, puedes usar consultas SQL para actualizar los valores en la tabla
+  
+    // Después de la actualización, puedes redirigir al usuario a la página de lista de ensayos u otra página
+    header("Location: lista_de_ensayos.php");
+    exit();
+  }
+
+
+
+
+
+
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -331,7 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form id="editForm" action="guardar_edicion.php" method="post">
+        <form id="editForm" action="revisionensayoMCoven.php" method="post" onsubmit="calcular()">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -341,23 +368,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-xs-4">
                   <label>Tare Plus Wet Soil (gr)</label>
-                  <input class="form-control" name="tarewet" id="1" value="<?= $tarePlusWetSoil ?>">
+                  <input class="form-control" name="tarewet" id="1" value="<?= $tarePlusWetSoil ?>"oninput="calcular()">
                 </div>
                 <div class="col-xs-4">
                   <label>Tare Plus Dry Soil (gr)</label>
-                  <input class="form-control" name="taredry" id="2" value="<?= $tarePlusDrySoil ?>">
+                  <input class="form-control" name="taredry" id="2" value="<?= $tarePlusDrySoil ?>"oninput="calcular()">
                 </div>
                 <div class="col-xs-4">
                   <label>Water (gr)</label>
-                  <input class="form-control" name="water" id="3" value="<?= $water ?>">
+                  <input class="form-control" name="water" id="3" value="<?= $water ?>"oninput="calcular()">
                 </div>
                 <div class="col-xs-4">
                   <label>Weigth Tare (gr)</label>
-                  <input class="form-control" name="weigthtare" id="4" value="<?= $weightTare ?>">
+                  <input class="form-control" name="weigthtare" id="4" value="<?= $weightTare ?>"oninput="calcular()">
                 </div>
                 <div class="col-xs-4">
                   <label>Dry Soil (gr)</label>
-                  <input class="form-control" name="drysoil" id="5" value="<?= $drySoil ?>">
+                  <input class="form-control" name="drysoil" id="5" value="<?= $drySoil ?>"oninput="calcular()">
                 </div>
                 <div class="col-xs-4">
                   <label>MC Calculado</label>
@@ -365,44 +392,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-xs-4">
                   <label>MC Corregido</label>
-                  <input class="form-control" name="mc_after_drying" id="7" value="">
+                  <input class="form-control" name="mccorrected" id="7" value=""oninput="calcular()">
                 </div>
               </tr>
             </thead>
           </table>
 
           <script>
-               // Obtén referencias a los campos de entrada y salida
-               const pTPWS= document.getElementById("1");
-               const pTPDS= document.getElementById("2");
-               const pwater = document.getElementById("3");
-               const pWT = document.getElementById("4");
-               const pmccorrected = document.getElementById("7");
+               function calcular() {
+    // Obtener los valores
+    var TPWS = parseFloat(document.getElementById("1").value);
+    var TPDS = parseFloat(document.getElementById("2").value);
+    var WT = parseFloat(document.getElementById("4").value);
 
-               // Agrega un evento "input" a los campos de entrada para detectar cambios
-               pTPWS.addEventListener("input", calcularResultado);
-               pTPDS.addEventListener("input", calcularResultado);
-               pwater.addEventListener("input", calcularResultado);
-               pWT.addEventListener("input", calcularResultado);
-              pmccorrected.addEventListener("input", calcularResultado);
+    // Calcular los valores
+    var water = TPWS - TPDS;
+    var Drysoil = TPDS - WT;
+    var Mc = (water / Drysoil) * 100;
 
-               // Función para calcular el resultado
-               function calcularResultado() {
-                 // Obtén los valores de los campos de entrada y realiza el cálculo deseado
-                 const TPWS = parseFloat(pTPWS.value) || 0;
-                 const TPDS = parseFloat(pTPDS.value) || 0;
-                 const WT = parseFloat(pWT.value) || 0;
-    
-                 // Realiza el cálculo 
-                 const water = TPWS - TPDS;
-                 const DS = TPDS - WT;
-                const Mc = (water / DS) * 100;
-
-
-    
-                 // Muestra el resultado en el campo de salida
-                 pmcorrected.value = Mc;
-               }
+    // Pasar el resultado al input
+    document.getElementById("3").value = water.toFixed(2);
+    document.getElementById("5").value = Drysoil.toFixed(2);
+    document.getElementById("7").value = Mc.toFixed(2);
+  }
+             
          </script>
           <!-- Botón de guardar cambios -->
           <button type="submit" class="btn btn-primary">Guardar Cambios</button>
