@@ -94,30 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recuperar los datos del formulario
-    $tarename = $_POST["tarename"];
-    $tarename = $_POST["tarewet"];
-    $tarename = $_POST["taredry"];
-    $tarename = $_POST["water"];
-    $tarename = $_POST["weigthtare"];
-    $tarename = $_POST["drysoil"];
-    $tarename = $_POST["mccorrected"];
-   
-    $query1 = "INSERT INTO moisture_content (Tare_Name, Tare_Plus_Wet_Soil, Tare_Plus_Dry_Soil, Water, Weigth "
-  
-    // Realizar la actualización en la base de datos
-    // Aquí debes escribir el código para actualizar la información en la base de datos
-    // Por ejemplo, puedes usar consultas SQL para actualizar los valores en la tabla
-  
-    // Después de la actualización, puedes redirigir al usuario a la página de lista de ensayos u otra página
-    header("Location: lista_de_ensayos.php");
-    exit();
-  }
-
-
-
-
 
 
 ?>
@@ -358,10 +334,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form id="editForm" action="revisionensayoMCoven.php" method="post" onsubmit="calcular()">
+      <form id="editForm" action="guardar_edicionMC.php" method="post" onsubmit="calcular()">
+
           <table class="table table-bordered">
             <thead>
               <tr>
+              <input type="text" name="Sample_ID" value="<?= $sampleId ?>"hidden>
+              <input type="text" name="Sample_Number" value="<?= $sampleNumber?>"hidden>
+
                 <div class="col-xs-4">
                   <label>Tare Name</label>
                   <input class="form-control" name="tarename" type="text" value="<?= $tareName ?>">
