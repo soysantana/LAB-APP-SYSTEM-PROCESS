@@ -117,14 +117,14 @@ foreach ($muestra_data as &$muestra) {
   </div>
   <div class="container">
 
-      <div class="col-md-12">
+      <div class="col-md-24">
       <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
           <span>Proceso de muestras</span>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-24">
       <table class="table table-bordered">
     <thead>
         <tr>
