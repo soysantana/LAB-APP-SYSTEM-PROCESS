@@ -1,7 +1,8 @@
 <?php
 // Verifica si se reciben los parámetros necesarios en la URL
-if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['test_type'])) {
+if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber']) && isset($_GET['test_type'])) {
     $sample_id = $_GET['sampleid'];
+    $id = $_GET['id'];
     $sample_number = $_GET['samplenumber'];
     $test_type = $_GET['test_type'];
 
@@ -15,8 +16,8 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['tes
         case 'GS-Soil':
             $pagina_detalles = 'revisionGS.php';
             break;
-        case 'Al':
-            $pagina_detalles = 'detalles_atterberg_limit.php';
+        case 'AL':
+            $pagina_detalles = 'Revision-Limit.php';
             break;
         // Agrega más casos según los tipos de ensayo que tengas
 
@@ -27,7 +28,7 @@ if (isset($_GET['sampleid']) && isset($_GET['samplenumber']) && isset($_GET['tes
     }
 
     // Redirige a la página de detalles correspondiente
-    header('Location: ' . $pagina_detalles . '?sampleid=' . urlencode($sample_id) . '&samplenumber=' . urlencode($sample_number) . '&test_type=' . urlencode($test_type));
+    header('Location: ' . $pagina_detalles . '?id=' . urlencode($id) );
     exit();
 }
 ?>

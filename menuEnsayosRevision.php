@@ -36,7 +36,7 @@ page_require_level(3);
                       'concrete_specimens');
 
                     foreach ($tablas as $tabla) {
-                        $query = "SELECT Sample_ID, Sample_Number, test_type FROM $tabla WHERE Report_Date >= '$fechaLimite'";
+                        $query = "SELECT id, Sample_ID, Sample_Number, test_type FROM $tabla WHERE Report_Date >= '$fechaLimite'";
                         $result = mysqli_query($rtv, $query);
                         if (!$result) {
                             die("Error al consultar la base de datos: " . mysqli_error($rtv));
@@ -44,7 +44,7 @@ page_require_level(3);
 
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-                            echo '<a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_ID'] . '-' . $row['Sample_Number'] . '-' . $row['test_type'] . '</a>';
+                            echo '<a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&id=' . $row['id'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_ID'] . '-' . $row['Sample_Number'] . '-' . $row['test_type'] . '</a>';
                             echo '<span class="badge bg-blue rounded-pill"><a href="revisiones.php?sampleid=' . $row['Sample_ID'] . '&samplenumber=' . $row['Sample_Number'] . '&test_type=' . $row['test_type'] . '">' . $row['Sample_Number'] . '-'  . $row['test_type'] . '</a></span>';
                             echo '</li>';
                         }
