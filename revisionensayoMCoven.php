@@ -3,6 +3,7 @@ $page_title = '';
 require_once('includes/load.php');
 // Comprobación del nivel de permiso del usuario para ver esta página
 page_require_level(1);
+$Mc_Oven = find_all('moisture_content');
 require 'libs/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
@@ -311,13 +312,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </table>
 </div>
 
+<?php foreach ($Mc_Oven as $id);?>
 
 <!-- Botones para enviar y generar PDF -->
                     <input type="hidden" name="Sample_ID" value="<?= $sampleId . ',' . $sampleNumber . ',' . $testType ?>">
                     <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
                     <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Editar Ensayo</button>
-                    <button type="submit" name="generate_pdf" class="btn btn-primary">Generar PDF</button>
+                    <a href="PDF/MC_Oven_Rev_5.php?id=<?php echo intval($id['id']); ?>" class="btn btn-primary">Generar PDF</a>
                 </form>
                 <!-- Cierra el formulario aquí -->
             </div>
