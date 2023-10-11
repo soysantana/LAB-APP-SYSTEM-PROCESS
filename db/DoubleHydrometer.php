@@ -44,7 +44,7 @@ if (isset($_POST['DoubleHydrometer'])) {
         $elev = get_post_data('elev');
         $sampledate = get_post_data('sampledate');
         $reportdate = make_date();
-        $testype = "NOSE";
+        $testype = "DHY";
         $Standard = get_post_data('Standard');
         $PreparationMethod = get_post_data('PreparationMethod');
         $Comments = get_post_data('Comments');

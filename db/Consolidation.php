@@ -44,7 +44,7 @@ if (isset($_POST['Consolidation'])) {
         $elev = get_post_data('elev');
         $sampledate = get_post_data('sampledate');
         $reportdate = make_date();
-        $testype = "NOSE";
+        $testype = "Consolidation";
         $Standard = get_post_data('Standard');
         $PreparationMethod = get_post_data('PreparationMethod');
         $Comments = get_post_data('Comments');

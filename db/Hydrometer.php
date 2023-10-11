@@ -47,7 +47,7 @@ if (isset($_POST['Hydrometer'])) {
         $elev = get_post_data('elev');
         $sampledate = get_post_data('sampledate');
         $reportdate = make_date();
-        $testype = "GS-Coarse";
+        $testype = "HY";
         $Standard = get_post_data('Standard');
         $PreparationMethod = get_post_data('PreparationMethod');
         $DispersionDevice = get_post_data('DispersionDevice');

@@ -45,7 +45,7 @@ if (isset($_POST['GrainSievedCoarse'])) {
         $elev = get_post_data('elev');
         $sampledate = get_post_data('sampledate');
         $reportdate = make_date();
-        $testype = "GS-Coarse";
+        $testype = "GS-Sieved-Coarse";
         $Standard = get_post_data('Standard');
         $PreparationMethod = get_post_data('PreparationMethod');
         $SplitMethod = get_post_data('SplitMethod');
