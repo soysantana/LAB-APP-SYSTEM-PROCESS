@@ -34,6 +34,12 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
         case 'PLT';
             $pagina_detalles = 'Revision-PLT.php';
             break;
+        case 'LAA-Small';
+            $pagina_detalles = 'Revision-Laa-Small.php';
+            break;
+        case 'LLA-Large';
+            $pagina_detalles = 'Revision-Laa-Large.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido
