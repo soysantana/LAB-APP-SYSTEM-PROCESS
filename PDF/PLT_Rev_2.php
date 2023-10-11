@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $plt = find_by_id('point_load_test', (int)$_GET['id']);
 
@@ -117,7 +117,7 @@ $pdf->Cell(28, 12, remove_junk(ucwords($plt['Strenght_Classification'])), 0, 1, 
 // Comentario
 $pdf->SetXY(9, 287);
 $pdf->Cell(215, 25, remove_junk(ucwords($plt['Comments'])), 0, 1, 'C');
-
+/*
 // PIC PLT 
 $imageData = $plt['Specimen_Before_Test'];
 $imageFileName1 = 'temp_image1.png'; // Cambiar el nombre del archivo temporal
@@ -151,7 +151,7 @@ $pdf->Cell($cellWidth, $cellHeight, "", 1, 1, 'C');
 // Eliminar el archivo temporal de la primera imagen
 unlink($imageFileName2);
 
-
+*/
 
 $pdf->Output();
 ?>
