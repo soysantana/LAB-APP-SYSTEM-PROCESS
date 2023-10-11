@@ -14,12 +14,14 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
             $pagina_detalles = 'revisionensayoMCoven.php';
             break;
         case 'GS-Soil':
-            $pagina_detalles = 'revisionGS.php';
+            $pagina_detalles = 'Revision-GS.php';
             break;
         case 'AL':
             $pagina_detalles = 'Revision-Limit.php';
             break;
-        // Agrega más casos según los tipos de ensayo que tengas
+        case 'SP';
+            $pagina_detalles = 'Revision-SP.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido
