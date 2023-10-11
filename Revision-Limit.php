@@ -5,7 +5,6 @@ require_once('includes/load.php');
 page_require_level(3);
 
 $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
-$id = find_all('atterberg_limit');
 ?>
 <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
 <?php include_once('layouts/header.php'); ?>
@@ -492,13 +491,11 @@ $id = find_all('atterberg_limit');
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <?php foreach ($id as $ids);?>
   
   </div>
   <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
   <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-   <a href="PDF/Atterberg_Limit_Rev_5.php?id=<?php echo intval($ids['id']); ?>" class="btn btn-primary">Generar PDF</a>
+   <a href="PDF/Atterberg_Limit_Rev_5.php?id=<?php echo intval($atterberg_limit['id']); ?>" class="btn btn-primary">Generar PDF</a>
   <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event),enviarData2(event) ">Graficar</button>
   </form>
 
