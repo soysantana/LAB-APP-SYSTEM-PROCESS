@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $specific_gravity = find_by_id('specific_gravity_fine', (int)$_GET['id']);
 

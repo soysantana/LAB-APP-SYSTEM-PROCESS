@@ -22,6 +22,15 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
         case 'SP';
             $pagina_detalles = 'Revision-SP.php';
             break;
+        case 'SG';
+            $pagina_detalles = 'Revision-SG.php';
+            break;
+        case 'SG-Absortion';
+            $pagina_detalles = 'Revision-SG-Absortion.php';
+            break;
+        case 'SG-Fines';
+            $pagina_detalles = 'Revision-SG-Fines.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido
