@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $ucs = find_by_id('uniaxial_compressive_strength', (int)$_GET['id']);
 
@@ -103,6 +103,7 @@ $pdf->Cell(33, 13, remove_junk(ucwords($ucs['uniaxial_Compressive_Strenght_Mpa']
 $pdf->SetXY(12,332);
 $pdf->Cell(342, 75, remove_junk(ucwords($ucs['Comments'])), 1, 1, 'C');
 
+/*
 // PIC UCS 
 $imageData = $ucs['Pic_Before_Test'];
 $imageFileName1 = 'temp_image1.png';
@@ -139,7 +140,7 @@ $pdf->Image($imagePath3, $pdf->GetX(), $pdf->GetY(), $cellWidth, $cellHeight);
 $pdf->Cell($cellWidth, $cellHeight, "", 1, 1, 'C');
 
 unlink($imageFileName3);
-
+*/
 
 
 $pdf->Output();
