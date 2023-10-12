@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $grout = find_by_id('grout_specimens', (int)$_GET['id']);
 
@@ -152,6 +152,7 @@ $pdf->Cell(25, 7, remove_junk(ucwords($grout['Type_Mpa_N3'])), 0, 1, 'C');
 $pdf->SetXY(26, 243);
 $pdf->Cell(290, 22, remove_junk(ucwords($grout['Comments'])), 1, 1, 'C');
 
+/*
 // Pictures Grout
 $imageData = $grout['Graphic_Load_versus_time'];
 $imageFileName1 = 'temp_image1.jpg'; // Cambiar el nombre del archivo temporal
@@ -192,7 +193,7 @@ $pdf->Cell($cellWidth, $cellHeight, "", 0, 1, 'C');
 // Eliminar el archivo temporal de la primera imagen
 unlink($imageFileName3);
 
-
+*/
 
 $pdf->Output();
 ?>
