@@ -40,6 +40,27 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
         case 'LLA-Large';
             $pagina_detalles = 'Revision-Laa-Large.php';
             break;
+        case 'Bulk-density';
+            $pagina_detalles = 'Revision-Density-Bulk.php';
+            break;
+        case 'Weigth-den';
+            $pagina_detalles = 'Revision-Density-Weigth.php';
+            break;
+        case 'Count-gamm';
+            $pagina_detalles = 'Revision-Density-Count-Gama.php';
+            break;
+        case 'Sand-Densi';
+            $pagina_detalles = 'Revision-Density-Sand.php';
+            break;
+        case 'Gamma-dens';
+            $pagina_detalles = 'Revision-Density-Gama.php';
+            break;
+        case 'UCS';
+            $pagina_detalles = 'Revision-UCS.php';
+            break;
+        case 'UCS-grout';
+            $pagina_detalles = 'Revision-Grout.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido
