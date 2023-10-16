@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $mc_microwave = find_by_id('moisture_content_microwave', (int)$_GET['id']);
 

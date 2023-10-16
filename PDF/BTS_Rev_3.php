@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $bts = find_by_id('splitting_tensile_strenght', (int)$_GET['id']);
 
@@ -264,7 +264,7 @@ $pdf->Cell(36, 9, remove_junk(ucwords($bts['Average_No7'])), 0, 1, 'C');
 $pdf->SetXY(22, 287);
 $pdf->Cell(278, 55, remove_junk(ucwords($bts['Comments'])), 1, 1, 'C');
 
-
+/*
 // Pictures BTS
 $imageData = $bts['Speciment_Before_Test'];
 $imageFileName1 = 'temp_image1.png'; // Cambiar el nombre del archivo temporal
@@ -291,7 +291,7 @@ $pdf->Image($imagePath2, $pdf->GetX(), $pdf->GetY(), $cellWidth, $cellHeight);
 $pdf->Cell($cellWidth, $cellHeight, "", 0, 1, 'C');
 // Eliminar el archivo temporal de la primera imagen
 unlink($imageFileName2);
-
+*/
 
 $pdf->Output();
 ?>

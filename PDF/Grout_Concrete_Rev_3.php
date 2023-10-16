@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $grout = find_by_id('concrete_specimens', (int)$_GET['id']);
 
@@ -192,7 +192,7 @@ $pdf->Cell(20, 6, remove_junk(ucwords($grout['Type_Fracture_N5'])), 1, 1, 'C');
 // Comments
 $pdf->SetXY(25, 235);
 $pdf->Cell(296, 22, remove_junk(ucwords($grout['Comments'])), 1, 1, 'C');
-
+/*
 // Pictures Grout
 $imageData = $grout['Picture_1'];
 $imageFileName1 = 'temp_image1.jpg'; // Cambiar el nombre del archivo temporal
@@ -232,7 +232,7 @@ $pdf->Image($imagePath3, $pdf->GetX(), $pdf->GetY(), $cellWidth, $cellHeight);
 $pdf->Cell($cellWidth, $cellHeight, "", 0, 1, 'C');
 // Eliminar el archivo temporal de la primera imagen
 unlink($imageFileName3);
-
+*/
 
 
 $pdf->Output();

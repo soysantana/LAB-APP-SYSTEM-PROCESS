@@ -61,6 +61,30 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
         case 'UCS-grout';
             $pagina_detalles = 'Revision-Grout.php';
             break;
+        case 'UCS-Concre';
+            $pagina_detalles = 'Revision-Concrete-Specimen.php';
+            break;
+        case 'BTS';
+            $pagina_detalles = 'Revision-BTS.php';
+            break;
+        case 'Leeb';
+            $pagina_detalles = 'Revision-Leeb.php';
+            break;
+        case 'MC-Microwave';
+            $pagina_detalles = 'Revision-MC-Microwave.php';
+            break;
+        case 'MC-Constant Mas';
+            $pagina_detalles = 'Revision-MC-Constant-Mass.php';
+            break;
+        case 'MC-Scale';
+            $pagina_detalles = 'Revision-MC-Scale.php';
+            break;
+        case 'PH';
+            $pagina_detalles = 'Revision-PH.php';
+            break;
+        case 'Perma-Gran';
+            $pagina_detalles = 'Revision-Permeability.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido
