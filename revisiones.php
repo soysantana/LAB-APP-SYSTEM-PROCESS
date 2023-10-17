@@ -91,6 +91,15 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
         case 'DHY';
             $pagina_detalles = 'Revision-Double-Hydrometer.php';
             break;
+        case 'GS-Fine';
+            $pagina_detalles = 'Revision-GS-Fine.php';
+            break;
+        case 'GS-Coarse';
+            $pagina_detalles = 'Revision-GS-Coarse.php';
+            break;
+        case 'GS-Sieved-Coarse';
+            $pagina_detalles = 'Revision-GS-Sieved-Coarse.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido

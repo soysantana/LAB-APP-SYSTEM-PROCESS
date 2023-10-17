@@ -1,7 +1,7 @@
 <?php
-require('libs/fpdf/fpdf.php');
-require('libs/fpdi/src/autoload.php');
-require_once('includes/load.php');
+require('../libs/fpdf/fpdf.php');
+require('../libs/fpdi/src/autoload.php');
+require_once('../includes/load.php');
 
 $grain_size = find_by_id('grain_size_coarse_aggregate', (int)$_GET['id']);
 
