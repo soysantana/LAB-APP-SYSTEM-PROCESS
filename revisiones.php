@@ -85,6 +85,12 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
         case 'Perma-Gran';
             $pagina_detalles = 'Revision-Permeability.php';
             break;
+        case 'HY';
+            $pagina_detalles = 'Revision-Hydrometer.php';
+            break;
+        case 'DHY';
+            $pagina_detalles = 'Revision-Double-Hydrometer.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido
