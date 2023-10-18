@@ -4,6 +4,11 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
 
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/Pinhole.php'); 
+}
+
 $PH = find_by_id('pinhole', (int)$_GET['id']);
 ?>
 
@@ -11,6 +16,7 @@ $PH = find_by_id('pinhole', (int)$_GET['id']);
 
 <div class="row">
   <div class="col-md-12">
+  <?php echo display_msg($msg); ?>  
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <strong>
@@ -19,7 +25,7 @@ $PH = find_by_id('pinhole', (int)$_GET['id']);
         </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="pinhole.php" onsubmit="calcular()">
+        <form method="post" action="Revision-PH.php?id=<?php echo (int)$PH['id']; ?>" onsubmit="calcular()">
 
             <table class="table table-bordered">
                 <thead>
@@ -67,8 +73,8 @@ $PH = find_by_id('pinhole', (int)$_GET['id']);
               <caption>Testing Information</caption>
               <tbody>
                 <tr>
-                  <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Moisture Content Before Test PH$PH(%)</th>
-                  <td><input value="<?php echo ($PH['Moisture_Content_Before_Test_MC_Porce']); ?>" type="text" style="border: none;" size="10" style="background: transparent;" name="MoistureContentBeforeTestPH$PHPorce" id="2" oninput="calcular()"></td>
+                  <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Moisture Content Before Test</th>
+                  <td><input value="<?php echo ($PH['Moisture_Content_Before_Test_MC_Porce']); ?>" type="text" style="border: none;" size="10" style="background: transparent;" name="MoistureContentBeforeTestMCPorce" id="2" oninput="calcular()"></td>
                 </tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Specific Gravity (Estimated or Measured)</th>
                   <td><input value="<?php echo ($PH['Specific_Gravity_Estimated_or_Measured']); ?>" type="text" style="border: none;" size="10" style="background: transparent;" name="SpecificGravityEstimatedorMeasured" id="3" oninput="calcular()"></td>
@@ -417,7 +423,7 @@ $PH = find_by_id('pinhole', (int)$_GET['id']);
             <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
           <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
           <a href="PDF/Pinhole_Test_Rev_3.php?id=<?php echo intval($PH['id']); ?>" class="btn btn-primary">Generar PDF</a>
-          <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event),enviarData2(event) ">Graficar</button>
+          <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 
              
            
@@ -428,28 +434,6 @@ $PH = find_by_id('pinhole', (int)$_GET['id']);
         </div>
       </div>
 
-      <script>
-        document.getElementById("fileToUpload").onchange = function(e) {   
-         
-         // Creamos el objeto de la clase FileReader 
-         let reader = new FileReader();
-         
-         // Leemos el archivo subido y se lo pasamos a nuestro fileReader   
-         reader.readAsDataURL(e.target.files[0]);   
-         
-         // Le decimos que cuando este listo ejecute el código interno 
-         reader.onload = function(){ 
-          
-          let preview = document.getElementById('imatge'), 
-          image = document.createElement('img'); 
-          image.src = reader.result; 
-          preview.innerHTML = ''; 
-          preview.append(image);
-         
-         }; 
-        
-        }
-        </script>
 
 
       <script>
