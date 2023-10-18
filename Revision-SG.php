@@ -4,6 +4,11 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
 
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/SpecificGravity.php'); 
+  }
+
 $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
 ?>
 
@@ -11,6 +16,7 @@ $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
 
 <div class="row"></div>
 <div class="col-md-12"></div>
+<?php echo display_msg($msg); ?>  
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -19,7 +25,7 @@ $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="specific_gravity.php" onsubmit="calcular();">
+<form method="post" action="Revision-SG.php?id=<?php echo (int)$Specific_Gravity['id']; ?>"  onsubmit="calcular();">
 
 <table class="table table-bordered">
 <thead>
@@ -28,6 +34,7 @@ $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
 <div class="col-xs-4">
 <label >Standard</label>
 <select class="form-control" name="Standard">
+<option <?php if ($Specific_Gravity['Standard'] == 'Choose...') echo 'selected'; ?>>Choose...</option> 
 <option <?php if ($Specific_Gravity['Standard'] == 'ASTM-D854') echo 'selected'; ?>>ASTM-D854</option>        
 </select>
 </div>
@@ -143,7 +150,7 @@ $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
 <a href="PDF/Specific_Gravity_Rev_3.php?id=<?php echo intval($Specific_Gravity['id']); ?>" class="btn btn-primary">Generar PDF</a>
-<button type="submit" name="grainsize" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 </div>
 
 </div>

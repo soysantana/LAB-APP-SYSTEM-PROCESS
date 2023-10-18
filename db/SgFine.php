@@ -165,3 +165,76 @@ VALUES (
 }
 
 ?>
+
+
+<?php
+$Specific_Gravity = find_by_id('specific_gravity_fine', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+
+      // Obtiene los valores de los campos del formulario
+      $Standard = remove_junk($db->escape($_POST['Standard']));
+      $PreparationMethod = remove_junk($db->escape($_POST['PreparationMethod']));
+      $SplitMethod = remove_junk($db->escape($_POST['SplitMethod']));
+      $Comments = remove_junk($db->escape($_POST['Comments']));
+      $Technician = remove_junk($db->escape($_POST['Technician']));
+      $TestStartDate = remove_junk($db->escape($_POST['TestStartDate']));
+  
+      $PycnometerNumber = remove_junk($db->escape($_POST['PycnometerNumber']));
+      $WeightPycnometer = remove_junk($db->escape($_POST['WeightPycnometer']));
+      $WeightDrySoilTare = remove_junk($db->escape($_POST['WeightDrySoilTare']));
+      $WeightDrySoil = remove_junk($db->escape($_POST['WeightDrySoil']));
+      $WeightSaturatedSurfaceDrySoilAir = remove_junk($db->escape($_POST['WeightSaturatedSurfaceDrySoilAir']));
+      $TempSample = remove_junk($db->escape($_POST['TempSample']));
+      $WeightPycnometerSoilWater = remove_junk($db->escape($_POST['WeightPycnometerSoilWater']));
+      $CalibrationWeightPycnometerDesiredTemp = remove_junk($db->escape($_POST['CalibrationWeightPycnometerDesiredTemp']));
+      $SpecificGravity = remove_junk($db->escape($_POST['SpecificGravity']));
+      $SpecificGravitySSD = remove_junk($db->escape($_POST['SpecificGravitySSD']));
+      $ApparentSpecificGravity = remove_junk($db->escape($_POST['ApparentSpecificGravity']));
+      $PercentAbsortion = remove_junk($db->escape($_POST['PercentAbsortion']));
+
+
+      $query = "UPDATE specific_gravity_fine SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Preparation_Method = '{$PreparationMethod}', ";
+      $query .= "Split_Method = '{$SplitMethod}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+      $query .= "Pycnometer_Number = '{$PycnometerNumber}', ";
+      $query .= "Weight_Pycnometer = '{$WeightPycnometer}', ";
+      $query .= "Weight_Dry_Soil_Tare = '{$WeightDrySoilTare}', ";
+      $query .= "Weight_Dry_Soil = '{$WeightDrySoil}', ";
+      $query .= "Weight_Saturated_Surface_Dry_Soil_Air = '{$WeightSaturatedSurfaceDrySoilAir}', ";
+      $query .= "Temp_Sample = '{$TempSample}', ";
+      $query .= "Weight_Pycnometer_Soil_Water = '{$WeightPycnometerSoilWater}', ";
+      $query .= "Calibration_Weight_Pycnometer_Desired_Temp = '{$CalibrationWeightPycnometerDesiredTemp}', ";
+      $query .= "Specific_Gravity = '{$SpecificGravity}', ";
+      $query .= "Specific_Gravity_SSD = '{$SpecificGravitySSD}', ";
+      $query .= "Apparent_Specific_Gravity = '{$ApparentSpecificGravity}', ";
+      $query .= "Percent_Absortion = '{$PercentAbsortion}' ";
+      $query .= "WHERE id = '{$Specific_Gravity['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-SG-Fines.php?id=' . $Specific_Gravity['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-SG-Fines.php?id=' . $Specific_Gravity['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-SG-Fines.php?id=' . $Specific_Gravity['id'], false);
+    }
+  }
+?>
