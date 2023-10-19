@@ -199,3 +199,90 @@ VALUES (
 }
 
 ?>
+
+<?php
+$search_table = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $Standard = remove_junk($db->escape($_POST['Standard']));
+      $Method = remove_junk($db->escape($_POST['Method']));
+      $ExtraEquip = remove_junk($db->escape($_POST['ExtraEquip']));
+      $CutterEquip = remove_junk($db->escape($_POST['CutterEquip']));
+      $TestDevice = remove_junk($db->escape($_POST['TestDevice']));
+      $Temperature = remove_junk($db->escape($_POST['Temperature']));
+      $Comments = remove_junk($db->escape($_POST['Comments']));
+      $Technician = remove_junk($db->escape($_POST['Technician']));
+      $TestStartDate = remove_junk($db->escape($_POST['TestStartDate']));
+  
+      $EffectiveAreaofJackPistonm2 = remove_junk($db->escape($_POST['EffectiveAreaofJackPistonm2']));
+      $K1ValueAssumedValueToCorrelateIs50ToUCS = remove_junk($db->escape($_POST['K1ValueAssumedValueToCorrelateIs50ToUCS']));
+      $K2ValueAssumed = remove_junk($db->escape($_POST['K2ValueAssumed']));
+      $TestTypeABCD = remove_junk($db->escape($_POST['TestTypeABCD']));
+      $DimensionLmm = remove_junk($db->escape($_POST['DimensionLmm']));
+      $DimensionDorWmm = remove_junk($db->escape($_POST['DimensionDorWmm']));
+      $PlattensSeparationmm = remove_junk($db->escape($_POST['PlattensSeparationmm']));
+      $LoadDirection = remove_junk($db->escape($_POST['LoadDirection']));
+      $GaugeReadingMpa = remove_junk($db->escape($_POST['GaugeReadingMpa']));
+      $FailureLaodMN = remove_junk($db->escape($_POST['FailureLaodMN']));
+      $Demm = remove_junk($db->escape($_POST['Demm']));
+      $IsMpa = remove_junk($db->escape($_POST['IsMpa']));
+      $F = remove_junk($db->escape($_POST['F']));
+      $Is50 = remove_junk($db->escape($_POST['Is50']));
+      $UCSFromK1Mpa = remove_junk($db->escape($_POST['UCSFromK1Mpa']));
+      $UCSFromK2Mpa = remove_junk($db->escape($_POST['UCSFromK2Mpa']));
+      $StrenghtClassification = remove_junk($db->escape($_POST['StrenghtClassification']));
+
+      $query = "UPDATE point_load_test SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Method = '{$Method}', ";
+      $query .= "Extraction_Equipment = '{$ExtraEquip}', ";
+      $query .= "Cutter_Equipment = '{$CutterEquip}', ";
+      $query .= "Test_Device = '{$TestDevice}', ";
+      $query .= "Temperature = '{$Temperature}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+
+      $query .= "Effective_Area_of_Jack_Piston_m2 = '{$EffectiveAreaofJackPistonm2}', ";
+      $query .= "K1_Value_Assumed_Value_To_Correlate_Is50_To_UCS = '{$K1ValueAssumedValueToCorrelateIs50ToUCS}', ";
+      $query .= "K2_Value_Assumed = '{$K2ValueAssumed}', ";
+      $query .= "Test_Type_A_B_C_D = '{$TestTypeABCD}', ";
+      $query .= "Dimension_L_mm = '{$DimensionLmm}', ";
+      $query .= "Dimension_D_or_W_mm = '{$DimensionDorWmm}', ";
+      $query .= "Plattens_Separation_mm = '{$PlattensSeparationmm}', ";
+      $query .= "Load_Direction = '{$LoadDirection}', ";
+      $query .= "Gauge_Reading_Mpa = '{$GaugeReadingMpa}', ";
+      $query .= "Failure_Laod_MN = '{$FailureLaodMN}', ";
+      $query .= "De_mm = '{$Demm}', ";
+      $query .= "Is_Mpa = '{$IsMpa}', ";
+      $query .= "F = '{$F}', ";
+      $query .= "Is_50 = '{$Is50}', ";
+      $query .= "UCS_From_K1_Mpa = '{$UCSFromK1Mpa}', ";
+      $query .= "UCS_From_K2_Mpa = '{$UCSFromK2Mpa}', ";
+      $query .= "Strenght_Classification = '{$StrenghtClassification}' ";
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-PLT.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-PLT.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-PLT.php?id=' . $search_table['id'], false);
+    }
+  }
+?>

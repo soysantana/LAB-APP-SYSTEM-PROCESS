@@ -4,13 +4,18 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
 
-$Density = find_by_id('sand_density', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/SandDensity.php'); 
+  }
+$search_table = find_by_id('sand_density', (int)$_GET['id']);
 ?>
 
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row"></div>
 <div class="col-md-12"></div>
+<?php echo display_msg($msg); ?>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -19,48 +24,47 @@ $Density = find_by_id('sand_density', (int)$_GET['id']);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="sand_density.php" onsubmit="calcular();">
+<form method="post" action="" onsubmit="calcular();">
 
 <table class="table table-bordered">
 <thead>
-<tbody id="product_info"></tbody>
 </div>
 <div class="col-xs-4">
 <label >Standard</label>
 <select class="form-control" name="Standard">
-<option <?php if ($Density['Standard'] == 'ASTM D1556') echo 'selected'; ?>>ASTM D1556</option>      
+<option <?php if ($search_table['Standard'] == 'ASTM D1556') echo 'selected'; ?>>ASTM D1556</option>      
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
 <select class="form-control" name="PreparationMethod">
-<option <?php if ($Density['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option>
-<option <?php if ($Density['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option>
+<option <?php if ($search_table['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option>
+<option <?php if ($search_table['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option>
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Split Method</label>
 <select class="form-control" name="SplitMethod">
-<option <?php if ($Density['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech_Split</option>
-<option <?php if ($Density['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Man_Split</option>
+<option <?php if ($search_table['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech_Split</option>
+<option <?php if ($search_table['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Man_Split</option>
 </select>
 </div>
 
 <div class="col-xs-4">
 <label>Comments</label>
-<textarea class="form-control" name="Comments"><?php echo ($Density['Comments']); ?></textarea>
+<textarea class="form-control" name="Comments"><?php echo ($search_table['Comments']); ?></textarea>
 </div>
       
 <div class="col-xs-4">
 <label>Technician</label>
-<input class="form-control" name="Technician" value="<?php echo ($Density['Technician']); ?>" type="text">
+<input class="form-control" name="Technician" value="<?php echo ($search_table['Technician']); ?>" type="text">
 </div>
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="TestStartDate" value="<?php echo ($Density['Test_Start_Date']); ?>" type="date">
+<input class="form-control" name="TestStartDate" value="<?php echo ($search_table['Test_Start_Date']); ?>" type="date">
 </div>
 
 
@@ -78,43 +82,43 @@ $Density = find_by_id('sand_density', (int)$_GET['id']);
             </tr>
             <tr>
                 <th scope="row">Weight of Sand + Mold (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Sand_Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandMold1" id="1"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandMold2" id="2"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandMold3" id="3"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandMold1" id="1"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandMold2" id="2"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandMold3" id="3"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Mold</th>
-                <td><input value="<?php echo ($Density['Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="Mold1" id="4"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="Mold2" id="5"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="Mold3" id="6"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="Mold1" id="4"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="Mold2" id="5"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="Mold3" id="6"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight Mold (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightMold1" id="7"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightMold2" id="8"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightMold3" id="9"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightMold1" id="7"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightMold2" id="8"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightMold3" id="9"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight of Sand in Mold (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Sand_In_Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandInMold1" id="10"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_In_Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandInMold2" id="11"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_In_Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandInMold3" id="12"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_In_Mold_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandInMold1" id="10"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_In_Mold_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandInMold2" id="11"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_In_Mold_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandInMold3" id="12"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Volume of Mold (cm3)</th>
-                <td><input value="<?php echo ($Density['Volume_Mold_cm3_1']); ?>" type="text" style="border: none; background: transparent;" name="VolumeMoldcm31" id="13"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Volume_Mold_cm3_2']); ?>" type="text" style="border: none; background: transparent;" name="VolumeMoldcm32" id="14"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Volume_Mold_cm3_3']); ?>" type="text" style="border: none; background: transparent;" name="VolumeMoldcm33" id="15"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Volume_Mold_cm3_1']); ?>" type="text" style="border: none; background: transparent;" name="VolumeMoldcm31" id="13"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Volume_Mold_cm3_2']); ?>" type="text" style="border: none; background: transparent;" name="VolumeMoldcm32" id="14"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Volume_Mold_cm3_3']); ?>" type="text" style="border: none; background: transparent;" name="VolumeMoldcm33" id="15"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Bulk Density of Sand (g/cm3)</th>
-                <td><input value="<?php echo ($Density['Bulk_Density_Sand_gcm3_1']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm31" id="16"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Bulk_Density_Sand_gcm3_2']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm32" id="17"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Bulk_Density_Sand_gcm3_3']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm33" id="18"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Bulk_Density_Sand_gcm3_1']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm31" id="16"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Bulk_Density_Sand_gcm3_2']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm32" id="17"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Bulk_Density_Sand_gcm3_3']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensitySandgcm33" id="18"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Average Bulk Density of Sand (g/cm3)</th>
-                <td colspan="3"><input value="<?php echo ($Density['Average_Bulk_Density_Sand']); ?>" type="text" style="border: none; text-align: center; background: transparent;" name="AverageBulkDensitySand" id="19"oninput="calcular()"></td>
+                <td colspan="3"><input value="<?php echo ($search_table['Average_Bulk_Density_Sand']); ?>" type="text" style="border: none; text-align: center; background: transparent;" name="AverageBulkDensitySand" id="19"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -136,37 +140,37 @@ $Density = find_by_id('sand_density', (int)$_GET['id']);
             </tr>
             <tr>
                 <th scope="row">Weight of Sand + Container Before Test (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Sand_Container_Before_Test_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest1" id="20"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Container_Before_Test_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest2" id="21"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Container_Before_Test_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest3" id="22"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Container_Before_Test_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest1" id="20"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Container_Before_Test_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest2" id="21"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Container_Before_Test_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerBeforeTest3" id="22"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight of Sand + Container After Test (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Sand_Container_After_Test_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest1" id="23"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Container_After_Test_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest2" id="24"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Container_After_Test_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest3" id="25"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Container_After_Test_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest1" id="23"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Container_After_Test_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest2" id="24"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Container_After_Test_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandContainerAfterTest3" id="25"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Weight Sand Used (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Sand_Used_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandUsed1" id="26"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Used_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandUsed2" id="27"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Weight_Sand_Used_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandUsed3" id="28"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Used_1']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandUsed1" id="26"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Used_2']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandUsed2" id="27"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Sand_Used_3']); ?>" type="text" style="border: none; background: transparent;" name="WeightSandUsed3" id="28"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Bulk Density of Sand (g/cm3)</th>
-                <td><input value="<?php echo ($Density['Bulk_Density_of_Sand_1']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensityofSand1" id="29"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Bulk_Density_of_Sand_2']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensityofSand2" id="30"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Bulk_Density_of_Sand_3']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensityofSand3" id="31"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Bulk_Density_of_Sand_1']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensityofSand1" id="29"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Bulk_Density_of_Sand_2']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensityofSand2" id="30"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Bulk_Density_of_Sand_3']); ?>" type="text" style="border: none; background: transparent;" name="BulkDensityofSand3" id="31"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Volume of Funnel (cm3)</th>
-                <td><input value="<?php echo ($Density['Volume_Funnel_1']); ?>" type="text" style="border: none; background: transparent;" name="VolumeFunnel1" id="32"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Volume_Funnel_2']); ?>" type="text" style="border: none; background: transparent;" name="VolumeFunnel2" id="33"oninput="calcular()"></td>
-                <td><input value="<?php echo ($Density['Volume_Funnel_3']); ?>" type="text" style="border: none; background: transparent;" name="VolumeFunnel3" id="34"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Volume_Funnel_1']); ?>" type="text" style="border: none; background: transparent;" name="VolumeFunnel1" id="32"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Volume_Funnel_2']); ?>" type="text" style="border: none; background: transparent;" name="VolumeFunnel2" id="33"oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Volume_Funnel_3']); ?>" type="text" style="border: none; background: transparent;" name="VolumeFunnel3" id="34"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="row">Average Volume of Funnel (cm3)</th>
-                <td colspan="3"><input value="<?php echo ($Density['Average_Volume_Funnel']); ?>" type="text" style="border: none; background: transparent;" name="AverageVolumeFunnel" id="35"oninput="calcular()"></td>
+                <td colspan="3"><input value="<?php echo ($search_table['Average_Volume_Funnel']); ?>" type="text" style="border: none; background: transparent;" name="AverageVolumeFunnel" id="35"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -176,7 +180,8 @@ $Density = find_by_id('sand_density', (int)$_GET['id']);
 <div style="margin-left: 1%;">
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-<a href="PDF/Density_Sand_Rev_1.php?id=<?php echo intval($Density['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<a href="PDF/Density_Sand_Rev_1.php?id=<?php echo intval($search_table['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 </div>
 
 <Script>

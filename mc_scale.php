@@ -4,57 +4,9 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2); 
 
-// Procesamiento del formulario de búsqueda
-
-if (isset($_POST['mc_scale'])) {
-  $req_fields = array('sampleid','samplenumber', 'structure', 'area', 'source', 'depthfrom', 'depthto', 
-  'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate','comment','technician', 'testdate', 
-  'trial', 'tarename', 'scale_model', 'mc');
-  validate_fields($req_fields);
-  
-  if (empty($errors)) {
-    $sampleid = $db->escape($_POST['sampleid']);
-    $samplenumber = $db->escape($_POST['samplenumber']);
-    $structure = $db->escape($_POST['structure']);
-    $area = $db->escape($_POST['area']);
-    $source = $db->escape($_POST['source']);
-    $depthfrom = $db->escape($_POST['depthfrom']);
-    $depthto = $db->escape($_POST['depthto']);
-    $materialtype = $db->escape($_POST['materialtype']);
-    $sampletype = $db->escape($_POST['sampletype']);
-    $north = $db->escape($_POST['north']);
-    $east = $db->escape($_POST['east']);
-    $elev = $db->escape($_POST['elev']);
-    $sampledate = $db->escape($_POST['sampledate']);
-    $comment = $db->escape($_POST['comment']);
-    $technician = $db->escape($_POST['technician']);
-    $testdate = $db->escape($_POST['testdate']);
-    $trial = $db->escape($_POST['trial']);
-    $tarename = $db->escape($_POST['tarename']);
-    $scale_model = $db->escape($_POST['scale_model']);
-    $mc = $db->escape($_POST['mc']);
-    $reportdate = make_date();
-    $testtype = "MC-Scale";
-
-    $sql = "INSERT INTO moisture_scale (Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, 
-    Depth_To, Material_Type, Sample_Type, North, East, Elev, Sample_Date, Comment, Technician,
-     Test_Start_Date, Trial, Tare_Name, Scale_Model, Mc, Report_Date, test_type) 
-     VALUES (
-        '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', '$depthto', '$materialtype', 
-        '$sampletype', '$north', '$east', '$elev', '$sampledate','$comment', '$technician','$testdate', '$trial', 
-        '$tarename', '$scale_model' ,'$mc', '$reportdate', '$testtype')";
-
-    if ($db->query($sql)) {
-      $session->msg('s', "Ensayo agregado exitosamente.");
-      redirect('mc_scale.php', false);
-    } else {
-      $session->msg('d', 'Lo siento, no se pudo agregar el ensayo.');
-      redirect('mc_scale.php', false);
-    }
-  } else {
-    $session->msg("d", $errors);
-    redirect('mc_scale.php', false);
-  }
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/McScale.php'); 
 }
 ?>
 

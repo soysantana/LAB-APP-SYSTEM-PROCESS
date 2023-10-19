@@ -4,13 +4,18 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
 
-$Specific_Gravity = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/SgAbsortion.php'); 
+  }
+$search_table = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
 ?>
 
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row"></div>
 <div class="col-md-12"></div>
+<?php echo display_msg($msg); ?>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -19,7 +24,7 @@ $Specific_Gravity = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="sg_absortion.php" onsubmit="calcular();">
+<form method="post" action="" onsubmit="calcular();">
 
 <table class="table table-bordered">
 <thead>
@@ -28,41 +33,39 @@ $Specific_Gravity = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
 <div class="col-xs-4">
 <label >Standard</label>
 <select class="form-control" name="Standard">
-<option <?php if ($Specific_Gravity['Standard'] == 'ASTM-D854') echo 'selected'; ?>>ASTM-D854</option>        
+<option <?php if ($search_table['Standard'] == 'ASTM-D854') echo 'selected'; ?>>ASTM-D854</option>        
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
 <select class="form-control" name="PreparationMethod">
-<option <?php if ($Specific_Gravity['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option> 
-<option <?php if ($Specific_Gravity['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option> 
+<option <?php if ($search_table['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option> 
+<option <?php if ($search_table['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option> 
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Split Method</label>
 <select class="form-control" name="SplitMethod">
-<option <?php if ($Specific_Gravity['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech_Split</option> 
-<option <?php if ($Specific_Gravity['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Man_Split</option> 
-<option value="Mech_Split">Mech. Split</option>
-<option value="Man_Split">Manual Split</option>
+<option <?php if ($search_table['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech_Split</option> 
+<option <?php if ($search_table['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Man_Split</option> 
 </select>
 </div>
 
 <div class="col-xs-4">
 <label>Comments</label>
-<textarea class="form-control" name="Comments"><?php echo ($Specific_Gravity['Comments']); ?></textarea>
+<textarea class="form-control" name="Comments"><?php echo ($search_table['Comments']); ?></textarea>
 </div>
       
 <div class="col-xs-4">
 <label>Technician</label>
-<input class="form-control" name="Technician" value="<?php echo ($Specific_Gravity['Technician']); ?>" type="text">
+<input class="form-control" name="Technician" value="<?php echo ($search_table['Technician']); ?>" type="text">
 </div>
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="TestStartDate" value="<?php echo ($Specific_Gravity['Test_Start_Date']); ?>" type="date">
+<input class="form-control" name="TestStartDate" value="<?php echo ($search_table['Test_Start_Date']); ?>" type="date">
 </div>
 
 
@@ -87,107 +90,107 @@ $Specific_Gravity = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt1" id="1"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt1" id="1"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt2" id="2"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt2" id="2"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt3" id="3" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch5Wt3" id="3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch4_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt1" id="4"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch4_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt1" id="4"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch4_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt2" id="5"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch4_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt2" id="5"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">4"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch4_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt3" id="6" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch4_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch4Wt3" id="6" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt1" id="7"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt1" id="7"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt2" id="8"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt2" id="8"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt3" id="9" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p5Wt3" id="9" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt1" id="10"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt1" id="10"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt2" id="11"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt2" id="11"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt3" id="12" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3Wt3" id="12" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch2p5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt1" id="13"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch2p5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt1" id="13"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch2p5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt2" id="14"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch2p5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt2" id="14"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch2p5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt3" id="15" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch2p5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2p5Wt3" id="15" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch2_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt1" id="16"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch2_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt1" id="16"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch2_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt2" id="17"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch2_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt2" id="17"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">2"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch2_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt3" id="18" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch2_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch2Wt3" id="18" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1p5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt1" id="19"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1p5_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt1" id="19"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1p5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt2" id="20"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1p5_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt2" id="20"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1.5"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1p5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt3" id="21" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1p5_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p5Wt3" id="21" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt1" id="22"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt1" id="22"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt2" id="23"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt2" id="23"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt3" id="24" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1Wt3" id="24" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p4_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt1" id="25"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p4_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt1" id="25"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p4_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt2" id="26"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p4_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt2" id="26"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/4"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p4_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt3" id="27" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p4_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p4Wt3" id="27" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1p2_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt1" id="28"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1p2_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt1" id="28"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1p2_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt2" id="29"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1p2_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt2" id="29"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">1/2"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch1p2_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt3" id="30" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch1p2_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch1p2Wt3" id="30" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p8_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt1" id="38"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p8_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt1" id="38"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p8_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt2" id="39"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p8_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt2" id="39"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">3/8"</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Inch3p8_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt3" id="40" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Inch3p8_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="Inch3p8Wt3" id="40" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No4</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['InchNo4_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt1" id="41"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['InchNo4_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt1" id="41"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No4</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['InchNo4_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt2" id="42"  oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['InchNo4_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt2" id="42"  oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">No4</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['InchNo4_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt3" id="43" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['InchNo4_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchNo4Wt3" id="43" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['InchTotal_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt1" id="31" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['InchTotal_Wt1']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt1" id="31" oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['InchTotal_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt2" id="32" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['InchTotal_Wt2']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt2" id="32" oninput="calcular()"></td>
                 <th style="font-size: 15px; text-align: center;" style="width: 550px; height: 25px;"scope="row">Total</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['InchTotal_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt3" id="33" oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['InchTotal_Wt3']); ?>" style="border: none;" size="12" style="background: transparent;" name="InchTotalWt3" id="33" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -204,19 +207,19 @@ $Specific_Gravity = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
         <tbody>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Specific Gravity (OD)</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Specific_Gravity_OD']); ?>" style="border: none;" size="8" style="background: transparent;" name="SpecificGravityOD" id="34"oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Specific_Gravity_OD']); ?>" style="border: none;" size="8" style="background: transparent;" name="SpecificGravityOD" id="34"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Specific Gravity (SSD)</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Specific_Gravity_SSD']); ?>" style="border: none;" size="8" style="background: transparent;" name="SpecificGravitySSD" id="35"oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Specific_Gravity_SSD']); ?>" style="border: none;" size="8" style="background: transparent;" name="SpecificGravitySSD" id="35"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Apparent Specific Gravity</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Apparent_Specific_Gravity']); ?>" style="border: none;" size="8" style="background: transparent;" name="ApparentSpecificGravity" id="36"oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Apparent_Specific_Gravity']); ?>" style="border: none;" size="8" style="background: transparent;" name="ApparentSpecificGravity" id="36"oninput="calcular()"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Percent of Absortion</th>
-                <td><input type="text" value="<?php echo ($Specific_Gravity['Percent_Absortion']); ?>" style="border: none;" size="8" style="background: transparent;" name="PercentAbsortion" id="37"oninput="calcular()"></td>
+                <td><input type="text" value="<?php echo ($search_table['Percent_Absortion']); ?>" style="border: none;" size="8" style="background: transparent;" name="PercentAbsortion" id="37"oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -226,8 +229,8 @@ $Specific_Gravity = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
 <div style="margin-left: 1%;">
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-<a href="PDF/SG_CA_Rev_1.php?id=<?php echo intval($Specific_Gravity['id']); ?>" class="btn btn-primary">Generar PDF</a>
-<button type="submit" name="grainsize" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
+<a href="PDF/SG_CA_Rev_1.php?id=<?php echo intval($search_table['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 </div>
 
 

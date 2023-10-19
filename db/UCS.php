@@ -173,3 +173,76 @@ VALUES (
 }
 
 ?>
+
+<?php
+$search_table = find_by_id('uniaxial_compressive_strength', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $Standard = remove_junk($db->escape($_POST['Standard']));
+      $Method = remove_junk($db->escape($_POST['Method']));
+      $ExtraEquip = remove_junk($db->escape($_POST['ExtraEquip']));
+      $CutterEquip = remove_junk($db->escape($_POST['CutterEquip']));
+      $TestDevice = remove_junk($db->escape($_POST['TestDevice']));
+      $Comments = remove_junk($db->escape($_POST['Comments']));
+      $Technician = remove_junk($db->escape($_POST['Technician']));
+      $TestStartDate = remove_junk($db->escape($_POST['TestStartDate']));
+  
+      $DimensionDcm = remove_junk($db->escape($_POST['DimensionDcm']));
+      $DimensionHcm = remove_junk($db->escape($_POST['DimensionHcm']));
+      $RelationhD = remove_junk($db->escape($_POST['RelationhD']));
+      $Aream2 = remove_junk($db->escape($_POST['Aream2']));
+      $Volumem3 = remove_junk($db->escape($_POST['Volumem3']));
+      $WeightCoreKg = remove_junk($db->escape($_POST['WeightCoreKg']));
+      $UnitWeightCorekgm3 = remove_junk($db->escape($_POST['UnitWeightCorekgm3']));
+      $FailureLoandKN = remove_junk($db->escape($_POST['FailureLoandKN']));
+      $TestTimingS = remove_junk($db->escape($_POST['TestTimingS']));
+      $LoadProportionMpas = remove_junk($db->escape($_POST['LoadProportionMpas']));
+      $uniaxialCompressiveStrenghtMpa = remove_junk($db->escape($_POST['uniaxialCompressiveStrenghtMpa']));
+
+      $query = "UPDATE uniaxial_compressive_strength SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Method = '{$Method}', ";
+      $query .= "Extraction_Equipment = '{$ExtraEquip}', ";
+      $query .= "Cutter_Equipment = '{$CutterEquip}', ";
+      $query .= "Test_Device = '{$TestDevice}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+
+      $query .= "Dimension_D_cm = '{$DimensionDcm}', ";
+      $query .= "Dimension_H_cm = '{$DimensionHcm}', ";
+      $query .= "Relation_hD = '{$RelationhD}', ";
+      $query .= "Area_m2 = '{$Aream2}', ";
+      $query .= "Volume_m3 = '{$Volumem3}', ";
+      $query .= "Weight_Core_Kg = '{$WeightCoreKg}', ";
+      $query .= "Unit_Weight_Core_kgm3 = '{$UnitWeightCorekgm3}', ";
+      $query .= "Failure_Loand_KN = '{$FailureLoandKN}', ";
+      $query .= "Test_Timing_S = '{$TestTimingS}', ";
+      $query .= "Load_Proportion_Mpas = '{$LoadProportionMpas}', ";
+      $query .= "uniaxial_Compressive_Strenght_Mpa = '{$uniaxialCompressiveStrenghtMpa}' ";
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-UCS.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-UCS.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-UCS.php?id=' . $search_table['id'], false);
+    }
+  }
+?>

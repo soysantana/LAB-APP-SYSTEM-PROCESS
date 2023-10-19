@@ -4,69 +4,9 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
 
-// Procesamiento del formulario de búsqueda
-
-if (isset($_POST['mc_microwave'])) {
-  $req_fields = array('sampleid', 'samplenumber', 'structure', 'area', 'source', 'depthfrom', 'depthto', 'materialtype', 'sampletype', 'north', 
-  'east', 'elev', 'sampledate', 'standard', 'preparation', 'comment', 'technician', 'testdate', 'trial', 'tarename', 'micromodel', 'tarewet', 'taredry1',
-   'taredry2', 'taredry3', 'taredry4', 'weigthtare', 'water', 'drysoil', 'mc');
-  validate_fields($req_fields);
-  
-  if (empty($errors)) {
-    $sampleid = $db->escape($_POST['sampleid']);
-    $samplenumber = $db->escape($_POST['samplenumber']);
-    $structure = $db->escape($_POST['structure']);
-    $area = $db->escape($_POST['area']);
-    $source = $db->escape($_POST['source']);
-    $depthfrom = $db->escape($_POST['depthfrom']);
-    $depthto = $db->escape($_POST['depthto']);
-    $materialtype = $db->escape($_POST['materialtype']);
-    $sampletype = $db->escape($_POST['sampletype']);
-    $north = $db->escape($_POST['north']);
-    $east = $db->escape($_POST['east']);
-    $elev = $db->escape($_POST['elev']);
-    $sampledate = $db->escape($_POST['sampledate']);
-    $standard = $db->escape($_POST['standard']);
-    $preparation = $db->escape($_POST['preparation']);
-    $comment = $db->escape($_POST['comment']);
-    $technician = $db->escape($_POST['technician']);
-    $testdate = $db->escape($_POST['testdate']);
-    $trial = $db->escape($_POST['trial']);
-    $tarename = $db->escape($_POST['tarename']);
-    $micromodel = $db->escape($_POST['micromodel']);
-    $tarewet = $db->escape($_POST['tarewet']);
-    $taredry1 = $db->escape($_POST['taredry1']);
-    $taredry2 = $db->escape($_POST['taredry2']);
-    $taredry3 = $db->escape($_POST['taredry3']);
-    $taredry4 = $db->escape($_POST['taredry4']);
-    $weigthtare = $db->escape($_POST['weigthtare']);
-    $water = $db->escape($_POST['water']);
-    $drysoil = $db->escape($_POST['drysoil']);
-    $mc = $db->escape($_POST['mc']);
-    $reportdate = make_date();
-    $testtype = "MC-Microwave";
-
-    $sql = "INSERT INTO moisture_content_microwave (Sample_ID, Sample_Number, Structure, Area, Source, 
-    Depth_From, Depth_To, Material_Type, Sample_Type, North, East, Elev, Sample_Date, Standard, Preparation,
-     Comment, Technician, Test_Start_Date, Trial, Tare_Name, Microwave_Model, Tare_Plus_Wet_Soil, Tare_Plus_Dry_Soil1,
-      Tare_Plus_Dry_Soil2, Tare_Plus_Dry_Soil3, Tare_Plus_Dry_Soil4, Water, Weigth_Tare, Dry_Soil, Mc, Report_Date, 
-      test_type) 
-      VALUES ('$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', '$depthto', '$materialtype', 
-      '$sampletype', '$north', '$east', '$elev', '$sampledate', '$standard', '$preparation', '$comment', '$technician', 
-      '$testdate', '$trial', '$tarename', '$micromodel', '$tarewet', '$taredry1', '$taredry2', '$taredry3', '$taredry4', 
-      '$water', '$weigthtare', '$drysoil', '$mc', '$reportdate', '$testtype')";
-
-    if ($db->query($sql)) {
-      $session->msg('s', "Ensayo agregado exitosamente.");
-      redirect('mc_microwave.php', false);
-    } else {
-      $session->msg('d', 'Lo siento, no se pudo agregar el ensayo.');
-      redirect('mc_microwave.php', false);
-    }
-  } else {
-    $session->msg("d", $errors);
-    redirect('mc_microwave.php', false);
-  }
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/McMicrowave.php'); 
 }
 ?>
 

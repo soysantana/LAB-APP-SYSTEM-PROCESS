@@ -145,3 +145,64 @@ VALUES (
 }
 
 ?>
+
+<?php
+$search_table = find_by_id('los_angeles_abrasion_large', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $Standard = $db->escape($_POST['Standard']);
+      $PreparationMethod = $db->escape($_POST['PreparationMethod']);
+      $SplitMethod = $db->escape($_POST['SplitMethod']);
+      $Comments = $db->escape($_POST['Comments']);
+      $Technician = $db->escape($_POST['Technician']);
+      $TestStartDate = $db->escape($_POST['TestStartDate']);
+  
+      $SelectedGrading = $db->escape($_POST['SelectedGrading']);
+      $WeightofTheSpheres = $db->escape($_POST['WeightofTheSpheres']);
+      $Revolutions = $db->escape($_POST['Revolutions']);
+      $InitialWeight = $db->escape($_POST['InitialWeight']);
+      $FinalWeight = $db->escape($_POST['FinalWeight']);
+      $WeightLoss = $db->escape($_POST['WeightLoss']);
+      $WeightLossPorce = $db->escape($_POST['WeightLossPorce']);
+
+      $query = "UPDATE los_angeles_abrasion_large SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Preparation_Method = '{$PreparationMethod}', ";
+      $query .= "Split_Method = '{$SplitMethod}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+
+      $query .= "Selected_Grading = '{$SelectedGrading}', ";
+      $query .= "Weight_of_The_Spheres = '{$WeightofTheSpheres}', ";
+      $query .= "Revolutions = '{$Revolutions}', ";
+      $query .= "Initial_Weight = '{$InitialWeight}', ";
+      $query .= "Final_Weight = '{$FinalWeight}', ";
+      $query .= "Weight_Loss = '{$WeightLoss}', ";
+      $query .= "Weight_Loss_Porce = '{$WeightLossPorce}' ";
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-Laa-Large.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-Laa-Large.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-Laa-Large.php?id=' . $search_table['id'], false);
+    }
+  }
+?>

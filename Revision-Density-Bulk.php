@@ -4,13 +4,18 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
 
-$Density = find_by_id('density_bulk', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/DensityBulk.php'); 
+  }
+$search_table = find_by_id('density_bulk', (int)$_GET['id']);
 ?>
 
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
+    <?php echo display_msg($msg); ?>
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <strong>
@@ -19,7 +24,7 @@ $Density = find_by_id('density_bulk', (int)$_GET['id']);
                 </strong>
             </div>
             <div class="panel-body">
-                <form method="post" action="density_bulk.php" onsubmit="calcular()">
+                <form method="post" action="" onsubmit="calcular()">
 
                     <table class="table table-bordered">
                         <thead>
@@ -28,31 +33,31 @@ $Density = find_by_id('density_bulk', (int)$_GET['id']);
             <div class="col-xs-4">
                 <label>Standard</label>
                 <select class="form-control" name="Standard">
-                    <option <?php if ($Density['Standard'] == 'ASTM C29') echo 'selected'; ?>>ASTM C29</option>   
+                    <option <?php if ($search_table['Standard'] == 'ASTM C29') echo 'selected'; ?>>ASTM C29</option>   
                 </select>
             </div>
             <div class="col-xs-4">
                 <label>Method</label>
                 <select class="form-control" type="text" name="PreparationMethod" id="">
-                <option <?php if ($Density['Preparation_Method'] == 'A') echo 'selected'; ?>>A</option>   
-                <option <?php if ($Density['Preparation_Method'] == 'B') echo 'selected'; ?>>B</option>   
-                <option <?php if ($Density['Preparation_Method'] == 'C') echo 'selected'; ?>>C</option>   
+                <option <?php if ($search_table['Preparation_Method'] == 'A') echo 'selected'; ?>>A</option>   
+                <option <?php if ($search_table['Preparation_Method'] == 'B') echo 'selected'; ?>>B</option>   
+                <option <?php if ($search_table['Preparation_Method'] == 'C') echo 'selected'; ?>>C</option>   
                 </select>
             </div>
 
             <div class="col-xs-4">
                 <label>Comments</label>
-                <textarea class="form-control" name="Comments"><?php echo ($Density['Comments']); ?></textarea>
+                <textarea class="form-control" name="Comments"><?php echo ($search_table['Comments']); ?></textarea>
             </div>
 
             <div class="col-xs-4">
                 <label>Technician</label>
-                <input class="form-control" name="Technician" value="<?php echo ($Density['Technician']); ?>" type="text">
+                <input class="form-control" name="Technician" value="<?php echo ($search_table['Technician']); ?>" type="text">
             </div>
 
             <div class="col-xs-4">
                 <label>Test Start Date</label>
-                <input class="form-control" name="TestStartDate" value="<?php echo ($Density['Test_Start_Date']); ?>" type="date">
+                <input class="form-control" name="TestStartDate" value="<?php echo ($search_table['Test_Start_Date']); ?>" type="date">
             </div>
 
             <div class="panel-body">
@@ -69,43 +74,43 @@ $Density = find_by_id('density_bulk', (int)$_GET['id']);
         <tbody>
             <tr>
                 <th scope="col">Sample ID</th>
-                <td><input value="<?php echo ($Density['Container']); ?>" type="text" style="border: none; background: transparent;" size="4" id="" name="Container" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Container']); ?>" type="text" style="border: none; background: transparent;" size="4" id="" name="Container" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Tare_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-g" name="WeightTareg" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Tare_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-g" name="WeightTareg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare + Soil (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Tare_Soil_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-g" name="WeightTareSoilg" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Tare_Soil_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-g" name="WeightTareSoilg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Volume of the Mold (m³)</th>
-                <td><input value="<?php echo ($Density['Volume_The_Mold_m3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Vol-the-Mold-m3" name="VolumeTheMoldm3" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Volume_The_Mold_m3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Vol-the-Mold-m3" name="VolumeTheMoldm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight Loose Material (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Loose_Material_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Loose-Material-g" name="WeightLooseMaterialg" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Loose_Material_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Loose-Material-g" name="WeightLooseMaterialg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Absorption %</th>
-                <td><input value="<?php echo ($Density['Absorption_Porce']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce" name="AbsorptionPorce" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Absorption_Porce']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce" name="AbsorptionPorce" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Specific Gravity (OD)</th>
-                <td><input value="<?php echo ($Density['Specific_Gravity_OD']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Sg-OD" name="SpecificGravityOD" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Specific_Gravity_OD']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Sg-OD" name="SpecificGravityOD" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Density of Water (Kg/m³)</th>
-                <td><input value="<?php echo ($Density['Density_Water_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3" name="DensityWaterKgm3" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Density_Water_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3" name="DensityWaterKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Loose Bulk Denisty (Kg/m³)</th>
-                <td><input value="<?php echo ($Density['Loose_Bulk_Denisty_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Loose-Bulk-Densy-Kgm3" name="LooseBulkDenistyKgm3" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Loose_Bulk_Denisty_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Loose-Bulk-Densy-Kgm3" name="LooseBulkDenistyKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Percent Voids in loose Aggregate</th>
-                <td><input value="<?php echo ($Density['Percent_Voids_Loose_Aggregate']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Loose-Agg" name="PercentVoidsLooseAggregate" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Percent_Voids_Loose_Aggregate']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Loose-Agg" name="PercentVoidsLooseAggregate" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -121,39 +126,39 @@ $Density = find_by_id('density_bulk', (int)$_GET['id']);
         <tbody>
             <tr>
                 <th scope="col">Weight of tare (g)</th>
-                <td><input value="<?php echo ($Density['Compacted_Weight_Tare_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Compacted" name="CompactedWeightTareg" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Compacted_Weight_Tare_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Compacted" name="CompactedWeightTareg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight of tare + Soil (g)</th>
-                <td><input value="<?php echo ($Density['Compacted_Weight_Tare_Soil_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-Compacted" name="CompactedWeightTareSoilg" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Compacted_Weight_Tare_Soil_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Tare-Soil-Compacted" name="CompactedWeightTareSoilg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Volume of the Mold (m³)</th>
-                <td><input value="<?php echo ($Density['Compacted_Volume_The_Mold_m3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Vol-Mold-m3-Compacted" name="CompactedVolumeTheMoldm3" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Compacted_Volume_The_Mold_m3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Vol-Mold-m3-Compacted" name="CompactedVolumeTheMoldm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Weight Compacted Material (g)</th>
-                <td><input value="<?php echo ($Density['Weight_Compacted_Material_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Compacted-Material" name="WeightCompactedMaterialg" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Weight_Compacted_Material_g']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Weig-Compacted-Material" name="WeightCompactedMaterialg" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Absorption %</th>
-                <td><input value="<?php echo ($Density['Compacted_Absorption_Porce']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce-Compacted" name="CompactedAbsorptionPorce" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Compacted_Absorption_Porce']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Absorption-Porce-Compacted" name="CompactedAbsorptionPorce" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Specific Gravity (OD)</th>
-                <td><input value="<?php echo ($Density['Compacted_Specific_Gravity_OD']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Sg-OD-Compacted" name="CompactedSpecificGravityOD" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Compacted_Specific_Gravity_OD']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Sg-OD-Compacted" name="CompactedSpecificGravityOD" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Density of Water (Kg/m³)</th>
-                <td><input value="<?php echo ($Density['Compacted_Density_Water_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3-Compacted" name="CompactedDensityWaterKgm3" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Compacted_Density_Water_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Densy-Wt-Kgm3-Compacted" name="CompactedDensityWaterKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Compacted Bulk Denisty (Kg/m³)</th>
-                <td><input value="<?php echo ($Density['Compacted_Bulk_Denisty_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Compacted-Bulk-Densy" name="CompactedBulkDenistyKgm3" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Compacted_Bulk_Denisty_Kgm3']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Compacted-Bulk-Densy" name="CompactedBulkDenistyKgm3" oninput="calcular()"></td>
             </tr>
             <tr>
                 <th scope="col">Percent Voids in compacted Aggregate</th>
-                <td><input value="<?php echo ($Density['Percent_Voids_Compacted_Aggregate']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Compacted-Agg" name="PercentVoidsCompactedAggregate" oninput="calcular()"></td>
+                <td><input value="<?php echo ($search_table['Percent_Voids_Compacted_Aggregate']); ?>" type="text" style="border: none; background: transparent;" size="4" id="Percent-Voids-Compacted-Agg" name="PercentVoidsCompactedAggregate" oninput="calcular()"></td>
             </tr>
         </tbody>
     </table>
@@ -163,7 +168,8 @@ $Density = find_by_id('density_bulk', (int)$_GET['id']);
 <div>
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-<a href="PDF/Density_Bulk_Rev_1.php?id=<?php echo intval($Density['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<a href="PDF/Density_Bulk_Rev_1.php?id=<?php echo intval($search_table['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 </div>
 
 <script>

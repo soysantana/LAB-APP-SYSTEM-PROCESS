@@ -167,3 +167,74 @@ VALUES (
 }
 
 ?>
+
+<?php
+$search_table = find_by_id('leeb_hardness', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $Standard = $db->escape($_POST['Standard']);
+      $Method = $db->escape($_POST['Method']);
+      $Comments = $db->escape($_POST['Comments']);
+      $Technician = $db->escape($_POST['Technician']);
+      $TestStartDate = $db->escape($_POST['TestStartDate']);
+  
+      $Sample = $db->escape($_POST['Sample']);
+      $Depthm = $db->escape($_POST['Depthm']);
+      $LeebHardnessNumber1 = $db->escape($_POST['LeebHardnessNumber1']);
+      $LeebHardnessNumber2 = $db->escape($_POST['LeebHardnessNumber2']);
+      $LeebHardnessNumber3 = $db->escape($_POST['LeebHardnessNumber3']);
+      $LeebHardnessNumber4 = $db->escape($_POST['LeebHardnessNumber4']);
+      $LeebHardnessNumber5 = $db->escape($_POST['LeebHardnessNumber5']);
+      $LeebHardnessNumber6 = $db->escape($_POST['LeebHardnessNumber6']);
+      $LeebHardnessNumber7 = $db->escape($_POST['LeebHardnessNumber7']);
+      $LeebHardnessNumber8 = $db->escape($_POST['LeebHardnessNumber8']);
+      $LeebHardnessNumber9 = $db->escape($_POST['LeebHardnessNumber9']);
+      $LeebHardnessNumber10 = $db->escape($_POST['LeebHardnessNumber10']);
+      $Average = $db->escape($_POST['Average']);
+
+      $query = "UPDATE leeb_hardness SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Method = '{$Method}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+
+      $query .= "Sample = '{$Sample}', ";
+      $query .= "Depth_m = '{$Depthm}', ";
+      $query .= "Leeb_Hardness_Number1 = '{$LeebHardnessNumber1}', ";
+      $query .= "Leeb_Hardness_Number2 = '{$LeebHardnessNumber2}', ";
+      $query .= "Leeb_Hardness_Number3 = '{$LeebHardnessNumber3}', ";
+      $query .= "Leeb_Hardness_Number4 = '{$LeebHardnessNumber4}', ";
+      $query .= "Leeb_Hardness_Number5 = '{$LeebHardnessNumber5}', ";
+      $query .= "Leeb_Hardness_Number6 = '{$LeebHardnessNumber6}', ";
+      $query .= "Leeb_Hardness_Number7 = '{$LeebHardnessNumber7}', ";
+      $query .= "Leeb_Hardness_Number8 = '{$LeebHardnessNumber8}', ";
+      $query .= "Leeb_Hardness_Number9 = '{$LeebHardnessNumber9}', ";
+      $query .= "Leeb_Hardness_Number10 = '{$LeebHardnessNumber10}', ";
+      $query .= "Average = '{$Average}' ";
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-Leeb.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-Leeb.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-Leeb.php?id=' . $search_table['id'], false);
+    }
+  }
+?>

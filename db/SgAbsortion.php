@@ -290,3 +290,137 @@ VALUES (
 }
 
 ?>
+
+<?php
+$search_table = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $Standard = remove_junk($db->escape($_POST['Standard']));
+      $PreparationMethod = remove_junk($db->escape($_POST['PreparationMethod']));
+      $SplitMethod = remove_junk($db->escape($_POST['SplitMethod']));
+      $Comments = remove_junk($db->escape($_POST['Comments']));
+      $Technician = remove_junk($db->escape($_POST['Technician']));
+      $TestStartDate = remove_junk($db->escape($_POST['TestStartDate']));
+  
+      $Inch5Wt1 = remove_junk($db->escape($_POST['Inch5Wt1']));
+      $Inch5Wt2 = remove_junk($db->escape($_POST['Inch5Wt2']));
+      $Inch5Wt3 = remove_junk($db->escape($_POST['Inch5Wt3']));
+      $Inch4Wt1 = remove_junk($db->escape($_POST['Inch4Wt1']));
+      $Inch4Wt2 = remove_junk($db->escape($_POST['Inch4Wt2']));
+      $Inch4Wt3 = remove_junk($db->escape($_POST['Inch4Wt3']));
+      $Inch3p5Wt1 = remove_junk($db->escape($_POST['Inch3p5Wt1']));
+      $Inch3p5Wt2 = remove_junk($db->escape($_POST['Inch3p5Wt2']));
+      $Inch3p5Wt3 = remove_junk($db->escape($_POST['Inch3p5Wt3']));
+      $Inch3Wt1 = remove_junk($db->escape($_POST['Inch3Wt1']));
+      $Inch3Wt2 = remove_junk($db->escape($_POST['Inch3Wt2']));
+      $Inch3Wt3 = remove_junk($db->escape($_POST['Inch3Wt3']));
+      $Inch2p5Wt1 = remove_junk($db->escape($_POST['Inch2p5Wt1']));
+      $Inch2p5Wt2 = remove_junk($db->escape($_POST['Inch2p5Wt2']));
+      $Inch2p5Wt3 = remove_junk($db->escape($_POST['Inch2p5Wt3']));
+      $Inch2Wt1 = remove_junk($db->escape($_POST['Inch2Wt1']));
+      $Inch2Wt2 = remove_junk($db->escape($_POST['Inch2Wt2']));
+      $Inch2Wt3 = remove_junk($db->escape($_POST['Inch2Wt3']));
+      $Inch1p5Wt1 = remove_junk($db->escape($_POST['Inch1p5Wt1']));
+      $Inch1p5Wt2 = remove_junk($db->escape($_POST['Inch1p5Wt2']));
+      $Inch1p5Wt3 = remove_junk($db->escape($_POST['Inch1p5Wt3']));
+      $Inch1Wt1 = remove_junk($db->escape($_POST['Inch1Wt1']));
+      $Inch1Wt2 = remove_junk($db->escape($_POST['Inch1Wt2']));
+      $Inch1Wt3 = remove_junk($db->escape($_POST['Inch1Wt3']));
+      $Inch3p4Wt1 = remove_junk($db->escape($_POST['Inch3p4Wt1']));
+      $Inch3p4Wt2 = remove_junk($db->escape($_POST['Inch3p4Wt2']));
+      $Inch3p4Wt3 = remove_junk($db->escape($_POST['Inch3p4Wt3']));
+      $Inch1p2Wt1 = remove_junk($db->escape($_POST['Inch1p2Wt1']));
+      $Inch1p2Wt2 = remove_junk($db->escape($_POST['Inch1p2Wt2']));
+      $Inch1p2Wt3 = remove_junk($db->escape($_POST['Inch1p2Wt3']));
+      $Inch3p8Wt1 = remove_junk($db->escape($_POST['Inch3p8Wt1']));
+      $Inch3p8Wt2 = remove_junk($db->escape($_POST['Inch3p8Wt2']));
+      $Inch3p8Wt3 = remove_junk($db->escape($_POST['Inch3p8Wt3']));
+      $InchNo4Wt1 = remove_junk($db->escape($_POST['InchNo4Wt1']));
+      $InchNo4Wt2 = remove_junk($db->escape($_POST['InchNo4Wt2']));
+      $InchNo4Wt3 = remove_junk($db->escape($_POST['InchNo4Wt3']));
+      $InchTotalWt1 = remove_junk($db->escape($_POST['InchTotalWt1']));
+      $InchTotalWt2 = remove_junk($db->escape($_POST['InchTotalWt2']));
+      $InchTotalWt3 = remove_junk($db->escape($_POST['InchTotalWt3']));
+      $SpecificGravityOD = remove_junk($db->escape($_POST['SpecificGravityOD']));
+      $SpecificGravitySSD = remove_junk($db->escape($_POST['SpecificGravitySSD']));
+      $ApparentSpecificGravity = remove_junk($db->escape($_POST['ApparentSpecificGravity']));
+      $PercentAbsortion = remove_junk($db->escape($_POST['PercentAbsortion']));
+
+      $query = "UPDATE specific_gravity_absortion SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Preparation_Method = '{$PreparationMethod}', ";
+      $query .= "Split_Method = '{$SplitMethod}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+
+      $query .= "Inch5_Wt1 = '{$Inch5Wt1}', ";
+      $query .= "Inch5_Wt2 = '{$Inch5Wt2}', ";
+      $query .= "Inch5_Wt3 = '{$Inch5Wt3}', ";
+      $query .= "Inch4_Wt1 = '{$Inch4Wt1}', ";
+      $query .= "Inch4_Wt2 = '{$Inch4Wt2}', ";
+      $query .= "Inch4_Wt3 = '{$Inch4Wt3}', ";
+      $query .= "Inch3p5_Wt1 = '{$Inch3p5Wt1}', ";
+      $query .= "Inch3p5_Wt2 = '{$Inch3p5Wt2}', ";
+      $query .= "Inch3p5_Wt3 = '{$Inch3p5Wt3}', ";
+      $query .= "Inch3_Wt1 = '{$Inch3Wt1}', ";
+      $query .= "Inch3_Wt2 = '{$Inch3Wt2}', ";
+      $query .= "Inch3_Wt3 = '{$Inch3Wt3}', ";
+      $query .= "Inch2p5_Wt1 = '{$Inch2p5Wt1}', ";
+      $query .= "Inch2p5_Wt2 = '{$Inch2p5Wt2}', ";
+      $query .= "Inch2p5_Wt3 = '{$Inch2p5Wt3}', ";
+      $query .= "Inch2_Wt1 = '{$Inch2Wt1}', ";
+      $query .= "Inch2_Wt2 = '{$Inch2Wt2}', ";
+      $query .= "Inch2_Wt3 = '{$Inch2Wt3}', ";
+      $query .= "Inch1p5_Wt1 = '{$Inch1p5Wt1}', ";
+      $query .= "Inch1p5_Wt2 = '{$Inch1p5Wt2}', ";
+      $query .= "Inch1p5_Wt3 = '{$Inch1p5Wt3}', ";
+      $query .= "Inch1_Wt1 = '{$Inch1Wt1}', ";
+      $query .= "Inch1_Wt2 = '{$Inch1Wt2}', ";
+      $query .= "Inch1_Wt3 = '{$Inch1Wt3}', ";
+      $query .= "Inch3p4_Wt1 = '{$Inch3p4Wt1}', ";
+      $query .= "Inch3p4_Wt2 = '{$Inch3p4Wt2}', ";
+      $query .= "Inch3p4_Wt3 = '{$Inch3p4Wt3}', ";
+      $query .= "Inch1p2_Wt1 = '{$Inch1p2Wt1}', ";
+      $query .= "Inch1p2_Wt2 = '{$Inch1p2Wt2}', ";
+      $query .= "Inch1p2_Wt3 = '{$Inch1p2Wt3}', ";
+      $query .= "Inch3p8_Wt1 = '{$Inch3p8Wt1}', ";
+      $query .= "Inch3p8_Wt2 = '{$Inch3p8Wt2}', ";
+      $query .= "Inch3p8_Wt3 = '{$Inch3p8Wt3}', ";
+      $query .= "InchNo4_Wt1 = '{$InchNo4Wt1}', ";
+      $query .= "InchNo4_Wt2 = '{$InchNo4Wt2}', ";
+      $query .= "InchNo4_Wt3 = '{$InchNo4Wt3}', ";
+      $query .= "InchTotal_Wt1 = '{$InchTotalWt1}', ";
+      $query .= "InchTotal_Wt2 = '{$InchTotalWt2}', ";
+      $query .= "InchTotal_Wt3 = '{$InchTotalWt3}', ";
+
+      $query .= "Specific_Gravity_OD = '{$SpecificGravityOD}', ";
+      $query .= "Specific_Gravity_SSD = '{$SpecificGravitySSD}', ";
+      $query .= "Apparent_Specific_Gravity = '{$ApparentSpecificGravity}', ";
+      $query .= "Percent_Absortion = '{$PercentAbsortion}' ";
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-SG-Absortion.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-SG-Absortion.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-SG-Absortion.php?id=' . $search_table['id'], false);
+    }
+  }
+?>

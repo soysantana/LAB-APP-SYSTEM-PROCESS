@@ -190,3 +190,89 @@ VALUES (
 }
 
 ?>
+
+
+<?php
+$search_table = find_by_id('density_bulk', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $Standard = remove_junk($db->escape($_POST['Standard']));
+      $PreparationMethod = remove_junk($db->escape($_POST['PreparationMethod']));
+      $Comments = remove_junk($db->escape($_POST['Comments']));
+      $Technician = remove_junk($db->escape($_POST['Technician']));
+      $TestStartDate = remove_junk($db->escape($_POST['TestStartDate']));
+  
+      $Container = remove_junk($db->escape($_POST['Container']));
+      $WeightTareg = remove_junk($db->escape($_POST['WeightTareg']));
+      $WeightTareSoilg = remove_junk($db->escape($_POST['WeightTareSoilg']));
+      $VolumeTheMoldm3 = remove_junk($db->escape($_POST['VolumeTheMoldm3']));
+      $WeightLooseMaterialg = remove_junk($db->escape($_POST['WeightLooseMaterialg']));
+      $AbsorptionPorce = remove_junk($db->escape($_POST['AbsorptionPorce']));
+      $SpecificGravityOD = remove_junk($db->escape($_POST['SpecificGravityOD']));
+      $DensityWaterKgm3 = remove_junk($db->escape($_POST['DensityWaterKgm3']));
+      $LooseBulkDenistyKgm3 = remove_junk($db->escape($_POST['LooseBulkDenistyKgm3']));
+      $PercentVoidsLooseAggregate = remove_junk($db->escape($_POST['PercentVoidsLooseAggregate']));
+      
+      $CompactedWeightTareg = remove_junk($db->escape($_POST['CompactedWeightTareg']));
+      $CompactedWeightTareSoilg = remove_junk($db->escape($_POST['CompactedWeightTareSoilg']));
+      $CompactedVolumeTheMoldm3 = remove_junk($db->escape($_POST['CompactedVolumeTheMoldm3']));
+      $WeightCompactedMaterialg = remove_junk($db->escape($_POST['WeightCompactedMaterialg']));
+      $CompactedAbsorptionPorce = remove_junk($db->escape($_POST['CompactedAbsorptionPorce']));
+      $CompactedSpecificGravityOD = remove_junk($db->escape($_POST['CompactedSpecificGravityOD']));
+      $CompactedDensityWaterKgm3 = remove_junk($db->escape($_POST['CompactedDensityWaterKgm3']));
+      $CompactedBulkDenistyKgm3 = remove_junk($db->escape($_POST['CompactedBulkDenistyKgm3']));
+      $PercentVoidsCompactedAggregate = remove_junk($db->escape($_POST['PercentVoidsCompactedAggregate']));
+
+      $query = "UPDATE density_bulk SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Preparation_Method = '{$PreparationMethod}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+
+      $query .= "Container = '{$Container}', ";
+      $query .= "Weight_Tare_g = '{$WeightTareg}', ";
+      $query .= "Weight_Tare_Soil_g = '{$WeightTareSoilg}', ";
+      $query .= "Volume_The_Mold_m3 = '{$VolumeTheMoldm3}', ";
+      $query .= "Weight_Loose_Material_g = '{$WeightLooseMaterialg}', ";
+      $query .= "Absorption_Porce = '{$AbsorptionPorce}', ";
+      $query .= "Specific_Gravity_OD = '{$SpecificGravityOD}', ";
+      $query .= "Density_Water_Kgm3 = '{$DensityWaterKgm3}', ";
+      $query .= "Loose_Bulk_Denisty_Kgm3 = '{$LooseBulkDenistyKgm3}', ";
+      $query .= "Percent_Voids_Loose_Aggregate = '{$PercentVoidsLooseAggregate}', ";
+
+      $query .= "Compacted_Weight_Tare_g = '{$CompactedWeightTareg}', ";
+      $query .= "Compacted_Weight_Tare_Soil_g = '{$CompactedWeightTareSoilg}', ";
+      $query .= "Compacted_Volume_The_Mold_m3 = '{$CompactedVolumeTheMoldm3}', ";
+      $query .= "Weight_Compacted_Material_g = '{$WeightCompactedMaterialg}', ";
+      $query .= "Compacted_Absorption_Porce = '{$CompactedAbsorptionPorce}', ";
+      $query .= "Compacted_Specific_Gravity_OD = '{$CompactedSpecificGravityOD}', ";
+      $query .= "Compacted_Density_Water_Kgm3 = '{$CompactedDensityWaterKgm3}', ";
+      $query .= "Compacted_Bulk_Denisty_Kgm3 = '{$CompactedBulkDenistyKgm3}', ";
+      $query .= "Percent_Voids_Compacted_Aggregate = '{$PercentVoidsCompactedAggregate}' ";
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-Density-Bulk.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-Density-Bulk.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-Density-Bulk.php?id=' . $search_table['id'], false);
+    }
+  }
+?>
