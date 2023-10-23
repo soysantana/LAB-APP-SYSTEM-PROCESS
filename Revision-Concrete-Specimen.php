@@ -4,13 +4,18 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
 
-$Grout = find_by_id('concrete_specimens', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/ConcreteSpecimens.php'); 
+  }
+$SearchTable = find_by_id('concrete_specimens', (int)$_GET['id']);
 ?>
 
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row"></div>
 <div class="col-md-12"></div>
+<?php echo display_msg($msg); ?>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -19,7 +24,7 @@ $Grout = find_by_id('concrete_specimens', (int)$_GET['id']);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="concrete_specimen.php" oninput="calcular(); calculateAverageStrength();">
+<form method="post" action="" oninput="calcular(); calculateAverageStrength();">
 
 <table class="table table-bordered">
 <thead>
@@ -28,39 +33,39 @@ $Grout = find_by_id('concrete_specimens', (int)$_GET['id']);
 <div class="col-xs-4">
 <label >Standard</label>
 <select class="form-control" name="Standard">
-<option <?php if ($Grout['Standard'] == 'ASTM C88') echo 'selected'; ?>>ASTM C88</option>        
+<option <?php if ($SearchTable['Standard'] == 'ASTM C88') echo 'selected'; ?>>ASTM C88</option>        
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
 <select class="form-control" name="PreparationMethod">
-<option <?php if ($Grout['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option>
-<option <?php if ($Grout['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option>
+<option <?php if ($SearchTable['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option>
+<option <?php if ($SearchTable['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option>
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Split Method</label>
 <select class="form-control" name="SplitMethod">
-<option <?php if ($Grout['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech_Split</option>
-<option <?php if ($Grout['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Man_Split</option>
+<option <?php if ($SearchTable['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech_Split</option>
+<option <?php if ($SearchTable['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Man_Split</option>
 </select>
 </div>
 
 <div class="col-xs-4">
 <label>Comments</label>
-<textarea class="form-control" name="Comments"><?php echo ($Grout['Comments']); ?></textarea>
+<textarea class="form-control" name="Comments"><?php echo ($SearchTable['Comments']); ?></textarea>
 </div>
       
 <div class="col-xs-4">
 <label>Technician</label>
-<input class="form-control" name="Technician" value="<?php echo ($Grout['Technician']); ?>" type="text">
+<input class="form-control" name="Technician" value="<?php echo ($SearchTable['Technician']); ?>" type="text">
 </div>
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="TestStartDate" value="<?php echo ($Grout['Test_Start_Date']); ?>" type="date">
+<input class="form-control" name="TestStartDate" value="<?php echo ($SearchTable['Test_Start_Date']); ?>" type="date">
 </div>
 
 
@@ -92,74 +97,74 @@ $Grout = find_by_id('concrete_specimens', (int)$_GET['id']);
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col">1</th>
-                <td><input value="<?php echo ($Grout['Diameter_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN1"></td>
-                <td><input value="<?php echo ($Grout['High_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN1"></td>
-                <td><input value="<?php echo ($Grout['Area_m2_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N1"></td>
-                <td><input value="<?php echo ($Grout['Volumen_m3_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-1" name="Volumenm3N1"></td>
-                <td><input value="<?php echo ($Grout['Weight_Cylinder_kg_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-1" name="WeightCylinderkgN1"></td>
-                <td><input value="<?php echo ($Grout['Age_Days_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN1"></td>
-                <td><input value="<?php echo ($Grout['Unit_Weight_kgm3_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-1" name="UnitWeightkgm3N1"></td>
-                <td><input value="<?php echo ($Grout['Failure_Load_kn_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN1"></td>
-                <td><input value="<?php echo ($Grout['Strenght_Mpa_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-1" name="StrenghtMpaN1"></td>
-                <td rowspan="5"><input value="<?php echo ($Grout['Average_Strenght_Mpa']); ?>" type="text" style="border: none; background: transparent; padding: 40%; width: 100%;" id="Average-Streng-Mpa" name="AverageStrenghtMpa"></td>
-                <td><input value="<?php echo ($Grout['Type_Fracture_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN1"></td>
-                <td><input value="<?php echo ($Grout['Observations_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN1"></td>
+                <td><input value="<?php echo ($SearchTable['Diameter_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN1"></td>
+                <td><input value="<?php echo ($SearchTable['High_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN1"></td>
+                <td><input value="<?php echo ($SearchTable['Area_m2_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N1"></td>
+                <td><input value="<?php echo ($SearchTable['Volumen_m3_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-1" name="Volumenm3N1"></td>
+                <td><input value="<?php echo ($SearchTable['Weight_Cylinder_kg_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-1" name="WeightCylinderkgN1"></td>
+                <td><input value="<?php echo ($SearchTable['Age_Days_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN1"></td>
+                <td><input value="<?php echo ($SearchTable['Unit_Weight_kgm3_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-1" name="UnitWeightkgm3N1"></td>
+                <td><input value="<?php echo ($SearchTable['Failure_Load_kn_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN1"></td>
+                <td><input value="<?php echo ($SearchTable['Strenght_Mpa_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-1" name="StrenghtMpaN1"></td>
+                <td rowspan="5"><input value="<?php echo ($SearchTable['Average_Strenght_Mpa']); ?>" type="text" style="border: none; background: transparent; padding: 40%; width: 100%;" id="Average-Streng-Mpa" name="AverageStrenghtMpa"></td>
+                <td><input value="<?php echo ($SearchTable['Type_Fracture_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN1"></td>
+                <td><input value="<?php echo ($SearchTable['Observations_N1']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN1"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col">2</th>
-                <td><input value="<?php echo ($Grout['Diameter_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN2"></td>
-                <td><input value="<?php echo ($Grout['High_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN2"></td>
-                <td><input value="<?php echo ($Grout['Area_m2_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N2"></td>
-                <td><input value="<?php echo ($Grout['Volumen_m3_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-2" name="Volumenm3N2"></td>
-                <td><input value="<?php echo ($Grout['Weight_Cylinder_kg_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-2" name="WeightCylinderkgN2"></td>
-                <td><input value="<?php echo ($Grout['Age_Days_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN2"></td>
-                <td><input value="<?php echo ($Grout['Unit_Weight_kgm3_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-2" name="UnitWeightkgm3N2"></td>
-                <td><input value="<?php echo ($Grout['Failure_Load_kn_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN2"></td>
-                <td><input value="<?php echo ($Grout['Strenght_Mpa_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-2" name="StrenghtMpaN2"></td>
-                <td><input value="<?php echo ($Grout['Type_Fracture_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN2"></td>
-                <td><input value="<?php echo ($Grout['Observations_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN2"></td>
+                <td><input value="<?php echo ($SearchTable['Diameter_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN2"></td>
+                <td><input value="<?php echo ($SearchTable['High_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN2"></td>
+                <td><input value="<?php echo ($SearchTable['Area_m2_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N2"></td>
+                <td><input value="<?php echo ($SearchTable['Volumen_m3_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-2" name="Volumenm3N2"></td>
+                <td><input value="<?php echo ($SearchTable['Weight_Cylinder_kg_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-2" name="WeightCylinderkgN2"></td>
+                <td><input value="<?php echo ($SearchTable['Age_Days_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN2"></td>
+                <td><input value="<?php echo ($SearchTable['Unit_Weight_kgm3_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-2" name="UnitWeightkgm3N2"></td>
+                <td><input value="<?php echo ($SearchTable['Failure_Load_kn_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN2"></td>
+                <td><input value="<?php echo ($SearchTable['Strenght_Mpa_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-2" name="StrenghtMpaN2"></td>
+                <td><input value="<?php echo ($SearchTable['Type_Fracture_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN2"></td>
+                <td><input value="<?php echo ($SearchTable['Observations_N2']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN2"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col">3</th>
-                <td><input value="<?php echo ($Grout['Diameter_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN3"></td>
-                <td><input value="<?php echo ($Grout['High_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN3"></td>
-                <td><input value="<?php echo ($Grout['Area_m2_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N3"></td>
-                <td><input value="<?php echo ($Grout['Volumen_m3_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-3" name="Volumenm3N3"></td>
-                <td><input value="<?php echo ($Grout['Weight_Cylinder_kg_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-3" name="WeightCylinderkgN3"></td>
-                <td><input value="<?php echo ($Grout['Age_Days_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN3"></td>
-                <td><input value="<?php echo ($Grout['Unit_Weight_kgm3_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-3" name="UnitWeightkgm3N3"></td>
-                <td><input value="<?php echo ($Grout['Failure_Load_kn_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN3"></td>
-                <td><input value="<?php echo ($Grout['Strenght_Mpa_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-3" name="StrenghtMpaN3"></td>
-                <td><input value="<?php echo ($Grout['Type_Fracture_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN3"></td>
-                <td><input value="<?php echo ($Grout['Observations_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN3"></td>
+                <td><input value="<?php echo ($SearchTable['Diameter_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN3"></td>
+                <td><input value="<?php echo ($SearchTable['High_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN3"></td>
+                <td><input value="<?php echo ($SearchTable['Area_m2_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N3"></td>
+                <td><input value="<?php echo ($SearchTable['Volumen_m3_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-3" name="Volumenm3N3"></td>
+                <td><input value="<?php echo ($SearchTable['Weight_Cylinder_kg_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-3" name="WeightCylinderkgN3"></td>
+                <td><input value="<?php echo ($SearchTable['Age_Days_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN3"></td>
+                <td><input value="<?php echo ($SearchTable['Unit_Weight_kgm3_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-3" name="UnitWeightkgm3N3"></td>
+                <td><input value="<?php echo ($SearchTable['Failure_Load_kn_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN3"></td>
+                <td><input value="<?php echo ($SearchTable['Strenght_Mpa_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-3" name="StrenghtMpaN3"></td>
+                <td><input value="<?php echo ($SearchTable['Type_Fracture_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN3"></td>
+                <td><input value="<?php echo ($SearchTable['Observations_N3']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN3"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col">4</th>
-                <td><input value="<?php echo ($Grout['Diameter_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN4"></td>
-                <td><input value="<?php echo ($Grout['High_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN4"></td>
-                <td><input value="<?php echo ($Grout['Area_m2_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N4"></td>
-                <td><input value="<?php echo ($Grout['Volumen_m3_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-4" name="Volumenm3N4"></td>
-                <td><input value="<?php echo ($Grout['Weight_Cylinder_kg_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-4" name="WeightCylinderkgN4"></td>
-                <td><input value="<?php echo ($Grout['Age_Days_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN4"></td>
-                <td><input value="<?php echo ($Grout['Unit_Weight_kgm3_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-4" name="UnitWeightkgm3N4"></td>
-                <td><input value="<?php echo ($Grout['Failure_Load_kn_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN4"></td>
-                <td><input value="<?php echo ($Grout['Strenght_Mpa_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-4" name="StrenghtMpaN4"></td>
-                <td><input value="<?php echo ($Grout['Type_Fracture_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN4"></td>
-                <td><input value="<?php echo ($Grout['Observations_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN4"></td>
+                <td><input value="<?php echo ($SearchTable['Diameter_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN4"></td>
+                <td><input value="<?php echo ($SearchTable['High_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN4"></td>
+                <td><input value="<?php echo ($SearchTable['Area_m2_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N4"></td>
+                <td><input value="<?php echo ($SearchTable['Volumen_m3_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-4" name="Volumenm3N4"></td>
+                <td><input value="<?php echo ($SearchTable['Weight_Cylinder_kg_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-4" name="WeightCylinderkgN4"></td>
+                <td><input value="<?php echo ($SearchTable['Age_Days_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN4"></td>
+                <td><input value="<?php echo ($SearchTable['Unit_Weight_kgm3_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-4" name="UnitWeightkgm3N4"></td>
+                <td><input value="<?php echo ($SearchTable['Failure_Load_kn_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN4"></td>
+                <td><input value="<?php echo ($SearchTable['Strenght_Mpa_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-4" name="StrenghtMpaN4"></td>
+                <td><input value="<?php echo ($SearchTable['Type_Fracture_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeFractureN4"></td>
+                <td><input value="<?php echo ($SearchTable['Observations_N4']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN4"></td>
             </tr>
             <tr>
                 <th style="font-size: 15px; text-align: center;" scope="col">5</th>
-                <td><input value="<?php echo ($Grout['Diameter_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN5"></td>
-                <td><input value="<?php echo ($Grout['High_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN5"></td>
-                <td><input value="<?php echo ($Grout['Area_m2_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N5"></td>
-                <td><input value="<?php echo ($Grout['Volumen_m3_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-5" name="Volumenm3N5"></td>
-                <td><input value="<?php echo ($Grout['Weight_Cylinder_kg_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-5" name="WeightCylinderkgN5"></td>
-                <td><input value="<?php echo ($Grout['Age_Days_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN5"></td>
-                <td><input value="<?php echo ($Grout['Unit_Weight_kgm3_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-5" name="UnitWeightkgm3N5"></td>
-                <td><input value="<?php echo ($Grout['Failure_Load_kn_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN5"></td>
-                <td><input value="<?php echo ($Grout['Strenght_Mpa_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-5" name="StrenghtMpaN5"></td>
-                <td><input value="<?php echo ($Grout['Type_Fracture_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeMFractureN5"></td>
-                <td><input value="<?php echo ($Grout['Observations_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN5"></td>
+                <td><input value="<?php echo ($SearchTable['Diameter_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="DiameterN5"></td>
+                <td><input value="<?php echo ($SearchTable['High_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="HighN5"></td>
+                <td><input value="<?php echo ($SearchTable['Area_m2_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="Aream2N5"></td>
+                <td><input value="<?php echo ($SearchTable['Volumen_m3_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Vol-m3-5" name="Volumenm3N5"></td>
+                <td><input value="<?php echo ($SearchTable['Weight_Cylinder_kg_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Weig-Cylinder-5" name="WeightCylinderkgN5"></td>
+                <td><input value="<?php echo ($SearchTable['Age_Days_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="AgeDaysN5"></td>
+                <td><input value="<?php echo ($SearchTable['Unit_Weight_kgm3_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Unit-Weig-Kgm3-5" name="UnitWeightkgm3N5"></td>
+                <td><input value="<?php echo ($SearchTable['Failure_Load_kn_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="FailureLoadknN5"></td>
+                <td><input value="<?php echo ($SearchTable['Strenght_Mpa_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="Strenght-Mpa-5" name="StrenghtMpaN5"></td>
+                <td><input value="<?php echo ($SearchTable['Type_Fracture_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="TypeMFractureN5"></td>
+                <td><input value="<?php echo ($SearchTable['Observations_N5']); ?>" type="text" style="border: none;" size="4" style="background: transparent;"id="" name="ObservationsN5"></td>
             </tr>
         </tbody>
     </table>
@@ -168,7 +173,8 @@ $Grout = find_by_id('concrete_specimens', (int)$_GET['id']);
 <div style="margin-left: 1%;">
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-<a href="PDF/Grout_Concrete_Rev_3.php?id=<?php echo intval($Grout['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<a href="PDF/Grout_Concrete_Rev_3.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 </div>
 
   <script>
