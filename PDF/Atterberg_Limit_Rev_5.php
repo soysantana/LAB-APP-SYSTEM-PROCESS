@@ -201,7 +201,7 @@ $pdf->Cell(24, 25, remove_junk(ucwords($atterberg_limit['Classification'])), 0, 
 
 $pdf->SetXY(284, 179);
 $pdf->Cell(60, 68, remove_junk(ucwords($atterberg_limit['Comments'])), 0, 1, 'C');
-
+/*
 // GRAFICAS DEL LIMITER
 $imageData = $atterberg_limit['Liquid_Limit_Plot'];
 $imageFileName1 = 'temp_image1.png'; // Cambiar el nombre del archivo temporal
@@ -229,6 +229,6 @@ $pdf->Image($imagePath2, $pdf->GetX(), $pdf->GetY(), $cellWidth, $cellHeight);
 $pdf->Cell($cellWidth, $cellHeight, "", 0, 1, 'C');
 // Eliminar el archivo temporal de la segunda imagen
 unlink($imageFileName2);
-
+*/
 $pdf->Output();
 ?>
