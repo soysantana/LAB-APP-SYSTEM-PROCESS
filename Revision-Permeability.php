@@ -4,6 +4,10 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
 
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/PermeabilityGranular.php'); 
+}
 $SearchTable = find_by_id('permeability_of_granular_soils', (int)$_GET['id']);
 ?>
 
@@ -11,6 +15,7 @@ $SearchTable = find_by_id('permeability_of_granular_soils', (int)$_GET['id']);
 
 <div class="row">
   <div class="col-md-12">
+  <?php echo display_msg($msg); ?>
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <strong>
@@ -19,7 +24,7 @@ $SearchTable = find_by_id('permeability_of_granular_soils', (int)$_GET['id']);
         </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="permeability_granular.php" onsubmit="calcular()">
+        <form method="post" action="" onsubmit="calcular()">
 
             <table class="table table-bordered">
                 <thead>
@@ -380,6 +385,7 @@ $SearchTable = find_by_id('permeability_of_granular_soils', (int)$_GET['id']);
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
 <a href="PDF/perme_Rev_0.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 
 
