@@ -141,3 +141,63 @@ VALUES (
 }
 
 ?>
+
+<?php
+$search_table = find_by_id('ensayo_gama', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'Standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $Standard = $db->escape($_POST['Standard']);
+      $PreparationMethod = $db->escape($_POST['PreparationMethod']);
+      $Comments = $db->escape($_POST['Comments']);
+      $Technician = $db->escape($_POST['Technician']);
+      $TestStartDate = $db->escape($_POST['TestStartDate']);
+  
+      $Station = $db->escape($_POST['Station']);
+      $MaxDryDensityKgm3 = $db->escape($_POST['MaxDryDensityKgm3']);
+      $MaxWetDensityKgm3 = $db->escape($_POST['MaxWetDensityKgm3']);
+      $PercentMoistureContent = $db->escape($_POST['PercentMoistureContent']);
+      $OptimunMoistureContent = $db->escape($_POST['OptimunMoistureContent']);
+      $MaxDryDensity = $db->escape($_POST['MaxDryDensity']);
+      $PercentofCompaction = $db->escape($_POST['PercentofCompaction']);
+
+      $query = "UPDATE ensayo_gama SET ";
+      $query .= "Standard = '{$Standard}', ";
+      $query .= "Preparation_Method = '{$PreparationMethod}', ";
+      $query .= "Comments = '{$Comments}', ";
+      $query .= "Technician = '{$Technician}', ";
+      $query .= "Test_Start_Date = '{$TestStartDate}', ";
+
+      $query .= "Station = '{$Station}', ";
+      $query .= "Max_Dry_Density_Kgm3 = '{$MaxDryDensityKgm3}', ";
+      $query .= "Max_Wet_Density_Kgm3 = '{$MaxWetDensityKgm3}', ";
+      $query .= "Percent_Moisture_Content = '{$PercentMoistureContent}', ";
+      $query .= "Optimun_Moisture_Content = '{$OptimunMoistureContent}', ";
+      $query .= "Max_Dry_Density = '{$MaxDryDensity}', ";
+      $query .= "Percent_of_Compaction = '{$PercentofCompaction}' ";
+      
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-Density-Gama.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-Density-Gama.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-Density-Gama.php?id=' . $search_table['id'], false);
+    }
+  }
+?>
