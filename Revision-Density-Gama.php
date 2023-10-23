@@ -4,12 +4,17 @@ require_once('includes/load.php');
 // Verifica el nivel de permiso del usuario para ver esta página
 page_require_level(3);
 
-$Density = find_by_id('ensayo_gama', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/EnsayoGama.php'); 
+  }
+$SearchTable = find_by_id('ensayo_gama', (int)$_GET['id']);
 ?>
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
+    <?php echo display_msg($msg); ?>
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <strong>
@@ -18,32 +23,34 @@ $Density = find_by_id('ensayo_gama', (int)$_GET['id']);
                 </strong>
             </div>
             <div class="panel-body">
-                <form method="post" action="ensayo_gama.php" oninput="calcular()">
+                <form method="post" action="" oninput="calcular()">
                     <div class="col-xs-4">
                         <label>Standard</label>
                         <select class="form-control" name="Standard">
-                        <option <?php if ($Density['Standard'] == 'ASTM D6938') echo 'selected'; ?>>ASTM D6938</option>
+                        <option <?php if ($SearchTable['Standard'] == 'Choose...') echo 'selected'; ?>>Choose...</option>
+                        <option <?php if ($SearchTable['Standard'] == 'ASTM D6938') echo 'selected'; ?>>ASTM D6938</option>
                         </select>
                     </div>
                     <div class="col-xs-4">
                         <label>Method</label>
                         <select class="form-control" type="text" name="PreparationMethod" id="">
-                        <option <?php if ($Density['Preparation_Method'] == 'A') echo 'selected'; ?>>A</option>   
-                        <option <?php if ($Density['Preparation_Method'] == 'B') echo 'selected'; ?>>B</option>   
-                        <option <?php if ($Density['Preparation_Method'] == 'C') echo 'selected'; ?>>C</option>
+                        <option <?php if ($SearchTable['Preparation_Method'] == 'Choose...') echo 'selected'; ?>>Choose...</option> 
+                        <option <?php if ($SearchTable['Preparation_Method'] == 'A') echo 'selected'; ?>>A</option>   
+                        <option <?php if ($SearchTable['Preparation_Method'] == 'B') echo 'selected'; ?>>B</option>   
+                        <option <?php if ($SearchTable['Preparation_Method'] == 'C') echo 'selected'; ?>>C</option>
                         </select>
                     </div>
                     <div class="col-xs-4">
                         <label>Comments</label>
-                        <textarea class="form-control" name="Comments"><?php echo ($Density['Comments']); ?></textarea>
+                        <textarea class="form-control" name="Comments"><?php echo ($SearchTable['Comments']); ?></textarea>
                     </div>
                     <div class="col-xs-4">
                         <label>Technician</label>
-                        <input class="form-control" name="Technician" value="<?php echo ($Density['Technician']); ?>" type="text">
+                        <input class="form-control" name="Technician" value="<?php echo ($SearchTable['Technician']); ?>" type="text">
                     </div>
                     <div class="col-xs-4">
                         <label>Test Start Date</label>
-                        <input class="form-control" name="TestStartDate" value="<?php echo ($Density['Test_Start_Date']); ?>" type="date">
+                        <input class="form-control" name="TestStartDate" value="<?php echo ($SearchTable['Test_Start_Date']); ?>" type="date">
                     </div>
                     <table class="table table-bordered">
                         <tbody id="product_info"></tbody>
@@ -57,7 +64,7 @@ $Density = find_by_id('ensayo_gama', (int)$_GET['id']);
                             <tbody>
                                 <tr>
                                     <th scope="col">Station</th>
-                                    <td><input value="<?php echo ($Density['Station']); ?>" type="text" style="border: none; background: transparent;" name="Station" id="Station"></td>
+                                    <td><input value="<?php echo ($SearchTable['Station']); ?>" type="text" style="border: none; background: transparent;" name="Station" id="Station"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -70,15 +77,15 @@ $Density = find_by_id('ensayo_gama', (int)$_GET['id']);
                             <tbody>
                                 <tr>
                                     <th scope="col">Max Dry Density ( Kg/m3)</th>
-                                    <td><input value="<?php echo ($Density['Max_Dry_Density_Kgm3']); ?>" type="text" style="border: none; background: transparent;" name="MaxDryDensityKgm3" id="Max-Dry-Densy-Kgm3"></td>
+                                    <td><input value="<?php echo ($SearchTable['Max_Dry_Density_Kgm3']); ?>" type="text" style="border: none; background: transparent;" name="MaxDryDensityKgm3" id="Max-Dry-Densy-Kgm3"></td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Max Wet Density (Kg/m3)</th>
-                                    <td><input value="<?php echo ($Density['Max_Wet_Density_Kgm3']); ?>" type="text" style="border: none; background: transparent;" name="MaxWetDensityKgm3" id="Max-Wet-Densy-kgm3"></td>
+                                    <td><input value="<?php echo ($SearchTable['Max_Wet_Density_Kgm3']); ?>" type="text" style="border: none; background: transparent;" name="MaxWetDensityKgm3" id="Max-Wet-Densy-kgm3"></td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Percent Moisture Content</th>
-                                    <td><input value="<?php echo ($Density['Percent_Moisture_Content']); ?>" type="text" style="border: none; background: transparent;" name="PercentMoistureContent" id="Porce-MC"></td>
+                                    <td><input value="<?php echo ($SearchTable['Percent_Moisture_Content']); ?>" type="text" style="border: none; background: transparent;" name="PercentMoistureContent" id="Porce-MC"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -91,15 +98,15 @@ $Density = find_by_id('ensayo_gama', (int)$_GET['id']);
                             <tbody>
                                 <tr>
                                     <th scope="col">Optimun Moisture Content %</th>
-                                    <td style="width: 10%;"><input value="<?php echo ($Density['Optimun_Moisture_Content']); ?>" type="text" style="border: none; background: transparent;" name="OptimunMoistureContent" id="Optimun-MC-Porce"></td>
+                                    <td style="width: 10%;"><input value="<?php echo ($SearchTable['Optimun_Moisture_Content']); ?>" type="text" style="border: none; background: transparent;" name="OptimunMoistureContent" id="Optimun-MC-Porce"></td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Max Dry Density (kg/m3)</th>
-                                    <td><input value="<?php echo ($Density['Max_Dry_Density']); ?>" type="text" style="border: none; background: transparent;" name="MaxDryDensity" id="Max-Dry-Density-Lab"></td>
+                                    <td><input value="<?php echo ($SearchTable['Max_Dry_Density']); ?>" type="text" style="border: none; background: transparent;" name="MaxDryDensity" id="Max-Dry-Density-Lab"></td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Percent of Compaction</th>
-                                    <td><input value="<?php echo ($Density['Percent_of_Compaction']); ?>" type="text" style="border: none; background: transparent;" name="PercentofCompaction" id="Porce-Compaction-Lab"></td>
+                                    <td><input value="<?php echo ($SearchTable['Percent_of_Compaction']); ?>" type="text" style="border: none; background: transparent;" name="PercentofCompaction" id="Porce-Compaction-Lab"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -107,7 +114,8 @@ $Density = find_by_id('ensayo_gama', (int)$_GET['id']);
                     </div>
                     <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
                     <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-                    <a href="PDF/Density_Bulk_Rev_1.php?id=<?php echo intval($Density['id']); ?>" class="btn btn-primary">Generar PDF</a>
+                    <a href="PDF/Density_Bulk_Rev_1.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+                    <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
                 </form>
             </div>
         </div>
