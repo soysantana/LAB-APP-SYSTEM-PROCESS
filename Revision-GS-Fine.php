@@ -4,12 +4,17 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
 
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/GrainSizeFine.php'); 
+}
 $SearchTable = find_by_id('grain_size_fine_aggregate', (int)$_GET['id']);
 ?>
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
 <div class="col-md-12">
+<?php echo display_msg($msg); ?>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -18,7 +23,7 @@ $SearchTable = find_by_id('grain_size_fine_aggregate', (int)$_GET['id']);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="gs_fine_agg.php" onsubmit="calcular();">
+<form method="post" action="" onsubmit="calcular();">
 
 <div>
 <table class="table table-bordered">
@@ -495,6 +500,7 @@ $SearchTable = find_by_id('grain_size_fine_aggregate', (int)$_GET['id']);
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
 <a href="PDF/Grain_Size_FA_Rev_1.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </form>
 </div>

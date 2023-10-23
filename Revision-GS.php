@@ -4,13 +4,18 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
 
-$Grain_Size = find_by_id('grain_size', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/GrainSize.php'); 
+}
+$search_table = find_by_id('grain_size', (int)$_GET['id']);
 ?>
 
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
 <div class="col-md-12">
+<?php echo display_msg($msg); ?>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -19,7 +24,7 @@ $Grain_Size = find_by_id('grain_size', (int)$_GET['id']);
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="Grain_Size.php" onsubmit="calcular();calcularD();">
+<form method="post" action="" onsubmit="calcular();calcularD();">
 
 <div>
   <table class="table table-bordered" style="width: 100%;">
@@ -41,39 +46,39 @@ $Grain_Size = find_by_id('grain_size', (int)$_GET['id']);
 <div class="col-xs-4">
 <label >Standard</label>
 <select class="form-control" name="Standard">
-<option <?php if ($Grain_Size['Standard'] == 'ASTM-D6913') echo 'selected'; ?>>ASTM-D6913</option>    
+<option <?php if ($search_table['Standard'] == 'ASTM-D6913') echo 'selected'; ?>>ASTM-D6913</option>    
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Preparation Method</label>
 <select class="form-control" name="PreparationMethod">
-<option <?php if ($Grain_Size['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven Dried</option>
-<option <?php if ($Grain_Size['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air Dried</option>
+<option <?php if ($search_table['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option>
+<option <?php if ($search_table['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option>
 </select>
 </div>
 
 <div class="col-xs-4">
 <label >Split Method</label>
 <select class="form-control" name="Split">
-<option <?php if ($Grain_Size['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech. Split</option>
-<option <?php if ($Grain_Size['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Manual Split</option>
+<option <?php if ($search_table['Split_Method'] == 'Mech_Split') echo 'selected'; ?>>Mech_Split</option>
+<option <?php if ($search_table['Split_Method'] == 'Man_Split') echo 'selected'; ?>>Man_Split</option>
 </select>
 </div>
 
 <div class="col-xs-4">
 <label>Comments</label>
-<textarea class="form-control" name="Comments"><?php echo ($Grain_Size['Comments']); ?></textarea>
+<textarea class="form-control" name="Comments"><?php echo ($search_table['Comments']); ?></textarea>
 </div>
       
 <div class="col-xs-4">
 <label>Technician</label>
-<input class="form-control" name="Technician" value="<?php echo ($Grain_Size['Technician']); ?>" type="text">
+<input class="form-control" name="Technician" value="<?php echo ($search_table['Technician']); ?>" type="text">
 </div>
     
 <div class="col-xs-4">
 <label>Test Start Date</label>
-<input class="form-control" name="TestStartDate" value="<?php echo ($Grain_Size['Test_Start_Date']); ?>" type="date">
+<input class="form-control" name="TestStartDate" value="<?php echo ($search_table['Test_Start_Date']); ?>" type="date">
 </div>
 </div>
 
@@ -86,37 +91,37 @@ $Grain_Size = find_by_id('grain_size', (int)$_GET['id']);
   
   <tr>
   <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Container</th>
-  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Container']); ?>" id="1" name="Container"></td>
+  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Container']); ?>" id="1" name="Container"></td>
   </tr>
   
   <tr>
   <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Wt Wet Soil + Tare (gr):</th>
-  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Tare_Wet_Soil']); ?>" id="2" name="TareWetSoil"></td>
+  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Tare_Wet_Soil']); ?>" id="2" name="TareWetSoil"></td>
   </tr>
   
   <tr>
   <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Wt Dry Soil + Tare (gr):</th>
-  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Tare_Dry_Soil']); ?>" id="3" name="TareDrySoil" oninput="calcular()"></td>
+  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Tare_Dry_Soil']); ?>" id="3" name="TareDrySoil" oninput="calcular()"></td>
   </tr>
   
   <tr>
   <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row"> Tare (gr):</th>
-  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Tare']); ?>" id="4" name="Tare" oninput="calcular()"></td>
+  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Tare']); ?>" id="4" name="Tare" oninput="calcular()"></td>
   </tr>
   
   <tr>
   <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Wt Dry Soil (gr):</th>
-  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Dry_Soil']); ?>" id="5" name="DrySoil" oninput="calcular()"></td>
+  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Dry_Soil']); ?>" id="5" name="DrySoil" oninput="calcular()"></td>
   </tr>
   
   <tr>
   <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Wt Washed (gr):</th>
-  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Washed']); ?>" id="6" name="Washed" oninput="calcular()"></td>
+  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Washed']); ?>" id="6" name="Washed" oninput="calcular()"></td>
   </tr>
   
   <tr>
   <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Wt Wash Pan (gr):</th>
-  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Wash_Pan']); ?>" id="7" name="WashPan" oninput="calcular()"></td>
+  <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Wash_Pan']); ?>" id="7" name="WashPan" oninput="calcular()"></td>
   </tr>
   </table>
 </div>
@@ -129,47 +134,47 @@ $Grain_Size = find_by_id('grain_size', (int)$_GET['id']);
   <tbody>
       <tr>
         <th style="font-size: 15px;" style="width: 550px; height: 25px;"scope="row">Coarse Than Gravel %:</th>
-        <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Coarser_than_Gravel']); ?>" id="112" name="CoarserThanGravel" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Coarser_than_Gravel']); ?>" id="112" name="CoarserThanGravel" oninput="calcular()"></td>
       </tr>
       <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Gravel %:</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Gravel']); ?>" id="113" name="Gravel" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Gravel']); ?>" id="113" name="Gravel" oninput="calcular()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Sand %:</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Sand']); ?>" id="114" name="sand" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Sand']); ?>" id="114" name="sand" oninput="calcular()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row"> Fines %:</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Fines']); ?>" id="115" name="Fines" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Fines']); ?>" id="115" name="Fines" oninput="calcular()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">D10 (mm):</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['D10']); ?>" id="116" name="d10" oninput="calcularD()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['D10']); ?>" id="116" name="d10" oninput="calcularD()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">D15 (mm):</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['D15']); ?>" id="117" name="d15" oninput="calcularD()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['D15']); ?>" id="117" name="d15" oninput="calcularD()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">D30 (mm)::</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['D30']); ?>" id="118" name="d30" oninput="calcularD()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['D30']); ?>" id="118" name="d30" oninput="calcularD()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">D60 (mm)::</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['D60']); ?>" id="119" name="d60" oninput="calcularD()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['D60']); ?>" id="119" name="d60" oninput="calcularD()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">D85 (mm)::</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['D85']); ?>" id="120" name="d85" oninput="calcularD()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['D85']); ?>" id="120" name="d85" oninput="calcularD()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Cc:</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Wash_Pan']); ?>" id="121" name="Cc" oninput="calcularD()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Wash_Pan']); ?>" id="121" name="Cc" oninput="calcularD()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 150px; height: 25px;"scope="row">Cu:</th>
-          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($Grain_Size['Wash_Pan']); ?>" id="122" name="Cu" oninput="calcularD()"></td>
+          <td><input type="text" style="border: none;" size="12" style="background: transparent;" value="<?php echo ($search_table['Wash_Pan']); ?>" id="122" name="Cu" oninput="calcularD()"></td>
         </tr>
   </tbody>
   </table>
@@ -191,209 +196,209 @@ $Grain_Size = find_by_id('grain_size', (int)$_GET['id']);
         <tr>
           <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">40"</th>
           <td>1016</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_40_1016']); ?>" id="8" name="WtRet40" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_40_1016']); ?>" id="9" name="Ret40" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_40_1016']); ?>" id="10" name="CumRet40" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_40_1016']); ?>" id="11" name="Pass40" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_40_1016']); ?>" id="8" name="WtRet40" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_40_1016']); ?>" id="9" name="Ret40" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_40_1016']); ?>" id="10" name="CumRet40" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_40_1016']); ?>" id="11" name="Pass40" oninput="calcular()"></td>
         </tr>
   
         <tr>
           <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">12"</th>
           <td>304.8</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_12_304']); ?>" id="12" name="WtRet12" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_12_304']); ?>" id="13" name="Ret12" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_12_304']); ?>" id="14" name="CumRet12" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_12_304']); ?>" id="15" name="Pass12" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_12_304']); ?>" id="12" name="WtRet12" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_12_304']); ?>" id="13" name="Ret12" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_12_304']); ?>" id="14" name="CumRet12" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_12_304']); ?>" id="15" name="Pass12" oninput="calcular()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">10"</th>
           <td>254</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_10_254']); ?>" id="16" name="WtRet10" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_10_254']); ?>" id="17" name="Ret10" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_10_254']); ?>" id="18" name="CumRet10" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_10_254']); ?>" id="19" name="Pass10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_10_254']); ?>" id="16" name="WtRet10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_10_254']); ?>" id="17" name="Ret10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_10_254']); ?>" id="18" name="CumRet10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_10_254']); ?>" id="19" name="Pass10" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">8"</th>
           <td>203.2</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_8_203']); ?>" id="20" name="WtRet8" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_8_203']); ?>" id="21" name="Ret8" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_8_203']); ?>" id="22" name="CumRet8" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_8_203']); ?>" id="23" name="Pass8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_8_203']); ?>" id="20" name="WtRet8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_8_203']); ?>" id="21" name="Ret8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_8_203']); ?>" id="22" name="CumRet8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_8_203']); ?>" id="23" name="Pass8" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">6"</th>
           <td>152.4</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_6_152']); ?>" id="24" name="WtRet6" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_6_152']); ?>" id="25" name="Ret6" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_6_152']); ?>" id="26" name="CumRet6" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_6_152']); ?>" id="27" name="Pass6" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_6_152']); ?>" id="24" name="WtRet6" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_6_152']); ?>" id="25" name="Ret6" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_6_152']); ?>" id="26" name="CumRet6" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_6_152']); ?>" id="27" name="Pass6" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">5"</th>
           <td>127</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_5_127']); ?>" id="28" name="WtRet5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_5_127']); ?>" id="29" name="Ret5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_5_127']); ?>" id="30" name="CumRet5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_5_127']); ?>" id="31" name="Pass5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_5_127']); ?>" id="28" name="WtRet5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_5_127']); ?>" id="29" name="Ret5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_5_127']); ?>" id="30" name="CumRet5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_5_127']); ?>" id="31" name="Pass5" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">4"</th>
           <td>101.6</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_4_101']); ?>" id="32" name="WtRet4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_4_101']); ?>" id="33" name="Ret4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_4_101']); ?>" id="34" name="CumRet4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_4_101']); ?>" id="35" name="Pass4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_4_101']); ?>" id="32" name="WtRet4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_4_101']); ?>" id="33" name="Ret4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_4_101']); ?>" id="34" name="CumRet4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_4_101']); ?>" id="35" name="Pass4" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">3"</th>
           <td>76.2</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_3_75']); ?>" id="36" name="WtRet3" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_3_75']); ?>" id="37" name="Ret3" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_3_75']); ?>" id="38" name="CumRet3" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_3_75']); ?>" id="39" name="Pass3" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_3_75']); ?>" id="36" name="WtRet3" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_3_75']); ?>" id="37" name="Ret3" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_3_75']); ?>" id="38" name="CumRet3" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_3_75']); ?>" id="39" name="Pass3" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">2.5"</th>
           <td>63.50</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_2p5_63']); ?>" id="40" name="WtRet2p5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_2p5_63']); ?>" id="41" name="Ret2p5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_2p5_63']); ?>" id="42" name="CumRet2p5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_2p5_63']); ?>" id="43" name="Pass2p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_2p5_63']); ?>" id="40" name="WtRet2p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_2p5_63']); ?>" id="41" name="Ret2p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_2p5_63']); ?>" id="42" name="CumRet2p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_2p5_63']); ?>" id="43" name="Pass2p5" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">2"</th>
           <td>50.80</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_2_50']); ?>" id="44" name="WtRet2" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_2_50']); ?>" id="45" name="Ret2" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_2_50']); ?>" id="46" name="CumRet2" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_2_50']); ?>" id="47" name="Pass2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_2_50']); ?>" id="44" name="WtRet2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_2_50']); ?>" id="45" name="Ret2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_2_50']); ?>" id="46" name="CumRet2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_2_50']); ?>" id="47" name="Pass2" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">1.5"</th>
           <td>38.1</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_1p5_37']); ?>" id="48" name="WtRet1p5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_1p5_37']); ?>" id="49" name="Ret1p5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_1p5_37']); ?>" id="50" name="CumRet1p5" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_1p5_37']); ?>" id="51" name="Pass1p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_1p5_37']); ?>" id="48" name="WtRet1p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_1p5_37']); ?>" id="49" name="Ret1p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_1p5_37']); ?>" id="50" name="CumRet1p5" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_1p5_37']); ?>" id="51" name="Pass1p5" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">1"</th>
           <td>25.4</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_1_25']); ?>" id="52" name="WtRet1" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_1_25']); ?>" id="53" name="Ret1" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_1_25']); ?>" id="54" name="CumRet1" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_1_25']); ?>" id="55" name="Pass1" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_1_25']); ?>" id="52" name="WtRet1" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_1_25']); ?>" id="53" name="Ret1" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_1_25']); ?>" id="54" name="CumRet1" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_1_25']); ?>" id="55" name="Pass1" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">3/4"</th>
           <td>19.5</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_3p4_19']); ?>" id="56" name="WtRet3p4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_3p4_19']); ?>" id="57" name="Ret3p4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_3p4_19']); ?>" id="58" name="CumRet3p4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_3p4_19']); ?>" id="59" name="Pass3p4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_3p4_19']); ?>" id="56" name="WtRet3p4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_3p4_19']); ?>" id="57" name="Ret3p4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_3p4_19']); ?>" id="58" name="CumRet3p4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_3p4_19']); ?>" id="59" name="Pass3p4" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">1/2"</th>
           <td>12.7</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_1p2_12']); ?>" id="60" name="WtRet1p2" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_1p2_12']); ?>" id="61" name="Ret1p2" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_1p2_12']); ?>" id="62" name="CumRet1p2" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_1p2_12']); ?>" id="63" name="Pass1p2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_1p2_12']); ?>" id="60" name="WtRet1p2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_1p2_12']); ?>" id="61" name="Ret1p2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_1p2_12']); ?>" id="62" name="CumRet1p2" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_1p2_12']); ?>" id="63" name="Pass1p2" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">3/8"</th>
           <td>9.5</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_3p8_9']); ?>" id="64" name="WtRet3p8" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_3p8_9']); ?>" id="65" name="Ret3p8" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_3p8_9']); ?>" id="66" name="CumRet3p8" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_3p8_9']); ?>" id="67" name="Pass3p8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_3p8_9']); ?>" id="64" name="WtRet3p8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_3p8_9']); ?>" id="65" name="Ret3p8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_3p8_9']); ?>" id="66" name="CumRet3p8" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_3p8_9']); ?>" id="67" name="Pass3p8" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">No. 4</th>
           <td>4.75</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No4_4']); ?>" id="68" name="WtRetn4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No4_4']); ?>" id="69" name="Retn4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No4_4']); ?>" id="70" name="CumRetn4" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No4_4']); ?>" id="71" name="Passn4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No4_4']); ?>" id="68" name="WtRetn4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No4_4']); ?>" id="69" name="Retn4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No4_4']); ?>" id="70" name="CumRetn4" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No4_4']); ?>" id="71" name="Passn4" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">No. 10</th>
           <td>2.00</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No10_2']); ?>" id="72" name="WtRetn10" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No10_2']); ?>" id="73" name="Retn10" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No10_2']); ?>" id="74" name="CumRetn10" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No10_2']); ?>" id="75" name="Passn10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No10_2']); ?>" id="72" name="WtRetn10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No10_2']); ?>" id="73" name="Retn10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No10_2']); ?>" id="74" name="CumRetn10" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No10_2']); ?>" id="75" name="Passn10" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">No. 16</th>
           <td>1.18</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No16_1']); ?>" id="76" name="WtRetn16" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No16_1']); ?>" id="77" name="Retn16" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No16_1']); ?>" id="78" name="CumRetn16" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No16_1']); ?>" id="79" name="Passn16" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No16_1']); ?>" id="76" name="WtRetn16" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No16_1']); ?>" id="77" name="Retn16" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No16_1']); ?>" id="78" name="CumRetn16" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No16_1']); ?>" id="79" name="Passn16" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">No. 20</th>
           <td>0.85</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No20_0p85']); ?>" id="80" name="WtRetn20" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No20_0p85']); ?>" id="81" name="Retn20" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No20_0p85']); ?>" id="82" name="CumRetn20" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No20_0p85']); ?>" id="83" name="Passn20" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No20_0p85']); ?>" id="80" name="WtRetn20" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No20_0p85']); ?>" id="81" name="Retn20" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No20_0p85']); ?>" id="82" name="CumRetn20" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No20_0p85']); ?>" id="83" name="Passn20" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">No. 50</th>
           <td>0.30</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No50_0p3']); ?>" id="84" name="WtRetn50" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No50_0p3']); ?>" id="85" name="Retn50" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No50_0p3']); ?>" id="86" name="CumRetn50" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No50_0p3']); ?>" id="87" name="Passn50" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No50_0p3']); ?>" id="84" name="WtRetn50" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No50_0p3']); ?>" id="85" name="Retn50" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No50_0p3']); ?>" id="86" name="CumRetn50" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No50_0p3']); ?>" id="87" name="Passn50" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">No. 60</th>
           <td>0.25</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No60_0p25']); ?>" id="88" name="WtRetn60" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No60_0p25']); ?>" id="89" name="Retn60" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No60_0p25']); ?>" id="90" name="CumRetn60" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No60_0p25']); ?>" id="91" name="Passn60" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No60_0p25']); ?>" id="88" name="WtRetn60" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No60_0p25']); ?>" id="89" name="Retn60" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No60_0p25']); ?>" id="90" name="CumRetn60" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No60_0p25']); ?>" id="91" name="Passn60" oninput="calcular()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">No. 100</th>
           <td>0.15</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No100_0p15']); ?>" id="92" name="WtRetn100" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No100_0p15']); ?>" id="93" name="Retn100" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No100_0p15']); ?>" id="94" name="CumRetn100" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No100_0p15']); ?>" id="95" name="Passn100" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No100_0p15']); ?>" id="92" name="WtRetn100" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No100_0p15']); ?>" id="93" name="Retn100" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No100_0p15']); ?>" id="94" name="CumRetn100" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No100_0p15']); ?>" id="95" name="Passn100" oninput="calcular()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">No. 140</th>
           <td>0.106</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No140_0p106']); ?>" id="96" name="WtRetn140" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No140_0p106']); ?>" id="97" name="Retn140" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No140_0p106']); ?>" id="98" name="CumRetn140" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No140_0p106']); ?>" id="99" name="Passn140" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No140_0p106']); ?>" id="96" name="WtRetn140" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No140_0p106']); ?>" id="97" name="Retn140" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No140_0p106']); ?>" id="98" name="CumRetn140" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No140_0p106']); ?>" id="99" name="Passn140" oninput="calcular()"></td>
         </tr>
         <tr>
           <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">No. 200</th>
           <td>0.075</td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_No200_0p075']); ?>" id="100" name="WtRetn200" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_No200_0p075']); ?>" id="101" name="Retn200" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_No200_0p075']); ?>" id="102" name="CumRetn200" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_No200_0p075']); ?>" id="103" name="Passn200" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_No200_0p075']); ?>" id="100" name="WtRetn200" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_No200_0p075']); ?>" id="101" name="Retn200" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_No200_0p075']); ?>" id="102" name="CumRetn200" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_No200_0p075']); ?>" id="103" name="Passn200" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row" colspan="2">Pan</th>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_Pan']); ?>" id="104" name="WtRentPan" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_Pan']); ?>" id="105" name="RetPan" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_Pan']); ?>" id="104" name="WtRentPan" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_Pan']); ?>" id="105" name="RetPan" oninput="calcular()"></td>
           <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="106" oninput="calcular()"></td>
           <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="107" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row" colspan="2"> Total Pan</th>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Wt_Ret_Total_Pan']); ?>" id="108" name="WtRetTpan" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Ret_Total_Pan']); ?>" id="109" name="RetTTPan" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Cum_Ret_Total_Pan']); ?>" id="110" name="CumRetPan" oninput="calcular()"></td>
-          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Grain_Size['Porce_Pass_Total_Pan']); ?>" id="111" name="PassnPan" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Wt_Ret_Total_Pan']); ?>" id="108" name="WtRetTpan" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Ret_Total_Pan']); ?>" id="109" name="RetTTPan" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Cum_Ret_Total_Pan']); ?>" id="110" name="CumRetPan" oninput="calcular()"></td>
+          <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($search_table['Porce_Pass_Total_Pan']); ?>" id="111" name="PassnPan" oninput="calcular()"></td>
         </tr>
       </tbody>
     </table>
@@ -767,7 +772,8 @@ var Cu = (d60 / d10)||0;
 
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-<a href="PDF/Grain_Size_Rev_5.php?id=<?php echo intval($Grain_Size['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<a href="PDF/Grain_Size_Rev_5.php?id=<?php echo intval($search_table['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 <button type="submit" name="grainsize" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </form>
 </div>
