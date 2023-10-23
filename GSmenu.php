@@ -20,6 +20,7 @@ $products = join_lab_test_requisition_form();
             <div class="panel-body">
                 <div class="list-group">
               <a href="Grain_Size.php" class="list-group-item">Granulometria por Tamizado para Suelos</a>
+              <a href="GSFull.php" class="list-group-item">Granulometria por Tamizado para Suelos Full</a>
               <a href="gs_fine_agg.php" class="list-group-item">Granulometria por Tamizado de Agregados Finos</a>
               <a href="gs_coarse_agg.php" class="list-group-item">Granulometria por Tamizado de Agregados Gruesos</a>
               <a href="gs_coarsethan_agg.php" class="list-group-item">Granulometria por Tamizado de Agregados mas Gruesos</a>
