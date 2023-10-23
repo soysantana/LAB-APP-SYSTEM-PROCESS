@@ -4,7 +4,11 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(3);
 
-$atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/AtterbergLimit.php'); 
+}
+$SearchTable = find_by_id('atterberg_limit', (int)$_GET['id']);
 ?>
 <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
 <?php include_once('layouts/header.php'); ?>
@@ -12,6 +16,7 @@ $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
 
 <div class="row">
   <div class="col-md-12">
+  <?php echo display_msg($msg); ?>
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <strong>
@@ -20,7 +25,7 @@ $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
         </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="Al.php" onsubmit="calcular()">
+        <form method="post" action="" onsubmit="calcular()">
           <table class="table table-bordered">
             <thead>
             <tbody id="product_info"> </tbody>
@@ -30,45 +35,46 @@ $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
       <div class="col-xs-4">
         <label>Standard</label>
         <select class="form-control" name="standard">
-        <option <?php if ($atterberg_limit['Standard'] == 'ASTM-D4318') echo 'selected'; ?>>ASTM-D4318</option>
+        <option <?php if ($SearchTable['Standard'] == 'Choose...') echo 'selected'; ?>>Choose...</option>
+        <option <?php if ($SearchTable['Standard'] == 'ASTM-D4318') echo 'selected'; ?>>ASTM-D4318</option>
         </select>
       </div>
       <div class="col-xs-4">
         <label>Preparation Method</label>
         <select class="form-control" name="methodpre">
-            <option <?php if ($atterberg_limit['Split_Method'] == 'Oven Dried') echo 'selected'; ?>>Oven Dried</option>
-            <option <?php if ($atterberg_limit['Split_Method'] == 'Air Dried') echo 'selected'; ?>>Air Dried</option>
-            <option <?php if ($atterberg_limit['Split_Method'] == 'Microwave Dried') echo 'selected'; ?>>Microwave Dried</option>
-            <option <?php if ($atterberg_limit['Split_Method'] == 'Wet') echo 'selected'; ?>>Wet</option>
+            <option <?php if ($SearchTable['Preparation_Method'] == 'Oven_Dried') echo 'selected'; ?>>Oven_Dried</option>
+            <option <?php if ($SearchTable['Preparation_Method'] == 'Air_Dried') echo 'selected'; ?>>Air_Dried</option>
+            <option <?php if ($SearchTable['Preparation_Method'] == 'Microwave_Dried') echo 'selected'; ?>>Microwave_Dried</option>
+            <option <?php if ($SearchTable['Preparation_Method'] == 'Wet') echo 'selected'; ?>>Wet</option>
         </select>
       </div>
 
       <div class="col-xs-4">
         <label>Split Method</label>
         <select class="form-control" name="split">
-            <option <?php if ($atterberg_limit['Split_Method'] == 'Manual') echo 'selected'; ?>>Manual</option>
-            <option <?php if ($atterberg_limit['Split_Method'] == 'Mechanical') echo 'selected'; ?>>Mechanical</option>
+            <option <?php if ($SearchTable['Split_Method'] == 'Manual') echo 'selected'; ?>>Manual</option>
+            <option <?php if ($SearchTable['Split_Method'] == 'Mechanical') echo 'selected'; ?>>Mechanical</option>
         </select>
       </div>
 
       <div class="col-xs-4">
         <label>Natural Mc (%):</label>
-        <input class="form-control" name="natmc" type="text" id="1">
+        <input class="form-control" name="natmc" value="<?php echo ($SearchTable['Nat_Mc']); ?>" type="text" id="1">
       </div>
 
       <div class="col-xs-4">
         <label>Comments</label>
-        <textarea class="form-control" name="comments"><?php echo ($atterberg_limit['Comments']); ?></textarea>
+        <textarea class="form-control" name="comments"><?php echo ($SearchTable['Comments']); ?></textarea>
       </div>
 
       <div class="col-xs-4">
         <label>Technician</label>
-        <input class="form-control" name="technician" value="<?php echo ($atterberg_limit['Technician']); ?>" type="text">
+        <input class="form-control" name="technician" value="<?php echo ($SearchTable['Technician']); ?>" type="text">
       </div>
 
       <div class="col-xs-4">
         <label>Test Start Date</label>
-        <input class="form-control" name="test_start_date" value="<?php echo ($atterberg_limit['Test_Start_Date']); ?>" type="date">
+        <input class="form-control" name="test_start_date" value="<?php echo ($SearchTable['Test_Start_Date']); ?>" type="date">
       </div>
 
 
@@ -90,58 +96,58 @@ $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
           <tbody>
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">No. of Blows</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" name="LLBlows1" value="<?php echo ($atterberg_limit['LL_Blows_1']); ?>" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" name="LLBlows2" value="<?php echo ($atterberg_limit['LL_Blows_2']); ?>" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" name="LLBlows3" value="<?php echo ($atterberg_limit['LL_Blows_3']); ?>" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="2" name="LLBlows1" value="<?php echo ($SearchTable['LL_Blows_1']); ?>" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="3" name="LLBlows2" value="<?php echo ($SearchTable['LL_Blows_2']); ?>" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="4" name="LLBlows3" value="<?php echo ($SearchTable['LL_Blows_3']); ?>" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Container</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="5" value="<?php echo ($atterberg_limit['LL_Container_1']); ?>" name="LLContainer1"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="6" value="<?php echo ($atterberg_limit['LL_Container_2']); ?>" name="LLContainer2"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="7" value="<?php echo ($atterberg_limit['LL_Container_3']); ?>" name="LLContainer3"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="5" value="<?php echo ($SearchTable['LL_Container_1']); ?>" name="LLContainer1"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="6" value="<?php echo ($SearchTable['LL_Container_2']); ?>" name="LLContainer2"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="7" value="<?php echo ($SearchTable['LL_Container_3']); ?>" name="LLContainer3"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Wet Soil + Tare (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="8" value="<?php echo ($atterberg_limit['LL_Wet_Soil_1']); ?>" name="LLWetSoil1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="9" value="<?php echo ($atterberg_limit['LL_Wet_Soil_2']); ?>" name="LLWetSoil2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="10" value="<?php echo ($atterberg_limit['LL_Wet_Soil_3']); ?>" name="LLWetSoil3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="8" value="<?php echo ($SearchTable['LL_Wet_Soil_1']); ?>" name="LLWetSoil1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="9" value="<?php echo ($SearchTable['LL_Wet_Soil_2']); ?>" name="LLWetSoil2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="10" value="<?php echo ($SearchTable['LL_Wet_Soil_3']); ?>" name="LLWetSoil3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Dry Soil + Tare (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="11" value="<?php echo ($atterberg_limit['LL_Dry_soil_tare1']); ?>" name="LLDrysoiltare1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="12" value="<?php echo ($atterberg_limit['LL_Dry_soil_tare2']); ?>" name="LLDrysoiltare2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="13" value="<?php echo ($atterberg_limit['LL_Dry_soil_tare3']); ?>" name="LLDrysoiltare3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="11" value="<?php echo ($SearchTable['LL_Dry_soil_tare1']); ?>" name="LLDrysoiltare1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="12" value="<?php echo ($SearchTable['LL_Dry_soil_tare2']); ?>" name="LLDrysoiltare2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="13" value="<?php echo ($SearchTable['LL_Dry_soil_tare3']); ?>" name="LLDrysoiltare3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Water (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="14" value="<?php echo ($atterberg_limit['LL_Water_1']); ?>" name="LLWater1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="15" value="<?php echo ($atterberg_limit['LL_Water_2']); ?>" name="LLWater2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="16" value="<?php echo ($atterberg_limit['LL_Water_3']); ?>" name="LLWater3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="14" value="<?php echo ($SearchTable['LL_Water_1']); ?>" name="LLWater1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="15" value="<?php echo ($SearchTable['LL_Water_2']); ?>" name="LLWater2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="16" value="<?php echo ($SearchTable['LL_Water_3']); ?>" name="LLWater3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row"> Tare (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="17" value="<?php echo ($atterberg_limit['LL_Tare_1']); ?>" name="LLTare1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="18" value="<?php echo ($atterberg_limit['LL_Tare_2']); ?>" name="LLTare2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="19" value="<?php echo ($atterberg_limit['LL_Tare_3']); ?>" name="LLTare3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="17" value="<?php echo ($SearchTable['LL_Tare_1']); ?>" name="LLTare1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="18" value="<?php echo ($SearchTable['LL_Tare_2']); ?>" name="LLTare2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="19" value="<?php echo ($SearchTable['LL_Tare_3']); ?>" name="LLTare3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Dry Soil (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="20" value="<?php echo ($atterberg_limit['LL_Wt_Dry_Soil_1']); ?>" name="LLWtDrySoil1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="21" value="<?php echo ($atterberg_limit['LL_Wt_Dry_Soil_2']); ?>" name="LLWtDrySoil2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="22" value="<?php echo ($atterberg_limit['LL_Wt_Dry_Soil_3']); ?>" name="LLWtDrySoil3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="20" value="<?php echo ($SearchTable['LL_Wt_Dry_Soil_1']); ?>" name="LLWtDrySoil1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="21" value="<?php echo ($SearchTable['LL_Wt_Dry_Soil_2']); ?>" name="LLWtDrySoil2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="22" value="<?php echo ($SearchTable['LL_Wt_Dry_Soil_3']); ?>" name="LLWtDrySoil3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Moisture Content (%) </th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="23" value="<?php echo ($atterberg_limit['LL_MC_Porce_1']); ?>" name="LLMCPorce1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="24" value="<?php echo ($atterberg_limit['LL_MC_Porce_2']); ?>" name="LLMCPorce2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="25" value="<?php echo ($atterberg_limit['LL_MC_Porce_3']); ?>" name="LLMCPorce3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="23" value="<?php echo ($SearchTable['LL_MC_Porce_1']); ?>" name="LLMCPorce1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="24" value="<?php echo ($SearchTable['LL_MC_Porce_2']); ?>" name="LLMCPorce2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" id="25" value="<?php echo ($SearchTable['LL_MC_Porce_3']); ?>" name="LLMCPorce3" oninput="calcular()"></td>
             </tr>
           </tbody>
         </table>
@@ -166,57 +172,57 @@ $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Container</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Container_1']); ?>" id="26" name="PLContainer1"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Container_2']); ?>" id="27" name="PLContainer2"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Container_3']); ?>" id="28" name="PLContainer3"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Container_1']); ?>" id="26" name="PLContainer1"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Container_2']); ?>" id="27" name="PLContainer2"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Container_3']); ?>" id="28" name="PLContainer3"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Wet Soil + Tare (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Wet_Soil_1']); ?>" id="29" name="PLWetSoil1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Wet_Soil_2']); ?>" id="30" name="PLWetSoil2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Wet_Soil_3']); ?>" id="31" name="PLWetSoil3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Wet_Soil_1']); ?>" id="29" name="PLWetSoil1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Wet_Soil_2']); ?>" id="30" name="PLWetSoil2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Wet_Soil_3']); ?>" id="31" name="PLWetSoil3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Dry Soil + Tare (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Dry_soil_tare1']); ?>" id="32" name="PLDrysoiltare1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Dry_soil_tare2']); ?>" id="33" name="PLDrysoiltare2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Dry_soil_tare3']); ?>" id="34" name="PLDrysoiltare3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Dry_soil_tare1']); ?>" id="32" name="PLDrysoiltare1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Dry_soil_tare2']); ?>" id="33" name="PLDrysoiltare2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Dry_soil_tare3']); ?>" id="34" name="PLDrysoiltare3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Water (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Water_1']); ?>" id="35" name="PLWater1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Water_2']); ?>" id="36" name="PLWater2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Water_3']); ?>" id="37" name="PLWater3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Water_1']); ?>" id="35" name="PLWater1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Water_2']); ?>" id="36" name="PLWater2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Water_3']); ?>" id="37" name="PLWater3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row"> Tare (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Tare_1']); ?>" id="38" name="PLTare1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Tare_2']); ?>" id="39" name="PLTare2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Tare_3']); ?>" id="40" name="PLTare3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Tare_1']); ?>" id="38" name="PLTare1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Tare_2']); ?>" id="39" name="PLTare2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Tare_3']); ?>" id="40" name="PLTare3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Dry Soil (gr)</th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Wt_Dry_Soil_1']); ?>" id="41" name="PLWtDrySoil1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Wt_Dry_Soil_2']); ?>" id="42" name="PLWtDrySoil2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Wt_Dry_Soil_3']); ?>" id="43" name="PLWtDrySoil3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Wt_Dry_Soil_1']); ?>" id="41" name="PLWtDrySoil1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Wt_Dry_Soil_2']); ?>" id="42" name="PLWtDrySoil2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_Wt_Dry_Soil_3']); ?>" id="43" name="PLWtDrySoil3" oninput="calcular()"></td>
             </tr>
 
             <tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Moisture Content (%) </th>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_MC_Porce_1']); ?>" id="44" name="PLMCPorce1" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_MC_Porce_2']); ?>" id="45" name="PLMCPorce2" oninput="calcular()"></td>
-              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_MC_Porce_3']); ?>" id="46" name="PLMCPorce3" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_MC_Porce_1']); ?>" id="44" name="PLMCPorce1" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_MC_Porce_2']); ?>" id="45" name="PLMCPorce2" oninput="calcular()"></td>
+              <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PL_MC_Porce_3']); ?>" id="46" name="PLMCPorce3" oninput="calcular()"></td>
             </tr>
 
             
             <tr>
               <th style="font-size: 14px;" scope="row">Avg. Moisture Content%</th>
-              <td scope="row" colspan="3"><input type="text" style="border: none; text-align: center;" size="25" style="background: transparent;" value="<?php echo ($atterberg_limit['PL_Avg_Mc']); ?>" id="52" name="PLAvgMc" oninput="calcular()"></td>
+              <td scope="row" colspan="3"><input type="text" style="border: none; text-align: center;" size="25" style="background: transparent;" value="<?php echo ($SearchTable['PL_Avg_Mc']); ?>" id="52" name="PLAvgMc" oninput="calcular()"></td>
             </tr>
         </table>
       </div>
@@ -232,25 +238,25 @@ $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
             <tbody>
               <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Liquid Limit (%):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($atterberg_limit['Liquid_Limit_Porce']); ?>" id="47" name="LLPorce" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($SearchTable['Liquid_Limit_Porce']); ?>" id="47" name="LLPorce" oninput="calcular()"></td>
               </tr>
 
               <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Plastic Limit (%):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($atterberg_limit['Plastic_Limit_Porce']); ?>" id="48" name="PLPorce" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($SearchTable['Plastic_Limit_Porce']); ?>" id="48" name="PLPorce" oninput="calcular()"></td>
               </tr>
 
               <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Plasticity Index (%):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($atterberg_limit['Plasticity_Index_Porce']); ?>" id="49" name="PLIndexPorce" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($SearchTable['Plasticity_Index_Porce']); ?>" id="49" name="PLIndexPorce" oninput="calcular()"></td>
 
               <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Liquidity Index (%):</th>
-                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($atterberg_limit['Liquidity_Index_Porce']); ?>" id="50" name="LLIndexPorce" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="4" style="background: transparent;"  value="<?php echo ($SearchTable['Liquidity_Index_Porce']); ?>" id="50" name="LLIndexPorce" oninput="calcular()"></td>
               </tr>
               <tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Soil Classification as per Unified Soil Classification System,ASTM designation D2487-06</th>
-                <td><input type="text" style="border: none;" size="6" style="background: transparent;"  value="<?php echo ($atterberg_limit['Classification']); ?>" id="51" name="classification" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="6" style="background: transparent;"  value="<?php echo ($SearchTable['Classification']); ?>" id="51" name="classification" oninput="calcular()"></td>
                
               </tr>
              
@@ -495,7 +501,8 @@ $atterberg_limit = find_by_id('atterberg_limit', (int)$_GET['id']);
   </div>
   <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
   <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-   <a href="PDF/Atterberg_Limit_Rev_5.php?id=<?php echo intval($atterberg_limit['id']); ?>" class="btn btn-primary">Generar PDF</a>
+   <a href="PDF/Atterberg_Limit_Rev_5.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+   <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
   <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event),enviarData2(event) ">Graficar</button>
   </form>
 

@@ -517,7 +517,7 @@ $search_table = find_by_id('grain_size_fine_aggregate', (int)$_GET['id']);
       $WashPan = $db->escape($_POST['WashPan']);
   
     // Sumary GS
-      $CoarserThanGravel = $db->escape($_POST['CoarserThanGravel']);
+      $CoarserthanGravel = $db->escape($_POST['CoarserthanGravel']);
       $Gravel = $db->escape($_POST['Gravel']);
       $Sand = $db->escape($_POST['Sand']);
       $Fines = $db->escape($_POST['Fines']);
@@ -679,15 +679,15 @@ $search_table = find_by_id('grain_size_fine_aggregate', (int)$_GET['id']);
       $query .= "Washed = '{$Washed}', ";
       $query .= "Wash_Pan = '{$WashPan}', ";
 
-      $query .= "Coarser_than_Gravel = '{$CoarserThanGravel}', ";
+      $query .= "Coarser_than_Gravel = '{$CoarserthanGravel}', ";
       $query .= "Gravel = '{$Gravel}', ";
-      $query .= "Sand = '{$sand}', ";
+      $query .= "Sand = '{$Sand}', ";
       $query .= "Fines = '{$Fines}', ";
-      $query .= "D10 = '{$d10}', ";
-      $query .= "D15 = '{$d15}', ";
-      $query .= "D30 = '{$d30}', ";
-      $query .= "D60 = '{$d60}', ";
-      $query .= "D85 = '{$d85}', ";
+      $query .= "D10 = '{$D10}', ";
+      $query .= "D15 = '{$D15}', ";
+      $query .= "D30 = '{$D30}', ";
+      $query .= "D60 = '{$D60}', ";
+      $query .= "D85 = '{$D85}', ";
       $query .= "Cc = '{$Cc}', ";
       $query .= "Cu = '{$Cu}', ";
 
@@ -695,109 +695,109 @@ $search_table = find_by_id('grain_size_fine_aggregate', (int)$_GET['id']);
       $query .= "Porce_Ret_5_127 = '{$PorceRet5127}', ";
       $query .= "Cum_Ret_5_127 = '{$CumRet5127}', ";
       $query .= "Porce_Pass_5_127 = '{$PorcePass5127}', ";
-      $query .= "Porce_Pass_5_127 = '{$Specs5127}', ";
+      $query .= "Specs_5_127 = '{$Specs5127}', ";
 
       $query .= "Wt_Ret_4_101 = '{$WtRet4101}', ";
       $query .= "Porce_Ret_4_101 = '{$PorceRet4101}', ";
       $query .= "Cum_Ret_4_101 = '{$CumRet4101}', ";
       $query .= "Porce_Pass_4_101 = '{$PorcePass4101}', ";
-      $query .= "Porce_Pass_4_101 = '{$Specs4101}', ";
+      $query .= "Specs_4_101 = '{$Specs4101}', ";
 
       $query .= "Wt_Ret_3p5_89 = '{$WtRet3p589}', ";
       $query .= "Porce_Ret_3p5_89 = '{$PorceRet3p589}', ";
       $query .= "Cum_Ret_3p5_89 = '{$CumRet3p589}', ";
       $query .= "Porce_Pass_3p5_89 = '{$PorcePass3p589}', ";
-      $query .= "Porce_Pass_3p5_89 = '{$Specs3p589}', ";
+      $query .= "Specs_3p5_89 = '{$Specs3p589}', ";
 
       $query .= "Wt_Ret_3_75 = '{$WtRet375}', ";
       $query .= "Porce_Ret_3_75 = '{$PorceRet375}', ";
       $query .= "Cum_Ret_3_75 = '{$CumRet375}', ";
       $query .= "Porce_Pass_3_75 = '{$PorcePass375}', ";
-      $query .= "Porce_Pass_3_75 = '{$Specs375}', ";
+      $query .= "Specs_3_75 = '{$Specs375}', ";
 
       $query .= "Wt_Ret_2p5_63 = '{$WtRet2p563}', ";
       $query .= "Porce_Ret_2p5_63 = '{$PorceRet2p563}', ";
       $query .= "Cum_Ret_2p5_63 = '{$CumRet2p563}', ";
       $query .= "Porce_Pass_2p5_63 = '{$PorcePass2p563}', ";
-      $query .= "Porce_Pass_2p5_63 = '{$Specs2p563}', ";
+      $query .= "Specs_2p5_63 = '{$Specs2p563}', ";
 
       $query .= "Wt_Ret_2_50 = '{$WtRet250}', ";
       $query .= "Porce_Ret_2_50 = '{$PorceRet250}', ";
       $query .= "Cum_Ret_2_50 = '{$CumRet250}', ";
       $query .= "Porce_Pass_2_50 = '{$PorcePass250}', ";
-      $query .= "Porce_Pass_2_50 = '{$Specs250}', ";
+      $query .= "Specs_2_50 = '{$Specs250}', ";
 
       $query .= "Wt_Ret_1p5_37 = '{$WtRet1p537}', ";
       $query .= "Porce_Ret_1p5_37 = '{$PorceRet1p537}', ";
       $query .= "Cum_Ret_1p5_37 = '{$CumRet1p537}', ";
       $query .= "Porce_Pass_1p5_37 = '{$PorcePass1p537}', ";
-      $query .= "Porce_Pass_1p5_37 = '{$Specs1p537}', ";
+      $query .= "Specs_1p5_37 = '{$Specs1p537}', ";
 
       $query .= "Wt_Ret_1_25 = '{$WtRet125}', ";
       $query .= "Porce_Ret_1_25 = '{$PorceRet125}', ";
       $query .= "Cum_Ret_1_25 = '{$CumRet125}', ";
       $query .= "Porce_Pass_1_25 = '{$PorcePass125}', ";
-      $query .= "Porce_Pass_1_25 = '{$Specs125}', ";
+      $query .= "Specs_1_25 = '{$Specs125}', ";
 
       $query .= "Wt_Ret_3p4_19 = '{$WtRet3p419}', ";
       $query .= "Porce_Ret_3p4_19 = '{$PorceRet3p419}', ";
       $query .= "Cum_Ret_3p4_19 = '{$CumRet3p419}', ";
       $query .= "Porce_Pass_3p4_19 = '{$PorcePass3p419}', ";
-      $query .= "Porce_Pass_3p4_19 = '{$Specs3p419}', ";
+      $query .= "Specs_3p4_19 = '{$Specs3p419}', ";
 
       $query .= "Wt_Ret_1p2_12 = '{$WtRet1p212}', ";
       $query .= "Porce_Ret_1p2_12 = '{$PorceRet1p212}', ";
       $query .= "Cum_Ret_1p2_12 = '{$CumRet1p212}', ";
       $query .= "Porce_Pass_1p2_12 = '{$PorcePass1p212}', ";
-      $query .= "Porce_Pass_1p2_12 = '{$Specs1p212}', ";
+      $query .= "Specs_1p2_12 = '{$Specs1p212}', ";
 
       $query .= "Wt_Ret_3p8_9 = '{$WtRet3p89}', ";
       $query .= "Porce_Ret_3p8_9 = '{$PorceRet3p89}', ";
       $query .= "Cum_Ret_3p8_9 = '{$CumRet3p89}', ";
       $query .= "Porce_Pass_3p8_9 = '{$PorcePass3p89}', ";
-      $query .= "Porce_Pass_3p8_9 = '{$Specs3p89}', ";
+      $query .= "Specs_3p8_9 = '{$Specs3p89}', ";
 
       $query .= "Wt_Ret_No4_4 = '{$WtRetNo44}', ";
       $query .= "Porce_Ret_No4_4 = '{$PorceRetNo44}', ";
       $query .= "Cum_Ret_No4_4 = '{$CumRetNo44}', ";
       $query .= "Porce_Pass_No4_4 = '{$PorcePassNo44}', ";
-      $query .= "Porce_Pass_No4_4 = '{$SpecsNo44}', ";
+      $query .= "Specs_No4_4 = '{$SpecsNo44}', ";
 
       $query .= "Wt_Ret_No10_2 = '{$WtRetNo102}', ";
       $query .= "Porce_Ret_No10_2 = '{$PorceRetNo102}', ";
       $query .= "Cum_Ret_No10_2 = '{$CumRetNo102}', ";
       $query .= "Porce_Pass_No10_2 = '{$PorcePassNo102}', ";
-      $query .= "Porce_Pass_No10_2 = '{$SpecsNo102}', ";
+      $query .= "Specs_No10_2 = '{$SpecsNo102}', ";
 
       $query .= "Wt_Ret_No16_1 = '{$WtRetNo161}', ";
       $query .= "Porce_Ret_No16_1 = '{$PorceRetNo161}', ";
       $query .= "Cum_Ret_No16_1 = '{$CumRetNo161}', ";
       $query .= "Porce_Pass_No16_1 = '{$PorcePassNo161}', ";
-      $query .= "Porce_Pass_No16_1 = '{$SpecsNo161}', ";
+      $query .= "Specs_No16_1 = '{$SpecsNo161}', ";
 
       $query .= "Wt_Ret_No20_0p85 = '{$WtRetNo200p85}', ";
       $query .= "Porce_Ret_No20_0p85 = '{$PorceRetNo200p85}', ";
       $query .= "Cum_Ret_No20_0p85 = '{$CumRetNo200p85}', ";
       $query .= "Porce_Pass_No20_0p85 = '{$PorcePassNo200p85}', ";
-      $query .= "Porce_Pass_No20_0p85 = '{$SpecsNo200p85}', ";
+      $query .= "Specs_No20_0p85 = '{$SpecsNo200p85}', ";
 
       $query .= "Wt_Ret_No50_0p3 = '{$WtRetNo500p3}', ";
       $query .= "Porce_Ret_No50_0p3 = '{$PorceRetNo500p3}', ";
       $query .= "Cum_Ret_No50_0p3 = '{$CumRetNo500p3}', ";
       $query .= "Porce_Pass_No50_0p3 = '{$PorcePassNo500p3}', ";
-      $query .= "Porce_Pass_No50_0p3 = '{$SpecsNo500p3}', ";
+      $query .= "Specs_No50_0p3 = '{$SpecsNo500p3}', ";
 
       $query .= "Wt_Ret_No60_0p25 = '{$WtRetNo600p25}', ";
       $query .= "Porce_Ret_No60_0p25 = '{$PorceRetNo600p25}', ";
       $query .= "Cum_Ret_No60_0p25 = '{$CumRetNo600p25}', ";
       $query .= "Porce_Pass_No60_0p25 = '{$PorcePassNo600p25}', ";
-      $query .= "Porce_Pass_No60_0p25 = '{$SpecsNo600p25}', ";
+      $query .= "Specs_No60_0p25 = '{$SpecsNo600p25}', ";
 
       $query .= "Wt_Ret_No200_0p075 = '{$WtRetNo2000p075}', ";
       $query .= "Porce_Ret_No200_0p075 = '{$PorceRetNo2000p075}', ";
       $query .= "Cum_Ret_No200_0p075 = '{$CumRetNo2000p075}', ";
       $query .= "Porce_Pass_No200_0p075 = '{$PorcePassNo2000p075}', ";
-      $query .= "Porce_Pass_No200_0p075 = '{$SpecsNo2000p075}', ";
+      $query .= "Specs_No200_0p075 = '{$SpecsNo2000p075}', ";
 
       $query .= "Wt_Ret_Pan = '{$WtRetPan}', ";
       $query .= "Porce_Ret_Pan = '{$PorceRetPan}', ";
