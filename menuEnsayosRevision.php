@@ -33,7 +33,8 @@ page_require_level(3);
                     'sand_density', 'specific_gravity', 'specific_gravity_absortion', 'specific_gravity_fine',
                      'splitting_tensile_strenght', 'uniaxial_compressive_strength', 'pinhole', 'point_load_test', 
                      'permeability_of_granular_soils', 'los_angeles_abrasion_large', 'leeb_hardness', 'grout_specimens',
-                      'concrete_specimens', 'hydrometer', 'double_hydrometer', 'grain_size_fine_aggregate', 'grain_size_coarse_aggregate', 'grain_size_sieved_coarse_aggregate');
+                      'concrete_specimens', 'hydrometer', 'double_hydrometer', 'grain_size_fine_aggregate',
+                      'grain_size_coarse_aggregate', 'grain_size_sieved_coarse_aggregate', 'consolidation');
 
                     foreach ($tablas as $tabla) {
                         $query = "SELECT id, Sample_ID, Sample_Number, test_type FROM $tabla WHERE Report_Date >= '$fechaLimite'";

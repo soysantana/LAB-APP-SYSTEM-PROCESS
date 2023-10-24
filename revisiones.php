@@ -100,6 +100,9 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
         case 'GS-Sieved-Coarse';
             $pagina_detalles = 'Revision-GS-Sieved-Coarse.php';
             break;
+        case 'Consolidation';
+            $pagina_detalles = 'Revision-Consolidation.php';
+            break;
 
         default:
             // Página de detalles por defecto si no coincide con ningún tipo de ensayo conocido
