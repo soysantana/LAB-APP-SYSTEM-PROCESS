@@ -1398,6 +1398,12 @@ $search_table = find_by_id('consolidation', (int)$_GET['id']);
       $query .= "Date_No8 = '{$Date_No8}', ";
       $query .= "Date_No9 = '{$Date_No9}', ";
       $query .= "Date_No10 = '{$Date_No10}', ";
+      $query .= "Date_No11 = '{$Date_No11}', ";
+      $query .= "Date_No12 = '{$Date_No12}', ";
+      $query .= "Date_No13 = '{$Date_No13}', ";
+      $query .= "Date_No14 = '{$Date_No14}', ";
+      $query .= "Date_No15 = '{$Date_No15}', ";
+      $query .= "Date_No16 = '{$Date_No16}', ";
 
       $query .= "Name_Mass_on_Hangar_Colum1 = '{$Name_Mass_on_Hangar_Colum1}', ";
       $query .= "Mass_on_Hangar_Colum1_No1 = '{$Mass_on_Hangar_Colum1_No1}', ";
