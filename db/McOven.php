@@ -57,3 +57,62 @@ if(isset($_POST['mcoven'])){
 }
 ?>
 
+<?php
+$search_table = find_by_id('moisture_content', (int)$_GET['id']);
+  // Verifica si se ha enviado el formulario
+  if (isset($_POST['update_muestra'])) {
+    $req_fields = array(
+      'standard'
+    );
+    
+    // Valida los campos requeridos
+    validate_fields($req_fields);
+
+    if (empty($errors)) {
+      // Obtiene los valores de los campos del formulario
+      $standard = remove_junk($db->escape($_POST['standard']));
+      $temperature = remove_junk($db->escape($_POST['temperature']));
+      $comments = remove_junk($db->escape($_POST['comments']));
+      $technician = remove_junk($db->escape($_POST['technician']));
+      $testdate = remove_junk($db->escape($_POST['testdate']));
+  
+      $tarename = remove_junk($db->escape($_POST['tarename']));
+      $tarewet = remove_junk($db->escape($_POST['tarewet']));
+      $taredry = remove_junk($db->escape($_POST['taredry']));
+      $water = remove_junk($db->escape($_POST['water']));
+      $weigthtare = remove_junk($db->escape($_POST['weigthtare']));
+      $drysoil = remove_junk($db->escape($_POST['drysoil']));
+      $mc = remove_junk($db->escape($_POST['mc']));
+
+      $query = "UPDATE moisture_content SET ";
+      $query .= "Standard = '{$standard}', ";
+      $query .= "Temperature = '{$temperature}', ";
+      $query .= "Comments = '{$comments}', ";
+      $query .= "Technician = '{$technician}', ";
+      $query .= "Test_Start_Date = '{$testdate}', ";
+
+      $query .= "Tare_Name = '{$tarename}', ";
+      $query .= "Tare_Plus_Wet_Soil = '{$tarewet}', ";
+      $query .= "Tare_Plus_Dry_Soil = '{$taredry}', ";
+      $query .= "Water = '{$water}', ";
+      $query .= "Weigth_Tare = '{$weigthtare}', ";
+      $query .= "Dry_Soil = '{$drysoil}', ";
+      $query .= "Mc = '{$mc}' ";
+
+      $query .= "WHERE id = '{$search_table['id']}'";      
+
+      $result = $db->query($query);
+
+      if ($result && $db->affected_rows() === 1) {
+        $session->msg('s', 'Muestra ha sido actualizada.');
+        redirect('Revision-MC-Oven.php?id=' . $search_table['id'], false);
+      } else {
+        $session->msg('d', 'Lo siento, la actualización falló.');
+        redirect('Revision-MC-Oven.php?id=' . $search_table['id'], false);
+      }
+    } else {
+      $session->msg("d", $errors);
+      redirect('Revision-MC-Oven.php?id=' . $search_table['id'], false);
+    }
+  }
+?>
