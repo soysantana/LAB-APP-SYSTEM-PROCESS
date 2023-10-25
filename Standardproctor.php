@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label >Standard</label>
     <select class="form-control" name="Standard">
     <option selected>Choose...</option>
-    <option value="ASTM-D4318">ASTM-D698</option>          
+    <option value="ASTM-D698">ASTM-D698</option>          
     </select>
     </div>
     

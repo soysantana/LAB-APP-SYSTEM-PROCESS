@@ -4,13 +4,18 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
 
-$Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('db/StandardProctor.php'); 
+  }
+$SearchTable = find_by_id('standard_proctor', (int)$_GET['id']);
 ?>
 
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
 <div class="col-md-12">
+<?php echo display_msg($msg); ?>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -19,7 +24,7 @@ $Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
 </strong>
 </div>
 <div class="panel-body">
-    <form method="post" action="Standardproctor.php" onsubmit="calcular()">
+    <form method="post" action="" onsubmit="calcular()">
       
     <table class="table table-bordered">
     <tbody id="product_info"> </tbody>
@@ -28,51 +33,51 @@ $Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
     <div class="col-xs-4">
     <label >Standard</label>
     <select class="form-control" name="Standard">
-    <option selected>Choose...</option>
-    <option value="ASTM-D4318">ASTM-D698</option>          
+    <option <?php if ($SearchTable['Standard'] == 'Choose...') echo 'selected'; ?>>Choose...</option>
+    <option <?php if ($SearchTable['Standard'] == 'ASTM-D698') echo 'selected'; ?>>ASTM-D698</option>       
     </select>
     </div>
     
     <div class="col-xs-4">
     <label >Preparation Method</label>
     <select class="form-control" name="PreparationMethod">
-    <option selected>Choose...</option>
-    <option value="wet">Wet</option>
-    <option value="dry">Dry</option>
+    <option <?php if ($SearchTable['Preparation_Method'] == 'Choose...') echo 'selected'; ?>>Choose...</option> 
+    <option <?php if ($SearchTable['Preparation_Method'] == 'wet') echo 'selected'; ?>>wet</option> 
+    <option <?php if ($SearchTable['Preparation_Method'] == 'dry') echo 'selected'; ?>>dry</option> 
     </select>
     </div>
 
     <div class="col-xs-4">
         <label >Hammer</label>
         <select class="form-control" name="Split">
-        <option selected>Choose...</option>
-        <option value="manual">Manual</option>
-        <option value="mechanical">Mechanical</option>
+        <option <?php if ($SearchTable['Split_Method'] == 'Choose...') echo 'selected'; ?>>Choose...</option> 
+        <option <?php if ($SearchTable['Split_Method'] == 'manual') echo 'selected'; ?>>manual</option>
+        <option <?php if ($SearchTable['Split_Method'] == 'mechanical') echo 'selected'; ?>>mechanical</option> 
         </select>
         </div>
     
     <div class="col-xs-4">
     <label>Natural Mc (%):</label>
-    <input class="form-control" name="Nmc" type="text" value="<?php echo ($Standard_Proctor['Natural_MC']); ?>" id="1">   
+    <input class="form-control" name="Nmc" type="text" value="<?php echo ($SearchTable['Natural_MC']); ?>" id="1">   
     </div>
 
     <div class="col-xs-4">
         <label>Specific Gravity:</label>
-        <input class="form-control" name="natmc" type="text" value="<?php echo ($Standard_Proctor['SG_NMC']); ?>" id="1.1">   
+        <input class="form-control" name="natmc" type="text" value="<?php echo ($SearchTable['SG_NMC']); ?>" id="1.1">   
         </div>
     <div class="col-xs-4">
     <label>Comments</label>
-    <textarea class="form-control" name="Comments"><?php echo ($Standard_Proctor['Comments']); ?></textarea>
+    <textarea class="form-control" name="Comments"><?php echo ($SearchTable['Comments']); ?></textarea>
     </div>
           
     <div class="col-xs-4">
     <label>Technician</label>
-    <input class="form-control" name="Technician" value="<?php echo ($Standard_Proctor['Technician']); ?>" type="text">
+    <input class="form-control" name="Technician" value="<?php echo ($SearchTable['Technician']); ?>" type="text">
     </div>
         
     <div class="col-xs-4">
     <label>Test Start Date</label>
-    <input class="form-control" name="TestStartDate" value="<?php echo ($Standard_Proctor['Test_Start_Date']); ?>" type="date">
+    <input class="form-control" name="TestStartDate" value="<?php echo ($SearchTable['Test_Start_Date']); ?>" type="date">
     </div>
 
     <div class="panel-body"><div class="col-md-12">
@@ -95,63 +100,63 @@ $Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
       <tbody>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Wet Soil + Mold (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_Mold_1']); ?>" id="2" name="Wt_Wet_Soil_Mold_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_Mold_2']); ?>" id="3" name="Wt_Wet_Soil_Mold_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_Mold_3']); ?>" id="4" name="Wt_Wet_Soil_Mold_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_Mold_4']); ?>" id="5" name="Wt_Wet_Soil_Mold_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_Mold_5']); ?>" id="6" name="Wt_Wet_Soil_Mold_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_Mold_6']); ?>" id="7" name="Wt_Wet_Soil_Mold_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_Mold_1']); ?>" id="2" name="Wt_Wet_Soil_Mold_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_Mold_2']); ?>" id="3" name="Wt_Wet_Soil_Mold_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_Mold_3']); ?>" id="4" name="Wt_Wet_Soil_Mold_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_Mold_4']); ?>" id="5" name="Wt_Wet_Soil_Mold_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_Mold_5']); ?>" id="6" name="Wt_Wet_Soil_Mold_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_Mold_6']); ?>" id="7" name="Wt_Wet_Soil_Mold_6" oninput="calcular()"></td>
         </tr>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Mold (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Mold_g_1']); ?>" id="8" name="Wt_Mold_g_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Mold_g_2']); ?>" id="9" name="Wt_Mold_g_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Mold_g_3']); ?>" id="10" name="Wt_Mold_g_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Mold_g_4']); ?>" id="11" name="Wt_Mold_g_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Mold_g_5']); ?>" id="12" name="Wt_Mold_g_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Mold_g_6']); ?>" id="13" name="Wt_Mold_g_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Mold_g_1']); ?>" id="8" name="Wt_Mold_g_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Mold_g_2']); ?>" id="9" name="Wt_Mold_g_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Mold_g_3']); ?>" id="10" name="Wt_Mold_g_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Mold_g_4']); ?>" id="11" name="Wt_Mold_g_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Mold_g_5']); ?>" id="12" name="Wt_Mold_g_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Mold_g_6']); ?>" id="13" name="Wt_Mold_g_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Wet Soil (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_g_1']); ?>" id="14" name="Wt_Wet_Soil_g_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_g_2']); ?>" id="15" name="Wt_Wet_Soil_g_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_g_3']); ?>" id="16" name="Wt_Wet_Soil_g_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_g_4']); ?>" id="17" name="Wt_Wet_Soil_g_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_g_5']); ?>" id="18" name="Wt_Wet_Soil_g_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Wet_Soil_g_6']); ?>" id="19" name="Wt_Wet_Soil_g_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_g_1']); ?>" id="14" name="Wt_Wet_Soil_g_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_g_2']); ?>" id="15" name="Wt_Wet_Soil_g_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_g_3']); ?>" id="16" name="Wt_Wet_Soil_g_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_g_4']); ?>" id="17" name="Wt_Wet_Soil_g_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_g_5']); ?>" id="18" name="Wt_Wet_Soil_g_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Wet_Soil_g_6']); ?>" id="19" name="Wt_Wet_Soil_g_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Vol Mold (cmᵌ)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Vol_Mold_cm3_1']); ?>" id="20" name="Vol_Mold_cm3_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Vol_Mold_cm3_2']); ?>" id="21" name="Vol_Mold_cm3_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Vol_Mold_cm3_3']); ?>" id="22" name="Vol_Mold_cm3_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Vol_Mold_cm3_4']); ?>" id="23" name="Vol_Mold_cm3_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Vol_Mold_cm3_5']); ?>" id="24" name="Vol_Mold_cm3_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Vol_Mold_cm3_6']); ?>" id="25" name="Vol_Mold_cm3_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Vol_Mold_cm3_1']); ?>" id="20" name="Vol_Mold_cm3_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Vol_Mold_cm3_2']); ?>" id="21" name="Vol_Mold_cm3_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Vol_Mold_cm3_3']); ?>" id="22" name="Vol_Mold_cm3_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Vol_Mold_cm3_4']); ?>" id="23" name="Vol_Mold_cm3_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Vol_Mold_cm3_5']); ?>" id="24" name="Vol_Mold_cm3_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Vol_Mold_cm3_6']); ?>" id="25" name="Vol_Mold_cm3_6" oninput="calcular()"></td>
         </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wet Density (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wet_Density_kgm3_1']); ?>" id="26" name="Wet_Density_kgm3_1" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wet_Density_kgm3_2']); ?>" id="27" name="Wet_Density_kgm3_2" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wet_Density_kgm3_3']); ?>" id="28" name="Wet_Density_kgm3_3" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wet_Density_kgm3_4']); ?>" id="29" name="Wet_Density_kgm3_4" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wet_Density_kgm3_5']); ?>" id="30" name="Wet_Density_kgm3_5" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wet_Density_kgm3_6']); ?>" id="31" name="Wet_Density_kgm3_6" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wet_Density_kgm3_1']); ?>" id="26" name="Wet_Density_kgm3_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wet_Density_kgm3_2']); ?>" id="27" name="Wet_Density_kgm3_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wet_Density_kgm3_3']); ?>" id="28" name="Wet_Density_kgm3_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wet_Density_kgm3_4']); ?>" id="29" name="Wet_Density_kgm3_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wet_Density_kgm3_5']); ?>" id="30" name="Wet_Density_kgm3_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wet_Density_kgm3_6']); ?>" id="31" name="Wet_Density_kgm3_6" oninput="calcular()"></td>
     </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Dry Density (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_kgm3_1']); ?>" id="32" name="Dry_Density_kgm3_1" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_kgm3_2']); ?>" id="33" name="Dry_Density_kgm3_2" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_kgm3_3']); ?>" id="34" name="Dry_Density_kgm3_3" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_kgm3_4']); ?>" id="35" name="Dry_Density_kgm3_4" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_kgm3_5']); ?>" id="36" name="Dry_Density_kgm3_5" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_kgm3_6']); ?>" id="37" name="Dry_Density_kgm3_6" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_kgm3_1']); ?>" id="32" name="Dry_Density_kgm3_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_kgm3_2']); ?>" id="33" name="Dry_Density_kgm3_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_kgm3_3']); ?>" id="34" name="Dry_Density_kgm3_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_kgm3_4']); ?>" id="35" name="Dry_Density_kgm3_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_kgm3_5']); ?>" id="36" name="Dry_Density_kgm3_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_kgm3_6']); ?>" id="37" name="Dry_Density_kgm3_6" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Dry Density Corrected (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_Corrected_kgm3_1']); ?>" id="38" name="Dry_Density_Corrected_kgm3_1" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_Corrected_kgm3_2']); ?>" id="39" name="Dry_Density_Corrected_kgm3_2" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_Corrected_kgm3_3']); ?>" id="40" name="Dry_Density_Corrected_kgm3_3" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_Corrected_kgm3_4']); ?>" id="41" name="Dry_Density_Corrected_kgm3_4" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_Corrected_kgm3_5']); ?>" id="42" name="Dry_Density_Corrected_kgm3_5" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Dry_Density_Corrected_kgm3_6']); ?>" id="43" name="Dry_Density_Corrected_kgm3_6" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_Corrected_kgm3_1']); ?>" id="38" name="Dry_Density_Corrected_kgm3_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_Corrected_kgm3_2']); ?>" id="39" name="Dry_Density_Corrected_kgm3_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_Corrected_kgm3_3']); ?>" id="40" name="Dry_Density_Corrected_kgm3_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_Corrected_kgm3_4']); ?>" id="41" name="Dry_Density_Corrected_kgm3_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_Corrected_kgm3_5']); ?>" id="42" name="Dry_Density_Corrected_kgm3_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Dry_Density_Corrected_kgm3_6']); ?>" id="43" name="Dry_Density_Corrected_kgm3_6" oninput="calcular()"></td>
     </tr>
     
     <table class="table table-bordered border-primary" style="width:850px;" >
@@ -169,71 +174,71 @@ $Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
       <tbody>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Container</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Container_1']); ?>" id="44" name="MC_Container_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Container_2']); ?>" id="45" name="MC_Container_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Container_3']); ?>" id="46" name="MC_Container_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Container_4']); ?>" id="47" name="MC_Container_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Container_5']); ?>" id="48" name="MC_Container_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Container_5']); ?>" id="49" name="MC_Container_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Container_1']); ?>" id="44" name="MC_Container_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Container_2']); ?>" id="45" name="MC_Container_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Container_3']); ?>" id="46" name="MC_Container_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Container_4']); ?>" id="47" name="MC_Container_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Container_5']); ?>" id="48" name="MC_Container_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Container_5']); ?>" id="49" name="MC_Container_6" oninput="calcular()"></td>
         </tr>
         <tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Wet Soil + Tare (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Wet_Soil_Tare_1']); ?>" id="50" name="MC_Wt_Wet_Soil_Tare_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Wet_Soil_Tare_2']); ?>" id="51" name="MC_Wt_Wet_Soil_Tare_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Wet_Soil_Tare_3']); ?>" id="52" name="MC_Wt_Wet_Soil_Tare_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Wet_Soil_Tare_4']); ?>" id="53" name="MC_Wt_Wet_Soil_Tare_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Wet_Soil_Tare_5']); ?>" id="54" name="MC_Wt_Wet_Soil_Tare_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Wet_Soil_Tare_6']); ?>" id="55" name="MC_Wt_Wet_Soil_Tare_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Wet_Soil_Tare_1']); ?>" id="50" name="MC_Wt_Wet_Soil_Tare_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Wet_Soil_Tare_2']); ?>" id="51" name="MC_Wt_Wet_Soil_Tare_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Wet_Soil_Tare_3']); ?>" id="52" name="MC_Wt_Wet_Soil_Tare_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Wet_Soil_Tare_4']); ?>" id="53" name="MC_Wt_Wet_Soil_Tare_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Wet_Soil_Tare_5']); ?>" id="54" name="MC_Wt_Wet_Soil_Tare_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Wet_Soil_Tare_6']); ?>" id="55" name="MC_Wt_Wet_Soil_Tare_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Dry Soil + Tare (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_Tare_1']); ?>" id="56" name="MC_Wt_Dry_Soil_Tare_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_Tare_2']); ?>" id="57" name="MC_Wt_Dry_Soil_Tare_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_Tare_3']); ?>" id="58" name="MC_Wt_Dry_Soil_Tare_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_Tare_4']); ?>" id="59" name="MC_Wt_Dry_Soil_Tare_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_Tare_5']); ?>" id="60" name="MC_Wt_Dry_Soil_Tare_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_Tare_6']); ?>" id="61" name="MC_Wt_Dry_Soil_Tare_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_Tare_1']); ?>" id="56" name="MC_Wt_Dry_Soil_Tare_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_Tare_2']); ?>" id="57" name="MC_Wt_Dry_Soil_Tare_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_Tare_3']); ?>" id="58" name="MC_Wt_Dry_Soil_Tare_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_Tare_4']); ?>" id="59" name="MC_Wt_Dry_Soil_Tare_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_Tare_5']); ?>" id="60" name="MC_Wt_Dry_Soil_Tare_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_Tare_6']); ?>" id="61" name="MC_Wt_Dry_Soil_Tare_6" oninput="calcular()"></td>
         </tr>
         <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Water (gr)</th>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Water_g_1']); ?>" id="62" name="Wt_Water_g_1" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Water_g_2']); ?>" id="63" name="Wt_Water_g_2" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Water_g_3']); ?>" id="64" name="Wt_Water_g_3" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Water_g_4']); ?>" id="65" name="Wt_Water_g_4" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Water_g_5']); ?>" id="66" name="Wt_Water_g_5" oninput="calcular()"></td>
-        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wt_Water_g_5']); ?>" id="67" name="Wt_Water_g_6" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Water_g_1']); ?>" id="62" name="Wt_Water_g_1" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Water_g_2']); ?>" id="63" name="Wt_Water_g_2" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Water_g_3']); ?>" id="64" name="Wt_Water_g_3" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Water_g_4']); ?>" id="65" name="Wt_Water_g_4" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Water_g_5']); ?>" id="66" name="Wt_Water_g_5" oninput="calcular()"></td>
+        <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wt_Water_g_5']); ?>" id="67" name="Wt_Water_g_6" oninput="calcular()"></td>
         </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Tare (gr)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Tare_g_1']); ?>" id="68" name="Tare_g_1" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Tare_g_2']); ?>" id="69" name="Tare_g_2" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Tare_g_3']); ?>" id="70" name="Tare_g_3" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Tare_g_4']); ?>" id="71" name="Tare_g_4" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Tare_g_5']); ?>" id="72" name="Tare_g_5" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Tare_g_6']); ?>" id="73" name="Tare_g_6" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Tare_g_1']); ?>" id="68" name="Tare_g_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Tare_g_2']); ?>" id="69" name="Tare_g_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Tare_g_3']); ?>" id="70" name="Tare_g_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Tare_g_4']); ?>" id="71" name="Tare_g_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Tare_g_5']); ?>" id="72" name="Tare_g_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Tare_g_6']); ?>" id="73" name="Tare_g_6" oninput="calcular()"></td>
     </tr>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Wt Dry Soil (gr)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_g_1']); ?>" id="74" name="MC_Wt_Dry_Soil_g_1" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_g_2']); ?>" id="75" name="MC_Wt_Dry_Soil_g_2" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_g_3']); ?>" id="76" name="MC_Wt_Dry_Soil_g_3" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_g_4']); ?>" id="77" name="MC_Wt_Dry_Soil_g_4" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_g_5']); ?>" id="78" name="MC_Wt_Dry_Soil_g_5" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Wt_Dry_Soil_g_6']); ?>" id="79" name="MC_Wt_Dry_Soil_g_6" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_g_1']); ?>" id="74" name="MC_Wt_Dry_Soil_g_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_g_2']); ?>" id="75" name="MC_Wt_Dry_Soil_g_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_g_3']); ?>" id="76" name="MC_Wt_Dry_Soil_g_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_g_4']); ?>" id="77" name="MC_Wt_Dry_Soil_g_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_g_5']); ?>" id="78" name="MC_Wt_Dry_Soil_g_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Wt_Dry_Soil_g_6']); ?>" id="79" name="MC_Wt_Dry_Soil_g_6" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Moisture Content (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_1']); ?>" id="80" name="MC_Porce_1" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_2']); ?>" id="81" name="MC_Porce_2" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_3']); ?>" id="82" name="MC_Porce_3" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_4']); ?>" id="83" name="MC_Porce_4" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_5']); ?>" id="84" name="MC_Porce_5" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_6']); ?>" id="85" name="MC_Porce_6" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_1']); ?>" id="80" name="MC_Porce_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_2']); ?>" id="81" name="MC_Porce_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_3']); ?>" id="82" name="MC_Porce_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_4']); ?>" id="83" name="MC_Porce_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_5']); ?>" id="84" name="MC_Porce_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_6']); ?>" id="85" name="MC_Porce_6" oninput="calcular()"></td>
     </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Moisture Content Corrected (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_Corrected_1']); ?>" id="86" name="MC_Porce_Corrected_1" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_Corrected_2']); ?>" id="87" name="MC_Porce_Corrected_2" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_Corrected_3']); ?>" id="88" name="MC_Porce_Corrected_3" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_Corrected_4']); ?>" id="89" name="MC_Porce_Corrected_4" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_Corrected_5']); ?>" id="90" name="MC_Porce_Corrected_5" oninput="calcular()"></td>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['MC_Porce_Corrected_6']); ?>" id="91" name="MC_Porce_Corrected_6" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_Corrected_1']); ?>" id="86" name="MC_Porce_Corrected_1" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_Corrected_2']); ?>" id="87" name="MC_Porce_Corrected_2" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_Corrected_3']); ?>" id="88" name="MC_Porce_Corrected_3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_Corrected_4']); ?>" id="89" name="MC_Porce_Corrected_4" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_Corrected_5']); ?>" id="90" name="MC_Porce_Corrected_5" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['MC_Porce_Corrected_6']); ?>" id="91" name="MC_Porce_Corrected_6" oninput="calcular()"></td>
     </tr>
 </div>
 <table class="table table-bordered border-primary" style="width:450px;" >
@@ -241,10 +246,10 @@ $Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
     </thead>
 </tr>
     <th style="font-size: 15px;" style="width: 750px; height: 25px;"scope="row">Maximum Dry Density (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Max_Dry_Density_kgm3']); ?>" id="92" name="Max_Dry_Density_kgm3" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Max_Dry_Density_kgm3']); ?>" id="92" name="Max_Dry_Density_kgm3" oninput="calcular()"></td>
 </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Optimum Moisture Content (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Optimun_MC_Porce']); ?>" id="93" name="Optimun_MC_Porce" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Optimun_MC_Porce']); ?>" id="93" name="Optimun_MC_Porce" oninput="calcular()"></td>
 
 <table class="table table-bordered border-primary" style="width:350px;" >
     <thead>
@@ -253,26 +258,26 @@ $Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
     </thead>
 </tr>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">Wc (%)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Wc_Porce']); ?>" id="94" name="Wc_Porce" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Wc_Porce']); ?>" id="94" name="Wc_Porce" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">GM</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['GM_Porce']); ?>" id="95" name="GM_Porce" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['GM_Porce']); ?>" id="95" name="GM_Porce" oninput="calcular()"></td>
 </tr>
 </tr>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">PC (%)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['PC_Porce']); ?>" id="96" name="PC_Porce" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PC_Porce']); ?>" id="96" name="PC_Porce" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">PF (%)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['PF_Porce']); ?>" id="97" name="PF_Porce" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['PF_Porce']); ?>" id="97" name="PF_Porce" oninput="calcular()"></td>
 </tr>
 </tr>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">YDF</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['YDF_Porce']); ?>" id="98" name="YDF_Porce" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['YDF_Porce']); ?>" id="98" name="YDF_Porce" oninput="calcular()"></td>
 <th style="font-size: 15px;" style="width: 450px; height: 25px;"scope="row">YDT</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['YDT_Porce']); ?>" id="99" name="YDT_Porce" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['YDT_Porce']); ?>" id="99" name="YDT_Porce" oninput="calcular()"></td>
 </tr>
 </tr>
 
 <th style="font-size: 15px;" style="width: 850px; height: 25px;"scope="row" colspan="3">Yω (KN/mᵌ)</th>
-<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Yw_KnM3']); ?>" id="100" name="Yw_KnM3" oninput="calcular()"></td>
+<td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Yw_KnM3']); ?>" id="100" name="Yw_KnM3" oninput="calcular()"></td>
 </tr>
 </div>
 
@@ -282,11 +287,11 @@ $Standard_Proctor = find_by_id('standard_proctor', (int)$_GET['id']);
 </tr>
     <th style="font-size: 15px;" style="width: 750px; height: 25px;"scope="row">Corrected Dry unit weight of the total material 
         (combined finer and oversize fractions) (Kg/mᵌ)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Corrected_Dry_Unit_Weigt']); ?>" id="101" name="Corrected_Dry_Unit_Weigt" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Corrected_Dry_Unit_Weigt']); ?>" id="101" name="Corrected_Dry_Unit_Weigt" oninput="calcular()"></td>
 </tr>
     <th style="font-size: 15px;" style="width: 650px; height: 25px;"scope="row">Corrected water content of combined finer and 
         oversize fractions ωT (%)</th>
-    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($Standard_Proctor['Corrected_Water_Content_Finer']); ?>" id="102" name="Corrected_Water_Content_Finer" oninput="calcular()"></td>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;" value="<?php echo ($SearchTable['Corrected_Water_Content_Finer']); ?>" id="102" name="Corrected_Water_Content_Finer" oninput="calcular()"></td>
 
     <script>
 function calcular() {
@@ -580,7 +585,8 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
 
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-<a href="PDF/SP_Rev_3.php?id=<?php echo intval($Standard_Proctor['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<a href="PDF/SP_Rev_3.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 <button type="submit" name="grainsize" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 
 </form>
