@@ -3,7 +3,10 @@ $page_title = 'Hydrometer';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
-
+// Incluir el archivo de procesamiento del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_once('db/Hydrometer.php'); 
+}
 $SearchTable = find_by_id('hydrometer', (int)$_GET['id']);
 ?>
 
@@ -11,6 +14,7 @@ $SearchTable = find_by_id('hydrometer', (int)$_GET['id']);
 
 <div class="row">
 <div class="col-md-12">
+<?php echo display_msg($msg); ?>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
 <strong>
@@ -20,7 +24,7 @@ $SearchTable = find_by_id('hydrometer', (int)$_GET['id']);
 </div>
 
 <div class="panel-body">
-<form method="post" action="hydrometer.php" onsubmit="calcular()">
+<form method="post" action="" onsubmit="calcular()">
 <div>
 <table class="table table-bordered">
 <thead>
@@ -32,8 +36,8 @@ $SearchTable = find_by_id('hydrometer', (int)$_GET['id']);
 <div class="col-xs-4">
 <label>Standard</label>
 <select class="form-control" name="Standard">
+<option <?php if ($SearchTable['Standard'] == 'Choose...') echo 'selected'; ?>>Choose...</option>
 <option <?php if ($SearchTable['Standard'] == 'ASTM-D7928') echo 'selected'; ?>>ASTM-D7928</option>
-<option <?php if ($SearchTable['Standard'] == '') echo 'selected'; ?>></option>
 </select> </div>
 
 <div class="col-xs-4">
@@ -59,8 +63,8 @@ $SearchTable = find_by_id('hydrometer', (int)$_GET['id']);
 <label>Hydrometer Type</label>
 <select class="form-control" type = "text" name="HydrometerType" id="">
 <option <?php if ($SearchTable['Hydrometer_Type'] == 'Choose...') echo 'selected'; ?>>Choose...</option>
-<option <?php if ($SearchTable['Hydrometer_Type'] == '151H') echo 'selected'; ?>>151 H</option>
-<option <?php if ($SearchTable['Hydrometer_Type'] == '152H') echo 'selected'; ?>>152 H</option>
+<option <?php if ($SearchTable['Hydrometer_Type'] == '151H') echo 'selected'; ?>>151H</option>
+<option <?php if ($SearchTable['Hydrometer_Type'] == '152H') echo 'selected'; ?>>152H</option>
 </select>
 </div>
 </div>
@@ -785,6 +789,7 @@ $SearchTable = find_by_id('hydrometer', (int)$_GET['id']);
             <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
 <a href="PDF/Hydrometer_Rev_4.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
                 </form>
                 </div>
