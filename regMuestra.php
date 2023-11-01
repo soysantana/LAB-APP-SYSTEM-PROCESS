@@ -35,7 +35,7 @@ $lab_req_form = join_lab_test_requisition_form();
               <td class="text-center"> <?php echo remove_junk($lab_req_id['Sample_Number']); ?></td>
               <td class="text-center">
                 <div class="btn-group">
-                  <a class="btn btn-warning btn-xs"  title="Editar" data-toggle="modal" data-target="#basicModal_<?php echo $lab_req_id['Sample_ID']; ?>">
+                  <a class="btn btn-warning btn-xs"  title="Editar" data-toggle="modal" data-target="#basicModal_<?php echo $lab_req_id['id']; ?>">
                     <span class="glyphicon glyphicon-eye-open"></span>
                   </a>
                   <a href="edit_regMuestra.php?id=<?php echo intval($lab_req_id['id']); ?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">
@@ -48,7 +48,7 @@ $lab_req_form = join_lab_test_requisition_form();
               </td>
             </tr>
 
-          <div class="modal fade" id="basicModal_<?php echo $lab_req_id['Sample_ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel_<?php echo $lab_req_id['Sample_ID']; ?>" aria-hidden="true">
+          <div class="modal fade" id="basicModal_<?php echo $lab_req_id['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel_<?php echo $lab_req_id['Sample_ID']; ?>" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
