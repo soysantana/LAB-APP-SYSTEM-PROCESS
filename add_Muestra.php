@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <div class="panel-body">
         <div class="col-md-14">
-          <form method="post" action="add_Muestra.php" class="clearfix">
+          <form method="post" action="" class="clearfix">
             <div class="col-xs-4">
               <label>Identificacion de muestra</label>
               <input class="form-control" name="Sample_ID" type="text" />
