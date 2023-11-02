@@ -779,7 +779,7 @@ var Cu = (d60 / d10)||0;
                     </button>
                     <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Contrucion</a></li>
-                    <li><a href="PDF/Grain_Size_Rev_5.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
+                    <li><a href="PDF/Grain_Size_Rev_5.php?id=<?php echo intval($search_table['id']); ?>">Investigacion</a></li>
                     </ul>
                     </div>
 <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>

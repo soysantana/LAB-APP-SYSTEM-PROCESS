@@ -149,7 +149,7 @@ $search_table = find_by_id('los_angeles_abrasion_large', (int)$_GET['id']);
                     </button>
                     <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Contrucion</a></li>
-                    <li><a href="PDF/LAA_LS_Rev_1.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
+                    <li><a href="PDF/LAA_LS_Rev_1.php?id=<?php echo intval($search_table['id']); ?>">Investigacion</a></li>
                     </ul>
                     </div>
 <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>

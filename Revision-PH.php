@@ -429,7 +429,7 @@ $PH = find_by_id('pinhole', (int)$_GET['id']);
                     </button>
                     <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Contrucion</a></li>
-                    <li><a href="PDF/Pinhole_Test_Rev_3.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
+                    <li><a href="PDF/Pinhole_Test_Rev_3.php?id=<?php echo intval($PH['id']); ?>">Investigacion</a></li>
                     </ul>
                     </div>
           <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>

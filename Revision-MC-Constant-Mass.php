@@ -141,7 +141,7 @@ $Search_Table = find_by_id('moisture_content_constant_mass', (int)$_GET['id']);
                     </button>
                     <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Contrucion</a></li>
-                    <li><a href="PDF/MC_Constant_Mass_Rev_2.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
+                    <li><a href="PDF/MC_Constant_Mass_Rev_2.php?id=<?php echo intval($Search_Table['id']); ?>">Investigacion</a></li>
                     </ul>
                     </div>
           <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
