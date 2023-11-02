@@ -97,6 +97,465 @@
       $result = $db->query($query);
 
       if ($result && $db->affected_rows() === 1) {
+
+        // Verifica si el usuario no ha seleccionado un Test_Type específico y elimina de lista_de_pendiente
+        if (empty($_POST['Test_Type1'])) {
+          $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'Mc_Oven'";
+          $result_delete = $db->query($query_delete);
+          if ($result_delete) {
+              // Eliminación exitosa de Mc_Oven en lista_de_pendiente
+          } else {
+              // Error en la eliminación de Mc_Oven en lista_de_pendiente
+          }
+      }
+
+      if (empty($_POST['Test_Type2'])) {
+        $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'Mc_Stove'";
+        $result_delete = $db->query($query_delete);
+        if ($result_delete) {
+            // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+        } else {
+            // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+        }
+    }
+
+    if (empty($_POST['Test_Type3'])) {
+      $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'Mc_Scale'";
+      $result_delete = $db->query($query_delete);
+      if ($result_delete) {
+          // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+      } else {
+          // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+      }
+  }
+
+  if (empty($_POST['Test_Type4'])) {
+    $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'AL'";
+    $result_delete = $db->query($query_delete);
+    if ($result_delete) {
+        // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+    } else {
+        // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+    }
+}
+
+if (empty($_POST['Test_Type5'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'GS'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type6'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'SP'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type7'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'SG'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type8'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'AR'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type9'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'SC'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type10'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'LAA'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type11'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'SND'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type12'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'UCS'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type13'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'PLT'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type14'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'BTS'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type15'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'HY'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type16'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'DHY'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type17'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'PH'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type18'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'Cons'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (empty($_POST['Test_Type19'])) {
+  $query_delete = "DELETE FROM lista_de_pendiente WHERE Sample_ID = '{$Sample_ID}' AND Sample_Number = '{$Sample_Number}' AND Test_Type = 'Perm'";
+  $result_delete = $db->query($query_delete);
+  if ($result_delete) {
+      // Eliminación exitosa de Otro_Test_Type2 en lista_de_pendiente
+  } else {
+      // Error en la eliminación de Otro_Test_Type2 en lista_de_pendiente
+  }
+}
+
+if (isset($_POST['Test_Type1'])) {
+$Sample_Date = $lab_req_form['Sample_Date'];
+  // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+
+  $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'Mc_Oven')";
+  $result_insert = $db->query($query_insert);
+
+  if ($result_insert) {
+      // Inserción exitosa en lista_de_pendiente
+  } else {
+      // Error en la inserción en lista_de_pendiente
+  }
+}
+
+if (isset($_POST['Test_Type2'])) {
+  $Sample_Date = $lab_req_form['Sample_Date'];
+    // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+  
+    $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'Mc_Stove')";
+    $result_insert = $db->query($query_insert);
+  
+    if ($result_insert) {
+        // Inserción exitosa en lista_de_pendiente
+    } else {
+        // Error en la inserción en lista_de_pendiente
+    }
+  }
+
+  if (isset($_POST['Test_Type3'])) {
+    $Sample_Date = $lab_req_form['Sample_Date'];
+      // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+    
+      $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'Mc_Scale')";
+      $result_insert = $db->query($query_insert);
+    
+      if ($result_insert) {
+          // Inserción exitosa en lista_de_pendiente
+      } else {
+          // Error en la inserción en lista_de_pendiente
+      }
+    }
+
+    if (isset($_POST['Test_Type4'])) {
+      $Sample_Date = $lab_req_form['Sample_Date'];
+        // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+      
+        $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'AL')";
+        $result_insert = $db->query($query_insert);
+      
+        if ($result_insert) {
+            // Inserción exitosa en lista_de_pendiente
+        } else {
+            // Error en la inserción en lista_de_pendiente
+        }
+      }
+
+      if (isset($_POST['Test_Type5'])) {
+        $Sample_Date = $lab_req_form['Sample_Date'];
+          // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+        
+          $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'GS')";
+          $result_insert = $db->query($query_insert);
+        
+          if ($result_insert) {
+              // Inserción exitosa en lista_de_pendiente
+          } else {
+              // Error en la inserción en lista_de_pendiente
+          }
+        }
+
+        if (isset($_POST['Test_Type6'])) {
+          $Sample_Date = $lab_req_form['Sample_Date'];
+            // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+          
+            $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'SP')";
+            $result_insert = $db->query($query_insert);
+          
+            if ($result_insert) {
+                // Inserción exitosa en lista_de_pendiente
+            } else {
+                // Error en la inserción en lista_de_pendiente
+            }
+          }
+
+          if (isset($_POST['Test_Type7'])) {
+            $Sample_Date = $lab_req_form['Sample_Date'];
+              // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+            
+              $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'SG')";
+              $result_insert = $db->query($query_insert);
+            
+              if ($result_insert) {
+                  // Inserción exitosa en lista_de_pendiente
+              } else {
+                  // Error en la inserción en lista_de_pendiente
+              }
+            }
+
+            if (isset($_POST['Test_Type8'])) {
+              $Sample_Date = $lab_req_form['Sample_Date'];
+                // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+              
+                $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'AR')";
+                $result_insert = $db->query($query_insert);
+              
+                if ($result_insert) {
+                    // Inserción exitosa en lista_de_pendiente
+                } else {
+                    // Error en la inserción en lista_de_pendiente
+                }
+              }
+
+              if (isset($_POST['Test_Type9'])) {
+                $Sample_Date = $lab_req_form['Sample_Date'];
+                  // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                
+                  $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'SC')";
+                  $result_insert = $db->query($query_insert);
+                
+                  if ($result_insert) {
+                      // Inserción exitosa en lista_de_pendiente
+                  } else {
+                      // Error en la inserción en lista_de_pendiente
+                  }
+                }
+
+                if (isset($_POST['Test_Type10'])) {
+                  $Sample_Date = $lab_req_form['Sample_Date'];
+                    // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                  
+                    $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'LAA')";
+                    $result_insert = $db->query($query_insert);
+                  
+                    if ($result_insert) {
+                        // Inserción exitosa en lista_de_pendiente
+                    } else {
+                        // Error en la inserción en lista_de_pendiente
+                    }
+                  }
+
+                  if (isset($_POST['Test_Type11'])) {
+                    $Sample_Date = $lab_req_form['Sample_Date'];
+                      // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                    
+                      $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'SND')";
+                      $result_insert = $db->query($query_insert);
+                    
+                      if ($result_insert) {
+                          // Inserción exitosa en lista_de_pendiente
+                      } else {
+                          // Error en la inserción en lista_de_pendiente
+                      }
+                    }
+
+                    if (isset($_POST['Test_Type12'])) {
+                      $Sample_Date = $lab_req_form['Sample_Date'];
+                        // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                      
+                        $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'UCS')";
+                        $result_insert = $db->query($query_insert);
+                      
+                        if ($result_insert) {
+                            // Inserción exitosa en lista_de_pendiente
+                        } else {
+                            // Error en la inserción en lista_de_pendiente
+                        }
+                      }
+
+                      if (isset($_POST['Test_Type13'])) {
+                        $Sample_Date = $lab_req_form['Sample_Date'];
+                          // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                        
+                          $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'PLT')";
+                          $result_insert = $db->query($query_insert);
+                        
+                          if ($result_insert) {
+                              // Inserción exitosa en lista_de_pendiente
+                          } else {
+                              // Error en la inserción en lista_de_pendiente
+                          }
+                        }
+
+                        if (isset($_POST['Test_Type14'])) {
+                          $Sample_Date = $lab_req_form['Sample_Date'];
+                            // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                          
+                            $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'BTS')";
+                            $result_insert = $db->query($query_insert);
+                          
+                            if ($result_insert) {
+                                // Inserción exitosa en lista_de_pendiente
+                            } else {
+                                // Error en la inserción en lista_de_pendiente
+                            }
+                          }
+
+                          if (isset($_POST['Test_Type15'])) {
+                            $Sample_Date = $lab_req_form['Sample_Date'];
+                              // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                            
+                              $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'HY')";
+                              $result_insert = $db->query($query_insert);
+                            
+                              if ($result_insert) {
+                                  // Inserción exitosa en lista_de_pendiente
+                              } else {
+                                  // Error en la inserción en lista_de_pendiente
+                              }
+                            }
+
+                            if (isset($_POST['Test_Type16'])) {
+                              $Sample_Date = $lab_req_form['Sample_Date'];
+                                // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                              
+                                $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'DHY')";
+                                $result_insert = $db->query($query_insert);
+                              
+                                if ($result_insert) {
+                                    // Inserción exitosa en lista_de_pendiente
+                                } else {
+                                    // Error en la inserción en lista_de_pendiente
+                                }
+                              }
+
+                              if (isset($_POST['Test_Type17'])) {
+                                $Sample_Date = $lab_req_form['Sample_Date'];
+                                  // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                                
+                                  $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'PH')";
+                                  $result_insert = $db->query($query_insert);
+                                
+                                  if ($result_insert) {
+                                      // Inserción exitosa en lista_de_pendiente
+                                  } else {
+                                      // Error en la inserción en lista_de_pendiente
+                                  }
+                                }
+
+                                if (isset($_POST['Test_Type18'])) {
+                                  $Sample_Date = $lab_req_form['Sample_Date'];
+                                    // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                                  
+                                    $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'Cons')";
+                                    $result_insert = $db->query($query_insert);
+                                  
+                                    if ($result_insert) {
+                                        // Inserción exitosa en lista_de_pendiente
+                                    } else {
+                                        // Error en la inserción en lista_de_pendiente
+                                    }
+                                  }
+
+                                  if (isset($_POST['Test_Type19'])) {
+                                    $Sample_Date = $lab_req_form['Sample_Date'];
+                                      // Asegúrate de obtener correctamente los valores de Sample_ID y Sample_Number desde donde sea necesario
+                                    
+                                      $query_insert = "INSERT INTO lista_de_pendiente (Sample_ID, Sample_Number, Sample_Date, Test_Type) VALUES ('$Sample_ID', '$Sample_Number', '$Sample_Date', 'Perm')";
+                                      $result_insert = $db->query($query_insert);
+                                    
+                                      if ($result_insert) {
+                                          // Inserción exitosa en lista_de_pendiente
+                                      } else {
+                                          // Error en la inserción en lista_de_pendiente
+                                      }
+                                    }
+
+
         $session->msg('s', 'Muestra ha sido actualizada.');
         redirect('regMuestra.php', false);
       } else {

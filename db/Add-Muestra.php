@@ -179,10 +179,10 @@ if (empty($errors)) {
             }
         }
 
-        redirect('./add_Muestra.php', false);
+        redirect('add_Muestra.php', false);
     } else {
         $session->msg("d", 'Hubo un error :(', $errors);
-        redirect('./add_Muestra.php', false);
+        redirect('add_Muestra.php', false);
     }
 }
 ?>
