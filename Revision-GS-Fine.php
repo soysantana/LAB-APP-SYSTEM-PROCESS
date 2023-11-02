@@ -499,7 +499,16 @@ $SearchTable = find_by_id('grain_size_fine_aggregate', (int)$_GET['id']);
 </div>
 <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
 <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-<a href="PDF/Grain_Size_FA_Rev_1.php?id=<?php echo intval($SearchTable['id']); ?>" class="btn btn-primary">Generar PDF</a>
+<div class="btn-group dropup" role="group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Generar PDF
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Contrucion</a></li>
+                    <li><a href="PDF/Grain_Size_FA_Rev_1.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
+                    </ul>
+                    </div>
 <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </form>

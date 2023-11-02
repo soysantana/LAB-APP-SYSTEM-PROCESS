@@ -134,7 +134,16 @@ $Search_Table = find_by_id('moisture_content_constant_mass', (int)$_GET['id']);
           </table>
           <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
           <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-          <a href="PDF/MC_Constant_Mass_Rev_2.php?id=<?php echo intval($Search_Table['id']); ?>" class="btn btn-primary">Generar PDF</a>
+          <div class="btn-group dropup" role="group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Generar PDF
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Contrucion</a></li>
+                    <li><a href="PDF/MC_Constant_Mass_Rev_2.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
+                    </ul>
+                    </div>
           <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
         </form>
       </div>

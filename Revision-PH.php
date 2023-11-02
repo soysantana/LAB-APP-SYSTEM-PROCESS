@@ -422,7 +422,16 @@ $PH = find_by_id('pinhole', (int)$_GET['id']);
 
             <button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
           <button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
-          <a href="PDF/Pinhole_Test_Rev_3.php?id=<?php echo intval($PH['id']); ?>" class="btn btn-primary">Generar PDF</a>
+          <div class="btn-group dropup" role="group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Generar PDF
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Contrucion</a></li>
+                    <li><a href="PDF/Pinhole_Test_Rev_3.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
+                    </ul>
+                    </div>
           <button type="submit" name="update_muestra" class="btn btn-danger">Actualizar Muestra</button>
 
              
