@@ -508,7 +508,7 @@ $SearchTable = find_by_id('atterberg_limit', (int)$_GET['id']);
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Contrucion</a></li>
+      <li><a href="PDF/Barrick-Limit-Rev2.php?id=<?php echo intval($SearchTable['id']); ?>">Contrucion</a></li>
       <li><a href="PDF/Atterberg_Limit_Rev_5.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
     </ul>
   </div>
