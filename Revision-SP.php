@@ -591,7 +591,7 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
                     <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Contrucion</a></li>
+                    <li><a href="PDF/Barrick-Standard-Proctor.php?id=<?php echo intval($SearchTable['id']); ?>">Contrucion</a></li>
                     <li><a href="PDF/SP_Rev_3.php?id=<?php echo intval($SearchTable['id']); ?>">Investigacion</a></li>
                     </ul>
                     </div>

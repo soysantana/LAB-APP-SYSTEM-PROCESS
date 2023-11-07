@@ -309,7 +309,7 @@ $pdf->Cell(28, 5, remove_junk(ucwords($sp['Yw_KnM3'])), 0, 1, 'C');
 
 $pdf->SetXY(163, 206);
 $pdf->Cell(104, 46, remove_junk(ucwords($sp['Comments'])), 0, 1, 'C');
-
+/*
 // PIC SP 
 $imageData = $sp['SP_Graphic'];
 $imageFileName1 = 'temp_image1.png';
@@ -322,6 +322,6 @@ $pdf->Image($imagePath1, $pdf->GetX(), $pdf->GetY(), $cellWidth, $cellHeight);
 $pdf->Cell($cellWidth, $cellHeight, "", 1, 1, 'C');
 
 unlink($imageFileName1);
-
+*/
 $pdf->Output();
 ?>
