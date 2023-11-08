@@ -5,6 +5,16 @@ require_once('../includes/load.php');
 
 $SeachTable= find_by_id('atterberg_limit', (int)$_GET['id']);
 
+// Función para reemplazar 0 con un valor vacío
+function replaceZeroWithEmpty($value) {
+    return ($value == 0) ? '' : $value;
+}
+
+// Aplica la función de reemplazo a cada valor en el arreglo $SeachTable
+foreach ($SeachTable as $key => $value) {
+    $SeachTable[$key] = replaceZeroWithEmpty($value);
+}
+
 use setasign\Fpdi\Fpdi;
 
 class PDF extends Fpdi {

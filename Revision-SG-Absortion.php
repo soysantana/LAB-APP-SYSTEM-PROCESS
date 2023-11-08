@@ -235,7 +235,7 @@ $search_table = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
                     <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Contrucion</a></li>
+                    <li><a href="PDF/Barrick-SG-Absortion.php?id=<?php echo intval($search_table['id']); ?>">Contrucion</a></li>
                     <li><a href="PDF/SG_CA_Rev_1.php?id=<?php echo intval($search_table['id']); ?>">Investigacion</a></li>
                     </ul>
                     </div>
