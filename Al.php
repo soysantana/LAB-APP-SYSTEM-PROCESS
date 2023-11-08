@@ -279,188 +279,178 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </div>
               <td><input type="hidden"  style="border: none;" size="4" style="background: transparent;" id="51.1" name="rsq" oninput="calcular()"></td>
 
-              <script>
-                function calcular() {
-                  // Obtener los valores del liquid limit
-                  var Nmc = parseFloat(document.getElementById("1").value);
-                  var Lwst1 = parseFloat(document.getElementById("8").value);
-                  var Lwst2 = parseFloat(document.getElementById("9").value);
-                  var Lwst3 = parseFloat(document.getElementById("10").value);
+<script>
+  function calcular() {
+    // Obtener los valores del liquid limit
+    var Nmc = parseFloat(document.getElementById("1").value);
+    var Lwst1 = parseFloat(document.getElementById("8").value);
+    var Lwst2 = parseFloat(document.getElementById("9").value);
+    var Lwst3 = parseFloat(document.getElementById("10").value);
 
-                  var Ldst1 = parseFloat(document.getElementById("11").value);
-                  var Ldst2 = parseFloat(document.getElementById("12").value);
-                  var Ldst3 = parseFloat(document.getElementById("13").value);
+    var Ldst1 = parseFloat(document.getElementById("11").value);
+    var Ldst2 = parseFloat(document.getElementById("12").value);
+    var Ldst3 = parseFloat(document.getElementById("13").value);
 
-                  var Lw1 = parseFloat(document.getElementById("14").value);
-                  var Lw2 = parseFloat(document.getElementById("15").value);
-                  var Lw3 = parseFloat(document.getElementById("16").value);
+    var Lw1 = parseFloat(document.getElementById("14").value);
+    var Lw2 = parseFloat(document.getElementById("15").value);
+    var Lw3 = parseFloat(document.getElementById("16").value);
 
-                  var Lt1 = parseFloat(document.getElementById("17").value);
-                  var Lt2 = parseFloat(document.getElementById("18").value);
-                  var Lt3 = parseFloat(document.getElementById("19").value);
+    var Lt1 = parseFloat(document.getElementById("17").value);
+    var Lt2 = parseFloat(document.getElementById("18").value);
+    var Lt3 = parseFloat(document.getElementById("19").value);
 
-                  var Lds1 = parseFloat(document.getElementById("20").value);
-                  var Lds2 = parseFloat(document.getElementById("21").value);
-                  var Lds3 = parseFloat(document.getElementById("22").value);
+    var Lds1 = parseFloat(document.getElementById("20").value);
+    var Lds2 = parseFloat(document.getElementById("21").value);
+    var Lds3 = parseFloat(document.getElementById("22").value);
 
-                  var Pwst1 = parseFloat(document.getElementById("29").value);
-                  var Pwst2 = parseFloat(document.getElementById("30").value);
-                  var Pwst3 = parseFloat(document.getElementById("31").value);
+    var Pwst1 = parseFloat(document.getElementById("29").value);
+    var Pwst2 = parseFloat(document.getElementById("30").value);
+    var Pwst3 = parseFloat(document.getElementById("31").value);
 
-                  var Pdst1 = parseFloat(document.getElementById("32").value);
-                  var Pdst2 = parseFloat(document.getElementById("33").value);
-                  var Pdst3 = parseFloat(document.getElementById("34").value);
+    var Pdst1 = parseFloat(document.getElementById("32").value);
+    var Pdst2 = parseFloat(document.getElementById("33").value);
+    var Pdst3 = parseFloat(document.getElementById("34").value);
 
-                  var Pw1 = parseFloat(document.getElementById("35").value);
-                  var Pw2 = parseFloat(document.getElementById("36").value);
-                  var Pw3 = parseFloat(document.getElementById("37").value);
+    var Pw1 = parseFloat(document.getElementById("35").value);
+    var Pw2 = parseFloat(document.getElementById("36").value);
+    var Pw3 = parseFloat(document.getElementById("37").value);
 
-                  var Pt1 = parseFloat(document.getElementById("38").value);
-                  var Pt2 = parseFloat(document.getElementById("39").value);
-                  var Pt3 = parseFloat(document.getElementById("40").value);
+    var Pt1 = parseFloat(document.getElementById("38").value);
+    var Pt2 = parseFloat(document.getElementById("39").value);
+    var Pt3 = parseFloat(document.getElementById("40").value);
 
-                  var Pds1 = parseFloat(document.getElementById("41").value);
-                  var Pds2 = parseFloat(document.getElementById("42").value);
-                  var Pds3 = parseFloat(document.getElementById("43").value);
+    var Pds1 = parseFloat(document.getElementById("41").value);
+    var Pds2 = parseFloat(document.getElementById("42").value);
+    var Pds3 = parseFloat(document.getElementById("43").value);
 
-                  var PLL = parseFloat(document.getElementById("48").value);
-                  var PLP = parseFloat(document.getElementById("49").value);
-                  var IP = parseFloat(document.getElementById("50").value);
+    var PLL = parseFloat(document.getElementById("48").value);
+    var PLP = parseFloat(document.getElementById("49").value);
+    var IP = parseFloat(document.getElementById("50").value);
 
-                  var golpe1 = parseFloat(document.getElementById("2").value);
-                  var golpe2 = parseFloat(document.getElementById("3").value);
-                  var golpe3 = parseFloat(document.getElementById("4").value);
+    var golpe1 = parseFloat(document.getElementById("2").value);
+    var golpe2 = parseFloat(document.getElementById("3").value);
+    var golpe3 = parseFloat(document.getElementById("4").value);
 
+    //calcular
+    var Ww1 = Lwst1 - Ldst1;
+    var Ww2 = Lwst2 - Ldst2;
+    var Ww3 = Lwst3 - Ldst3;
 
+    var Ds1 = Ldst1 - Lt1;
+    var Ds2 = Ldst2 - Lt2;
+    var Ds3 = Ldst3 - Lt3;
 
-                  //calcular
-                  var Ww1 = Lwst1 - Ldst1;
-                  var Ww2 = Lwst2 - Ldst2;
-                  var Ww3 = Lwst3 - Ldst3;
+    var Lmc1 = (Ww1 / Ds1) * 100;
+    var Lmc2 = (Ww2 / Ds2) * 100;
+    var Lmc3 = (Ww3 / Ds3) * 100;
 
-                  var Ds1 = Ldst1 - Lt1;
-                  var Ds2 = Ldst2 - Lt2;
-                  var Ds3 = Ldst3 - Lt3;
+    var Ww4 = Pwst1 - Pdst1;
+    var Ww5 = Pwst2 - Pdst2;
+    var Ww6 = Pwst3 - Pdst3;
 
-                  var Lmc1 = (Ww1 / Ds1) * 100;
-                  var Lmc2 = (Ww2 / Ds2) * 100;
-                  var Lmc3 = (Ww3 / Ds3) * 100;
+    var Ds4 = Pdst1 - Pt1;
+    var Ds5 = Pdst2 - Pt2;
+    var Ds6 = Pdst3 - Pt3;
 
-                  var Ww4 = Pwst1 - Pdst1;
-                  var Ww5 = Pwst2 - Pdst2;
-                  var Ww6 = Pwst3 - Pdst3;
+    var Lmc4 = (Ww4 / Ds4) * 100;
+    var Lmc5 = (Ww5 / Ds5) * 100;
+    var Lmc6 = (Ww6 / Ds6) * 100;
+    var golpes = [golpe1, golpe2, golpe3];
+    var mc = [Lmc1, Lmc2, Lmc3];
 
-                  var Ds4 = Pdst1 - Pt1;
-                  var Ds5 = Pdst2 - Pt2;
-                  var Ds6 = Pdst3 - Pt3;
+    var x = 25;
 
-                  var Lmc4 = (Ww4 / Ds4) * 100;
-                  var Lmc5 = (Ww5 / Ds5) * 100;
-                  var Lmc6 = (Ww6 / Ds6) * 100;
-                  var golpes = [golpe1, golpe2, golpe3];
-                  var mc = [Lmc1, Lmc2, Lmc3];
-
-                  
-                  var x = 25;
-
-                  // Crear un conjunto de datos
-                  var data = [];
-                  for (var i = 0; i < golpes.length; i++) {
-                      data.push([Math.log(golpes[i]), mc[i]]);
-                    }
-
-                  // Realizar la regresión lineal
-                  var result = regression.linear(data);
-
-                  // Obtener los coeficientes c y b
-                  var c = result.equation[0]; // Pendiente
-                  var b = result.equation[1]; // Intercepto
-
-                  // Calcular R^2
-                  var rSquared = result.r2;
-
-                  // Calcular PLL
-                  var lnX = Math.log(x);
-                  var PLL = c * lnX + b;
-
-
-
-                 var valores = [Lmc4, Lmc5, Lmc6];
-                 var valoresValidos = valores.filter(valor => !isNaN(valor));
-
-                  var PLP = valoresValidos.reduce((total, valor) => total + valor, 0) / valoresValidos.length;
-                  var IP = PLL - PLP;
-                  var LI = ((Nmc - PLP) / IP)||0;
-
-                  
-                  function clasificarsuelo(PLL, IP) {
-    var resultado = "Error"; // Valor predeterminado en caso de valores no válidos
-
-    if (!isNaN(PLL) && !isNaN(IP)) {
-        if (PLL < 50) {
-            if (IP > 7 && (0.73 * (PLL - 20)) <= IP) {
-                resultado = "CL or OL";
-            } else if (IP >= 4 && (0.73 * (PLL - 20)) <= IP) {
-                resultado = "CL or ML";
-            } else if (IP < 4 || (0.73 * (PLL - 20)) > IP) {
-                resultado = "ML or OL";
-            }
-        } else {
-            if ((0.73 * (PLL - 20)) <= IP) {
-                resultado = "CH or OH";
-            } else {
-                resultado = "MH or OH";
-            }
-        }
+    // Crear un conjunto de datos
+    var data = [];
+    for (var i = 0; i < golpes.length; i++) {
+      data.push([Math.log(golpes[i]), mc[i]]);
     }
 
-    return resultado;
-}
+    // Realizar la regresión lineal
+    var result = regression.linear(data);
 
+    // Obtener los coeficientes c y b
+    var c = result.equation[0]; // Pendiente
+    var b = result.equation[1]; // Intercepto
 
+    // Calcular R^2
+    var rSquared = result.r2;
 
+    // Calcular PLL
+    var lnX = Math.log(x);
+    var PLL = c * lnX + b;
 
+    var valores = [Lmc4, Lmc5, Lmc6];
+    var valoresValidos = valores.filter((valor) => !isNaN(valor));
 
+    var PLP = valoresValidos.reduce((total, valor) => total + valor, 0) / valoresValidos.length;
+    var IP = PLL - PLP;
+    var LI = (Nmc - PLP) / IP || 0;
 
-                  // Pasar el resultado al input
-                  document.getElementById("14").value = Ww1.toFixed(2);
-                  document.getElementById("15").value = Ww2.toFixed(2);
-                  document.getElementById("16").value = Ww3.toFixed(2);
+    function clasificarsuelo(PLL, IP) {
+      var resultado = "Error"; // Valor predeterminado en caso de valores no válidos
 
-                  document.getElementById("20").value = Ds1.toFixed(2);
-                  document.getElementById("21").value = Ds2.toFixed(2);
-                  document.getElementById("22").value = Ds3.toFixed(2);
+      if (!isNaN(PLL) && !isNaN(IP)) {
+        if (PLL < 50) {
+          if (IP > 7 && 0.73 * (PLL - 20) <= IP) {
+            resultado = "CL or OL";
+          } else if (IP >= 4 && 0.73 * (PLL - 20) <= IP) {
+            resultado = "CL or ML";
+          } else if (IP < 4 || 0.73 * (PLL - 20) > IP) {
+            resultado = "ML or OL";
+          }
+        } else {
+          if (0.73 * (PLL - 20) <= IP) {
+            resultado = "CH or OH";
+          } else {
+            resultado = "MH or OH";
+          }
+        }
+      }
 
-                  document.getElementById("23").value = Lmc1.toFixed(2);
-                  document.getElementById("24").value = Lmc2.toFixed(2);
-                  document.getElementById("25").value = Lmc3.toFixed(2);
+      return resultado;
+    }
 
-                  document.getElementById("35").value = Ww4.toFixed(2);
-                  document.getElementById("36").value = Ww5.toFixed(2);
-                  document.getElementById("37").value = Ww6.toFixed(2);
+    // Pasar el resultado al input
+    document.getElementById("14").value = Ww1.toFixed(2);
+    document.getElementById("15").value = Ww2.toFixed(2);
+    document.getElementById("16").value = Ww3.toFixed(2);
 
-                  document.getElementById("41").value = Ds4.toFixed(2);
-                  document.getElementById("42").value = Ds5.toFixed(2);
-                  document.getElementById("43").value = Ds6.toFixed(2);
+    document.getElementById("20").value = Ds1.toFixed(2);
+    document.getElementById("21").value = Ds2.toFixed(2);
+    document.getElementById("22").value = Ds3.toFixed(2);
 
-                  document.getElementById("44").value = Lmc4.toFixed(2);
-                  document.getElementById("45").value = Lmc5.toFixed(2);
-                  document.getElementById("46").value = Lmc6.toFixed(2);
+    document.getElementById("23").value = Lmc1.toFixed(2);
+    document.getElementById("24").value = Lmc2.toFixed(2);
+    document.getElementById("25").value = Lmc3.toFixed(2);
 
-                  document.getElementById("47").value = PLL.toFixed(0);
-                  document.getElementById("48").value = PLP.toFixed(0);
-                  document.getElementById("49").value = IP.toFixed(0);
-                  document.getElementById("50").value = LI.toFixed(4);
-                  document.getElementById("51").value = clasificarsuelo(PLL, IP);
-                  document.getElementById("51.1").value = rSquared.toFixed(7);
+    document.getElementById("35").value = Ww4.toFixed(2);
+    document.getElementById("36").value = Ww5.toFixed(2);
+    document.getElementById("37").value = Ww6.toFixed(2);
 
+    document.getElementById("41").value = Ds4.toFixed(2);
+    document.getElementById("42").value = Ds5.toFixed(2);
+    document.getElementById("43").value = Ds6.toFixed(2);
 
-                  //average
-                  
-                  document.getElementById("52").value = PLP.toFixed(2);
+    document.getElementById("44").value = Lmc4.toFixed(2);
+    document.getElementById("45").value = Lmc5.toFixed(2);
+    document.getElementById("46").value = Lmc6.toFixed(2);
 
-                }
-              </script>
+    document.getElementById("47").value = PLL.toFixed(0);
+    document.getElementById("48").value = PLP.toFixed(0);
+    document.getElementById("49").value = IP.toFixed(0);
+    document.getElementById("50").value = LI.toFixed(4);
+    document.getElementById("51").value = clasificarsuelo(PLL, IP);
+    document.getElementById("51.1").value = rSquared.toFixed(7);
+
+    //average
+
+    document.getElementById("52").value = PLP.toFixed(2);
+  }
+</script>
+
+              
+
         </div>
       </div>
     </div>
