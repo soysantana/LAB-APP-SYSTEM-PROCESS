@@ -101,7 +101,7 @@ $Search_Table = find_by_id('moisture_content', (int)$_GET['id']);
                     <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Contrucion</a></li>
+                    <li><a href="PDF/Barrick-Moisture-Content.php?id=<?php echo intval($Search_Table['id']); ?>">Contrucion</a></li>
                     <li><a href="PDF/MC_Oven_Rev_5.php?id=<?php echo intval($Search_Table['id']); ?>">Investigacion</a></li>
                     </ul>
                     </div>
