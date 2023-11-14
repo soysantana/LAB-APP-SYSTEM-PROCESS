@@ -51,22 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <div class="col-xs-4">
-<label >Preparation Method</label>
+<label >Method</label>
 <select class="form-control" name="PreparationMethod">
 <option selected>Choose...</option>
-<option value="Oven_Dried">Oven Dried</option>
-<option value="Air_Dried">Air Dried</option>
+<option value="A">A</option>
+<option value="B">B</option>
+<option value="C">C</option>
 </select>
 </div>
 
-<div class="col-xs-4">
-<label >Split Method</label>
-<select class="form-control" name="SplitMethod">
-<option selected>Choose...</option>
-<option value="Mech_Split">Mech. Split</option>
-<option value="Man_Split">Manual Split</option>
-</select>
-</div>
 
 <div class="col-xs-4">
 <label>Comments</label>

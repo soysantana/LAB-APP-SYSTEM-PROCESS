@@ -67,6 +67,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <option value="mechanical">Mechanical</option>
         </select>
         </div>
+
+<div class="col-xs-4">
+<label >Method</label>
+<select class="form-control" name="Method">
+<option selected>Choose...</option>
+<option value="A">A</option>
+<option value="B">B</option>
+<option value="C">C</option>
+</select>
+</div>
     
     <div class="col-xs-4">
     <label>Natural Mc (%):</label>
