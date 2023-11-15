@@ -20,7 +20,7 @@ $products = join_lab_test_requisition_form();
       <div class="panel-body">
         <div class="list-group">
         <a class="list-group-item" href="MCmenu.php" style="font-size: 16px;">Contenido de humedad</a>
-            <a class="list-group-item" href="GSmenu.php"style="font-size: 16px;">Granulometrias</a>
+            <a class="list-group-item" href="Menu-GS-Contruccion.php"style="font-size: 16px;">Granulometrias</a>
             <a class="list-group-item" href="SGmenu.php" style="font-size: 16px;">Gravedad Especifica</a>
             <a class="list-group-item" href="LAAmenu.php" style="font-size: 16px;">Abrasion De Los Angeles</a>
             <a class="list-group-item" href="Al.php" style="font-size: 16px;">Limite de Atterberg</a>
