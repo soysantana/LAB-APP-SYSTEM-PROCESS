@@ -10,6 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <?php include_once('layouts/header.php'); ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/regression/2.0.1/regression.min.js" integrity="sha512-0k6FXllQktdobw8Nc8KQN2WtZrOuxpMn7jC2RKCF6LR7EdOhhrg3H5cBPxhs3CFzQVlO6ni1B9SDLUPhBs0Alg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/regression/2.0.1/regression.js" integrity="sha512-PHHRPMxJK1xGYLQPv9FoDbCF2X23Ao1lMAD52oLY9TBW033s4zwIXl5JQBGlfI2iOx3W1qP3LAS/MMv5Ttj0aQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <div class="row">
 <div class="col-md-6">
 <?php echo display_msg($msg); ?>
@@ -354,6 +357,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </table>
   </div>
 
+  <div style="display: flex; flex-direction: row-reverse; margin-right: 18%;">
+    <table class="table table-bordered" style="width: 300px;">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <th style="font-size: 12px; text-align: end;" scope="row">Grain Size Test Result</th>
+                <td><input type="text" style="border: none; background: transparent; text-align: center;" id="114" name="GrainSizeTestResultNo1" oninput="calcular()"></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div style="display: flex; flex-direction: row-reverse; margin-right: 18%;">
+    <table class="table table-bordered border-primary" style="width: 180px;">
+        <thead>
+            <caption style="text-align: center;">Fine Grained Classification using the USCS</caption>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" style="border: none; background: transparent; text-align: center;" size="20" id="115" name="GrainSizeTestResultNo2" oninput="calcular()"></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
 <div style="display: flex; flex-direction: row-reverse; margin-right: 5%;">
   <table class="table table-bordered" style="width: 320px;">
         <thead>
@@ -381,20 +411,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="D10" style="border: none; background: transparent; text-align: center;" id="121" oninput="calcularD()"></td>
             </tr>
             <tr>
-                <th style="font-size: 12px; text-align: end;" scope="row">D15 (mm) :</th>
-                <td><input type="text" name="D15" style="border: none; background: transparent; text-align: center;" id="122" oninput="calcularD()"></td>
-            </tr>
-            <tr>
                 <th style="font-size: 12px; text-align: end;" scope="row">D30 (mm) :</th>
                 <td><input type="text" name="D30" style="border: none; background: transparent; text-align: center;" id="123" oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 12px; text-align: end;" scope="row">D60 (mm) :</th>
                 <td><input type="text" name="D60" style="border: none; background: transparent; text-align: center;" id="124" oninput="calcularD()"></td>
-            </tr>
-            <tr>
-                <th style="font-size: 12px; text-align: end;" scope="row">D85 (mm) :</th>
-                <td><input type="text" name="D85" style="border: none; background: transparent; text-align: center;" id="125" oninput="calcularD()"></td>
             </tr>
             <tr>
                 <th style="font-size: 12px; text-align: end;" scope="row">Cc:</th>
@@ -422,28 +444,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
   function calcular() {
-   
-    //Calculo de reactividad acida.
-    // Obtener los valores
+
     var w20gr = parseFloat(document.getElementById("1").value);
     var PRA = parseFloat(document.getElementById("2").value);
     var PRB = parseFloat(document.getElementById("3").value);
     var PRC = parseFloat(document.getElementById("4").value);
     var PRD = parseFloat(document.getElementById("5").value);
     var PRE = parseFloat(document.getElementById("6").value);
+
     var WDST = parseFloat(document.getElementById("10").value);
     var wtare = parseFloat(document.getElementById("11").value);
     var wWashed = parseFloat(document.getElementById("13").value);
-    var WR5 = parseFloat(document.getElementById("15").value);
-    var WR4 = parseFloat(document.getElementById("20").value);
-    var WR3P5 = parseFloat(document.getElementById("25").value);
+    var WR12 = parseFloat(document.getElementById("15").value);
     var WR3 = parseFloat(document.getElementById("30").value);
-    var WR2P5= parseFloat(document.getElementById("35").value);
-    var WR2 = parseFloat(document.getElementById("40").value);
     var WR1P5 = parseFloat(document.getElementById("45").value);
     var WR1 = parseFloat(document.getElementById("50").value);
     var WR3P4 = parseFloat(document.getElementById("55").value);
-    var WR1P2= parseFloat(document.getElementById("60").value);
     var WR3P8 = parseFloat(document.getElementById("65").value);
     var WRN4 = parseFloat(document.getElementById("70").value);
     var WRN10 = parseFloat(document.getElementById("75").value);
@@ -453,6 +469,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var WRN60 = parseFloat(document.getElementById("95").value);
     var WRN200 = parseFloat(document.getElementById("100").value);
     var WRPAN = parseFloat(document.getElementById("105").value);
+
 
     var count = 0;
     if (PRA != 0) count++;
@@ -495,59 +512,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var WWpan = WDS - wWashed;
     
     //Tamiz 5 pulgadas
-    var PR5 = (WR5/WDS)*100;
-    var CPR5 = PR5 + 0;
-    var PP5 = 100 - CPR5;
+    var PR12 = (WR12/WDS)*100;
+    var CPR12 = PR12 + 0;
+    var PP12 = 100 - CPR12;
 
     //Tamiz 4 pulgadas
-    var PR4 = (WR4/WDS)*100;
-    var CPR4 = PR4+CPR5;
-    var PP4 = 100-CPR4;
-
-    //Tamiz 3.5 pulgadas
-    var PR3p5 = (WR3P5/WDS)*100;
-    var CPR3p5 = PR3p5+CPR4;
-    var PP3p5 = 100-CPR3p5;
-
-    //Tamiz 3 pulgadas
     var PR3 = (WR3/WDS)*100;
-    var CPR3 = PR3+CPR3p5;
+    var CPR3 = PR3+CPR12;
     var PP3 = 100-CPR3;
 
-    //Tamiz 2.5 pulgadas
-    var PR2p5 = (WR2P5/WDS)*100;
-    var CPR2p5 = PR2p5+CPR3;
-    var PP2p5 = 100-CPR2p5;
-
-    //Tamiz 2 pulgadas
-    var PR2 = (WR2/WDS)*100;
-    var CPR2 = PR2+CPR2p5;
-    var PP2 = 100-CPR2;
-
-    //Tamiz 1.5 pulgadas
+    //Tamiz 3.5 pulgadas
     var PR1p5 = (WR1P5/WDS)*100;
-    var CPR1p5 = PR1p5+CPR2;
+    var CPR1p5 = PR1p5+CPR3;
     var PP1p5 = 100-CPR1p5;
-  
-    //Tamiz 1 pulgadas
+
+    //Tamiz 3 pulgadas
     var PR1 = (WR1/WDS)*100;
     var CPR1 = PR1+CPR1p5;
     var PP1 = 100-CPR1;
-  
-    //Tamiz 3p4 pulgadas
+
+    //Tamiz 2.5 pulgadas
     var PR3p4 = (WR3P4/WDS)*100;
     var CPR3p4 = PR3p4+CPR1;
     var PP3p4 = 100-CPR3p4;
-  
-    //Tamiz 1p2 pulgadas
-    var PR1p2 = (WR1P2/WDS)*100;
-    var CPR1p2 = PR1p2+CPR3p4;
-    var PP1p2 = 100-CPR1p2;
 
-    //Tamiz 3p8 pulgadas
-    var PR3p8 = (WR3P8 / WDS) * 100;
-      var CPR3p8 = PR3p8 + CPR1p2;
-      var PP3p8 = 100 - CPR3p8;
+    //Tamiz 2 pulgadas
+    var PR3p8 = (WR3P8/WDS)*100;
+    var CPR3p8 = PR3p8+CPR3p4;
+    var PP3p8 = 100-CPR3p8;
   
       //Tamiz No4
       var PRn4 = (WRN4 / WDS) * 100;
@@ -596,11 +588,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
       if (PP3p8 === 100 &&
     (PPn4 >= 95 && PPn4 <= 100) &&
-    (PPn10 >= 75 && PPn10 <= 100) &&
+    (PPn10 >= 65 && PPn10 <= 100) &&
     (PPn16 >= 50 && PPn16 <= 85) &&
     (PPn50 >= 5 && PPn50 <= 30) &&
     (PPn60 >= 0 && PPn60 <= 25) &&
-    (PPn200 >= 0 && PPn200 <= 1.70)) {
+    (PPn200 >= 0 && PPn200 <= 5)) {
     resultado = "Accepted";
      } else {
      resultado = "Rejected";
@@ -621,16 +613,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var fines = PPn200;
 
 
-  var p5 = parseFloat(document.getElementById("18").value);
-  var p4 = parseFloat(document.getElementById("23").value);
-  var p3p5 = parseFloat(document.getElementById("28").value);
+  var p12 = parseFloat(document.getElementById("18").value);
   var p3 = parseFloat(document.getElementById("33").value);
-  var p2m5 = parseFloat(document.getElementById("38").value);
-  var p2 = parseFloat(document.getElementById("43").value);
-  var p1m5 = parseFloat(document.getElementById("48").value);
+  var p1p5 = parseFloat(document.getElementById("48").value);
   var p1 = parseFloat(document.getElementById("53").value);
   var p3m4 = parseFloat(document.getElementById("58").value);
-  var p1m2 = parseFloat(document.getElementById("63").value);
   var p3m8 = parseFloat(document.getElementById("68").value);
   var no4 = parseFloat(document.getElementById("73").value);
   var no10 = parseFloat(document.getElementById("78").value);
@@ -640,44 +627,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   var no60 = parseFloat(document.getElementById("98").value);
   var no200 = parseFloat(document.getElementById("103").value);
 
-  var tamanos = [0.075, 0.25, 0.30, 0.85, 1.18, 2.00, 4.75, 9.5, 12.7, 19.5, 25.4, 38.1, 50.80, 63.50,
-    76.2, 101.6, 127];
-  var porcentajes = [no200, no60, no50, no20, no16, no10, no4, p3m8, p1m2, p3m4, p1, p1m5,
-    p2, p2m5, p3, p3p5, p4, p5];
+  function buscarFilaValorAproximado(lookupValue, data, colIndex) {
+  if (colIndex < 1 || colIndex > data[0].length) {
+    throw new Error("Índice de columna inválido");
+  }
 
-    function calcularDiametro(d) {
-      function buscarIndice() {
-    for (var i = 0; i < porcentajes.length; i++) {
-      if (porcentajes[i] >= d) {
-        return i;
-      }
+  let closestRow = data[0];
+  let closestValue = data[0][colIndex - 1];
+  let closestDifference = Math.abs(closestValue - lookupValue);
+
+  for (const row of data.slice(1)) {
+    const currentValue = row[colIndex - 1];
+    const currentDifference = Math.abs(currentValue - lookupValue);
+
+    if (currentDifference < closestDifference) {
+      closestRow = row;
+      closestValue = currentValue;
+      closestDifference = currentDifference;
     }
-    return porcentajes.length - 1; // Si no se encuentra un índice, se devuelve el último
   }
 
-  var indice = buscarIndice();
-  if (porcentajes[indice] == d) {
-    return tamanos[indice];
-  } else {
-    // Realizar interpolación logarítmica
-    var logD = Math.log(d);
-    var logD1 = Math.log(porcentajes[indice - 1]);
-    var logD2 = Math.log(porcentajes[indice]);
-    var logT1 = Math.log(tamanos[indice - 1]);
-    var logT2 = Math.log(tamanos[indice]);
-    var resultadoD = Math.exp(logT1 + (logD - logD1) * (logT2 - logT1) / (logD2 - logD1));
-    return resultadoD;
-  }
+  return closestRow;
 }
 
-var d10 = calcularDiametro(10)||0;
-var d15 = calcularDiametro(15)||0;
-var d30 = calcularDiametro(30)||0;
-var d60 = calcularDiametro(60)||0;
-var d85 = calcularDiametro(85)||0;
-  
-var Cc = (Math.pow(d30, 2) / (d10 * d60))||0;
-var Cu = (d60 / d10)||0;
+function calcularResultado(lookupValue, valoresX, valoresY) {
+  const result = regression.logarithmic(valoresX.map((x, i) => [x, valoresY[i]]));
+  const valorB = result.equation[0];
+  const valorC = result.equation[1];
+  return Math.exp((lookupValue - valorB) / valorC);
+}
+
+const datos = [
+  [no200, 0.075, no60, 0.25],
+  [no60, 0.25, no50, 0.30],
+  [no50, 0.30, no20, 0.85],
+  [no20, 0.850, no16, 1.18],
+  [no16, 1.18, no10, 2.00],
+  [no10, 2.00, no4, 4.75],
+  [no4, 4.75, p3m8, 9.50],
+  [p3m8, 9.50, p3m4, 19.0],
+  [p3m4, 19.0, p1, 25.0],
+  [p1, 25.0, p1p5, 37.5],
+  [p1p5, 37.5, p3, 75.0],
+  [p3, 75.0, p12, 300],
+  [p12, 300, 0.0, 0],
+];
+
+const d10 = buscarFilaValorAproximado(10, datos, 3);
+const valoresX10 = [d10[1], d10[3]];
+const valoresY10 = [d10[0], d10[2]];
+const D10 = calcularResultado(10, valoresX10, valoresY10);
+
+const d30 = buscarFilaValorAproximado(30, datos, 3);
+const valoresX30 = [d30[1], d30[3]];
+const valoresY30 = [d30[0], d30[2]];
+const D30 = calcularResultado(30, valoresX30, valoresY30);
+
+const d60 = buscarFilaValorAproximado(60, datos, 3);
+const valoresX60 = [d60[1], d60[3]];
+const valoresY60 = [d60[0], d60[2]];
+const D60 = calcularResultado(60, valoresX60, valoresY60);
+
+var Cc = (Math.pow(D30, 2) / (D10 * D60));
+var Cu = (D60 / D10);
 
 function clasificarSuelo() {
     if (gravel > sand && fines < 5 && Cu >= 4 && Cc >= 1 && Cc <= 3 && sand < 15) {
@@ -768,30 +780,14 @@ function clasificarSuelo() {
     document.getElementById("12").value = WDS.toFixed(2);
     document.getElementById("14").value = WWpan.toFixed(2);
 
-    document.getElementById("16").value = PR5.toFixed(2);
-    document.getElementById("17").value = CPR5.toFixed(2);
-    document.getElementById("18").value = PP5.toFixed(2);
-
-    document.getElementById("21").value = PR4.toFixed(2);
-    document.getElementById("22").value = CPR4.toFixed(2);
-    document.getElementById("23").value = PP4.toFixed(2);
-
-    document.getElementById("26").value = PR3p5.toFixed(2);
-    document.getElementById("27").value = CPR3p5.toFixed(2);
-    document.getElementById("28").value = PP3p5.toFixed(2);
+    document.getElementById("16").value = PR12.toFixed(2);
+    document.getElementById("17").value = CPR12.toFixed(2);
+    document.getElementById("18").value = PP12.toFixed(2);
 
     document.getElementById("31").value = PR3.toFixed(2);
     document.getElementById("32").value = CPR3.toFixed(2);
     document.getElementById("33").value = PP3.toFixed(2);
 
-    document.getElementById("36").value = PR2p5.toFixed(2);
-    document.getElementById("37").value = CPR2p5.toFixed(2);
-    document.getElementById("38").value = PP2p5.toFixed(2);
-
-    document.getElementById("41").value = PR2.toFixed(2);
-    document.getElementById("42").value = CPR2.toFixed(2);
-    document.getElementById("43").value = PP2.toFixed(2);
-  
     document.getElementById("46").value = PR1p5.toFixed(2);
     document.getElementById("47").value = CPR1p5.toFixed(2);
     document.getElementById("48").value = PP1p5.toFixed(2);
@@ -803,10 +799,6 @@ function clasificarSuelo() {
     document.getElementById("56").value = PR3p4.toFixed(2);
     document.getElementById("57").value = CPR3p4.toFixed(2);
     document.getElementById("58").value = PP3p4.toFixed(2);
-    
-    document.getElementById("61").value = PR1p2.toFixed(2);
-    document.getElementById("62").value = CPR1p2.toFixed(2);
-    document.getElementById("63").value = PP1p2.toFixed(2);
 
     document.getElementById("66").value = PR3p8.toFixed(2);
     document.getElementById("67").value = CPR3p8.toFixed(2);
@@ -853,11 +845,9 @@ function clasificarSuelo() {
     document.getElementById("119").value = sand.toFixed(2);
     document.getElementById("120").value = fines.toFixed(2);
 
-    document.getElementById("121").value = d10.toFixed(2);
-    document.getElementById("122").value = d15.toFixed(2);
-    document.getElementById("123").value = d30.toFixed(2);
-    document.getElementById("124").value = d60.toFixed(2);
-    document.getElementById("125").value = d85.toFixed(2);
+    document.getElementById("121").value = D10.toFixed(2);
+    document.getElementById("123").value = D30.toFixed(2);
+    document.getElementById("124").value = D60.toFixed(2);
     document.getElementById("126").value = Cc.toFixed(2);
     document.getElementById("127").value = Cu.toFixed(2);
     document.getElementById("115").value = clasificacion;
