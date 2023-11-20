@@ -359,6 +359,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </table>
   </div>
 
+
+  <div style="display: flex; flex-direction: row-reverse; margin-right: 18%;">
+    <table class="table table-bordered" style="width: 300px;">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <th style="font-size: 12px; text-align: end;" scope="row">Grain Size Test Result</th>
+                <td><input type="text" style="border: none; background: transparent; text-align: center;" id="114" name="GrainSizeTestResultNo1" oninput="calcular()"></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div style="display: flex; flex-direction: row-reverse; margin-right: 18%;">
+    <table class="table table-bordered border-primary" style="width: 180px;">
+        <thead>
+            <caption style="text-align: center;">Fine Grained Classification using the USCS</caption>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" style="border: none; background: transparent; text-align: center;" size="20" id="115" name="GrainSizeTestResultNo2" oninput="calcular()"></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
 <div style="display: flex; flex-direction: row-reverse; margin-right: 5%;">
   <table class="table table-bordered" style="width: 320px;">
         <thead>
@@ -439,16 +468,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var WDST = parseFloat(document.getElementById("10").value);
     var wtare = parseFloat(document.getElementById("11").value);
     var wWashed = parseFloat(document.getElementById("13").value);
-    var WR5 = parseFloat(document.getElementById("15").value);
-    var WR4 = parseFloat(document.getElementById("20").value);
-    var WR3P5 = parseFloat(document.getElementById("25").value);
+    var WR12 = parseFloat(document.getElementById("15").value);
     var WR3 = parseFloat(document.getElementById("30").value);
-    var WR2P5= parseFloat(document.getElementById("35").value);
-    var WR2 = parseFloat(document.getElementById("40").value);
     var WR1P5 = parseFloat(document.getElementById("45").value);
     var WR1 = parseFloat(document.getElementById("50").value);
     var WR3P4 = parseFloat(document.getElementById("55").value);
-    var WR1P2= parseFloat(document.getElementById("60").value);
     var WR3P8 = parseFloat(document.getElementById("65").value);
     var WRN4 = parseFloat(document.getElementById("70").value);
     var WRN10 = parseFloat(document.getElementById("75").value);
@@ -499,41 +523,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var WDS = WDST - wtare;
     var WWpan = WDS - wWashed;
     
-    //Tamiz 5 pulgadas
-    var PR5 = (WR5/WDS)*100;
-    var CPR5 = PR5 + 0;
-    var PP5 = 100 - CPR5;
-
-    //Tamiz 4 pulgadas
-    var PR4 = (WR4/WDS)*100;
-    var CPR4 = PR4+CPR5;
-    var PP4 = 100-CPR4;
-
-    //Tamiz 3.5 pulgadas
-    var PR3p5 = (WR3P5/WDS)*100;
-    var CPR3p5 = PR3p5+CPR4;
-    var PP3p5 = 100-CPR3p5;
+    //Tamiz 12 pulgadas
+    var PR12 = (WR12/WDS)*100;
+    var CPR12 = PR12 + 0;
+    var PP12 = 100 - CPR12;
 
     //Tamiz 3 pulgadas
     var PR3 = (WR3/WDS)*100;
-    var CPR3 = PR3+CPR3p5;
+    var CPR3 = PR3+CPR12;
     var PP3 = 100-CPR3;
-
-    //Tamiz 2.5 pulgadas
-    var PR2p5 = (WR2P5/WDS)*100;
-    var CPR2p5 = PR2p5+CPR3;
-    var PP2p5 = 100-CPR2p5;
-
-    //Tamiz 2 pulgadas
-    var PR2 = (WR2/WDS)*100;
-    var CPR2 = PR2+CPR2p5;
-    var PP2 = 100-CPR2;
 
     //Tamiz 1.5 pulgadas
     var PR1p5 = (WR1P5/WDS)*100;
-    var CPR1p5 = PR1p5+CPR2;
+    var CPR1p5 = PR1p5+CPR3;
     var PP1p5 = 100-CPR1p5;
-  
+ 
     //Tamiz 1 pulgadas
     var PR1 = (WR1/WDS)*100;
     var CPR1 = PR1+CPR1p5;
@@ -543,15 +547,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var PR3p4 = (WR3P4/WDS)*100;
     var CPR3p4 = PR3p4+CPR1;
     var PP3p4 = 100-CPR3p4;
-  
-    //Tamiz 1p2 pulgadas
-    var PR1p2 = (WR1P2/WDS)*100;
-    var CPR1p2 = PR1p2+CPR3p4;
-    var PP1p2 = 100-CPR1p2;
 
     //Tamiz 3p8 pulgadas
     var PR3p8 = (WR3P8 / WDS) * 100;
-      var CPR3p8 = PR3p8 + CPR1p2;
+      var CPR3p8 = PR3p8 + CPR3p4;
       var PP3p8 = 100 - CPR3p8;
   
       //Tamiz No4
@@ -599,13 +598,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       var PPTP = 100 - CPRTP;
       
     
-      if (PP3p8 === 100 &&
-    (PPn4 >= 95 && PPn4 <= 100) &&
-    (PPn10 >= 75 && PPn10 <= 100) &&
-    (PPn16 >= 50 && PPn16 <= 85) &&
-    (PPn50 >= 5 && PPn50 <= 30) &&
-    (PPn60 >= 0 && PPn60 <= 25) &&
-    (PPn200 >= 0 && PPn200 <= 1.70)) {
+      if (PP1p5 === 100 &&
+    (PP1 >= 87 && PP1 <= 100) &&
+    (PP3p4 >= 70 && PP3p4 <= 100) &&
+    (PP3p8 >= 33 && PP3p8 <= 100) &&
+    (PPn4 >= 7 && PPn4 <= 60) &&
+    (PPn10 >= 0 && PPn10 <= 15) &&
+    (PPn20 >= 0 && PPn20 <= 7) &&
+    (PPn200 >= 0 && PPn200 <= 5)) {
     resultado = "Accepted";
      } else {
      resultado = "Rejected";
@@ -626,16 +626,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var fines = PPn200;
 
 
-  var p5 = parseFloat(document.getElementById("18").value);
-  var p4 = parseFloat(document.getElementById("23").value);
-  var p3p5 = parseFloat(document.getElementById("28").value);
+  var p12 = parseFloat(document.getElementById("18").value);
   var p3 = parseFloat(document.getElementById("33").value);
-  var p2m5 = parseFloat(document.getElementById("38").value);
-  var p2 = parseFloat(document.getElementById("43").value);
   var p1m5 = parseFloat(document.getElementById("48").value);
   var p1 = parseFloat(document.getElementById("53").value);
   var p3m4 = parseFloat(document.getElementById("58").value);
-  var p1m2 = parseFloat(document.getElementById("63").value);
   var p3m8 = parseFloat(document.getElementById("68").value);
   var no4 = parseFloat(document.getElementById("73").value);
   var no10 = parseFloat(document.getElementById("78").value);
@@ -645,10 +640,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   var no60 = parseFloat(document.getElementById("98").value);
   var no200 = parseFloat(document.getElementById("103").value);
 
-  var tamanos = [0.075, 0.25, 0.30, 0.85, 1.18, 2.00, 4.75, 9.5, 12.7, 19.5, 25.4, 38.1, 50.80, 63.50,
-    76.2, 101.6, 127];
-  var porcentajes = [no200, no60, no50, no20, no16, no10, no4, p3m8, p1m2, p3m4, p1, p1m5,
-    p2, p2m5, p3, p3p5, p4, p5];
+  var tamanos = [0.075, 0.25, 0.30, 0.85, 1.18, 2.00, 4.75, 9.5, 19.5, 25, 37.5, 75, 300];
+  var porcentajes = [no200, no60, no50, no20, no16, no10, no4, p3m8, p3m4, p1, p1m5, p3, p12];
 
     function calcularDiametro(d) {
       function buscarIndice() {
@@ -676,10 +669,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 var d10 = calcularDiametro(10)||0;
-var d15 = calcularDiametro(15)||0;
 var d30 = calcularDiametro(30)||0;
 var d60 = calcularDiametro(60)||0;
-var d85 = calcularDiametro(85)||0;
   
 var Cc = (Math.pow(d30, 2) / (d10 * d60))||0;
 var Cu = (d60 / d10)||0;
@@ -773,29 +764,13 @@ function clasificarSuelo() {
     document.getElementById("12").value = WDS.toFixed(2);
     document.getElementById("14").value = WWpan.toFixed(2);
 
-    document.getElementById("16").value = PR5.toFixed(2);
-    document.getElementById("17").value = CPR5.toFixed(2);
-    document.getElementById("18").value = PP5.toFixed(2);
-
-    document.getElementById("21").value = PR4.toFixed(2);
-    document.getElementById("22").value = CPR4.toFixed(2);
-    document.getElementById("23").value = PP4.toFixed(2);
-
-    document.getElementById("26").value = PR3p5.toFixed(2);
-    document.getElementById("27").value = CPR3p5.toFixed(2);
-    document.getElementById("28").value = PP3p5.toFixed(2);
+    document.getElementById("16").value = PR12.toFixed(2);
+    document.getElementById("17").value = CPR12.toFixed(2);
+    document.getElementById("18").value = PP12.toFixed(2);
 
     document.getElementById("31").value = PR3.toFixed(2);
     document.getElementById("32").value = CPR3.toFixed(2);
     document.getElementById("33").value = PP3.toFixed(2);
-
-    document.getElementById("36").value = PR2p5.toFixed(2);
-    document.getElementById("37").value = CPR2p5.toFixed(2);
-    document.getElementById("38").value = PP2p5.toFixed(2);
-
-    document.getElementById("41").value = PR2.toFixed(2);
-    document.getElementById("42").value = CPR2.toFixed(2);
-    document.getElementById("43").value = PP2.toFixed(2);
   
     document.getElementById("46").value = PR1p5.toFixed(2);
     document.getElementById("47").value = CPR1p5.toFixed(2);
@@ -808,10 +783,6 @@ function clasificarSuelo() {
     document.getElementById("56").value = PR3p4.toFixed(2);
     document.getElementById("57").value = CPR3p4.toFixed(2);
     document.getElementById("58").value = PP3p4.toFixed(2);
-    
-    document.getElementById("61").value = PR1p2.toFixed(2);
-    document.getElementById("62").value = CPR1p2.toFixed(2);
-    document.getElementById("63").value = PP1p2.toFixed(2);
 
     document.getElementById("66").value = PR3p8.toFixed(2);
     document.getElementById("67").value = CPR3p8.toFixed(2);
@@ -859,10 +830,8 @@ function clasificarSuelo() {
     document.getElementById("120").value = fines.toFixed(2);
 
     document.getElementById("121").value = d10.toFixed(2);
-    document.getElementById("122").value = d15.toFixed(2);
     document.getElementById("123").value = d30.toFixed(2);
     document.getElementById("124").value = d60.toFixed(2);
-    document.getElementById("125").value = d85.toFixed(2);
     document.getElementById("126").value = Cc.toFixed(2);
     document.getElementById("127").value = Cu.toFixed(2);
     document.getElementById("115").value = clasificacion;
