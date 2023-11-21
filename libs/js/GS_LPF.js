@@ -47,6 +47,25 @@ option = {
   series: [
     {
       data: [
+        [75.0, document.getElementById(39).value],
+        [37.5, document.getElementById(51).value],
+        [25.0, document.getElementById(55).value],
+        [19.0, document.getElementById(59).value],
+        [9.50, document.getElementById(67).value],
+        [4.75, document.getElementById(71).value],
+        [2.00, document.getElementById(75).value],
+        [1.18, document.getElementById(79).value],
+        [0.85, document.getElementById(83).value],
+        [0.30, document.getElementById(87).value],
+        [0.25, document.getElementById(91).value],
+        [0.075, document.getElementById(103).value]
+      ],
+      type: "line",
+      showSymbol: false,
+      color: "orange"
+    },
+    {
+      data: [
         [75, 100],
         [19, 80],
         [9.5, 70],
