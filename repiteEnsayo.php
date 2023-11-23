@@ -30,42 +30,44 @@
  }
 ?>
 <?php include_once('layouts/header.php'); ?>
+
+<div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>
+                    <span class="glyphicon glyphicon-th"></span>
+                    <span>Lista de muestras en Repeticion</span>
+                </strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 50px;">#</th>
+                            <th class="text-center" style="width: 50px;">ID Muestra</th>
+                            <th class="text-center" style="width: 50px;">Numero de Muestra</th>
+                            <th class="text-center" style="width: 50px;">Tipo de Ensayo</th>
+                            <th class="text-center" style="width: 50px;">Tecnico</th>
+                            <th class="text-center" style="width: 50px;">Fecha solicitud repeticion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($all_repite as $repite): ?>
+                            <tr>
+                                <td class="text-center"><?php echo count_id(); ?></td>
+                                <td class="text-center"><?php echo remove_junk(ucfirst($repite['Sample_ID'])); ?></td>
+                                <td class="text-center"><?php echo remove_junk(ucfirst($repite['Sample_Number'])); ?></td>
+                                <td class="text-center"><?php echo remove_junk(ucfirst($repite['Test_Type'])); ?></td>
+                                <td class="text-center"><?php echo remove_junk(ucfirst($repite['Tecnico'])); ?></td>
+                                <td class="text-center"><?php echo remove_junk(ucfirst($repite['Fecha_Inicio'])); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="col-md-7">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          <span>Lista de muestras en Repeticion</span>
-       </strong>
-      </div>
-        <div class="panel-body">
-          <table class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th class="text-center" style="width: 50px;">#</th>
-                    <th class="text-center" style="width: 50px;">Sample_ID</th>
-                    <th class="text-center" style="width: 50px;">Tecnico</th>
-                    <th class="text-center" style="width: 50px;">Fecha solicitud repeticion</th>
-                   
-                </tr>
-             
-            </thead>
-            <tbody>
-             
-              <?php foreach ($all_repite as $repite):?>
-                <tr>
-                    <td class="text-center"><?php echo count_id();?></td>
-                    <td><?php echo remove_junk(ucfirst($repite['Sample_ID'])); ?></td>
-                    <td><?php echo remove_junk(ucfirst($repite['Tecnico'])); ?></td>
-                    <td><?php echo remove_junk(ucfirst($repite['Fecha_Inicio'])); ?></td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-       </div>
-    </div>
-    </div>
-   </div>
-  </div>
-  <?php include_once('layouts/footer.php'); ?>
+</div>
+
+<?php include_once('layouts/footer.php'); ?>

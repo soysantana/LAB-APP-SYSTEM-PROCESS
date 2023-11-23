@@ -142,7 +142,7 @@ $conn->close();
             var testType = $(this).data('test-type');
             
             // Generar una URL de impresión basada en el tipo de ensayo
-            var printUrl = 'print.php?testType=' + testType;
+            var printUrl = 'PDF/Barrick-Pendiente.php?testType=' + testType;
             
             // Abrir una nueva ventana o pestaña para imprimir
             window.open(printUrl, '_blank');
