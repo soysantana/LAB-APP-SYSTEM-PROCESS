@@ -10,6 +10,14 @@
 <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
 <script src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
 <!-- GRAFICOS -->
+<script src="libs/js/GS_UFF.js"></script>
+<script src="libs/js/GS_IRF.js"></script>
+<script src="libs/js/GS_RF.js"></script>
+<script src="libs/js/GS_UTF.js"></script>
+<script src="libs/js/GS_LPF.js"></script>
+<script src="libs/js/GS_FF.js"></script>
+<script src="libs/js/GS_CF.js"></script>
+<script src="libs/js/GS_TRF.js"></script>
 <script src="libs/js/gs_coarse_agg.js"></script>
 <script src="libs/js/gs_fine_agg.js"></script>
 <script src="libs/js/gs_coarse_than.js"></script>
