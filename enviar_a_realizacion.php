@@ -8,7 +8,7 @@ page_require_level(3);
 $realizacion = find_by_id('muestra_en_preparacion', (int)$_GET['id']);
 
 if (!$realizacion) {
-  $session->msg("d", "ID de muestra faltante.");
+  $session->msg("d", "Muestra Duplicada");
   redirect('prepEnsayo.php');
 }
 ?>
@@ -21,24 +21,31 @@ if (isset($_POST['enviar_realizacion'])) {
   $test_type = remove_junk($db->escape($_POST['realizacion-Test_Type']));
   $tecnico = remove_junk($db->escape($_POST['realizacion-Tecnico']));
 
-  if (empty($errors)) {
-    $date = make_date();
-    $status = "Realizacion";
-    $sql = "INSERT INTO muestra_en_realizacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Realizacion, Estatus)";
-    $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}', '{$status}')";
-    if ($db->query($sql)) {
-      $session->msg("s", "Ensayo enviado a realización exitosamente.");
-      redirect('realizaEnsayo.php', false);
-    } else {
-      $session->msg("d", "Lo siento, el envío falló: " . mysqli_error($db));
-      redirect('realizaEnsayo.php', false);
-    }
-  } else {
-    $session->msg("d", $errors);
+  // Check if the entry already exists
+  $checkQuery = "SELECT * FROM muestra_en_realizacion WHERE Test_Type = '{$test_type}'";
+  $result = $db->query($checkQuery);
+
+  if ($result->num_rows > 0) {
+    $session->msg("d", "Error: Entrada duplicada para el tipo de prueba '{$test_type}'.");
+    redirect('enviar_a_realizacion.php', false);
+  }
+
+  // Proceed with the insertion
+  $date = make_date();
+  $status = "Realizacion";
+  $sql = "INSERT INTO muestra_en_realizacion (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_Inicio_Realizacion, Estatus)";
+  $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}', '{$status}')";
+
+  if ($db->query($sql)) {
+    $session->msg("s", "Ensayo enviado a realización exitosamente.");
     redirect('realizaEnsayo.php', false);
+  } else {
+    $session->msg("d", "Lo siento, el envío falló: " . mysqli_error($db));
+    redirect('enviar_a_realizacion.php', false);
   }
 }
 ?>
+
 
 <?php include_once('layouts/header.php'); ?>
 

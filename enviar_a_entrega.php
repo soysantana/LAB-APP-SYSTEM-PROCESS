@@ -12,10 +12,11 @@ if (!$entrega) {
   redirect('entregaEnsayo.php');
 }
 ?>
+
 <?php
 if (isset($_POST['enviar_entrega'])) {
   $req_fields = array('entrega-Sample_ID', 'entrega-Sample_Number', 'entrega-Test_Type', 'entrega-Tecnico');
-  validate_fields($req_field);
+  validate_fields($req_fields);
   $sample_id = remove_junk($db->escape($_POST['entrega-Sample_ID']));
   $sample_number = remove_junk($db->escape($_POST['entrega-Sample_Number']));
   $test_type = remove_junk($db->escape($_POST['entrega-Test_Type']));
@@ -24,14 +25,29 @@ if (isset($_POST['enviar_entrega'])) {
   if (empty($errors)) {
     $date = make_date();
     $status = "Entregado";
-    $sql  = "INSERT INTO ensayo_en_entrega (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_de_Entrega, Estatus)";
-    $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}', '{$status}')";
 
-    if ($db->query($sql)) {
-      $session->msg("s", "Ensayo enviado a entrega exitosamente.");
-      redirect('entregaEnsayo.php', false);
-    } else {
-      $session->msg("d", "Lo siento, envío falló");
+    $check_duplicate_sql = "SELECT * FROM ensayo_en_entrega WHERE Test_Type = '{$test_type}' LIMIT 1";
+    $result = $db->query($check_duplicate_sql);
+    
+    if ($db->num_rows($result) > 0) {
+        // Ya existe un registro con el mismo valor en 'Test_Type'
+        $session->msg("d", "Error: Esa Muestra '{$test_type}' ya existe.");
+        redirect('entregaEnsayo.php', false);
+    }
+
+    try {
+      $sql  = "INSERT INTO ensayo_en_entrega (Sample_ID, Sample_Number, Test_Type, Tecnico, Fecha_de_Entrega, Estatus)";
+      $sql .= "VALUES ('{$sample_id}', '{$sample_number}', '{$test_type}', '{$tecnico}', '{$date}', '{$status}')";
+
+      if ($db->query($sql)) {
+        $session->msg("s", "Ensayo enviado a entrega exitosamente.");
+        redirect('entregaEnsayo.php', false);
+      } else {
+        $session->msg("d", "Lo siento, envío falló");
+        redirect('entregaEnsayo.php', false);
+      }
+    } catch (Exception $e) {
+      $session->msg("d", "Error: " . $e->getMessage());
       redirect('entregaEnsayo.php', false);
     }
   } else {
@@ -40,6 +56,7 @@ if (isset($_POST['enviar_entrega'])) {
   }
 }
 ?>
+
 
 <?php include_once('layouts/header.php'); ?>
 

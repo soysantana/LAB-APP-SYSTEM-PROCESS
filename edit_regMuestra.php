@@ -40,6 +40,10 @@
       $North = remove_junk($db->escape($_POST['North']));
       $East = remove_junk($db->escape($_POST['East']));
       $Elev = remove_junk($db->escape($_POST['Elev']));
+      $Sample_By = remove_junk($db->escape($_POST['Sample_By']));
+      $Register_By = remove_junk($db->escape($_POST['Register_By']));
+      $Comment = remove_junk($db->escape($_POST['Comment']));
+      $Sample_Date = remove_junk($db->escape($_POST['Sample_Date']));
       $Test_Type1 = remove_junk($db->escape($_POST['Test_Type1']));
       $Test_Type2 = remove_junk($db->escape($_POST['Test_Type2']));
       $Test_Type3 = remove_junk($db->escape($_POST['Test_Type3']));
@@ -73,6 +77,10 @@
       $query .= "North = '{$North}', ";
       $query .= "East = '{$East}', ";
       $query .= "Elev = '{$Elev}', ";
+      $query .= "Sample_By = '{$Sample_By}', ";
+      $query .= "Register_By = '{$Register_By}', ";
+      $query .= "Comment = '{$Comment}', ";
+      $query .= "Sample_Date = '{$Sample_Date}', ";
       $query .= "Test_Type1 = '{$Test_Type1}', ";
       $query .= "Test_Type2 = '{$Test_Type2}', ";
       $query .= "Test_Type3 = '{$Test_Type3}', ";
@@ -658,11 +666,29 @@ if (isset($_POST['Test_Type2'])) {
             </div>
             <div class="col-xs-4">
               <label>Coordenada Este</label>
-              <input class="form-control" name=East type="text" value="<?php echo remove_junk($lab_req_form['East']); ?>">
+              <input class="form-control" name="East" type="text" value="<?php echo remove_junk($lab_req_form['East']); ?>">
             </div>
             <div class="col-xs-4">
               <label>Elevacion</label>
               <input class="form-control" name="Elev" type="text" value="<?php echo remove_junk($lab_req_form['Elev']); ?>">
+            </div>
+
+            </div>
+            <div class="col-xs-4">
+              <label>Muestrado Por</label>
+              <input class="form-control" name="Sample_By" type="text" value="<?php echo remove_junk($lab_req_form['Sample_By']); ?>">
+            </div>
+            <div class="col-xs-4">
+              <label>Registrado Por</label>
+              <input class="form-control" name="Register_By" type="text" value="<?php echo remove_junk($lab_req_form['Register_By']); ?>">
+            </div>
+            <div class="col-xs-2">
+              <label >Comentario</label>
+              <input class="form-control" name="Comment" type="text" value="<?php echo remove_junk($lab_req_form['Comment']); ?>">
+            </div>
+            <div class="col-xs-2">
+              <label>Fecha de Muestreo</label>
+              <input class="form-control" name="Sample_Date" type="date" value="<?php echo remove_junk($lab_req_form['Sample_Date']); ?>">
             </div>
           
          

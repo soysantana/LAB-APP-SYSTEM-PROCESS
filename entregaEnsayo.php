@@ -36,6 +36,7 @@
 <?php include_once('layouts/header.php'); ?>
     </div>
     <div class="col-md-7">
+    <?php echo display_msg($msg); ?>
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
