@@ -47,6 +47,26 @@ option = {
   series: [
     {
       data: [
+        [101.600, document.getElementById(25).value],
+        [89.000, document.getElementById(30).value],
+        [75.000, document.getElementById(35).value],
+        [63.000, document.getElementById(40).value],
+        [50.800, document.getElementById(44).value],
+        [37.500, document.getElementById(49).value],
+        [25.000, document.getElementById(55).value],
+        [19.000, document.getElementById(61).value],
+        [12.500, document.getElementById(84).value],
+        [9.500, document.getElementById(67).value],
+        [4.750, document.getElementById(73).value],
+        [2.000, document.getElementById(79).value],
+        [0.075, document.getElementById(102).value]
+      ],
+      type: "line",
+      showSymbol: false,
+      color: "orange"
+    },
+    {
+      data: [
         [300, 0],
         [300, 100]
       ],
