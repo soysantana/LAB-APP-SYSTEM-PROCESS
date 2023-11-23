@@ -175,14 +175,14 @@ foreach ($muestra_data as $muestra) {
     if ($resultado_entregado && $resultado_entregado->num_rows > 0) {
         $ensayoEntregado = true;
     }
-    // Busca en la tabla ensayo_en_repeticion
+    // Busca en la tabla ensayo_en_revision
     $sql_revision = "SELECT * FROM ensayos_en_revision WHERE Sample_ID = '{$muestra['Sample_ID']}' AND Sample_Number = '{$muestra['Sample_Number']}' AND Test_Type = '{$muestra['Test_Type']}'";
     $resultado_revision = $conexion->query($sql_repeticion);
     if ($resultado_revision && $resultado_revision->num_rows > 0) {
     $ensayoRevision = true;
     }
 
-   // Busca en la tabla ensayo_en_entrega
+   // Busca en la tabla ensayo_en_repeticion
    $sql_repeticion = "SELECT * FROM ensayo_en_repeticion WHERE Sample_ID = '{$muestra['Sample_ID']}' AND Sample_Number = '{$muestra['Sample_Number']}' AND Test_Type = '{$muestra['Test_Type']}'";
    $resultado_repeticion = $conexion->query($sql_repeticion);
    if ($resultado_repeticion && $resultado_repeticion->num_rows > 0) {

@@ -37,7 +37,7 @@
           <a class="nav-link glyphicon glyphicon-calendar" href="planificacion.php" style="font-size: 17px;"> Planificacion Semanal</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link glyphicon glyphicon-registration-mark" href="menuEnsayosRevision.php" style="font-size: 17px;"> Ensayos en Resivion</a>
+          <a class="nav-link glyphicon glyphicon-registration-mark" href="menuEnsayosRevision.php" style="font-size: 17px;"> Ensayos en Revision</a>
         </li>
         <li class="nav-item">
           <a class="nav-link glyphicon glyphicon-question-sign" href="ensayospendientes.php" style="font-size: 17px;"> Ensayos Pendientes</a>
