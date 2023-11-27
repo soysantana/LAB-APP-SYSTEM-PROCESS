@@ -31,22 +31,12 @@ require_once('ensayos/mcoven.php');
         <li class="nav-item has-submenu">
           <a class="nav-link  glyphicon glyphicon-briefcase submenu-toggle" href="" style="font-size: 17px;"> Registro de Ensayos</a>
           <ul class="submenu collapse">
-            <li><a class="nav-link" href="MCmenu.php" style="font-size: 16px;">Contenido de humedad</a></li>
-            <li><a class="nav-link" href="GSmenu.php"style="font-size: 16px;">Granulometrias</a></li>
-            <li><a class="nav-link" href="SGmenu.php" style="font-size: 16px;">Gravedad Especifica</a></li>
-            <li><a class="nav-link" href="LAAmenu.php" style="font-size: 16px;">Abrasion De Los Angeles</a></li>
-            <li><a class="nav-link" href="Al.php" style="font-size: 16px;">Limite de Atterberg</a></li>
-            <li><a class="nav-link" href="Standardproctor.php" style="font-size: 16px;">Standard Proctor</a></li>
-            <li><a class="nav-link" href="PLT.php" style="font-size: 16px;">Carga Puntual</a></li>
-            <li><a class="nav-link" href="CSmenu.php" style="font-size: 16px;">Esfuerzo a Compresion</a></li>
-            <li><a class="nav-link" href="BTS.php" style="font-size: 16px;">Esfuerzo a Tension</a></li>
-            <li><a class="nav-link" href="leeb_hardness.php" style="font-size: 16px;">Dureza Leeb</a></li>
-            <li><a class="nav-link" href="Dispermenu.php" style="font-size: 16px;">Dispersion</a></li>
-            <li><a class="nav-link" href="soundness.php" style="font-size: 16px;">Sanidad</a></li>
-            <li><a class="nav-link" href="PYmenu.php" style="font-size: 16px;">Permeabilidad</a></li>
-            <li><a class="nav-link" href="dencyMenu.php" style="font-size: 16px;">Densidades</a></li>
-            <li><a class="nav-link" href="consolidation.php" style="font-size: 16px;">Consolidacion</a></li>
+            <li><a class="nav-link" href="Menu-Contruccion.php" style="font-size: 16px;">Construccion</a></li>
+            <li><a class="nav-link" href="Menu-Investigacion.php"style="font-size: 16px;">Investigacion</a></li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link glyphicon glyphicon-calendar" href="planificacion.php" style="font-size: 17px;"> Planificacion Semanal</a>
         </li>
     <script>
       document.addEventListener("DOMContentLoaded", function() {

@@ -22,8 +22,11 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a class="nav-link glyphicon glyphicon-calendar" href="programaciones.php" style="font-size: 17px;"> Programaciones</a>
+      <a class="nav-link glyphicon glyphicon-calendar" href="planificacion.php" style="font-size: 17px;"> Programaciones</a>
     </li>
+    <li class="nav-item">
+          <a class="nav-link glyphicon glyphicon-question-sign" href="ensayospendientes.php" style="font-size: 17px;"> Ensayos Pendientes</a>
+        </li>
     
 <script>
   document.addEventListener("DOMContentLoaded", function() {
