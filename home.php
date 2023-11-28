@@ -65,10 +65,10 @@ $Search_ListP = find_all('lista_de_pendiente');
                                 echo "<td class='center-cell $rowClass' style='text-align: center;'>";
                                 if ($Search_Preparacion) {
                                     
-                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
+                                    echo "<img src='uploads/img/realizado-gren.png' alt='En preparación' width='30px'>";
                                 } else {
                                     
-                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
+                                    echo "<img src='uploads/img/norealizado-red.png' alt='No estoy aquí' width='30px'>";
                                 }
                                 echo "</td>";
 
@@ -78,10 +78,10 @@ $Search_ListP = find_all('lista_de_pendiente');
                                 echo "<td class='center-cell $rowClass' style='text-align: center;'>";
                                 if ($Search_Realizacion) {
                                     
-                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
+                                    echo "<img src='uploads/img/realizado-gren.png' alt='En preparación' width='30px'>";
                                 } else {
                                     
-                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
+                                    echo "<img src='uploads/img/norealizado-red.png' alt='No estoy aquí' width='30px'>";
                                 }
                                 echo "</td>";
 
@@ -91,10 +91,10 @@ $Search_ListP = find_all('lista_de_pendiente');
                                 echo "<td class='center-cell $rowClass' style='text-align: center;'>";
                                 if ($Search_Entregado) {
                                     
-                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
+                                    echo "<img src='uploads/img/realizado-gren.png' alt='En preparación' width='30px'>";
                                 } else {
                                     
-                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
+                                    echo "<img src='uploads/img/norealizado-red.png' alt='No estoy aquí' width='30px'>";
                                 }
                                 echo "</td>";
 
@@ -104,18 +104,17 @@ $Search_ListP = find_all('lista_de_pendiente');
                                 echo "<td class='center-cell $rowClass' style='text-align: center;'>";
                                 if ($Search_Revision) {
                                     
-                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
+                                    echo "<img src='uploads/img/realizado-gren.png' alt='En preparación' width='30px'>";
                                 } else {
                                     
-                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
+                                    echo "<img src='uploads/img/norealizado-red.png' alt='No estoy aquí' width='30px'>";
                                 }
                                 echo "</td>";
-
                                 
 
                                 echo "<td class='center-cell $rowClass' style='text-align: center;'>";
                                 if ($Search_Repeticion) {
-                                    echo "<img src='uploads/img/01.gif' alt='En preparación' width='30px'>";
+                                    echo "<img src='uploads/img/01.gif' class='imagen-amarilla' alt='En preparación' width='30px'>";
                                 } else {
                                     echo "";
                                 }
