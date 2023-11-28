@@ -33,6 +33,7 @@
 
 <div>
     <div class="col-md-8">
+    <?php echo display_msg($msg); ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <strong>
