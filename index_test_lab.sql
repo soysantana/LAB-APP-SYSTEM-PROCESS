@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2023 a las 14:51:59
+-- Tiempo de generación: 28-11-2023 a las 18:16:52
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -131,7 +131,7 @@ CREATE TABLE `atterberg_limit` (
 --
 
 INSERT INTO `atterberg_limit` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Technician`, `Split_Method`, `Preparation_Method`, `Nat_Mc`, `LL_Blows_1`, `LL_Blows_2`, `LL_Blows_3`, `LL_Container_1`, `LL_Container_2`, `LL_Container_3`, `LL_Wet_Soil_1`, `LL_Wet_Soil_2`, `LL_Wet_Soil_3`, `LL_Dry_soil_tare1`, `LL_Dry_soil_tare2`, `LL_Dry_soil_tare3`, `LL_Water_1`, `LL_Water_2`, `LL_Water_3`, `LL_Tare_1`, `LL_Tare_2`, `LL_Tare_3`, `LL_Wt_Dry_Soil_1`, `LL_Wt_Dry_Soil_2`, `LL_Wt_Dry_Soil_3`, `LL_MC_Porce_1`, `LL_MC_Porce_2`, `LL_MC_Porce_3`, `PL_Container_1`, `PL_Container_2`, `PL_Container_3`, `PL_Wet_Soil_1`, `PL_Wet_Soil_2`, `PL_Wet_Soil_3`, `PL_Dry_soil_tare1`, `PL_Dry_soil_tare2`, `PL_Dry_soil_tare3`, `PL_Water_1`, `PL_Water_2`, `PL_Water_3`, `PL_Tare_1`, `PL_Tare_2`, `PL_Tare_3`, `PL_Wt_Dry_Soil_1`, `PL_Wt_Dry_Soil_2`, `PL_Wt_Dry_Soil_3`, `PL_MC_Porce_1`, `PL_MC_Porce_2`, `PL_MC_Porce_3`, `PL_Avg_Mc`, `Liquid_Limit_Porce`, `Plastic_Limit_Porce`, `Plasticity_Index_Porce`, `Liquidity_Index_Porce`, `Classification`, `Liquid_Limit_Plot`, `Plasticity_Chart`, `Comments`, `Test_Start_Date`, `Report_Date`, `test_type`, `Standard`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', 'JL', 'Choose...', 'Choose...', 0, 0, 0, 0, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Error', NULL, NULL, 'Insufficient material', '2023-11-28', '2023-11-28', 'AL', 'ASTM-D4318', 'Arturo Santana');
+(1, 'DH-BGC23-NTSF-173', 'G1', 'DH-BGC23-NTSF', 'Site investigation', 'Naranjo', 12.5, 14.35, 'Soil', 'Lexan', 0, 0, 0, '2023-11-08', 'AS', 'Choose...', 'Choose...', 0, 0, 0, 0, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Error', NULL, NULL, 'Insufficient Material', '2023-11-28', '2023-11-28', 'AL', 'ASTM-D4318', 'Arturo Santana');
 
 -- --------------------------------------------------------
 
@@ -1058,13 +1058,6 @@ CREATE TABLE `double_hydrometer` (
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Volcado de datos para la tabla `double_hydrometer`
---
-
-INSERT INTO `double_hydrometer` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Dispersing_Agent`, `Amount_Used_g`, `Temperature_of_Test`, `Viscosity_of_Water_gs_cm2`, `Mass_Density_of_Water_Calibrated`, `Acceleration_cm_s2`, `Volume_of_Suspension_Vsp_cm3`, `Meniscus_Correction_Cm`, `Percent_Passing_No_200_sieve`, `Specific_Gravity`, `Tare_Name_50gr`, `Tare_Name_25gr`, `Oven_Temperature_50gr`, `Oven_Temperature_25gr`, `Tare_Plus_Wet_Soil_50gr`, `Tare_Plus_Wet_Soil_25gr`, `Tare_Plus_Dry_Soil_50gr`, `Tare_Plus_Dry_Soil_25gr`, `Water_Ww_50gr`, `Water_Ww_25gr`, `Tare_50gr`, `Tare_25gr`, `Dry_Soil_Ws_50gr`, `Dry_Soil_Ws_25gr`, `Moisture_Content_Porce_50gr`, `Moisture_Content_Porce_25gr`, `Hy_Calibration_50gr_Temperature_No1`, `Hy_Calibration_50gr_Temperature_No2`, `Hy_Calibration_50gr_Temperature_No3`, `Hy_Calibration_50gr_Temperature_No4`, `Hy_Calibration_50gr_Temperature_No5`, `Hy_Calibration_50gr_Temperature_No6`, `Hy_Calibration_50gr_Temperature_No7`, `Hy_Calibration_50gr_Temperature_No8`, `Hy_Calibration_50gr_Temperature_No9`, `Hy_Calibration_50gr_Actual_Reading_No1`, `Hy_Calibration_50gr_Actual_Reading_No2`, `Hy_Calibration_50gr_Actual_Reading_No3`, `Hy_Calibration_50gr_Actual_Reading_No4`, `Hy_Calibration_50gr_Actual_Reading_No5`, `Hy_Calibration_50gr_Actual_Reading_No6`, `Hy_Calibration_50gr_Actual_Reading_No7`, `Hy_Calibration_50gr_Actual_Reading_No8`, `Hy_Calibration_50gr_Actual_Reading_No9`, `Hy_Measure_Fluid_50gr_Temperature_No1`, `Hy_Measure_Fluid_50gr_Temperature_No2`, `Hy_Measure_Fluid_50gr_Temperature_No3`, `Hy_Measure_Fluid_50gr_Temperature_No4`, `Hy_Measure_Fluid_50gr_Temperature_No5`, `Hy_Measure_Fluid_50gr_Temperature_No6`, `Hy_Measure_Fluid_50gr_Temperature_No7`, `Hy_Measure_Fluid_50gr_Temperature_No8`, `Hy_Measure_Fluid_50gr_Temperature_No9`, `Hy_Measure_Fluid_50gr_Actual_Reading_No1`, `Hy_Measure_Fluid_50gr_Actual_Reading_No2`, `Hy_Measure_Fluid_50gr_Actual_Reading_No3`, `Hy_Measure_Fluid_50gr_Actual_Reading_No4`, `Hy_Measure_Fluid_50gr_Actual_Reading_No5`, `Hy_Measure_Fluid_50gr_Actual_Reading_No6`, `Hy_Measure_Fluid_50gr_Actual_Reading_No7`, `Hy_Measure_Fluid_50gr_Actual_Reading_No8`, `Hy_Measure_Fluid_50gr_Actual_Reading_No9`, `Hy_Calibration_25gr_Temperature_No1`, `Hy_Calibration_25gr_Temperature_No2`, `Hy_Calibration_25gr_Temperature_No3`, `Hy_Calibration_25gr_Temperature_No4`, `Hy_Calibration_25gr_Temperature_No5`, `Hy_Calibration_25gr_Temperature_No6`, `Hy_Calibration_25gr_Temperature_No7`, `Hy_Calibration_25gr_Temperature_No8`, `Hy_Calibration_25gr_Temperature_No9`, `Hy_Calibration_25gr_Actual_Reading_No1`, `Hy_Calibration_25gr_Actual_Reading_No2`, `Hy_Calibration_25gr_Actual_Reading_No3`, `Hy_Calibration_25gr_Actual_Reading_No4`, `Hy_Calibration_25gr_Actual_Reading_No5`, `Hy_Calibration_25gr_Actual_Reading_No6`, `Hy_Calibration_25gr_Actual_Reading_No7`, `Hy_Calibration_25gr_Actual_Reading_No8`, `Hy_Calibration_25gr_Actual_Reading_No9`, `Hy_Measure_Fluid_25gr_Temperature_No1`, `Hy_Measure_Fluid_25gr_Temperature_No2`, `Hy_Measure_Fluid_25gr_Temperature_No3`, `Hy_Measure_Fluid_25gr_Temperature_No4`, `Hy_Measure_Fluid_25gr_Temperature_No5`, `Hy_Measure_Fluid_25gr_Temperature_No6`, `Hy_Measure_Fluid_25gr_Temperature_No7`, `Hy_Measure_Fluid_25gr_Temperature_No8`, `Hy_Measure_Fluid_25gr_Temperature_No9`, `Hy_Measure_Fluid_25gr_Actual_Reading_No1`, `Hy_Measure_Fluid_25gr_Actual_Reading_No2`, `Hy_Measure_Fluid_25gr_Actual_Reading_No3`, `Hy_Measure_Fluid_25gr_Actual_Reading_No4`, `Hy_Measure_Fluid_25gr_Actual_Reading_No5`, `Hy_Measure_Fluid_25gr_Actual_Reading_No6`, `Hy_Measure_Fluid_25gr_Actual_Reading_No7`, `Hy_Measure_Fluid_25gr_Actual_Reading_No8`, `Hy_Measure_Fluid_25gr_Actual_Reading_No9`, `gr25_Date_No1`, `gr25_Date_No2`, `gr25_Date_No3`, `gr25_Date_No4`, `gr25_Date_No5`, `gr25_Date_No6`, `gr25_Date_No7`, `gr25_Date_No8`, `gr25_Date_No9`, `gr25_Hour_No1`, `gr25_Hour_No2`, `gr25_Hour_No3`, `gr25_Hour_No4`, `gr25_Hour_No5`, `gr25_Hour_No6`, `gr25_Hour_No7`, `gr25_Hour_No8`, `gr25_Hour_No9`, `gr25_Reading_Time_min_No1`, `gr25_Reading_Time_min_No2`, `gr25_Reading_Time_min_No3`, `gr25_Reading_Time_min_No4`, `gr25_Reading_Time_min_No5`, `gr25_Reading_Time_min_No6`, `gr25_Reading_Time_min_No7`, `gr25_Reading_Time_min_No8`, `gr25_Reading_Time_min_No9`, `gr25_Temp_No1`, `gr25_Temp_No2`, `gr25_Temp_No3`, `gr25_Temp_No4`, `gr25_Temp_No5`, `gr25_Temp_No6`, `gr25_Temp_No7`, `gr25_Temp_No8`, `gr25_Temp_No9`, `gr25_Hydrometer_Readings_Rm_No1`, `gr25_Hydrometer_Readings_Rm_No2`, `gr25_Hydrometer_Readings_Rm_No3`, `gr25_Hydrometer_Readings_Rm_No4`, `gr25_Hydrometer_Readings_Rm_No5`, `gr25_Hydrometer_Readings_Rm_No6`, `gr25_Hydrometer_Readings_Rm_No7`, `gr25_Hydrometer_Readings_Rm_No8`, `gr25_Hydrometer_Readings_Rm_No9`, `gr25_A_or_B_depending_of_the_Hy_type_No1`, `gr25_A_or_B_depending_of_the_Hy_type_No2`, `gr25_A_or_B_depending_of_the_Hy_type_No3`, `gr25_A_or_B_depending_of_the_Hy_type_No4`, `gr25_A_or_B_depending_of_the_Hy_type_No5`, `gr25_A_or_B_depending_of_the_Hy_type_No6`, `gr25_A_or_B_depending_of_the_Hy_type_No7`, `gr25_A_or_B_depending_of_the_Hy_type_No8`, `gr25_A_or_B_depending_of_the_Hy_type_No9`, `gr25_Offset_at_Reading_rdm_No1`, `gr25_Offset_at_Reading_rdm_No2`, `gr25_Offset_at_Reading_rdm_No3`, `gr25_Offset_at_Reading_rdm_No4`, `gr25_Offset_at_Reading_rdm_No5`, `gr25_Offset_at_Reading_rdm_No6`, `gr25_Offset_at_Reading_rdm_No7`, `gr25_Offset_at_Reading_rdm_No8`, `gr25_Offset_at_Reading_rdm_No9`, `gr25_Mass_Percent_Finer_Nm_Porce_No1`, `gr25_Mass_Percent_Finer_Nm_Porce_No2`, `gr25_Mass_Percent_Finer_Nm_Porce_No3`, `gr25_Mass_Percent_Finer_Nm_Porce_No4`, `gr25_Mass_Percent_Finer_Nm_Porce_No5`, `gr25_Mass_Percent_Finer_Nm_Porce_No6`, `gr25_Mass_Percent_Finer_Nm_Porce_No7`, `gr25_Mass_Percent_Finer_Nm_Porce_No8`, `gr25_Mass_Percent_Finer_Nm_Porce_No9`, `gr25_Effective_Length_Hm_No1`, `gr25_Effective_Length_Hm_No2`, `gr25_Effective_Length_Hm_No3`, `gr25_Effective_Length_Hm_No4`, `gr25_Effective_Length_Hm_No5`, `gr25_Effective_Length_Hm_No6`, `gr25_Effective_Length_Hm_No7`, `gr25_Effective_Length_Hm_No8`, `gr25_Effective_Length_Hm_No9`, `gr25_D_mm_No1`, `gr25_D_mm_No2`, `gr25_D_mm_No3`, `gr25_D_mm_No4`, `gr25_D_mm_No5`, `gr25_D_mm_No6`, `gr25_D_mm_No7`, `gr25_D_mm_No8`, `gr25_D_mm_No9`, `gr50_Date_No1`, `gr50_Date_No2`, `gr50_Date_No3`, `gr50_Date_No4`, `gr50_Date_No5`, `gr50_Date_No6`, `gr50_Date_No7`, `gr50_Date_No8`, `gr50_Date_No9`, `gr50_Hour_No1`, `gr50_Hour_No2`, `gr50_Hour_No3`, `gr50_Hour_No4`, `gr50_Hour_No5`, `gr50_Hour_No6`, `gr50_Hour_No7`, `gr50_Hour_No8`, `gr50_Hour_No9`, `gr50_Reading_Time_min_No1`, `gr50_Reading_Time_min_No2`, `gr50_Reading_Time_min_No3`, `gr50_Reading_Time_min_No4`, `gr50_Reading_Time_min_No5`, `gr50_Reading_Time_min_No6`, `gr50_Reading_Time_min_No7`, `gr50_Reading_Time_min_No8`, `gr50_Reading_Time_min_No9`, `gr50_Temp_No1`, `gr50_Temp_No2`, `gr50_Temp_No3`, `gr50_Temp_No4`, `gr50_Temp_No5`, `gr50_Temp_No6`, `gr50_Temp_No7`, `gr50_Temp_No8`, `gr50_Temp_No9`, `gr50_Hydrometer_Readings_Rm_No1`, `gr50_Hydrometer_Readings_Rm_No2`, `gr50_Hydrometer_Readings_Rm_No3`, `gr50_Hydrometer_Readings_Rm_No4`, `gr50_Hydrometer_Readings_Rm_No5`, `gr50_Hydrometer_Readings_Rm_No6`, `gr50_Hydrometer_Readings_Rm_No7`, `gr50_Hydrometer_Readings_Rm_No8`, `gr50_Hydrometer_Readings_Rm_No9`, `gr50_A_or_B_depending_of_the_Hy_type_No1`, `gr50_A_or_B_depending_of_the_Hy_type_No2`, `gr50_A_or_B_depending_of_the_Hy_type_No3`, `gr50_A_or_B_depending_of_the_Hy_type_No4`, `gr50_A_or_B_depending_of_the_Hy_type_No5`, `gr50_A_or_B_depending_of_the_Hy_type_No6`, `gr50_A_or_B_depending_of_the_Hy_type_No7`, `gr50_A_or_B_depending_of_the_Hy_type_No8`, `gr50_A_or_B_depending_of_the_Hy_type_No9`, `gr50_Offset_at_Reading_rdm_No1`, `gr50_Offset_at_Reading_rdm_No2`, `gr50_Offset_at_Reading_rdm_No3`, `gr50_Offset_at_Reading_rdm_No4`, `gr50_Offset_at_Reading_rdm_No5`, `gr50_Offset_at_Reading_rdm_No6`, `gr50_Offset_at_Reading_rdm_No7`, `gr50_Offset_at_Reading_rdm_No8`, `gr50_Offset_at_Reading_rdm_No9`, `gr50_Mass_Percent_Finer_Nm_Porce_No1`, `gr50_Mass_Percent_Finer_Nm_Porce_No2`, `gr50_Mass_Percent_Finer_Nm_Porce_No3`, `gr50_Mass_Percent_Finer_Nm_Porce_No4`, `gr50_Mass_Percent_Finer_Nm_Porce_No5`, `gr50_Mass_Percent_Finer_Nm_Porce_No6`, `gr50_Mass_Percent_Finer_Nm_Porce_No7`, `gr50_Mass_Percent_Finer_Nm_Porce_No8`, `gr50_Mass_Percent_Finer_Nm_Porce_No9`, `gr50_Effective_Length_Hm_No1`, `gr50_Effective_Length_Hm_No2`, `gr50_Effective_Length_Hm_No3`, `gr50_Effective_Length_Hm_No4`, `gr50_Effective_Length_Hm_No5`, `gr50_Effective_Length_Hm_No6`, `gr50_Effective_Length_Hm_No7`, `gr50_Effective_Length_Hm_No8`, `gr50_Effective_Length_Hm_No9`, `gr50_D_mm_No1`, `gr50_D_mm_No2`, `gr50_D_mm_No3`, `gr50_D_mm_No4`, `gr50_D_mm_No5`, `gr50_D_mm_No6`, `gr50_D_mm_No7`, `gr50_D_mm_No8`, `gr50_D_mm_No9`, `Nm_2um_Not_Dispersed`, `Nm_2um_Dispersed`, `Porce_Dispersion`, `Classification`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D46', 'Choose...', '(NaPO3)6', 0, '', 0.01, 0, 980.7, 1000, 0, 0, 0, '', '', '110 º C', '110 º C', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 1, 2, 4, 15, 30, 60, 240, 340, 1440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 1, 2, 4, 15, 30, 60, 240, 340, 1440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'No Dispersive', 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'DHY', 'RRH', 'Arturo Santana');
-
 -- --------------------------------------------------------
 
 --
@@ -1075,12 +1068,18 @@ CREATE TABLE `ensayos_en_revision` (
   `id` int(10) UNSIGNED NOT NULL,
   `Sample_ID` varchar(150) NOT NULL,
   `Sample_Number` varchar(15) NOT NULL,
+  `Registered_By` varchar(20) NOT NULL,
   `Test_Type` varchar(15) NOT NULL,
-  `Tecnico` varchar(20) NOT NULL,
-  `Fecha_Inicio` datetime NOT NULL,
-  `Fecha_final` datetime NOT NULL,
-  `Estatus` varchar(10) NOT NULL
+  `Test_Start_Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ensayos_en_revision`
+--
+
+INSERT INTO `ensayos_en_revision` (`id`, `Sample_ID`, `Sample_Number`, `Registered_By`, `Test_Type`, `Test_Start_Date`) VALUES
+(1, 'DH-BGC23-NTSF-173', 'G1', 'Arturo Santana', 'AL', '2023-11-28'),
+(48, 'DH-BGC23-NTSF-173', 'G1', 'Arturo Santana', 'Mc_Oven', '2023-11-28');
 
 -- --------------------------------------------------------
 
@@ -1104,7 +1103,7 @@ CREATE TABLE `ensayo_en_entrega` (
 --
 
 INSERT INTO `ensayo_en_entrega` (`id`, `Sample_ID`, `Tecnico`, `Sample_Number`, `Test_Type`, `Fecha_de_Entrega`, `Sample_Date`, `Estatus`) VALUES
-(1, 'LLD-S12', 'JL', '265', 'AL', '2023-11-28 14:43:27', '0000-00-00', 'Entregado');
+(1, 'DH-BGC23-NTSF-173', 'JL', 'G1', 'Mc_Oven', '2023-11-28 16:14:04', '0000-00-00', 'Entregado');
 
 -- --------------------------------------------------------
 
@@ -1126,20 +1125,8 @@ CREATE TABLE `ensayo_en_repeticion` (
 --
 
 INSERT INTO `ensayo_en_repeticion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio`) VALUES
-(1, 'LLD-S12', '265', 'AL', 'JL', '2023-11-28'),
-(2, 'LLD-S12', '265', 'MC-Oven', 'JL', '2023-11-28'),
-(3, 'LLD-S12', '265', 'GS-Soil', 'FE/AR', '2023-11-28'),
-(4, 'LLD-S12', '265', 'SG-Fines', 'MX', '2023-11-28'),
-(5, 'LLD-S12', '265', 'LLA-Large', 'XC', '2023-11-28'),
-(6, 'LLD-S12', '265', 'SP', 'RRH', '2023-11-28'),
-(7, 'LLD-S12', '265', 'PLT', 'EP', '2023-11-28'),
-(8, 'LLD-S12', '265', 'UCS-grout', 'EP', '2023-11-28'),
-(9, 'LLD-S12', '265', 'UCS', 'EP', '2023-11-28'),
-(10, 'LLD-S12', '265', 'BTS', 'EP', '2023-11-28'),
-(11, 'LLD-S12', '265', 'Leeb', 'EP', '2023-11-28'),
-(12, 'LLD-S12', '265', 'DHY', 'RRH', '2023-11-28'),
-(13, 'LLD-S12', '265', 'Perma-Gran', 'FE/AR', '2023-11-28'),
-(14, 'LLD-S12', '266', 'MC-Oven', 'JL', '2023-11-28');
+(1, 'DH-BGC23-NTSF-173', 'G1', 'AL', 'AS', '2023-11-28'),
+(2, 'DH-BGC23-NTSF-173', 'G1', 'Mc_Oven', 'a', '2023-11-28');
 
 -- --------------------------------------------------------
 
@@ -1346,13 +1333,6 @@ CREATE TABLE `grain_size` (
   `Standard` varchar(50) DEFAULT NULL,
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `grain_size`
---
-
-INSERT INTO `grain_size` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Preparation_Method`, `Technician`, `Container`, `Tare_Wet_Soil`, `Tare_Dry_Soil`, `Tare`, `Dry_Soil`, `Washed`, `Wash_Pan`, `Wt_Ret_40_1016`, `Porce_Ret_40_1016`, `Cum_Ret_40_1016`, `Porce_Pass_40_1016`, `Wt_Ret_12_304`, `Porce_Ret_12_304`, `Cum_Ret_12_304`, `Porce_Pass_12_304`, `Wt_Ret_10_254`, `Porce_Ret_10_254`, `Cum_Ret_10_254`, `Porce_Pass_10_254`, `Wt_Ret_8_203`, `Porce_Ret_8_203`, `Cum_Ret_8_203`, `Porce_Pass_8_203`, `Wt_Ret_6_152`, `Porce_Ret_6_152`, `Cum_Ret_6_152`, `Porce_Pass_6_152`, `Wt_Ret_5_127`, `Porce_Ret_5_127`, `Cum_Ret_5_127`, `Porce_Pass_5_127`, `Wt_Ret_4_101`, `Porce_Ret_4_101`, `Cum_Ret_4_101`, `Porce_Pass_4_101`, `Wt_Ret_3_75`, `Porce_Ret_3_75`, `Cum_Ret_3_75`, `Porce_Pass_3_75`, `Wt_Ret_2p5_63`, `Porce_Ret_2p5_63`, `Cum_Ret_2p5_63`, `Porce_Pass_2p5_63`, `Wt_Ret_2_50`, `Porce_Ret_2_50`, `Cum_Ret_2_50`, `Porce_Pass_2_50`, `Wt_Ret_1p5_37`, `Porce_Ret_1p5_37`, `Cum_Ret_1p5_37`, `Porce_Pass_1p5_37`, `Wt_Ret_1_25`, `Porce_Ret_1_25`, `Cum_Ret_1_25`, `Porce_Pass_1_25`, `Wt_Ret_3p4_19`, `Porce_Ret_3p4_19`, `Cum_Ret_3p4_19`, `Porce_Pass_3p4_19`, `Wt_Ret_1p2_12`, `Porce_Ret_1p2_12`, `Cum_Ret_1p2_12`, `Porce_Pass_1p2_12`, `Wt_Ret_3p8_9`, `Porce_Ret_3p8_9`, `Cum_Ret_3p8_9`, `Porce_Pass_3p8_9`, `Wt_Ret_No4_4`, `Porce_Ret_No4_4`, `Cum_Ret_No4_4`, `Porce_Pass_No4_4`, `Wt_Ret_No10_2`, `Porce_Ret_No10_2`, `Cum_Ret_No10_2`, `Porce_Pass_No10_2`, `Wt_Ret_No16_1`, `Porce_Ret_No16_1`, `Cum_Ret_No16_1`, `Porce_Pass_No16_1`, `Wt_Ret_No20_0p85`, `Porce_Ret_No20_0p85`, `Cum_Ret_No20_0p85`, `Porce_Pass_No20_0p85`, `Wt_Ret_No50_0p3`, `Porce_Ret_No50_0p3`, `Cum_Ret_No50_0p3`, `Porce_Pass_No50_0p3`, `Wt_Ret_No60_0p25`, `Porce_Ret_No60_0p25`, `Cum_Ret_No60_0p25`, `Porce_Pass_No60_0p25`, `Wt_Ret_No100_0p15`, `Porce_Ret_No100_0p15`, `Cum_Ret_No100_0p15`, `Porce_Pass_No100_0p15`, `Wt_Ret_No140_0p106`, `Porce_Ret_No140_0p106`, `Cum_Ret_No140_0p106`, `Porce_Pass_No140_0p106`, `Wt_Ret_No200_0p075`, `Porce_Ret_No200_0p075`, `Cum_Ret_No200_0p075`, `Porce_Pass_No200_0p075`, `Wt_Ret_Pan`, `Porce_Ret_Pan`, `Wt_Ret_Total_Pan`, `Porce_Ret_Total_Pan`, `Cum_Ret_Total_Pan`, `Porce_Pass_Total_Pan`, `Coarser_than_Gravel`, `Gravel`, `Sand`, `Fines`, `D10`, `D15`, `D30`, `D60`, `D85`, `Cc`, `Cu`, `Comments`, `Graphic`, `Test_Start_Date`, `Report_Date`, `test_type`, `Split_Method`, `Standard`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', 'Choose...', 'FE/AR', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'NaN', 'NaN', 'NaN', 'NaN', 'NaN', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'Insufficient material', NULL, '2023-11-28', '2023-11-28', 'GS-Soil', 'Choose...', 'ASTM-D6913', 'Arturo Santana');
 
 -- --------------------------------------------------------
 
@@ -2331,13 +2311,6 @@ CREATE TABLE `grout_specimens` (
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Volcado de datos para la tabla `grout_specimens`
---
-
-INSERT INTO `grout_specimens` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Diameter_N1`, `Diameter_N2`, `Diameter_N3`, `Diameter_N4`, `Diameter_N5`, `High_N1`, `High_N2`, `High_N3`, `High_N4`, `High_N5`, `Length_N1`, `Length_N2`, `Length_N3`, `Length_N4`, `Length_N5`, `Area_m2_N1`, `Area_m2_N2`, `Area_m2_N3`, `Area_m2_N4`, `Area_m2_N5`, `Volumen_m3_N1`, `Volumen_m3_N2`, `Volumen_m3_N3`, `Volumen_m3_N4`, `Volumen_m3_N5`, `Weight_Cylinder_kg_N1`, `Weight_Cylinder_kg_N2`, `Weight_Cylinder_kg_N3`, `Weight_Cylinder_kg_N4`, `Weight_Cylinder_kg_N5`, `Age_Days_N1`, `Age_Days_N2`, `Age_Days_N3`, `Age_Days_N4`, `Age_Days_N5`, `Unit_Weight_kgm3_N1`, `Unit_Weight_kgm3_N2`, `Unit_Weight_kgm3_N3`, `Unit_Weight_kgm3_N4`, `Unit_Weight_kgm3_N5`, `Failure_Load_kn_N1`, `Failure_Load_kn_N2`, `Failure_Load_kn_N3`, `Failure_Load_kn_N4`, `Failure_Load_kn_N5`, `Strenght_Mpa_N1`, `Strenght_Mpa_N2`, `Strenght_Mpa_N3`, `Strenght_Mpa_N4`, `Strenght_Mpa_N5`, `Average_Strenght_Mpa`, `Type_Mpa_N1`, `Type_Mpa_N2`, `Type_Mpa_N3`, `Type_Mpa_N4`, `Type_Mpa_N5`, `Observations_N1`, `Observations_N2`, `Observations_N3`, `Observations_N4`, `Observations_N5`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Graphic_Load_versus_time`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM C88', 'Choose...', 'Choose...', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'UCS-grout', 'EP', '', 'Arturo Santana');
-
 -- --------------------------------------------------------
 
 --
@@ -2721,12 +2694,7 @@ CREATE TABLE `lab_test_requisition_form` (
 --
 
 INSERT INTO `lab_test_requisition_form` (`id`, `Sample_ID`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Test_Type1`, `Test_Type2`, `Test_Type3`, `Test_Type4`, `Test_Type5`, `Test_Type6`, `Test_Type7`, `Test_Type8`, `Test_Type9`, `Test_Type10`, `Test_Type11`, `Test_Type12`, `Test_Type13`, `Test_Type14`, `Test_Type15`, `Test_Type16`, `Test_Type17`, `Test_Type18`, `Test_Type19`, `Comment`, `Sample_Date`, `Sample_By`, `Registed_Date`, `Sample_Number`, `Register_By`) VALUES
-(1, 'LLD-S12', 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '', 'AL', '', '', 'SG', '', '', '', '', '', '', '', '', '', '', '', '', 'abc', '2023-11-08', 'AA', '2023-11-28', '265', 'AS'),
-(2, 'LLD-S10', 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '', 'AL', '', '', 'SG', '', '', '', '', '', '', '', '', '', '', '', '', 'abc', '2023-11-08', 'AA', '2023-11-28', '265', 'AS'),
-(3, 'S10-20', 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '', 'AL', '', '', 'SG', '', '', '', '', '', '', '', '', '', '', '', '', 'abc', '2023-11-08', 'AA', '2023-11-28', '265', 'AS'),
-(4, 'DH-BGC23-NTSF-173', 'DH-BGC23-NTSF', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '', 'AL', '', '', 'SG', '', '', '', '', '', '', '', '', '', '', '', '', 'abc', '2023-11-08', 'AA', '2023-11-28', 'G1', 'AS'),
-(5, 'DH-BGC23-NTSF-173', 'DH-BGC23-NTSF', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '', 'AL', '', '', 'SG', '', '', '', '', '', '', '', '', '', '', '', '', 'abc', '2023-11-08', 'AA', '2023-11-28', 'G2', 'AS'),
-(6, 'DH-BGC23-NTSF-173', 'DH-BGC23-NTSF', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '', 'AL', '', '', 'SG', '', '', '', '', '', '', '', '', '', '', '', '', 'abc', '2023-11-08', 'AA', '2023-11-28', 'G3', 'AS');
+(1, 'DH-BGC23-NTSF-173', 'DH-BGC23-NTSF', 'Site investigation', 'Naranjo', 12.5, 14.35, 'Soil', 'Lexan', 0, 0, 0, 'Mc_Oven', '', '', 'AL', 'GS', 'SP', 'SG', '', '', '', '', '', '', '', '', '', '', '', '', 'abc', '2023-11-08', 'AA', '2023-11-28', 'G1', 'AS');
 
 -- --------------------------------------------------------
 
@@ -2772,13 +2740,6 @@ CREATE TABLE `leeb_hardness` (
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Volcado de datos para la tabla `leeb_hardness`
---
-
-INSERT INTO `leeb_hardness` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Method`, `Sample`, `Depth_m`, `Leeb_Hardness_Number1`, `Leeb_Hardness_Number2`, `Leeb_Hardness_Number3`, `Leeb_Hardness_Number4`, `Leeb_Hardness_Number5`, `Leeb_Hardness_Number6`, `Leeb_Hardness_Number7`, `Leeb_Hardness_Number8`, `Leeb_Hardness_Number9`, `Leeb_Hardness_Number10`, `Average`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-A956', 'Choose...', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material3\r\n\r\n', 'Leeb', 'EP', 'Arturo Santana');
-
 -- --------------------------------------------------------
 
 --
@@ -2798,8 +2759,11 @@ CREATE TABLE `lista_de_pendiente` (
 --
 
 INSERT INTO `lista_de_pendiente` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Sample_Date`) VALUES
-(1, 'LLD-S12', '265', 'AL', '2023-11-08'),
-(2, 'LLD-S12', '265', 'SG', '2023-11-08');
+(1, 'DH-BGC23-NTSF-173', 'G1', 'Mc_Oven', '2023-11-08'),
+(2, 'DH-BGC23-NTSF-173', 'G1', 'AL', '2023-11-08'),
+(3, 'DH-BGC23-NTSF-173', 'G1', 'GS', '2023-11-08'),
+(4, 'DH-BGC23-NTSF-173', 'G1', 'SP', '2023-11-08'),
+(5, 'DH-BGC23-NTSF-173', 'G1', 'SG', '2023-11-08');
 
 -- --------------------------------------------------------
 
@@ -2839,13 +2803,6 @@ CREATE TABLE `los_angeles_abrasion_large` (
   `Technician` varchar(10) NOT NULL,
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `los_angeles_abrasion_large`
---
-
-INSERT INTO `los_angeles_abrasion_large` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Selected_Grading`, `Weight_of_The_Spheres`, `Revolutions`, `Initial_Weight`, `Final_Weight`, `Weight_Loss`, `Weight_Loss_Porce`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D854', 'Choose...', 'Choose...', 'Choos', 0, 0, 0, 0, 0, 0, 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'LLA-Large', 'XC', 'Arturo Santana');
 
 -- --------------------------------------------------------
 
@@ -2942,8 +2899,8 @@ CREATE TABLE `moisture_content` (
 --
 
 INSERT INTO `moisture_content` (`id`, `Sample_ID`, `Sample_Number`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Tare_Name`, `Temperature`, `Tare_Plus_Wet_Soil`, `Tare_Plus_Dry_Soil`, `Water`, `Weigth_Tare`, `Dry_Soil`, `Mc`, `Standard`, `Method`, `Comments`, `Technician`, `Test_Start_Date`, `Report_Date`, `test_type`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '', 'Choose...', 0, 0, 0, 0, 0, 0, 'Choose...', '', '', 'JL', '2023-11-28', '2023-11-28', 'MC-Oven', 'Arturo Santana'),
-(3, 'LLD-S12', '266', 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '', 'Choose...', 0, 0, 0, 0, 0, 0, 'Choose...', '', '', 'JL', '2023-11-28', '2023-11-28', 'MC-Oven', 'Arturo Santana');
+(1, 'DH-BGC23-NTSF-173', 'G1', 'DH-BGC23-NTSF', 'Site investigation', 'Naranjo', 12.5, 14.35, 'Soil', 'Lexan', 0, 0, 0, '2023-11-08', 'a', 'Choose...', 0, 0, 0, 0, 0, 0, 'Choose...', '', '', 'a', '2023-11-28', '2023-11-28', 'Mc_Oven', 'Arturo Santana'),
+(2, 'DH-BGC23-NTSF-173', 'G1', 'DH-BGC23-NTSF', 'Site investigation', 'Naranjo', 12.5, 14.35, 'Soil', 'Lexan', 0, 0, 0, '2023-11-08', '', 'Choose...', 0, 0, 0, 0, 0, 0, 'Choose...', '', '', 'JL', '2023-11-28', '2023-11-28', 'Mc_Oven', 'Arturo Santana');
 
 -- --------------------------------------------------------
 
@@ -3085,7 +3042,8 @@ CREATE TABLE `muestra_en_preparacion` (
 --
 
 INSERT INTO `muestra_en_preparacion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio_Preparacion`, `Estatus`) VALUES
-(1, 'LLD-S12', '265', 'AL', 'JL', '2023-11-28 14:43:03', 'Preparacion');
+(1, 'DH-BGC23-NTSF-173', 'G1', 'Mc_Oven', 'JL', '2023-11-28 15:27:37', 'Preparacion'),
+(11, 'DH-BGC23-NTSF-173', 'G1', 'SP', 'JL', '2023-11-28 16:26:37', 'Preparacion');
 
 -- --------------------------------------------------------
 
@@ -3108,7 +3066,7 @@ CREATE TABLE `muestra_en_realizacion` (
 --
 
 INSERT INTO `muestra_en_realizacion` (`id`, `Sample_ID`, `Sample_Number`, `Test_Type`, `Tecnico`, `Fecha_Inicio_Realizacion`, `Estatus`) VALUES
-(1, 'LLD-S12', '265', 'AL', 'JL', '2023-11-28 14:43:06', 'Realizacio');
+(1, 'DH-BGC23-NTSF-173', 'G1', 'Mc_Oven', 'JL', '2023-11-28 16:12:22', 'Realizacio');
 
 -- --------------------------------------------------------
 
@@ -3224,13 +3182,6 @@ CREATE TABLE `permeability_of_granular_soils` (
   `Technician` varchar(10) NOT NULL,
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `permeability_of_granular_soils`
---
-
-INSERT INTO `permeability_of_granular_soils` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Method`, `Description_of_material_use_for_test`, `Diameter_D_cm`, `Area_cm2`, `Lenght_L_cm`, `W_Max_Kgm2`, `W_Max_Kgm3`, `Height_Before_H1`, `Height_After_H2`, `Height_Net_cm`, `Void_Ratio_e`, `Relative_Density_RD_Porce`, `H1_1`, `H1_2`, `H1_3`, `H1_4`, `H1_5`, `H1_6`, `H1_7`, `H1_8`, `H2_1`, `H2_2`, `H2_3`, `H2_4`, `H2_5`, `H2_6`, `H2_7`, `H2_8`, `Head_h_cm_N1`, `Head_h_cm_N2`, `Head_h_cm_N3`, `Head_h_cm_N4`, `Head_h_cm_N5`, `Head_h_cm_N6`, `Head_h_cm_N7`, `Head_h_cm_N8`, `Quantity_of_water_discharged_cm3_N1`, `Quantity_of_water_discharged_cm3_N2`, `Quantity_of_water_discharged_cm3_N3`, `Quantity_of_water_discharged_cm3_N4`, `Quantity_of_water_discharged_cm3_N5`, `Quantity_of_water_discharged_cm3_N6`, `Quantity_of_water_discharged_cm3_N7`, `Quantity_of_water_discharged_cm3_N8`, `Total_time_of_discharge_sec_N1`, `Total_time_of_discharge_sec_N2`, `Total_time_of_discharge_sec_N3`, `Total_time_of_discharge_sec_N4`, `Total_time_of_discharge_sec_N5`, `Total_time_of_discharge_sec_N6`, `Total_time_of_discharge_sec_N7`, `Total_time_of_discharge_sec_N8`, `Q_At_N1`, `Q_At_N2`, `Q_At_N3`, `Q_At_N4`, `Q_At_N5`, `Q_At_N6`, `Q_At_N7`, `Q_At_N8`, `h_L_N1`, `h_L_N2`, `h_L_N3`, `h_L_N4`, `h_L_N5`, `h_L_N6`, `h_L_N7`, `h_L_N8`, `Temperature_C_N1`, `Temperature_C_N2`, `Temperature_C_N3`, `Temperature_C_N4`, `Temperature_C_N5`, `Temperature_C_N6`, `Temperature_C_N7`, `Temperature_C_N8`, `Coefficient_of_permeability_cm_seg_N1`, `Coefficient_of_permeability_cm_seg_N2`, `Coefficient_of_permeability_cm_seg_N3`, `Coefficient_of_permeability_cm_seg_N4`, `Coefficient_of_permeability_cm_seg_N5`, `Coefficient_of_permeability_cm_seg_N6`, `Coefficient_of_permeability_cm_seg_N7`, `Coefficient_of_permeability_cm_seg_N8`, `Permeability_Graphic`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D46', 'Choose...', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'Perma-Gran', 'FE/AR', 'Arturo Santana');
 
 -- --------------------------------------------------------
 
@@ -3482,13 +3433,6 @@ CREATE TABLE `point_load_test` (
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Volcado de datos para la tabla `point_load_test`
---
-
-INSERT INTO `point_load_test` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Method`, `Cutter_Equipment`, `Extraction_Equipment`, `Test_Device`, `Temperature`, `Effective_Area_of_Jack_Piston_m2`, `K1_Value_Assumed_Value_To_Correlate_Is50_To_UCS`, `K2_Value_Assumed`, `Test_Type_A_B_C_D`, `Dimension_L_mm`, `Dimension_D_or_W_mm`, `Plattens_Separation_mm`, `Load_Direction`, `Gauge_Reading_Mpa`, `Failure_Laod_MN`, `De_mm`, `Is_Mpa`, `F`, `Is_50`, `UCS_From_K1_Mpa`, `UCS_From_K2_Mpa`, `Strenght_Classification`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Specimen_Before_Test`, `Specimen_After_Test`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D4318', 'Choose...', '', '', '', '', 0, 0, 0, '', 0, 0, 0, 'Choose...', 0, 0, 0, 0, 0, 0, 0, 0, 'Extremelly High', 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'PLT', 'EP', 'Arturo Santana');
-
 -- --------------------------------------------------------
 
 --
@@ -3739,13 +3683,6 @@ CREATE TABLE `specific_gravity_fine` (
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Volcado de datos para la tabla `specific_gravity_fine`
---
-
-INSERT INTO `specific_gravity_fine` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Pycnometer_Number`, `Weight_Pycnometer`, `Weight_Dry_Soil_Tare`, `Weight_Dry_Soil`, `Weight_Saturated_Surface_Dry_Soil_Air`, `Temp_Sample`, `Weight_Pycnometer_Soil_Water`, `Calibration_Weight_Pycnometer_Desired_Temp`, `Specific_Gravity`, `Specific_Gravity_SSD`, `Apparent_Specific_Gravity`, `Percent_Absortion`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D854', 'Choose...', 'Choose...', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'SG-Fines', 'MX', 'Arturo Santana');
-
 -- --------------------------------------------------------
 
 --
@@ -3871,13 +3808,6 @@ CREATE TABLE `splitting_tensile_strenght` (
   `Speciment_After_Test` mediumblob NOT NULL,
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `splitting_tensile_strenght`
---
-
-INSERT INTO `splitting_tensile_strenght` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Method`, `Cutter_Equipment`, `Extraction_Equipment`, `Test_Device`, `Diameter_D_cm_No1`, `Diameter_D_cm_No2`, `Diameter_D_cm_No3`, `Diameter_D_cm_No4`, `Diameter_D_cm_No5`, `Diameter_D_cm_No6`, `Diameter_D_cm_No7`, `Diameter_D_cm_No8`, `Diameter_D_cm_No9`, `Diameter_D_cm_No10`, `Thicness_t_cm_No1`, `Thicness_t_cm_No2`, `Thicness_t_cm_No3`, `Thicness_t_cm_No4`, `Thicness_t_cm_No5`, `Thicness_t_cm_No6`, `Thicness_t_cm_No7`, `Thicness_t_cm_No8`, `Thicness_t_cm_No9`, `Thicness_t_cm_No10`, `Relation_td_No1`, `Relation_td_No2`, `Relation_td_No3`, `Relation_td_No4`, `Relation_td_No5`, `Relation_td_No6`, `Relation_td_No7`, `Relation_td_No8`, `Relation_td_No9`, `Relation_td_No10`, `Loading_Rate_KNs_No1`, `Loading_Rate_KNs_No2`, `Loading_Rate_KNs_No3`, `Loading_Rate_KNs_No4`, `Loading_Rate_KNs_No5`, `Loading_Rate_KNs_No6`, `Loading_Rate_KNs_No7`, `Loading_Rate_KNs_No8`, `Loading_Rate_KNs_No9`, `Loading_Rate_KNs_No10`, `Time_To_Failure_s_No1`, `Time_To_Failure_s_No2`, `Time_To_Failure_s_No3`, `Time_To_Failure_s_No4`, `Time_To_Failure_s_No5`, `Time_To_Failure_s_No6`, `Time_To_Failure_s_No7`, `Time_To_Failure_s_No8`, `Time_To_Failure_s_No9`, `Time_To_Failure_s_No10`, `Max_Load_kN_No1`, `Max_Load_kN_No2`, `Max_Load_kN_No3`, `Max_Load_kN_No4`, `Max_Load_kN_No5`, `Max_Load_kN_No6`, `Max_Load_kN_No7`, `Max_Load_kN_No8`, `Max_Load_kN_No9`, `Max_Load_kN_No10`, `Tensile_Strength_Mpa_No1`, `Tensile_Strength_Mpa_No2`, `Tensile_Strength_Mpa_No3`, `Tensile_Strength_Mpa_No4`, `Tensile_Strength_Mpa_No5`, `Tensile_Strength_Mpa_No6`, `Tensile_Strength_Mpa_No7`, `Tensile_Strength_Mpa_No8`, `Tensile_Strength_Mpa_No9`, `Tensile_Strength_Mpa_No10`, `Failure_Type_No1`, `Failure_Type_No2`, `Failure_Type_No3`, `Failure_Type_No4`, `Failure_Type_No5`, `Failure_Type_No6`, `Failure_Type_No7`, `Failure_Type_No8`, `Failure_Type_No9`, `Failure_Type_No10`, `Average_No1`, `Average_No2`, `Average_No3`, `Average_No4`, `Average_No5`, `Average_No6`, `Average_No7`, `Average_No8`, `Average_No9`, `Average_No10`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Speciment_Before_Test`, `Speciment_After_Test`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D3967', 'Choose...', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'BTS', 'EP', '', '', 'Arturo Santana');
 
 -- --------------------------------------------------------
 
@@ -4015,13 +3945,6 @@ CREATE TABLE `standard_proctor` (
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Volcado de datos para la tabla `standard_proctor`
---
-
-INSERT INTO `standard_proctor` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Preparation_Method`, `Split_Method`, `Natural_MC`, `SG_NMC`, `Wt_Wet_Soil_Mold_1`, `Wt_Wet_Soil_Mold_2`, `Wt_Wet_Soil_Mold_3`, `Wt_Wet_Soil_Mold_4`, `Wt_Wet_Soil_Mold_5`, `Wt_Wet_Soil_Mold_6`, `Wt_Mold_g_1`, `Wt_Mold_g_2`, `Wt_Mold_g_3`, `Wt_Mold_g_4`, `Wt_Mold_g_5`, `Wt_Mold_g_6`, `Wt_Wet_Soil_g_1`, `Wt_Wet_Soil_g_2`, `Wt_Wet_Soil_g_3`, `Wt_Wet_Soil_g_4`, `Wt_Wet_Soil_g_5`, `Wt_Wet_Soil_g_6`, `Vol_Mold_cm3_1`, `Vol_Mold_cm3_2`, `Vol_Mold_cm3_3`, `Vol_Mold_cm3_4`, `Vol_Mold_cm3_5`, `Vol_Mold_cm3_6`, `Wet_Density_kgm3_1`, `Wet_Density_kgm3_2`, `Wet_Density_kgm3_3`, `Wet_Density_kgm3_4`, `Wet_Density_kgm3_5`, `Wet_Density_kgm3_6`, `Dry_Density_kgm3_1`, `Dry_Density_kgm3_2`, `Dry_Density_kgm3_3`, `Dry_Density_kgm3_4`, `Dry_Density_kgm3_5`, `Dry_Density_kgm3_6`, `Dry_Density_Corrected_kgm3_1`, `Dry_Density_Corrected_kgm3_2`, `Dry_Density_Corrected_kgm3_3`, `Dry_Density_Corrected_kgm3_4`, `Dry_Density_Corrected_kgm3_5`, `Dry_Density_Corrected_kgm3_6`, `MC_Container_1`, `MC_Container_2`, `MC_Container_3`, `MC_Container_4`, `MC_Container_5`, `MC_Container_6`, `MC_Wt_Wet_Soil_Tare_1`, `MC_Wt_Wet_Soil_Tare_2`, `MC_Wt_Wet_Soil_Tare_3`, `MC_Wt_Wet_Soil_Tare_4`, `MC_Wt_Wet_Soil_Tare_5`, `MC_Wt_Wet_Soil_Tare_6`, `MC_Wt_Dry_Soil_Tare_1`, `MC_Wt_Dry_Soil_Tare_2`, `MC_Wt_Dry_Soil_Tare_3`, `MC_Wt_Dry_Soil_Tare_4`, `MC_Wt_Dry_Soil_Tare_5`, `MC_Wt_Dry_Soil_Tare_6`, `Wt_Water_g_1`, `Wt_Water_g_2`, `Wt_Water_g_3`, `Wt_Water_g_4`, `Wt_Water_g_5`, `Wt_Water_g_6`, `Tare_g_1`, `Tare_g_2`, `Tare_g_3`, `Tare_g_4`, `Tare_g_5`, `Tare_g_6`, `MC_Wt_Dry_Soil_g_1`, `MC_Wt_Dry_Soil_g_2`, `MC_Wt_Dry_Soil_g_3`, `MC_Wt_Dry_Soil_g_4`, `MC_Wt_Dry_Soil_g_5`, `MC_Wt_Dry_Soil_g_6`, `MC_Porce_1`, `MC_Porce_2`, `MC_Porce_3`, `MC_Porce_4`, `MC_Porce_5`, `MC_Porce_6`, `MC_Porce_Corrected_1`, `MC_Porce_Corrected_2`, `MC_Porce_Corrected_3`, `MC_Porce_Corrected_4`, `MC_Porce_Corrected_5`, `MC_Porce_Corrected_6`, `Max_Dry_Density_kgm3`, `Optimun_MC_Porce`, `Wc_Porce`, `GM_Porce`, `PC_Porce`, `PF_Porce`, `YDF_Porce`, `YDT_Porce`, `Yw_KnM3`, `Corrected_Dry_Unit_Weigt`, `Corrected_Water_Content_Finer`, `SP_Graphic`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D698', 'Choose...', 'Choose...', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'NaN', 'NaN', 'NaN', 'NaN', 'NaN', 'NaN', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'NaN', 'NaN', 'NaN', 'NaN', 'NaN', 'NaN', 0, 0, '', '', '', '', '', '', '', 'NaN', 'NaN', NULL, 'LLD-S12', 'Encapsulation', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'SP', 'RRH', 'Arturo Santana');
-
 -- --------------------------------------------------------
 
 --
@@ -4069,13 +3992,6 @@ CREATE TABLE `uniaxial_compressive_strength` (
   `Technician` varchar(10) NOT NULL,
   `Registered_By` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `uniaxial_compressive_strength`
---
-
-INSERT INTO `uniaxial_compressive_strength` (`id`, `Sample_ID`, `Sample_Number`, `Standard`, `Method`, `Cutter_Equipment`, `Extraction_Equipment`, `Test_Device`, `Dimension_D_cm`, `Dimension_H_cm`, `Relation_hD`, `Area_m2`, `Volume_m3`, `Weight_Core_Kg`, `Unit_Weight_Core_kgm3`, `Failure_Loand_KN`, `Test_Timing_S`, `Load_Proportion_Mpas`, `uniaxial_Compressive_Strenght_Mpa`, `Structure`, `Area`, `Source`, `Depth_From`, `Depth_To`, `Material_Type`, `Sample_Type`, `North`, `East`, `Elev`, `Graphic_Failure_Load_versus_Time`, `Pic_Before_Test`, `Pic_After_Test`, `Sample_Date`, `Test_Start_Date`, `Report_Date`, `Comments`, `test_type`, `Technician`, `Registered_By`) VALUES
-(1, 'LLD-S12', '265', 'ASTM-D4318', 'Choose...', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'LLD-S12', 'Encapsulat', 'San Juan', 1, 2, 'Soil', 'Shelby', 2091140, 376309, 116.07, '', '', '', '2023-11-08', '2023-11-28', '2023-11-28', 'Insufficient material', 'UCS', 'EP', 'Arturo Santana');
 
 -- --------------------------------------------------------
 
@@ -4429,13 +4345,13 @@ ALTER TABLE `density_weigth`
 -- AUTO_INCREMENT de la tabla `double_hydrometer`
 --
 ALTER TABLE `double_hydrometer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ensayos_en_revision`
 --
 ALTER TABLE `ensayos_en_revision`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `ensayo_en_entrega`
@@ -4447,7 +4363,7 @@ ALTER TABLE `ensayo_en_entrega`
 -- AUTO_INCREMENT de la tabla `ensayo_en_repeticion`
 --
 ALTER TABLE `ensayo_en_repeticion`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ensayo_gama`
@@ -4465,7 +4381,7 @@ ALTER TABLE `eventoscalendar`
 -- AUTO_INCREMENT de la tabla `grain_size`
 --
 ALTER TABLE `grain_size`
-  MODIFY `id` int(25) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(25) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `grain_size_coarse_aggregate`
@@ -4495,7 +4411,7 @@ ALTER TABLE `grain_size_sieved_coarse_aggregate`
 -- AUTO_INCREMENT de la tabla `grout_specimens`
 --
 ALTER TABLE `grout_specimens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `hydrometer`
@@ -4507,25 +4423,25 @@ ALTER TABLE `hydrometer`
 -- AUTO_INCREMENT de la tabla `lab_test_requisition_form`
 --
 ALTER TABLE `lab_test_requisition_form`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `leeb_hardness`
 --
 ALTER TABLE `leeb_hardness`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `lista_de_pendiente`
 --
 ALTER TABLE `lista_de_pendiente`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `los_angeles_abrasion_large`
 --
 ALTER TABLE `los_angeles_abrasion_large`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `los_angeles_abrasion_small`
@@ -4537,7 +4453,7 @@ ALTER TABLE `los_angeles_abrasion_small`
 -- AUTO_INCREMENT de la tabla `moisture_content`
 --
 ALTER TABLE `moisture_content`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `moisture_content_constant_mass`
@@ -4561,7 +4477,7 @@ ALTER TABLE `moisture_scale`
 -- AUTO_INCREMENT de la tabla `muestra_en_preparacion`
 --
 ALTER TABLE `muestra_en_preparacion`
-  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `muestra_en_realizacion`
@@ -4573,7 +4489,7 @@ ALTER TABLE `muestra_en_realizacion`
 -- AUTO_INCREMENT de la tabla `permeability_of_granular_soils`
 --
 ALTER TABLE `permeability_of_granular_soils`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pinhole`
@@ -4585,7 +4501,7 @@ ALTER TABLE `pinhole`
 -- AUTO_INCREMENT de la tabla `point_load_test`
 --
 ALTER TABLE `point_load_test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `sand_density`
@@ -4609,25 +4525,25 @@ ALTER TABLE `specific_gravity_absortion`
 -- AUTO_INCREMENT de la tabla `specific_gravity_fine`
 --
 ALTER TABLE `specific_gravity_fine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `splitting_tensile_strenght`
 --
 ALTER TABLE `splitting_tensile_strenght`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `standard_proctor`
 --
 ALTER TABLE `standard_proctor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `uniaxial_compressive_strength`
 --
 ALTER TABLE `uniaxial_compressive_strength`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
