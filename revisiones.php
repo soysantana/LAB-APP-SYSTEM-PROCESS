@@ -10,7 +10,7 @@ if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber'
     $pagina_detalles = '';
 
     switch ($test_type) {
-        case 'MC-Oven':
+        case 'Mc_Oven':
             $pagina_detalles = 'Revision-MC-Oven.php';
             break;
         case 'GS-Soil':

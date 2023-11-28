@@ -5,70 +5,7 @@ require_once('includes/load.php');
 if (!$session->isUserLoggedIn(true)) {
     redirect('index.php', false);
 }
-
 $Search_ListP = find_all('lista_de_pendiente');
-$MuestraPreparacion = find_all('muestra_en_preparacion');
-$MuestraRealizacion = find_all('muestra_en_realizacion');
-$EnsayoEntregado = find_all('ensayo_en_entrega');
-$EnsayoRevision = find_all('ensayos_en_revision');
-$EnsayoRepeticion = find_all('ensayo_en_repeticion');
-
-$en_preparacion = false;
-foreach ($MuestraPreparacion as $fila) {
-    // Verifica si la clave "en_preparacion" existe en la fila de datos
-    if (isset($fila['en_preparacion'])) {
-        if ($sample_id == $fila['Sample_ID'] && $sample_number == $fila['Sample_Number'] && $test_type == $fila['Test_Type']) {
-            $en_preparacion = true;
-            break;
-        }
-    }
-}
-
-$en_realizacion = false;
-foreach ($MuestraRealizacion as $fila) {
-    // Verifica si la clave "en_realizacion" existe en la fila de datos
-    if (isset($fila['en_realizacion'])) {
-        if ($sample_id == $fila['Sample_ID'] && $sample_number == $fila['Sample_Number'] && $test_type == $fila['Test_Type']) {
-            $en_realizacion = true;
-            break;
-        }
-    }
-}
-
-$ensayo_entregado = false;
-foreach ($EnsayoEntregado as $fila) {
-    // Verifica si la clave "ensayo_entregado" existe en la fila de datos
-    if (isset($fila['ensayo_entregado'])) {
-        if ($sample_id == $fila['Sample_ID'] && $sample_number == $fila['Sample_Number'] && $test_type == $fila['Test_Type']) {
-            $ensayo_entregado = true;
-            break;
-        }
-    }
-}
-
-$ensayo_revision = false;
-foreach ($EnsayoRevision as $fila) {
-    // Verifica si la clave "ensayo_revision" existe en la fila de datos
-    if (isset($fila['ensayo_revision'])) {
-        if ($sample_id == $fila['Sample_ID'] && $sample_number == $fila['Sample_Number'] && $test_type == $fila['Test_Type']) {
-            $ensayo_revision = true;
-            break;
-        }
-    }
-}
-
-$ensayo_repeticion = false;
-foreach ($EnsayoRepeticion as $fila) {
-    // Verifica si la clave "ensayo_repeticion" existe en la fila de datos
-    if (isset($fila['ensayo_repeticion'])) {
-        if ($sample_id == $fila['Sample_ID'] && $sample_number == $fila['Sample_Number'] && $test_type == $fila['Test_Type']) {
-            $ensayo_repeticion = true;
-            break;
-        }
-    }
-}
-
-
 ?>
 
 <?php include_once('layouts/header.php'); ?>
@@ -111,48 +48,77 @@ foreach ($EnsayoRepeticion as $fila) {
                         <tbody>
                             <?php
                             foreach ($Search_ListP as $muestra) {
+
+                                $Search_Repeticion = find_by_sample_info('ensayo_en_repeticion', $muestra['Sample_ID'], $muestra['Sample_Number'], $muestra['Test_Type']);
+
+                                $rowClass = $Search_Repeticion ? 'highlight-row' : '';
+                                $imgClass = $Search_Repeticion ? 'highlight-img' : '';
+
                                 echo "<tr>";
-                                echo "<td>" . $muestra['Sample_ID'] . "</td>";
-                                echo "<td>" . $muestra['Sample_Number'] . "</td>";
-                                echo "<td>" . $muestra['Test_Type'] . "</td>";
-
-                                $muestra['En_Preparacion'] = $en_preparacion;
-                                $muestra['En_Realizacion'] = $en_realizacion;
-                                $muestra['Ensayo_Entregado'] = $ensayo_entregado;
-                                $muestra['En_Revision'] = $ensayo_revision;
-                                $muestra['En_Repeticion'] = $ensayo_repeticion;
-
-                                echo "<td class='center-cell'>";
-                                if ($muestra['En_Preparacion'] == 1 &&
-                                    $sample_id == $muestra['Sample_ID'] &&
-                                    $sample_number == $muestra['Sample_Number'] &&
-                                    $test_type == $muestra['Test_Type']) {
-                                    echo '<img src="uploads/img/realizado.png" alt="En Preparación" width="30px">';
+                                echo "<td class='$rowClass'>" . $muestra['Sample_ID'] . "</td>";
+                                echo "<td class='$rowClass'>" . $muestra['Sample_Number'] . "</td>";
+                                echo "<td class='$rowClass'>" . $muestra['Test_Type'] . "</td>";
+                                
+                                
+                                $Search_Preparacion = find_by_sample_info('muestra_en_preparacion', $muestra['Sample_ID'], $muestra['Sample_Number'], $muestra['Test_Type']);
+    
+                                echo "<td class='center-cell $rowClass' style='text-align: center;'>";
+                                if ($Search_Preparacion) {
+                                    
+                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
                                 } else {
-                                    echo '<img src="uploads/img/norealizado.png" alt="No en Preparación" width="30px">';
+                                    
+                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
                                 }
                                 echo "</td>";
+
                                 
+                                $Search_Realizacion = find_by_sample_info('muestra_en_realizacion', $muestra['Sample_ID'], $muestra['Sample_Number'], $muestra['Test_Type']);
+    
+                                echo "<td class='center-cell $rowClass' style='text-align: center;'>";
+                                if ($Search_Realizacion) {
+                                    
+                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
+                                } else {
+                                    
+                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
+                                }
+                                echo "</td>";
+
+
+                                $Search_Entregado = find_by_sample_info('ensayo_en_entrega', $muestra['Sample_ID'], $muestra['Sample_Number'], $muestra['Test_Type']);
+    
+                                echo "<td class='center-cell $rowClass' style='text-align: center;'>";
+                                if ($Search_Entregado) {
+                                    
+                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
+                                } else {
+                                    
+                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
+                                }
+                                echo "</td>";
+
+
+                                $Search_Revision = find_by_sample_info('ensayos_en_revision', $muestra['Sample_ID'], $muestra['Sample_Number'], $muestra['Test_Type']);
+    
+                                echo "<td class='center-cell $rowClass' style='text-align: center;'>";
+                                if ($Search_Revision) {
+                                    
+                                    echo "<img src='uploads/img/realizado.png' alt='En preparación' width='30px'>";
+                                } else {
+                                    
+                                    echo "<img src='uploads/img/norealizado.png' alt='No estoy aquí' width='30px'>";
+                                }
+                                echo "</td>";
+
                                 
 
-                                // Columna de Realización
-                                echo "<td class='center-cell'>";
-                                echo $muestra['En_Realizacion'] ? '<img src="uploads/img/realizado.png" alt="En Realización" width="30px">' : '<img src="uploads/img/norealizado.png" alt="No En Realización" width="30px">';
-                                echo "</td>";
-
-                                // Columna de Entregado
-                                echo "<td class='center-cell'>";
-                                echo $muestra['Ensayo_Entregado'] ? '<img src="uploads/img/realizado.png" alt="Ensayo Entregado" width="30px">' : '<img src="uploads/img/norealizado.png" alt="No Ensayo Entregado" width="30px">';
-                                echo "</td>";
-
-                                // Columna de Revision
-                                echo "<td class='center-cell'>";
-                                echo $muestra['En_Revision'] ? '<img src="uploads/img/realizado.png" alt="En Revision" width="30px">' : '<img src="uploads/img/norealizado.png" alt="" width="30px">';
-                                echo "</td>";
-
-                                // Columna de Repeticion
-                                echo "<td class='center-cell'>";
-                                echo $muestra['En_Repeticion'] ? '<img src="uploads/img/repeticion.png" alt="En Repeticion" width="30px">' : '<img src="" alt="" width="30px">';
+                                echo "<td class='center-cell $rowClass' style='text-align: center;'>";
+                                if ($Search_Repeticion) {
+                                    echo "<img src='uploads/img/01.gif' alt='En preparación' width='30px'>";
+                                } else {
+                                    echo "";
+                                }
                                 echo "</td>";
                                 echo "</tr>";
                             }
@@ -165,5 +131,12 @@ foreach ($EnsayoRepeticion as $fila) {
         </div>
     </div>
 </div>
+
+<style>
+    /* Estilo para resaltar la fila */
+.highlight-row {
+    background-color: #F0F0F0; /* Puedes cambiar el color de fondo a tu preferencia */
+}
+</style>
 
 <?php include_once('layouts/footer.php'); ?>

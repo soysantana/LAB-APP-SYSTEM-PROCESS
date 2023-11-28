@@ -16,6 +16,16 @@ $fechaLimite = date('Y-m-d H:i:s', strtotime('-50 days'));
 // Array con los nombres de las tablas deseadas
 $tablas = array('moisture_content', 'grain_size', 'atterberg_limit', 'standard_proctor', 'moisture_content_microwave', 'moisture_content_constant_mass', 'moisture_scale', 'count_gama', 'density_bulk', 'density_weigth', 'ensayo_gama', 'los_angeles_abrasion_small', 'sand_density', 'specific_gravity', 'specific_gravity_absortion', 'specific_gravity_fine', 'splitting_tensile_strenght', 'uniaxial_compressive_strength', 'pinhole', 'point_load_test', 'permeability_of_granular_soils', 'los_angeles_abrasion_large', 'leeb_hardness', 'grout_specimens', 'concrete_specimens', 'hydrometer', 'double_hydrometer', 'grain_size_fine_aggregate', 'grain_size_coarse_aggregate', 'grain_size_sieved_coarse_aggregate', 'consolidation');
 
+// Insertar datos en la tabla "ensayos_en_revision"
+foreach ($tablas as $tabla) {
+    $query = "INSERT IGNORE INTO ensayos_en_revision (Sample_ID, Sample_Number, test_type, Registered_By, Test_Start_Date)
+              SELECT Sample_ID, Sample_Number, test_type, Registered_By, Test_Start_Date FROM $tabla WHERE Report_Date >= '$fechaLimite'";
+    $result = mysqli_query($rtv, $query);
+    if (!$result) {
+        die("Error al insertar datos en la tabla 'ensayos_en_revision': " . mysqli_error($rtv));
+    }
+}
+
 ?>
 
 <?php include_once('layouts/header.php'); ?>

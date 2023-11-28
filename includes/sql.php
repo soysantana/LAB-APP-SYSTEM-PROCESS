@@ -420,4 +420,26 @@ function  monthlySales($year){
   return find_by_sql($sql);
 }
 
+// Función para buscar por Sample_ID, Sample_Number y Test_Type
+function find_by_sample_info($table, $sample_id, $sample_number, $test_type) {
+  global $db;
+  $sql = "SELECT * FROM " . $db->escape($table);
+  $sql .= " WHERE Sample_ID = '" . $db->escape($sample_id) . "'";
+  $sql .= " AND Sample_Number = '" . $db->escape($sample_number) . "'";
+  $sql .= " AND Test_Type = '" . $db->escape($test_type) . "'";
+  $result = find_by_sql($sql);
+  return !empty($result) ? array_shift($result) : false;
+}
+
+// Función para obtener todas las tablas de la base de datos
+function get_all_tables() {
+  global $db;
+  $result = $db->query("SHOW TABLES");
+  $tables = array();
+  while ($row = $db->fetch_assoc($result)) {
+      $tables[] = $row['Tables_in_tu_base_de_datos'];
+  }
+  return $tables;
+}
+
 ?>

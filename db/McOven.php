@@ -33,7 +33,7 @@ if(isset($_POST['mcoven'])){
     $technician  = $db->escape($_POST['technician']);
     $testdate  = $db->escape($_POST['testdate']);
     $reportdate  = make_date();
-    $testtype = "MC-Oven";
+    $testtype = "Mc_Oven";
     $RegisterBy = $user['name'];
 
     $sql = "INSERT INTO moisture_content (";
@@ -103,7 +103,7 @@ $search_table = find_by_id('moisture_content', (int)$_GET['id']);
       $query .= "Dry_Soil = '{$drysoil}', ";
       $query .= "Mc = '{$mc}', ";
 
-      $query .= "Registered_By = '{$RegisterBy}', ";
+      $query .= "Registered_By = '{$RegisterBy}' ";
 
       $query .= "WHERE id = '{$search_table['id']}'";      
 
