@@ -12,7 +12,16 @@ $lab_req_form = join_lab_test_requisition_form();
 <div class="row">
   <div class="col-md-12">
     <?php echo display_msg($msg); ?>
-    <div class="form-group">
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <div class="pull-right">
+          <a href="add_Muestra.php" class="btn btn-primary">Agregar Muestra</a>
+        </div>
+      </div>
+      <div class="panel-body">
+      <div class="form-group">
       <div class="input-group">
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" id="btnBuscar">Find</button>
@@ -27,15 +36,6 @@ $lab_req_form = join_lab_test_requisition_form();
       </div>
       <div id="result" class="list-group"></div>
     </div>
-  </div>
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading clearfix">
-        <div class="pull-right">
-          <a href="add_Muestra.php" class="btn btn-primary">Agregar Muestra</a>
-        </div>
-      </div>
-      <div class="panel-body">
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -126,6 +126,28 @@ $lab_req_form = join_lab_test_requisition_form();
   </div>
 </div>
 
+<script>
+  $(document).ready(function () {
+    $("#btnBuscar").on("click", function () {
+      var searchTerm = $("#inputBusqueda").val().toLowerCase();
+
+      // Oculta todas las filas de la tabla
+      $("tbody tr").hide();
+
+      // Muestra solo las filas que contienen el término de búsqueda
+      $("tbody tr").each(function () {
+        var sampleID = $(this).find("td:nth-child(2)").text().toLowerCase();
+        var sampleNumber = $(this).find("td:nth-child(3)").text().toLowerCase();
+
+        if (sampleID.includes(searchTerm) || sampleNumber.includes(searchTerm)) {
+          $(this).show();
+        }
+      });
+    });
+  });
+</script>
+
+
 
 <style>
     .modal-body h3 {
@@ -192,59 +214,5 @@ $lab_req_form = join_lab_test_requisition_form();
         opacity: 0.8;
     }
 </style>
-
-<!-- Agrega jQuery (si no lo has hecho) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $('#btnBuscar').click(function() {
-      // Obtener el valor del campo de búsqueda
-      var sampleID = $('#inputBusqueda').val();
-
-      // Realizar la solicitud AJAX para obtener los resultados según el Sample ID
-      $.ajax({
-        url: 'buscar_muestra.php', // Reemplaza 'buscar_muestra.php' con la URL correcta del backend
-        method: 'POST',
-        data: { sampleID: sampleID },
-        dataType: 'json',
-        success: function(data) {
-          // Limpiar la tabla antes de agregar nuevos resultados
-          $('#labReqTable tbody').empty();
-
-          // Agregar los nuevos resultados a la tabla
-          $.each(data, function(index, lab_req_id) {
-            var row = '<tr>' +
-              '<td class="text-center">' + remove_junk(lab_req_id.id) + '</td>' +
-              '<td class="text-center">' + remove_junk(lab_req_id.Sample_ID) + '</td>' +
-              '<td class="text-center">' + remove_junk(lab_req_id.Sample_Number) + '</td>' +
-              '<td class="text-center">' +
-              '<div class="btn-group">' +
-              '<a class="btn btn-warning btn-xs" title="Editar" data-toggle="modal" data-target="#basicModal_' + lab_req_id.id + '">' +
-              '<span class="glyphicon glyphicon-eye-open"></span>' +
-              '</a>' +
-              '<a href="edit_regMuestra.php?id=' + parseInt(lab_req_id.id) + '" class="btn btn-info btn-xs" title="Editar" data-toggle="tooltip">' +
-              '<span class="glyphicon glyphicon-edit"></span>' +
-              '</a>' +
-              '<a href="delete_Muestra.php?id=' + parseInt(lab_req_id.id) + '" class="btn btn-danger btn-xs" title="Eliminar" data-toggle="tooltip">' +
-              '<span class="glyphicon glyphicon-trash"></span>' +
-              '</a>' +
-              '</div>' +
-              '</td>' +
-              '</tr>';
-
-            $('#labReqTable tbody').append(row);
-          });
-        },
-        error: function(error) {
-          console.log('Error al obtener resultados:', error);
-        }
-      });
-    });
-  });
-</script>
-
-
-
 
 <?php include_once('layouts/footer.php'); ?>
