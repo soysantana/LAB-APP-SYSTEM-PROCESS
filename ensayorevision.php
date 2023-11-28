@@ -38,14 +38,14 @@ $tablas = array('moisture_content', 'grain_size', 'atterberg_limit', 'standard_p
               <th class="text-center" style="width: 50px">Id muestra</th>
               <th class="text-center" style="width: 50px">Numero de muestra</th>
               <th class="text-center" style="width: 50px">Tipo de ensayo</th>
-              <th class="text-center" style="width: 50px">Tecnico</th>
+              <th class="text-center" style="width: 50px">Registrado Por</th>
               <th class="text-center" style="width: 50px">Fecha de inicio</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($tablas as $tabla): ?>
               <?php
-                $query = "SELECT id, Sample_ID, Sample_Number, test_type, Tecnico, Fecha_Inicio FROM $tabla WHERE Report_Date >= '$fechaLimite'";
+                $query = "SELECT Sample_ID, Sample_Number, test_type, Registered_By, Test_Start_Date FROM $tabla WHERE Report_Date >= '$fechaLimite'";
                 $result = mysqli_query($rtv, $query);
                 if (!$result) {
                   die("Error al consultar la base de datos: " . mysqli_error($rtv));
@@ -54,11 +54,11 @@ $tablas = array('moisture_content', 'grain_size', 'atterberg_limit', 'standard_p
               <?php while ($rev = mysqli_fetch_assoc($result)): ?>
                 <tr>
                   <td class="text-center"><?php echo count_id();?></td>
-                  <td><?php echo remove_junk(ucfirst($rev['Sample_ID'])); ?></td>
-                  <td><?php echo remove_junk(ucfirst($rev['Sample_Number'])); ?></td>
-                  <td><?php echo remove_junk(ucfirst($rev['test_type'])); ?></td>
-                  <td><?php echo remove_junk(ucfirst($rev['Tecnico'])); ?></td>
-                  <td><?php echo remove_junk(ucfirst($rev['Fecha_Inicio'])); ?></td>
+                  <td class="text-center"><?php echo remove_junk(ucfirst($rev['Sample_ID'])); ?></td>
+                  <td class="text-center"><?php echo remove_junk(ucfirst($rev['Sample_Number'])); ?></td>
+                  <td class="text-center"><?php echo remove_junk(ucfirst($rev['test_type'])); ?></td>
+                  <td class="text-center"><?php echo remove_junk(ucfirst($rev['Registered_By'])); ?></td>
+                  <td class="text-center"><?php echo remove_junk(ucfirst($rev['Test_Start_Date'])); ?></td>
                 </tr>
               <?php endwhile; ?>
             <?php endforeach; ?>
