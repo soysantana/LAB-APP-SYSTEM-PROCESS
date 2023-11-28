@@ -1,9 +1,10 @@
 <?php
+
+$user = current_user();
+
 if (isset($_POST['mc_constant_mass'])) {
     $req_fields = array('sampleid', 'samplenumber', 'structure', 'area', 'source', 'depthfrom', 'depthto', 
-    'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate', 'standard', 'preparation', 'comment',
-     'technician', 'testdate', 'trial', 'tarename', 'temperature', 'tarewet', 'taredry1', 'taredry2', 'taredry3',
-      'taredry4', 'weigthtare', 'water', 'drysoil', 'mc');
+    'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate', 'standard', 'comment', 'technician', 'testdate');
     validate_fields($req_fields);
     
     if (empty($errors)) {
@@ -39,16 +40,17 @@ if (isset($_POST['mc_constant_mass'])) {
       $mc = $db->escape($_POST['mc']);
       $reportdate = make_date();
       $testtype = "MC-Constant Mass";
+      $RegisterBy = $user['name'];
   
       $sql = "INSERT INTO moisture_content_constant_mass (Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, 
       Depth_To, Material_Type, Sample_Type, North, East, Elev, Sample_Date, Standard, Preparation, Comment, Technician,
        Test_Start_Date, Trial, Tare_Name, Temperature, Tare_Plus_Wet_Soil, Tare_Plus_Dry_Soil1, Tare_Plus_Dry_Soil2, 
-       Tare_Plus_Dry_Soil3, Tare_Plus_Dry_Soil4, Water, Weigth_Tare, Dry_Soil, Mc, Report_Date, test_type) 
+       Tare_Plus_Dry_Soil3, Tare_Plus_Dry_Soil4, Water, Weigth_Tare, Dry_Soil, Mc, Report_Date, test_type, Registered_By) 
        VALUES (
           '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', '$depthto', '$materialtype', 
           '$sampletype', '$north', '$east', '$elev', '$sampledate', '$standard', '$preparation', '$comment', '$technician',
            '$testdate', '$trial', '$tarename', '$temperature', '$tarewet', '$taredry1', '$taredry2', '$taredry3',
-            '$taredry4', '$water', '$weigthtare', '$drysoil', '$mc', '$reportdate', '$testtype')";
+            '$taredry4', '$water', '$weigthtare', '$drysoil', '$mc', '$reportdate', '$testtype', '$RegisterBy')";
   
       if ($db->query($sql)) {
         $session->msg('s', "Ensayo agregado exitosamente.");
@@ -95,6 +97,7 @@ $search_table = find_by_id('moisture_content_constant_mass', (int)$_GET['id']);
       $weigthtare = remove_junk($db->escape($_POST['weigthtare']));
       $drysoil = remove_junk($db->escape($_POST['drysoil']));
       $mc = remove_junk($db->escape($_POST['mc']));
+      $RegisterBy = $user['name'];
 
       $query = "UPDATE moisture_content_constant_mass SET ";
       $query .= "Standard = '{$standard}', ";
@@ -114,7 +117,8 @@ $search_table = find_by_id('moisture_content_constant_mass', (int)$_GET['id']);
       $query .= "Water = '{$water}', ";
       $query .= "Weigth_Tare = '{$weigthtare}', ";
       $query .= "Dry_Soil = '{$drysoil}', ";
-      $query .= "Mc = '{$mc}' ";
+      $query .= "Mc = '{$mc}', ";
+      $query .= "Registered_By = '{$RegisterBy}', ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

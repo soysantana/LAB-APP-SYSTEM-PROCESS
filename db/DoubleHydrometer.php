@@ -1,4 +1,7 @@
 <?php
+
+$user = current_user();
+
 // Función para obtener y escapar datos del POST
 function get_post_data($field) {
     global $db;
@@ -21,7 +24,6 @@ if (isset($_POST['DoubleHydrometer'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
         'Comments',
         'Technician',
         'TestStartDate'
@@ -334,6 +336,8 @@ if (isset($_POST['DoubleHydrometer'])) {
         $Porce_Dispersion = get_post_data('Porce_Dispersion');
         $Classification = get_post_data('Classification');
 
+        $RegisterBy = $user['name'];
+
         $sql = "INSERT INTO double_hydrometer (
             Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To,
             Material_Type, Sample_Type, North, East, Elev, Sample_Date, Report_Date,
@@ -620,7 +624,8 @@ if (isset($_POST['DoubleHydrometer'])) {
             Nm_2um_Not_Dispersed,
             Nm_2um_Dispersed,
             Porce_Dispersion,
-            Classification
+            Classification,
+            Registered_By
         ) VALUES (
             '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom',
             '$depthto', '$materialtype', '$sampletype', '$north', '$east', '$elev',
@@ -907,7 +912,8 @@ if (isset($_POST['DoubleHydrometer'])) {
             '$Nm_2um_Not_Dispersed',
             '$Nm_2um_Dispersed',
             '$Porce_Dispersion',
-            '$Classification'
+            '$Classification',
+            '$RegisterBy'
         )";
 
         if ($db->query($sql)) {
@@ -1226,6 +1232,7 @@ $search_table = find_by_id('double_hydrometer', (int)$_GET['id']);
       $Nm_2um_Dispersed = get_post_data('Nm_2um_Dispersed');
       $Porce_Dispersion = get_post_data('Porce_Dispersion');
       $Classification = get_post_data('Classification');
+      $RegisterBy = $user['name'];
 
       $query = "UPDATE double_hydrometer SET ";
       $query .= "Standard = '{$Standard}', ";
@@ -1519,7 +1526,9 @@ $search_table = find_by_id('double_hydrometer', (int)$_GET['id']);
       $query .= "Nm_2um_Not_Dispersed = '{$Nm_2um_Not_Dispersed}', ";
       $query .= "Nm_2um_Dispersed = '{$Nm_2um_Dispersed}', ";
       $query .= "Porce_Dispersion = '{$Porce_Dispersion}', ";
-      $query .= "Classification = '{$Classification}' ";
+      $query .= "Classification = '{$Classification}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       
       $query .= "WHERE id = '{$search_table['id']}'";      
 

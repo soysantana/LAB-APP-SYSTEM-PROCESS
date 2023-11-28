@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['ConcreteSpecimen'])) {
 
@@ -112,6 +114,8 @@ if (empty($errors)) {
     $ObservationsN4 = $db->escape($_POST['ObservationsN4']);
     $ObservationsN5 = $db->escape($_POST['ObservationsN5']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO concrete_specimens (
     Sample_ID, 
@@ -190,7 +194,8 @@ $sql = "INSERT INTO concrete_specimens (
     Observations_N2,
     Observations_N3,
     Observations_N4,
-    Observations_N5
+    Observations_N5,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -269,7 +274,8 @@ VALUES (
     '$ObservationsN2',
     '$ObservationsN3',
     '$ObservationsN4',
-    '$ObservationsN5'
+    '$ObservationsN5',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -365,6 +371,8 @@ $search_table = find_by_id('concrete_specimens', (int)$_GET['id']);
       $ObservationsN4 = $db->escape($_POST['ObservationsN4']);
       $ObservationsN5 = $db->escape($_POST['ObservationsN5']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE concrete_specimens SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -428,7 +436,9 @@ $search_table = find_by_id('concrete_specimens', (int)$_GET['id']);
       $query .= "Observations_N2 = '{$ObservationsN2}', ";
       $query .= "Observations_N3 = '{$ObservationsN3}', ";
       $query .= "Observations_N4 = '{$ObservationsN4}', ";
-      $query .= "Observations_N5 = '{$ObservationsN5}' ";
+      $query .= "Observations_N5 = '{$ObservationsN5}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       
       $query .= "WHERE id = '{$search_table['id']}'";      
 

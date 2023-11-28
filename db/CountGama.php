@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['CountGama'])) {
 
@@ -18,30 +20,9 @@ if (isset($_POST['CountGama'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'DateCount1',
-        'DateCount2',
-        'DateCount3',
-        'DateCount4',
-        'DateCount5',
-        'ValueCount1',
-        'ValueCount2',
-        'ValueCount3',
-        'ValueCount4',
-        'ValueCount5',
-        'RankDate1',
-        'RankDate2',
-        'RankDate3',
-        'RankDate4',
-        'RankDate5',
-        'Operator1',
-        'Operator2',
-        'Operator3',
-        'Operator4',
-        'Operator5'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -94,6 +75,8 @@ if (empty($errors)) {
     $Operator4 = $db->escape($_POST['Operator4']);
     $Operator5 = $db->escape($_POST['Operator5']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO count_gama (
     Sample_ID, 
@@ -133,7 +116,8 @@ $sql = "INSERT INTO count_gama (
     Operator_2,
     Operator_3,
     Operator_4,
-    Operator_5
+    Operator_5,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -175,7 +159,8 @@ VALUES (
     '$Operator2',
     '$Operator3',
     '$Operator4',
-    '$Operator5'
+    '$Operator5',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -234,6 +219,8 @@ $search_table = find_by_id('count_gama', (int)$_GET['id']);
       $Operator4 = $db->escape($_POST['Operator4']);
       $Operator5 = $db->escape($_POST['Operator5']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE count_gama SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -260,7 +247,9 @@ $search_table = find_by_id('count_gama', (int)$_GET['id']);
       $query .= "Operator_2 = '{$Operator2}', ";
       $query .= "Operator_3 = '{$Operator3}', ";
       $query .= "Operator_4 = '{$Operator4}', ";
-      $query .= "Operator_5 = '{$Operator5}' ";
+      $query .= "Operator_5 = '{$Operator5}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       
       $query .= "WHERE id = '{$search_table['id']}'";      
 

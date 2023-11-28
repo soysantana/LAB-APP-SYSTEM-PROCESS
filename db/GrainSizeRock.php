@@ -1,4 +1,7 @@
 <?php
+
+$user = current_user();
+
 // Función para obtener y escapar datos del POST
 function get_post_data($field) {
     global $db;
@@ -21,8 +24,6 @@ if (isset($_POST['GrainSizeRocks'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
-        'SplitMethod',
         'Comments',
         'Technician',
         'TestStartDate',
@@ -438,6 +439,7 @@ if (isset($_POST['GrainSizeRocks'])) {
         $D85 = get_post_data('D85');
         $Cc = get_post_data('Cc');
         $Cu = get_post_data('Cu');
+        $RegisterBy = $user['name'];
 
         $sql = "INSERT INTO grain_size_rocks (
             Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To,
@@ -828,7 +830,8 @@ if (isset($_POST['GrainSizeRocks'])) {
             D60,
             D85,
             Cc,
-            Cu
+            Cu,
+            Registered_By
         ) VALUES (
             '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom',
             '$depthto', '$materialtype', '$sampletype', '$north', '$east', '$elev',
@@ -1218,7 +1221,8 @@ if (isset($_POST['GrainSizeRocks'])) {
             '$D60',
             '$D85',
             '$Cc',
-            '$Cu'
+            '$Cu',
+            '$RegisterBy'
         )";
 
         if ($db->query($sql)) {

@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['LeebHardness'])) {
 
@@ -18,23 +20,9 @@ if (isset($_POST['LeebHardness'])) {
         'elev',
         'sampledate',
         'Standard',
-        'Method',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'Sample',
-        'Depthm',
-        'LeebHardnessNumber1',
-        'LeebHardnessNumber2',
-        'LeebHardnessNumber3',
-        'LeebHardnessNumber4',
-        'LeebHardnessNumber5',
-        'LeebHardnessNumber6',
-        'LeebHardnessNumber7',
-        'LeebHardnessNumber8',
-        'LeebHardnessNumber9',
-        'LeebHardnessNumber10',
-        'Average'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -80,6 +68,8 @@ if (empty($errors)) {
     $LeebHardnessNumber10 = $db->escape($_POST['LeebHardnessNumber10']);
     $Average = $db->escape($_POST['Average']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO leeb_hardness (
     Sample_ID, 
@@ -114,7 +104,8 @@ $sql = "INSERT INTO leeb_hardness (
     Leeb_Hardness_Number8,
     Leeb_Hardness_Number9,
     Leeb_Hardness_Number10,
-    Average
+    Average,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -149,7 +140,8 @@ VALUES (
     '$LeebHardnessNumber8',
     '$LeebHardnessNumber9',
     '$LeebHardnessNumber10',
-    '$Average'
+    '$Average',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -201,6 +193,8 @@ $search_table = find_by_id('leeb_hardness', (int)$_GET['id']);
       $LeebHardnessNumber10 = $db->escape($_POST['LeebHardnessNumber10']);
       $Average = $db->escape($_POST['Average']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE leeb_hardness SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Method = '{$Method}', ";
@@ -220,7 +214,8 @@ $search_table = find_by_id('leeb_hardness', (int)$_GET['id']);
       $query .= "Leeb_Hardness_Number8 = '{$LeebHardnessNumber8}', ";
       $query .= "Leeb_Hardness_Number9 = '{$LeebHardnessNumber9}', ";
       $query .= "Leeb_Hardness_Number10 = '{$LeebHardnessNumber10}', ";
-      $query .= "Average = '{$Average}' ";
+      $query .= "Average = '{$Average}', ";
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

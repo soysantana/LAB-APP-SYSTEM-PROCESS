@@ -1,10 +1,12 @@
 <?php
+
+$user = current_user();
+
 // Recuperamos los datos del formulario
 if (isset($_POST['Standardproctor'])) {
   $req_fields = array(
 'sampleid', 'samplenumber', 'structure', 'area', 'source', 'depthfrom', 'depthto', 'materialtype', 'sampletype', 'north', 
-'east', 'elev', 'sampledate', 'Standard', 'PreparationMethod', 'Split', 'Nmc', 'natmc', 'Comments', 'Technician',
-'TestStartDate'
+'east', 'elev', 'sampledate', 'Standard', 'Comments', 'Technician', 'TestStartDate'
 );
   validate_fields($req_fields);
 
@@ -144,6 +146,8 @@ if (isset($_POST['Standardproctor'])) {
     $Corrected_Dry_Unit_Weigt = $db->escape($_POST['Corrected_Dry_Unit_Weigt']);
     $Corrected_Water_Content_Finer = $db->escape($_POST['Corrected_Water_Content_Finer']);
 
+    $RegisterBy = $user['name'];
+
 
 // Componemos la sentencia SQL
     $sql = "INSERT INTO standard_proctor (
@@ -165,7 +169,7 @@ MC_Wt_Dry_Soil_g_1, MC_Wt_Dry_Soil_g_2, MC_Wt_Dry_Soil_g_3, MC_Wt_Dry_Soil_g_4, 
 MC_Wt_Dry_Soil_g_6, MC_Porce_1, MC_Porce_2, MC_Porce_3, MC_Porce_4, MC_Porce_5, MC_Porce_6, MC_Porce_Corrected_1,
 MC_Porce_Corrected_2, MC_Porce_Corrected_3, MC_Porce_Corrected_4, MC_Porce_Corrected_5, MC_Porce_Corrected_6,
 Max_Dry_Density_kgm3, Optimun_MC_Porce, Wc_Porce, GM_Porce, PC_Porce, PF_Porce, YDF_Porce, YDT_Porce,
-Yw_KnM3, Corrected_Dry_Unit_Weigt, Corrected_Water_Content_Finer
+Yw_KnM3, Corrected_Dry_Unit_Weigt, Corrected_Water_Content_Finer, Registered_By
 )
       VALUES (
 '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', 
@@ -192,7 +196,7 @@ Yw_KnM3, Corrected_Dry_Unit_Weigt, Corrected_Water_Content_Finer
 '$MC_Porce_Corrected_1', '$MC_Porce_Corrected_2', '$MC_Porce_Corrected_3', '$MC_Porce_Corrected_4',
 '$MC_Porce_Corrected_5', '$MC_Porce_Corrected_6', '$Max_Dry_Density_kgm3', '$Optimun_MC_Porce',
 '$Wc_Porce', '$GM_Porce', '$PC_Porce', '$PF_Porce', '$YDF_Porce', '$YDT_Porce', '$Yw_KnM3',
-'$Corrected_Dry_Unit_Weigt', '$Corrected_Water_Content_Finer'
+'$Corrected_Dry_Unit_Weigt', '$Corrected_Water_Content_Finer', '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -340,6 +344,8 @@ $SearchTable = find_by_id('standard_proctor', (int)$_GET['id']);
   $Corrected_Dry_Unit_Weigt = $db->escape($_POST['Corrected_Dry_Unit_Weigt']);
   $Corrected_Water_Content_Finer = $db->escape($_POST['Corrected_Water_Content_Finer']);
 
+  $RegisterBy = $user['name'];
+
 
       $query = "UPDATE standard_proctor SET ";
       $query .= "Standard = '{$Standard}', ";
@@ -453,8 +459,9 @@ $SearchTable = find_by_id('standard_proctor', (int)$_GET['id']);
       $query .= "YDT_Porce = '{$YDT_Porce}', ";
       $query .= "Yw_KnM3 = '{$Yw_KnM3}', ";
       $query .= "Corrected_Dry_Unit_Weigt = '{$Corrected_Dry_Unit_Weigt}', ";
-      $query .= "Corrected_Water_Content_Finer = '{$Corrected_Water_Content_Finer}' ";
+      $query .= "Corrected_Water_Content_Finer = '{$Corrected_Water_Content_Finer}', ";
 
+      $query .= "Registered_By = '{$RegisterBy}' ";
 
       $query .= "WHERE id = '{$SearchTable['id']}'";      
 

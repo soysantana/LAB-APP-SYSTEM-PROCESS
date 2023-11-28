@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['SpecificGravity'])) {
 
@@ -19,23 +21,9 @@ if (isset($_POST['SpecificGravity'])) {
         'sampledate',
         'Standard',
         'PreparationMethod',
-        'SplitMethod',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'PycnometerUsedmL',
-        'PycnometerNumber',
-        'TestTempTtC',
-        'AveCalibratedMassDryPycnometerMpgr',
-        'AveCalibratedVolumePycnometerVpmL',
-        'DensityWaterTestTempgmL',
-        'CalibrationWeightPynometerWaterCalibrationTempMpwcgr',
-        'WeightDrySoilTaregr',
-        'WeightDrySoilMsgr',
-        'WeightPycnometerSoilWaterMpwstgr',
-        'SpecificGravitySoilSolidTestTempGt',
-        'TemperatureCoefficentK',
-        'SpecificGravitySoilSolid'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -63,7 +51,6 @@ if (empty($errors)) {
     // Informaciones basicas
     $Standard = $db->escape($_POST['Standard']);
     $PreparationMethod = $db->escape($_POST['PreparationMethod']);
-    $SplitMethod = $db->escape($_POST['SplitMethod']);
     $Comments = $db->escape($_POST['Comments']);
     $Technician = $db->escape($_POST['Technician']);
     $TestStartDate = $db->escape($_POST['TestStartDate']);
@@ -82,6 +69,7 @@ if (empty($errors)) {
     $TemperatureCoefficentK = $db->escape($_POST['TemperatureCoefficentK']);
     $SpecificGravitySoilSolid = $db->escape($_POST['SpecificGravitySoilSolid']);
 
+    $RegisterBy = $user['name'];
 
 // Componemos la sentencia SQL
 $sql = "INSERT INTO specific_gravity (
@@ -100,7 +88,6 @@ $sql = "INSERT INTO specific_gravity (
     test_type, 
     Standard, 
     Preparation_Method,
-    Split_Method,
     Comments,
     Technician,
     Test_Start_Date,
@@ -116,7 +103,8 @@ $sql = "INSERT INTO specific_gravity (
     Weight_Pycnometer_Soil_Water_Mpwst_gr,
     Specific_Gravity_Soil_Solid_Test_Temp_Gt,
     Temperature_Coefficent_K,
-    Specific_Gravity_Soil_Solid
+    Specific_Gravity_Soil_Solid,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -136,7 +124,6 @@ VALUES (
     '$testype',
     '$Standard',
     '$PreparationMethod',
-    '$SplitMethod',
     '$Comments',
     '$Technician',
     '$TestStartDate',
@@ -152,7 +139,8 @@ VALUES (
     '$WeightPycnometerSoilWaterMpwstgr',
     '$SpecificGravitySoilSolidTestTempGt',
     '$TemperatureCoefficentK',
-    '$SpecificGravitySoilSolid'
+    '$SpecificGravitySoilSolid',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -187,7 +175,6 @@ $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
       // Obtiene los valores de los campos del formulario
       $Standard = remove_junk($db->escape($_POST['Standard']));
       $PreparationMethod = remove_junk($db->escape($_POST['PreparationMethod']));
-      $SplitMethod = remove_junk($db->escape($_POST['SplitMethod']));
       $Comments = remove_junk($db->escape($_POST['Comments']));
       $Technician = remove_junk($db->escape($_POST['Technician']));
       $TestStartDate = remove_junk($db->escape($_POST['TestStartDate']));
@@ -206,11 +193,12 @@ $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
       $TemperatureCoefficentK = remove_junk($db->escape($_POST['TemperatureCoefficentK']));
       $SpecificGravitySoilSolid = remove_junk($db->escape($_POST['SpecificGravitySoilSolid']));
 
+      $RegisterBy = $user['name'];
+
 
       $query = "UPDATE specific_gravity SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
-      $query .= "Split_Method = '{$SplitMethod}', ";
       $query .= "Comments = '{$Comments}', ";
       $query .= "Technician = '{$Technician}', ";
       $query .= "Test_Start_Date = '{$TestStartDate}', ";
@@ -226,7 +214,8 @@ $Specific_Gravity = find_by_id('specific_gravity', (int)$_GET['id']);
       $query .= "Weight_Pycnometer_Soil_Water_Mpwst_gr = '{$WeightPycnometerSoilWaterMpwstgr}', ";
       $query .= "Specific_Gravity_Soil_Solid_Test_Temp_Gt = '{$SpecificGravitySoilSolidTestTempGt}', ";
       $query .= "Temperature_Coefficent_K = '{$TemperatureCoefficentK}', ";
-      $query .= "Specific_Gravity_Soil_Solid = '{$SpecificGravitySoilSolid}' ";
+      $query .= "Specific_Gravity_Soil_Solid = '{$SpecificGravitySoilSolid}', ";
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$Specific_Gravity['id']}'";      
 
       $result = $db->query($query);

@@ -1,4 +1,7 @@
 <?php
+
+$user = current_user();
+
 // Función para obtener y escapar datos del POST
 function get_post_data($field) {
     global $db;
@@ -21,8 +24,6 @@ if (isset($_POST['GrainSievedCoarse'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
-        'SplitMethod',
         'Comments',
         'Technician',
         'TestStartDate',
@@ -161,6 +162,8 @@ if (isset($_POST['GrainSievedCoarse'])) {
         $PorcePass3p589 = get_post_data('PorcePass3p589');
         $Specs3p589 = get_post_data('Specs3p589');
 
+        $RegisterBy = $user['name'];
+
         $sql = "INSERT INTO grain_size_sieved_coarse_aggregate (
             Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To,
             Material_Type, Sample_Type, North, East, Elev, Sample_Date, Report_Date,
@@ -272,7 +275,8 @@ if (isset($_POST['GrainSievedCoarse'])) {
             D60,
             D85,
             Cc,
-            Cu
+            Cu,
+            Registered_By
         ) VALUES (
             '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom',
             '$depthto', '$materialtype', '$sampletype', '$north', '$east', '$elev',
@@ -384,7 +388,8 @@ if (isset($_POST['GrainSievedCoarse'])) {
             '$D60',
             '$D85',
             '$Cc',
-            '$Cu'
+            '$Cu',
+            '$RegisterBy'
         )";
 
         if ($db->query($sql)) {
@@ -551,6 +556,8 @@ $search_table = find_by_id('grain_size_sieved_coarse_aggregate', (int)$_GET['id'
       $CumRetTotalPan = $db->escape($_POST['CumRetTotalPan']);
       $PorcePassTotalPan = $db->escape($_POST['PorcePassTotalPan']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE grain_size_sieved_coarse_aggregate SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -682,7 +689,9 @@ $search_table = find_by_id('grain_size_sieved_coarse_aggregate', (int)$_GET['id'
       $query .= "Wt_Ret_Total_Pan = '{$WtRetTotalPan}', ";
       $query .= "Porce_Ret_Total_Pan = '{$PorceRetTotalPan}', ";
       $query .= "Cum_Ret_Total_Pan = '{$CumRetTotalPan}', ";
-      $query .= "Porce_Pass_Total_Pan = '{$PorcePassTotalPan}' ";
+      $query .= "Porce_Pass_Total_Pan = '{$PorcePassTotalPan}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
 
       $query .= "WHERE id = '{$search_table['id']}'";      
 

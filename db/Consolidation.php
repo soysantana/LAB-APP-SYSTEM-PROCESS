@@ -1,4 +1,7 @@
 <?php
+
+$user = current_user();
+
 // Función para obtener y escapar datos del POST
 function get_post_data($field) {
     global $db;
@@ -372,6 +375,8 @@ if (isset($_POST['Consolidation'])) {
         $Cv_cm2_Kg_No6 = get_post_data('Cv_cm2_Kg_No6');
         $Cv_cm2_Kg_No7 = get_post_data('Cv_cm2_Kg_No7');
 
+        $RegisterBy = $user['name'];
+
         $sql = "INSERT INTO consolidation (
             Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To,
             Material_Type, Sample_Type, North, East, Elev, Sample_Date, Report_Date,
@@ -696,7 +701,8 @@ if (isset($_POST['Consolidation'])) {
             Cv_cm2_Kg_No4,
             Cv_cm2_Kg_No5,
             Cv_cm2_Kg_No6,
-            Cv_cm2_Kg_No7
+            Cv_cm2_Kg_No7,
+            Registered_By
 
         ) VALUES (
             '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom',
@@ -1022,7 +1028,8 @@ if (isset($_POST['Consolidation'])) {
             '$Cv_cm2_Kg_No4',
             '$Cv_cm2_Kg_No5',
             '$Cv_cm2_Kg_No6',
-            '$Cv_cm2_Kg_No7'
+            '$Cv_cm2_Kg_No7',
+            '$RegisterBy'
             
         )";
 
@@ -1381,6 +1388,8 @@ $search_table = find_by_id('consolidation', (int)$_GET['id']);
       $Cv_cm2_Kg_No6 = get_post_data('Cv_cm2_Kg_No6');
       $Cv_cm2_Kg_No7 = get_post_data('Cv_cm2_Kg_No7');
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE consolidation SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -1736,7 +1745,9 @@ $search_table = find_by_id('consolidation', (int)$_GET['id']);
       $query .= "Cv_cm2_Kg_No4 = '{$Cv_cm2_Kg_No4}', ";
       $query .= "Cv_cm2_Kg_No5 = '{$Cv_cm2_Kg_No5}', ";
       $query .= "Cv_cm2_Kg_No6 = '{$Cv_cm2_Kg_No6}', ";
-      $query .= "Cv_cm2_Kg_No7 = '{$Cv_cm2_Kg_No7}' ";
+      $query .= "Cv_cm2_Kg_No7 = '{$Cv_cm2_Kg_No7}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
 
       
       $query .= "WHERE id = '{$search_table['id']}'";      

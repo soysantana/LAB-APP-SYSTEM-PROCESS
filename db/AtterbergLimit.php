@@ -1,15 +1,11 @@
 <?php
+$user = current_user();
 
 // Recuperamos los datos del formulario
 if (isset($_POST['Al'])) {
   $req_fields = array(
 'sampleid', 'structure', 'samplenumber', 'area', 'source', 'depthfrom', 'depthto', 'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate',
-'standard', 'technician', 'comments', 'test_start_date', 'LLBlows1', 'LLBlows2', 'LLBlows3', 'LLContainer1', 'LLContainer2', 'LLContainer3',
-'LLWetSoil1', 'LLWetSoil2', 'LLWetSoil3', 'LLDrysoiltare1', 'LLDrysoiltare2', 'LLDrysoiltare3', 'LLWater1', 'LLWater2', 'LLWater3', 'LLTare1',
-'LLTare2', 'LLTare3', 'LLWtDrySoil1', 'LLWtDrySoil2', 'LLWtDrySoil3', 'LLMCPorce1', 'LLMCPorce2', 'LLMCPorce3', 'PLContainer1', 'PLContainer2', 'PLContainer3',
-'PLWetSoil1', 'PLWetSoil2', 'PLWetSoil3', 'PLDrysoiltare1', 'PLDrysoiltare2', 'PLDrysoiltare3', 'PLWater1', 'PLWater2', 'PLWater3', 'PLTare1',
-'PLTare2', 'PLTare3', 'PLWtDrySoil1', 'PLWtDrySoil2', 'PLWtDrySoil3', 'PLMCPorce1', 'PLMCPorce2', 'PLMCPorce3', 'PLAvgMc', 'LLPorce', 'PLPorce',
-'PLIndexPorce', 'LLIndexPorce', 'classification', 'split', 'methodpre'
+'standard', 'technician', 'comments', 'test_start_date'
 );
   validate_fields($req_fields);
 
@@ -17,7 +13,7 @@ if (isset($_POST['Al'])) {
   if (empty($errors)) {
     $sampleid = $db->escape($_POST['sampleid']);
     $structure = $db->escape($_POST['structure']);
-    $samplenumber = $db->escape($_POST['Sample_Number']);
+    $samplenumber = $db->escape($_POST['samplenumber']);
     $area = $db->escape($_POST['area']);
     $source = $db->escape($_POST['source']);
     $depthfrom = $db->escape($_POST['depthfrom']);
@@ -98,6 +94,8 @@ if (isset($_POST['Al'])) {
   $methodpre = $db->escape($_POST['methodpre']);
   $natmc = $db->escape($_POST['natmc']);
 
+  $RegisterBy = $user['name'];
+
 
 // Componemos la sentencia SQL
     $sql = "INSERT INTO atterberg_limit (
@@ -107,7 +105,7 @@ LL_Wet_Soil_1, LL_Wet_Soil_2, LL_Wet_Soil_3, LL_Dry_soil_tare1, LL_Dry_soil_tare
 LL_Tare_1, LL_Tare_2, LL_Tare_3, LL_Wt_Dry_Soil_1, LL_Wt_Dry_Soil_2, LL_Wt_Dry_Soil_3, LL_MC_Porce_1, LL_MC_Porce_2, LL_MC_Porce_3, PL_Container_1, PL_Container_2, PL_Container_3, 
 PL_Wet_Soil_1, PL_Wet_Soil_2, PL_Wet_Soil_3, PL_Dry_soil_tare1, PL_Dry_soil_tare2, PL_Dry_soil_tare3, PL_Water_1, PL_Water_2, PL_Water_3, 
 PL_Tare_1, PL_Tare_2, PL_Tare_3, PL_Wt_Dry_Soil_1, PL_Wt_Dry_Soil_2, PL_Wt_Dry_Soil_3, PL_MC_Porce_1, PL_MC_Porce_2, PL_MC_Porce_3, PL_Avg_Mc, Liquid_Limit_Porce,
-Plastic_Limit_Porce, Plasticity_Index_Porce, Liquidity_Index_Porce, Classification, Split_Method, Preparation_Method, Nat_Mc
+Plastic_Limit_Porce, Plasticity_Index_Porce, Liquidity_Index_Porce, Classification, Split_Method, Preparation_Method, Nat_Mc, Registered_By
 )
       VALUES (
 '$sampleid', '$structure', '$samplenumber', '$area', '$source', '$depthfrom', '$depthto', '$materialtype', '$sampletype', '$north', '$east', '$elev', '$sampledate',
@@ -116,7 +114,7 @@ Plastic_Limit_Porce, Plasticity_Index_Porce, Liquidity_Index_Porce, Classificati
 '$LLTare1', '$LLTare2', '$LLTare3', '$LLWtDrySoil1', '$LLWtDrySoil2', '$LLWtDrySoil3', '$LLMCPorce1', '$LLMCPorce2', '$LLMCPorce3', '$PLContainer1', '$PLContainer2',
 '$PLContainer3', '$PLWetSoil1', '$PLWetSoil2', '$PLWetSoil3', '$PLDrysoiltare1', '$PLDrysoiltare2', '$PLDrysoiltare3', '$PLWater1', '$PLWater2', '$PLWater3',
 '$PLTare1', '$PLTare2', '$PLTare3', '$PLWtDrySoil1', '$PLWtDrySoil2', '$PLWtDrySoil3', '$PLMCPorce1', '$PLMCPorce2', '$PLMCPorce3', '$PLAvgMc', '$LLPorce',
-'$PLPorce', '$PLIndexPorce', '$LLIndexPorce', '$classification', '$split', '$methodpre', '$natmc'
+'$PLPorce', '$PLIndexPorce', '$LLIndexPorce', '$classification', '$split', '$methodpre', '$natmc', '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -136,6 +134,7 @@ Plastic_Limit_Porce, Plasticity_Index_Porce, Liquidity_Index_Porce, Classificati
 ?>
 
 <?php
+$current_user = current_user();
 $search_table = find_by_id('atterberg_limit', (int)$_GET['id']);
   // Verifica si se ha enviado el formulario
   if (isset($_POST['update_muestra'])) {
@@ -213,6 +212,8 @@ $search_table = find_by_id('atterberg_limit', (int)$_GET['id']);
       $LLIndexPorce = $db->escape($_POST['LLIndexPorce']);
       $classification = $db->escape($_POST['classification']);
 
+      $Register_By = $current_user['name'];
+
       $query = "UPDATE atterberg_limit SET ";
       $query .= "Standard = '{$standard}', ";
       $query .= "Preparation_Method = '{$methodpre}', ";
@@ -274,7 +275,8 @@ $search_table = find_by_id('atterberg_limit', (int)$_GET['id']);
       $query .= "Plastic_Limit_Porce = '{$PLPorce}', ";
       $query .= "Plasticity_Index_Porce = '{$PLIndexPorce}', ";
       $query .= "Liquidity_Index_Porce = '{$LLIndexPorce}', ";
-      $query .= "Classification = '{$classification}' ";
+      $query .= "Classification = '{$classification}', ";
+      $query .= "Registered_By = '{$Register_By}' ";
 
       $query .= "WHERE id = '{$search_table['id']}'";      
 

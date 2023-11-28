@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['SandDensity'])) {
 
@@ -18,46 +20,9 @@ if (isset($_POST['SandDensity'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
-        'SplitMethod',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'WeightSandMold1',
-        'WeightSandMold2',
-        'WeightSandMold3',
-        'Mold1',
-        'Mold2',
-        'Mold3',
-        'WeightMold1',
-        'WeightMold2',
-        'WeightMold3',
-        'WeightSandInMold1',
-        'WeightSandInMold2',
-        'WeightSandInMold3',
-        'VolumeMoldcm31',
-        'VolumeMoldcm32',
-        'VolumeMoldcm33',
-        'BulkDensitySandgcm31',
-        'BulkDensitySandgcm32',
-        'BulkDensitySandgcm33',
-        'AverageBulkDensitySand',
-        'WeightSandContainerBeforeTest1',
-        'WeightSandContainerBeforeTest2',
-        'WeightSandContainerBeforeTest3',
-        'WeightSandContainerAfterTest1',
-        'WeightSandContainerAfterTest2',
-        'WeightSandContainerAfterTest3',
-        'WeightSandUsed1',
-        'WeightSandUsed2',
-        'WeightSandUsed3',
-        'BulkDensityofSand1',
-        'BulkDensityofSand2',
-        'BulkDensityofSand3',
-        'VolumeFunnel1',
-        'VolumeFunnel2',
-        'VolumeFunnel3',
-        'AverageVolumeFunnel'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -126,6 +91,8 @@ if (empty($errors)) {
     $VolumeFunnel3 = $db->escape($_POST['VolumeFunnel3']);
     $AverageVolumeFunnel = $db->escape($_POST['AverageVolumeFunnel']);
 
+    $RegisterBy = $user['name'];
+
 
 // Componemos la sentencia SQL
 $sql = "INSERT INTO sand_density (
@@ -182,7 +149,8 @@ $sql = "INSERT INTO sand_density (
     Volume_Funnel_1,
     Volume_Funnel_2,
     Volume_Funnel_3,
-    Average_Volume_Funnel
+    Average_Volume_Funnel,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -240,7 +208,8 @@ VALUES (
     '$VolumeFunnel1',
     '$VolumeFunnel2',
     '$VolumeFunnel3',
-    '$AverageVolumeFunnel'
+    '$AverageVolumeFunnel',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -315,6 +284,8 @@ $search_table = find_by_id('sand_density', (int)$_GET['id']);
       $VolumeFunnel3 = remove_junk($db->escape($_POST['VolumeFunnel3']));
       $AverageVolumeFunnel = remove_junk($db->escape($_POST['AverageVolumeFunnel']));
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE sand_density SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -358,7 +329,9 @@ $search_table = find_by_id('sand_density', (int)$_GET['id']);
       $query .= "Volume_Funnel_1 = '{$VolumeFunnel1}', ";
       $query .= "Volume_Funnel_2 = '{$VolumeFunnel2}', ";
       $query .= "Volume_Funnel_3 = '{$VolumeFunnel3}', ";
-      $query .= "Average_Volume_Funnel = '{$AverageVolumeFunnel}' ";
+      $query .= "Average_Volume_Funnel = '{$AverageVolumeFunnel}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

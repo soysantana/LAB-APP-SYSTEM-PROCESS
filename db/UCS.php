@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['UCS'])) {
 
@@ -18,25 +20,9 @@ if (isset($_POST['UCS'])) {
         'elev',
         'sampledate',
         'Standard',
-        'Method',
-        'ExtraEquip',
-        'CutterEquip',
-        'TestDevice',
-        'Temperature',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'DimensionDcm',
-        'DimensionHcm',
-        'RelationhD',
-        'Aream2',
-        'Volumem3',
-        'WeightCoreKg',
-        'UnitWeightCorekgm3',
-        'FailureLoandKN',
-        'TestTimingS',
-        'LoadProportionMpas',
-        'uniaxialCompressiveStrenghtMpa'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -84,6 +70,8 @@ if (empty($errors)) {
     $LoadProportionMpas = $db->escape($_POST['LoadProportionMpas']);
     $uniaxialCompressiveStrenghtMpa = $db->escape($_POST['uniaxialCompressiveStrenghtMpa']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO uniaxial_compressive_strength (
     Sample_ID, 
@@ -119,7 +107,8 @@ $sql = "INSERT INTO uniaxial_compressive_strength (
     Failure_Loand_KN,
     Test_Timing_S,
     Load_Proportion_Mpas,
-    uniaxial_Compressive_Strenght_Mpa
+    uniaxial_Compressive_Strenght_Mpa,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -155,7 +144,8 @@ VALUES (
     '$FailureLoandKN',
     '$TestTimingS',
     '$LoadProportionMpas',
-    '$uniaxialCompressiveStrenghtMpa'
+    '$uniaxialCompressiveStrenghtMpa',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -208,6 +198,8 @@ $search_table = find_by_id('uniaxial_compressive_strength', (int)$_GET['id']);
       $LoadProportionMpas = remove_junk($db->escape($_POST['LoadProportionMpas']));
       $uniaxialCompressiveStrenghtMpa = remove_junk($db->escape($_POST['uniaxialCompressiveStrenghtMpa']));
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE uniaxial_compressive_strength SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Method = '{$Method}', ";
@@ -228,7 +220,9 @@ $search_table = find_by_id('uniaxial_compressive_strength', (int)$_GET['id']);
       $query .= "Failure_Loand_KN = '{$FailureLoandKN}', ";
       $query .= "Test_Timing_S = '{$TestTimingS}', ";
       $query .= "Load_Proportion_Mpas = '{$LoadProportionMpas}', ";
-      $query .= "uniaxial_Compressive_Strenght_Mpa = '{$uniaxialCompressiveStrenghtMpa}' ";
+      $query .= "uniaxial_Compressive_Strenght_Mpa = '{$uniaxialCompressiveStrenghtMpa}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

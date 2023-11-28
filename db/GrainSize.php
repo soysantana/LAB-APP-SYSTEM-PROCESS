@@ -1,28 +1,15 @@
 <?php
 
+$user = current_user();
+
 // Recuperamos los datos del formulario
 if (isset($_POST['Grain_Size'])) {
   $req_fields = array(
 'sampleid', 'structure', 'area', 'source', 'depthfrom', 'depthto',
 'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate',
-'Standard', 'PreparationMethod', 'Split', 'Comments', 'Technician',
-'TestStartDate', 'Container', 'TareWetSoil', 'TareDrySoil', 'Tare',
-'DrySoil', 'Washed', 'WashPan', 'CoarserThanGravel', 'Gravel', 'sand',
-'Fines', 'd10', 'd15', 'd30', 'd60', 'd85', 'Cc', 'Cu', 
-'WtRet40', 'Ret40', 'CumRet40', 'Pass40', 'WtRet12', 'Ret12', 'CumRet12', 'Pass12',
-'WtRet10', 'Ret10', 'CumRet10', 'Pass10', 'WtRet8', 'Ret8', 'CumRet8', 'Pass8',
-'WtRet6', 'Ret6', 'CumRet6', 'Pass6', 'WtRet5', 'Ret5', 'CumRet5', 'Pass5',
-'WtRet4', 'Ret4', 'CumRet4', 'Pass4', 'WtRet3', 'Ret3', 'CumRet3', 'Pass3',
-'WtRet2p5', 'Ret2p5', 'CumRet2p5', 'Pass2p5', 'WtRet2', 'Ret2', 'CumRet2', 'Pass2',
-'WtRet1p5', 'Ret1p5', 'CumRet1p5', 'Pass1p5', 'WtRet1', 'Ret1', 'CumRet1', 'Pass1',
-'WtRet3p4', 'Ret3p4', 'CumRet3p4', 'Pass3p4', 'WtRet1p2', 'Ret1p2', 'CumRet1p2', 'Pass1p2',
-'WtRet3p8', 'Ret3p8', 'CumRet3p8', 'Pass3p8', 'WtRetn4', 'Retn4', 'CumRetn4', 'Passn4',
-'WtRetn10', 'Retn10', 'CumRetn10', 'Passn10', 'WtRetn16', 'Retn16', 'CumRetn16', 'Passn16',
-'WtRetn20', 'Retn20', 'CumRetn20', 'Passn20', 'WtRetn50', 'Retn50', 'CumRetn50', 'Passn50',
-'WtRetn60', 'Retn60', 'CumRetn60', 'Passn60', 'WtRetn100', 'Retn100', 'CumRetn100', 'Passn100',
-'WtRetn140', 'Retn140', 'CumRetn140', 'Passn140', 'WtRetn200', 'Retn200', 'CumRetn200', 'Passn200',
-'WtRentPan', 'RetPan', 'WtRetTpan', 'RetTTPan', 'CumRetPan', 'PassnPan'
+'Standard', 'Comments', 'Technician', 'TestStartDate'
 );
+
   validate_fields($req_fields);
 
 // Validacion de post
@@ -204,16 +191,7 @@ if (isset($_POST['Grain_Size'])) {
     $CumRetPan = $db->escape($_POST['CumRetPan']);
     $PassnPan = $db->escape($_POST['PassnPan']);
 
-    // Verifica que la solicitud sea de tipo POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Lee el JSON enviado en el cuerpo de la solicitud
-  $postData = json_decode(file_get_contents("php://input"));
-
-  if ($postData && isset($postData->imageData)) {
-      // Obtén la imagen en base64 desde los datos JSON
-      $base64ImageData = $postData->imageData;
-
-      $binaryImageData = base64_decode($base64ImageData);}}
+    $RegisterBy = $user['name'];
 
 
 // Componemos la sentencia SQL
@@ -239,7 +217,7 @@ Wt_Ret_No50_0p3, Porce_Ret_No50_0p3, Cum_Ret_No50_0p3, Porce_Pass_No50_0p3, Wt_R
 Porce_Ret_No60_0p25, Cum_Ret_No60_0p25, Porce_Pass_No60_0p25, Wt_Ret_No100_0p15, Porce_Ret_No100_0p15,
 Cum_Ret_No100_0p15, Porce_Pass_No100_0p15, Wt_Ret_No140_0p106, Porce_Ret_No140_0p106, Cum_Ret_No140_0p106,
 Porce_Pass_No140_0p106, Wt_Ret_No200_0p075, Porce_Ret_No200_0p075, Cum_Ret_No200_0p075, Porce_Pass_No200_0p075,
-Wt_Ret_Pan, Porce_Ret_Pan, Wt_Ret_Total_Pan, Porce_Ret_Total_Pan, Cum_Ret_Total_Pan, Porce_Pass_Total_Pan, Graphic
+Wt_Ret_Pan, Porce_Ret_Pan, Wt_Ret_Total_Pan, Porce_Ret_Total_Pan, Cum_Ret_Total_Pan, Porce_Pass_Total_Pan, Registered_By
 )
       VALUES (
 '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', 
@@ -260,7 +238,7 @@ Wt_Ret_Pan, Porce_Ret_Pan, Wt_Ret_Total_Pan, Porce_Ret_Total_Pan, Cum_Ret_Total_
 '$WtRetn20', '$Retn20', '$CumRetn20', '$Passn20', '$WtRetn50', '$Retn50', '$CumRetn50', '$Passn50',
 '$WtRetn60', '$Retn60', '$CumRetn60', '$Passn60', '$WtRetn100', '$Retn100', '$CumRetn100', '$Passn100',
 '$WtRetn140', '$Retn140', '$CumRetn140', '$Passn140', '$WtRetn200', '$Retn200', '$CumRetn200', '$Passn200',
-'$WtRentPan', '$RetPan', '$WtRetTpan', '$RetTTPan', '$CumRetPan', '$PassnPan', '$imageData'
+'$WtRentPan', '$RetPan', '$WtRetTpan', '$RetTTPan', '$CumRetPan', '$PassnPan', '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -451,6 +429,8 @@ $search_table = find_by_id('grain_size', (int)$_GET['id']);
       $CumRetPan = $db->escape($_POST['CumRetPan']);
       $PassnPan = $db->escape($_POST['PassnPan']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE grain_size SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -605,7 +585,9 @@ $search_table = find_by_id('grain_size', (int)$_GET['id']);
       $query .= "Wt_Ret_Total_Pan = '{$WtRetTpan}', ";
       $query .= "Porce_Ret_Total_Pan = '{$RetTTPan}', ";
       $query .= "Cum_Ret_Total_Pan = '{$CumRetPan}', ";
-      $query .= "Porce_Pass_Total_Pan = '{$PassnPan}' ";
+      $query .= "Porce_Pass_Total_Pan = '{$PassnPan}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
 
       $query .= "WHERE id = '{$search_table['id']}'";      
 

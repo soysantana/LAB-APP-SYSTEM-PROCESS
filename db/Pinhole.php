@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['Pinhole'])) {
 
@@ -18,7 +20,6 @@ if (isset($_POST['Pinhole'])) {
         'elev',
         'sampledate',
         'Standard',
-        'Method',
         'Comments',
         'Technician',
         'TestStartDate'
@@ -197,6 +198,8 @@ if (empty($errors)) {
     $HoleSizeAfterTestmm = $db->escape($_POST['HoleSizeAfterTestmm']);
     $DispersiveClassification = $db->escape($_POST['DispersiveClassification']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO pinhole (
     Sample_ID, 
@@ -361,7 +364,8 @@ $sql = "INSERT INTO pinhole (
     Observation_No21,
     Observation_No22,
     Hole_Size_After_Test_mm,
-    Dispersive_Classification
+    Dispersive_Classification,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -526,7 +530,8 @@ VALUES (
     '$ObservationNo21',
     '$ObservationNo22',
     '$HoleSizeAfterTestmm',
-    '$DispersiveClassification'
+    '$DispersiveClassification',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -708,6 +713,8 @@ $search_table = find_by_id('pinhole', (int)$_GET['id']);
       $HoleSizeAfterTestmm = remove_junk($db->escape($_POST['HoleSizeAfterTestmm']));
       $DispersiveClassification = remove_junk($db->escape($_POST['DispersiveClassification']));
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE pinhole SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Method = '{$Method}', ";
@@ -856,7 +863,8 @@ $search_table = find_by_id('pinhole', (int)$_GET['id']);
       $query .= "Observation_No21 = '{$ObservationNo21}', ";
       $query .= "Observation_No22 = '{$ObservationNo22}', ";
       $query .= "Hole_Size_After_Test_mm = '{$HoleSizeAfterTestmm}', ";
-      $query .= "Dispersive_Classification = '{$DispersiveClassification}' ";
+      $query .= "Dispersive_Classification = '{$DispersiveClassification}', ";
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

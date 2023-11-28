@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['PermeabilityGranular'])) {
 
@@ -18,93 +20,9 @@ if (isset($_POST['PermeabilityGranular'])) {
         'elev',
         'sampledate',
         'Standard',
-        'Method',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'Descriptionofmaterialusefortest',
-        'DiameterDcm',
-        'Areacm2',
-        'LenghtLcm',
-        'WMaxKgm2',
-        'WMaxKgm3',
-        'HeightBeforeH1',
-        'HeightAfterH2',
-        'HeightNetcm',
-        'VoidRatioe',
-        'RelativeDensityRDPorce',
-        'H11',
-        'H12',
-        'H13',
-        'H14',
-        'H15',
-        'H16',
-        'H17',
-        'H18',
-        'H21',
-        'H22',
-        'H23',
-        'H24',
-        'H25',
-        'H26',
-        'H27',
-        'H28',
-        'HeadhcmN1',
-        'HeadhcmN2',
-        'HeadhcmN3',
-        'HeadhcmN4',
-        'HeadhcmN5',
-        'HeadhcmN6',
-        'HeadhcmN7',
-        'HeadhcmN8',
-        'Quantityofwaterdischargedcm3N1',
-        'Quantityofwaterdischargedcm3N2',
-        'Quantityofwaterdischargedcm3N3',
-        'Quantityofwaterdischargedcm3N4',
-        'Quantityofwaterdischargedcm3N5',
-        'Quantityofwaterdischargedcm3N6',
-        'Quantityofwaterdischargedcm3N7',
-        'Quantityofwaterdischargedcm3N8',
-        'TotaltimeofdischargesecN1',
-        'TotaltimeofdischargesecN2',
-        'TotaltimeofdischargesecN3',
-        'TotaltimeofdischargesecN4',
-        'TotaltimeofdischargesecN5',
-        'TotaltimeofdischargesecN6',
-        'TotaltimeofdischargesecN7',
-        'TotaltimeofdischargesecN8',
-        'QAtN1',
-        'QAtN2',
-        'QAtN3',
-        'QAtN4',
-        'QAtN5',
-        'QAtN6',
-        'QAtN7',
-        'QAtN8',
-        'hLN1',
-        'hLN2',
-        'hLN3',
-        'hLN4',
-        'hLN5',
-        'hLN6',
-        'hLN7',
-        'hLN8',
-        'TemperatureCN1',
-        'TemperatureCN2',
-        'TemperatureCN3',
-        'TemperatureCN4',
-        'TemperatureCN5',
-        'TemperatureCN6',
-        'TemperatureCN7',
-        'TemperatureCN8',
-        'CoefficientofpermeabilitycmsegN1',
-        'CoefficientofpermeabilitycmsegN2',
-        'CoefficientofpermeabilitycmsegN3',
-        'CoefficientofpermeabilitycmsegN4',
-        'CoefficientofpermeabilitycmsegN5',
-        'CoefficientofpermeabilitycmsegN6',
-        'CoefficientofpermeabilitycmsegN7',
-        'CoefficientofpermeabilitycmsegN8'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -220,6 +138,8 @@ if (empty($errors)) {
     $CoefficientofpermeabilitycmsegN7 = $db->escape($_POST['CoefficientofpermeabilitycmsegN7']);
     $CoefficientofpermeabilitycmsegN8 = $db->escape($_POST['CoefficientofpermeabilitycmsegN8']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO permeability_of_granular_soils (
     Sample_ID, 
@@ -324,7 +244,8 @@ $sql = "INSERT INTO permeability_of_granular_soils (
     Coefficient_of_permeability_cm_seg_N5,
     Coefficient_of_permeability_cm_seg_N6,
     Coefficient_of_permeability_cm_seg_N7,
-    Coefficient_of_permeability_cm_seg_N8
+    Coefficient_of_permeability_cm_seg_N8,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -429,7 +350,8 @@ VALUES (
     '$CoefficientofpermeabilitycmsegN5',
     '$CoefficientofpermeabilitycmsegN6',
     '$CoefficientofpermeabilitycmsegN7',
-    '$CoefficientofpermeabilitycmsegN8'
+    '$CoefficientofpermeabilitycmsegN8',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -551,6 +473,8 @@ $search_table = find_by_id('permeability_of_granular_soils', (int)$_GET['id']);
       $CoefficientofpermeabilitycmsegN7 = $db->escape($_POST['CoefficientofpermeabilitycmsegN7']);
       $CoefficientofpermeabilitycmsegN8 = $db->escape($_POST['CoefficientofpermeabilitycmsegN8']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE permeability_of_granular_soils SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Method = '{$Method}', ";
@@ -641,7 +565,9 @@ $search_table = find_by_id('permeability_of_granular_soils', (int)$_GET['id']);
       $query .= "Coefficient_of_permeability_cm_seg_N5 = '{$CoefficientofpermeabilitycmsegN5}', ";
       $query .= "Coefficient_of_permeability_cm_seg_N6 = '{$CoefficientofpermeabilitycmsegN6}', ";
       $query .= "Coefficient_of_permeability_cm_seg_N7 = '{$CoefficientofpermeabilitycmsegN7}', ";
-      $query .= "Coefficient_of_permeability_cm_seg_N8 = '{$CoefficientofpermeabilitycmsegN8}' ";
+      $query .= "Coefficient_of_permeability_cm_seg_N8 = '{$CoefficientofpermeabilitycmsegN8}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       
       $query .= "WHERE id = '{$search_table['id']}'";      
 

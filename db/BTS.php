@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['BTS'])) {
 
@@ -145,6 +147,8 @@ if (empty($errors)) {
     $AverageNo7 = $db->escape($_POST['AverageNo7']);
     $AverageNo8 = $db->escape($_POST['AverageNo8']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO splitting_tensile_strenght (
     Sample_ID, 
@@ -257,7 +261,8 @@ $sql = "INSERT INTO splitting_tensile_strenght (
     Average_No5,
     Average_No6,
     Average_No7,
-    Average_No8
+    Average_No8,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -370,7 +375,8 @@ VALUES (
     '$AverageNo5',
     '$AverageNo6',
     '$AverageNo7',
-    '$AverageNo8'
+    '$AverageNo8',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -500,6 +506,8 @@ $search_table = find_by_id('splitting_tensile_strenght', (int)$_GET['id']);
       $AverageNo7 = $db->escape($_POST['AverageNo7']);
       $AverageNo8 = $db->escape($_POST['AverageNo8']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE splitting_tensile_strenght SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Method = '{$Method}', ";
@@ -605,7 +613,9 @@ $search_table = find_by_id('splitting_tensile_strenght', (int)$_GET['id']);
       $query .= "Average_No5 = '{$AverageNo5}', ";
       $query .= "Average_No6 = '{$AverageNo6}', ";
       $query .= "Average_No7 = '{$AverageNo7}', ";
-      $query .= "Average_No8 = '{$AverageNo8}' ";
+      $query .= "Average_No8 = '{$AverageNo8}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       
       $query .= "WHERE id = '{$search_table['id']}'";      
 

@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['EnsayoGama'])) {
 
@@ -18,17 +20,9 @@ if (isset($_POST['EnsayoGama'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'Station',
-        'MaxDryDensityKgm3',
-        'MaxWetDensityKgm3',
-        'PercentMoistureContent',
-        'OptimunMoistureContent',
-        'MaxDryDensity',
-        'PercentofCompaction'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -68,6 +62,8 @@ if (empty($errors)) {
     $MaxDryDensity = $db->escape($_POST['MaxDryDensity']);
     $PercentofCompaction = $db->escape($_POST['PercentofCompaction']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO ensayo_gama (
     Sample_ID, 
@@ -94,7 +90,8 @@ $sql = "INSERT INTO ensayo_gama (
     Percent_Moisture_Content,
     Optimun_Moisture_Content,
     Max_Dry_Density,
-    Percent_of_Compaction
+    Percent_of_Compaction,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -123,7 +120,8 @@ VALUES (
     '$PercentMoistureContent',
     '$OptimunMoistureContent',
     '$MaxDryDensity',
-    '$PercentofCompaction'
+    '$PercentofCompaction',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -169,6 +167,8 @@ $search_table = find_by_id('ensayo_gama', (int)$_GET['id']);
       $MaxDryDensity = $db->escape($_POST['MaxDryDensity']);
       $PercentofCompaction = $db->escape($_POST['PercentofCompaction']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE ensayo_gama SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -182,7 +182,9 @@ $search_table = find_by_id('ensayo_gama', (int)$_GET['id']);
       $query .= "Percent_Moisture_Content = '{$PercentMoistureContent}', ";
       $query .= "Optimun_Moisture_Content = '{$OptimunMoistureContent}', ";
       $query .= "Max_Dry_Density = '{$MaxDryDensity}', ";
-      $query .= "Percent_of_Compaction = '{$PercentofCompaction}' ";
+      $query .= "Percent_of_Compaction = '{$PercentofCompaction}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       
       $query .= "WHERE id = '{$search_table['id']}'";      
 

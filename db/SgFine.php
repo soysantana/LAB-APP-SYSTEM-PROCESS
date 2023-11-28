@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['SgFine'])) {
 
@@ -18,23 +20,9 @@ if (isset($_POST['SgFine'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
-        'SplitMethod',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'PycnometerNumber',
-        'WeightPycnometer',
-        'WeightDrySoilTare',
-        'WeightDrySoil',
-        'WeightSaturatedSurfaceDrySoilAir',
-        'TempSample',
-        'WeightPycnometerSoilWater',
-        'CalibrationWeightPycnometerDesiredTemp',
-        'SpecificGravity',
-        'SpecificGravitySSD',
-        'ApparentSpecificGravity',
-        'PercentAbsortion'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -80,6 +68,8 @@ if (empty($errors)) {
     $ApparentSpecificGravity = $db->escape($_POST['ApparentSpecificGravity']);
     $PercentAbsortion = $db->escape($_POST['PercentAbsortion']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO specific_gravity_fine (
     Sample_ID, 
@@ -112,7 +102,8 @@ $sql = "INSERT INTO specific_gravity_fine (
     Specific_Gravity,
     Specific_Gravity_SSD,
     Apparent_Specific_Gravity,
-    Percent_Absortion
+    Percent_Absortion,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -147,7 +138,8 @@ VALUES (
     '$SpecificGravity',
     '$SpecificGravitySSD',
     '$ApparentSpecificGravity',
-    '$PercentAbsortion'
+    '$PercentAbsortion',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -201,6 +193,8 @@ $Specific_Gravity = find_by_id('specific_gravity_fine', (int)$_GET['id']);
       $ApparentSpecificGravity = remove_junk($db->escape($_POST['ApparentSpecificGravity']));
       $PercentAbsortion = remove_junk($db->escape($_POST['PercentAbsortion']));
 
+      $RegisterBy = $user['name'];
+
 
       $query = "UPDATE specific_gravity_fine SET ";
       $query .= "Standard = '{$Standard}', ";
@@ -220,7 +214,8 @@ $Specific_Gravity = find_by_id('specific_gravity_fine', (int)$_GET['id']);
       $query .= "Specific_Gravity = '{$SpecificGravity}', ";
       $query .= "Specific_Gravity_SSD = '{$SpecificGravitySSD}', ";
       $query .= "Apparent_Specific_Gravity = '{$ApparentSpecificGravity}', ";
-      $query .= "Percent_Absortion = '{$PercentAbsortion}' ";
+      $query .= "Percent_Absortion = '{$PercentAbsortion}', ";
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$Specific_Gravity['id']}'";      
 
       $result = $db->query($query);

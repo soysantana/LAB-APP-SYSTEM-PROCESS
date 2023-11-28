@@ -1,8 +1,10 @@
 <?php
+
+$user = current_user();
+
 if (isset($_POST['mc_scale'])) {
     $req_fields = array('sampleid','samplenumber', 'structure', 'area', 'source', 'depthfrom', 'depthto', 
-    'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate','comment','technician', 'testdate', 
-    'trial', 'tarename', 'scale_model', 'mc');
+    'materialtype', 'sampletype', 'north', 'east', 'elev', 'sampledate','comment','technician', 'testdate');
     validate_fields($req_fields);
     
     if (empty($errors)) {
@@ -28,14 +30,15 @@ if (isset($_POST['mc_scale'])) {
       $mc = $db->escape($_POST['mc']);
       $reportdate = make_date();
       $testtype = "MC-Scale";
+      $RegisterBy = $user['name'];
   
       $sql = "INSERT INTO moisture_scale (Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, 
       Depth_To, Material_Type, Sample_Type, North, East, Elev, Sample_Date, Comment, Technician,
-       Test_Start_Date, Trial, Tare_Name, Scale_Model, Mc, Report_Date, test_type) 
+       Test_Start_Date, Trial, Tare_Name, Scale_Model, Mc, Report_Date, test_type, Registered_By) 
        VALUES (
           '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom', '$depthto', '$materialtype', 
           '$sampletype', '$north', '$east', '$elev', '$sampledate','$comment', '$technician','$testdate', '$trial', 
-          '$tarename', '$scale_model' ,'$mc', '$reportdate', '$testtype')";
+          '$tarename', '$scale_model' ,'$mc', '$reportdate', '$testtype', '$RegisterBy')";
   
       if ($db->query($sql)) {
         $session->msg('s', "Ensayo agregado exitosamente.");
@@ -73,6 +76,7 @@ $search_table = find_by_id('moisture_scale', (int)$_GET['id']);
       $tarename = remove_junk($db->escape($_POST['tarename']));
       $scale_model = remove_junk($db->escape($_POST['scale_model']));
       $mc = remove_junk($db->escape($_POST['mc']));
+      $RegisterBy = $user['name'];
 
       $query = "UPDATE moisture_scale SET ";
       $query .= "Comment = '{$comment}', ";
@@ -82,7 +86,8 @@ $search_table = find_by_id('moisture_scale', (int)$_GET['id']);
       $query .= "Trial = '{$trial}', ";
       $query .= "Tare_Name = '{$tarename}', ";
       $query .= "Scale_Model = '{$scale_model}', ";;
-      $query .= "Mc = '{$mc}' ";
+      $query .= "Mc = '{$mc}', ";
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

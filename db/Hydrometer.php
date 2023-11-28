@@ -1,4 +1,7 @@
 <?php
+
+$user = current_user();
+
 // Función para obtener y escapar datos del POST
 function get_post_data($field) {
     global $db;
@@ -21,7 +24,6 @@ if (isset($_POST['Hydrometer'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
         'DispersionDevice',
         'Comments',
         'Technician',
@@ -360,6 +362,8 @@ if (isset($_POST['Hydrometer'])) {
         $Classification_of_Soils_as_per_USCS = get_post_data('TempeClassification_of_Soils_as_per_USCSratureType');
         $ASTM_designation_D_2487_06 = get_post_data('ASTM_designation_D_2487_06');
 
+        $RegisterBy = $user['name'];
+
         $sql = "INSERT INTO hydrometer (
             Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To,
             Material_Type, Sample_Type, North, East, Elev, Sample_Date, Report_Date,
@@ -641,7 +645,8 @@ if (isset($_POST['Hydrometer'])) {
             Passing_Percentage_Respect_to_the_Total_Sample_No8,
             Passing_Percentage_Respect_to_the_Total_Sample_No9,
             Classification_of_Soils_as_per_USCS,
-            ASTM_designation_D_2487_06
+            ASTM_designation_D_2487_06,
+            Registered_By
 
         ) VALUES (
             '$sampleid', '$samplenumber', '$structure', '$area', '$source', '$depthfrom',
@@ -925,7 +930,8 @@ if (isset($_POST['Hydrometer'])) {
             '$Passing_Percentage_Respect_to_the_Total_Sample_No8',
             '$Passing_Percentage_Respect_to_the_Total_Sample_No9',
             '$Classification_of_Soils_as_per_USCS',
-            '$ASTM_designation_D_2487_06'
+            '$ASTM_designation_D_2487_06',
+            '$RegisterBy'
 
         )";
 
@@ -1269,6 +1275,8 @@ $search_table = find_by_id('hydrometer', (int)$_GET['id']);
       $Classification_of_Soils_as_per_USCS = get_post_data('TempeClassification_of_Soils_as_per_USCSratureType');
       $ASTM_designation_D_2487_06 = get_post_data('ASTM_designation_D_2487_06');
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE hydrometer SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -1587,7 +1595,9 @@ $search_table = find_by_id('hydrometer', (int)$_GET['id']);
       $query .= "Passing_Percentage_Respect_to_the_Total_Sample_No9 = '{$Passing_Percentage_Respect_to_the_Total_Sample_No9}', ";
     
       $query .= "Classification_of_Soils_as_per_USCS = '{$Classification_of_Soils_as_per_USCS}', ";
-      $query .= "ASTM_designation_D_2487_06 = '{$ASTM_designation_D_2487_06}' ";
+      $query .= "ASTM_designation_D_2487_06 = '{$ASTM_designation_D_2487_06}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

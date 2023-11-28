@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['density_weigth'])) {
 
@@ -18,37 +20,9 @@ if (isset($_POST['density_weigth'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'ShapeType1',
-        'ShapeType2',
-        'ShapeType3',
-        'MassMoistSpecimen1',
-        'MassMoistSpecimen2',
-        'MassMoistSpecimen3',
-        'DiameterWidth1',
-        'DiameterWidth2',
-        'DiameterWidth3',
-        'Height1',
-        'Height2',
-        'Height3',
-        'Length1',
-        'Length2',
-        'Length3',
-        'VolumesMoistSoil1',
-        'VolumesMoistSoil2',
-        'VolumesMoistSoil3',
-        'TotalVolumesMoistSpecimen',
-        'MassMoistTotalpecimens',
-        'WaterContentSpecimen',
-        'DensityTotalMoistSpecimen',
-        'MoistUnitWeightSpecimengrcm3',
-        'MoistUnitWeightSpecimenKNm3',
-        'DryUnitWeightSpecimenKNm3',
-        'MoistUnitWeightSpecimenKgm3',
-        'DryUnitWeightSpecimenKgm3'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -109,7 +83,7 @@ if (empty($errors)) {
     $MoistUnitWeightSpecimenKgm3 = $db->escape($_POST['MoistUnitWeightSpecimenKgm3']);
     $DryUnitWeightSpecimenKgm3 = $db->escape($_POST['DryUnitWeightSpecimenKgm3']);
 
-
+    $RegisterBy = $user['name'];
 
 // Componemos la sentencia SQL
 $sql = "INSERT INTO density_weigth (
@@ -157,7 +131,8 @@ $sql = "INSERT INTO density_weigth (
     Moist_Unit_Weight_Specimen_KNm3,
     Dry_Unit_Weight_Specimen_KNm3,
     Moist_Unit_Weight_Specimen_Kgm3,
-    Dry_Unit_Weight_Specimen_Kgm3
+    Dry_Unit_Weight_Specimen_Kgm3,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -206,7 +181,8 @@ VALUES (
     '$MoistUnitWeightSpecimenKNm3',
     '$DryUnitWeightSpecimenKNm3',
     '$MoistUnitWeightSpecimenKgm3',
-    '$DryUnitWeightSpecimenKgm3'
+    '$DryUnitWeightSpecimenKgm3',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -273,6 +249,8 @@ $search_table = find_by_id('density_weigth', (int)$_GET['id']);
       $MoistUnitWeightSpecimenKgm3 = $db->escape($_POST['MoistUnitWeightSpecimenKgm3']);
       $DryUnitWeightSpecimenKgm3 = $db->escape($_POST['DryUnitWeightSpecimenKgm3']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE density_weigth SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -307,7 +285,9 @@ $search_table = find_by_id('density_weigth', (int)$_GET['id']);
       $query .= "Moist_Unit_Weight_Specimen_KNm3 = '{$MoistUnitWeightSpecimenKNm3}', ";
       $query .= "Dry_Unit_Weight_Specimen_KNm3 = '{$DryUnitWeightSpecimenKNm3}', ";
       $query .= "Moist_Unit_Weight_Specimen_Kgm3 = '{$MoistUnitWeightSpecimenKgm3}', ";
-      $query .= "Dry_Unit_Weight_Specimen_Kgm3 = '{$DryUnitWeightSpecimenKgm3}' ";
+      $query .= "Dry_Unit_Weight_Specimen_Kgm3 = '{$DryUnitWeightSpecimenKgm3}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       
       $query .= "WHERE id = '{$search_table['id']}'";      
 

@@ -1,9 +1,11 @@
 <?php
+
+$user = current_user();
+
 // Procesamiento del formulario
 if(isset($_POST['mcoven'])){
   $req_fields = array('sampleid','samplenumber','structure', 'area', 'source', 'depthfrom', 'depthto', 'materialtype', 
-  'sampletype', 'north', 'east', 'elev' ,'sampledate','tarename','temperature','tarewet','taredry','water','weigthtare',
-  'drysoil','mc','standard', 'technician','testdate' );
+  'sampletype', 'north', 'east', 'elev' ,'sampledate', 'standard', 'technician','testdate');
   validate_fields($req_fields);
   if(empty($errors)){
     $sampleid  = $db->escape($_POST['sampleid']);
@@ -32,15 +34,16 @@ if(isset($_POST['mcoven'])){
     $testdate  = $db->escape($_POST['testdate']);
     $reportdate  = make_date();
     $testtype = "MC-Oven";
+    $RegisterBy = $user['name'];
 
     $sql = "INSERT INTO moisture_content (";
     $sql .= "Sample_ID, Sample_Number, Structure, Area, Source, Depth_From, Depth_To, Material_Type, Sample_Type, North, East, ";
     $sql .= "Elev, Sample_Date, Tare_Name, Temperature, Tare_Plus_Wet_Soil, Tare_Plus_Dry_Soil, Water, Weigth_Tare, Dry_Soil, Mc, ";
-    $sql .= "Standard, Technician, Test_Start_Date, Report_Date, test_type ";
+    $sql .= "Standard, Technician, Test_Start_Date, Report_Date, test_type, Registered_By ";
     $sql .= ") VALUES (";
     $sql .= "'{$sampleid}', '{$samplenumber}', '{$structure}', '{$area}', '{$source}', '{$depthfrom}', '{$depthto}', '{$materialtype}', '{$sampletype}', ";
     $sql .= "'{$north}', '{$east}', '{$elev}', '{$sampledate}', '{$tarename}', '{$temperature}', '{$tarewet}', '{$taredry}', '{$water}', ";
-    $sql .= "'{$weigthtare}', '{$drysoil}', '{$mc}', '{$standard}', '{$technician}', '{$testdate}', '{$reportdate}' , '{$testtype}'";
+    $sql .= "'{$weigthtare}', '{$drysoil}', '{$mc}', '{$standard}', '{$technician}', '{$testdate}', '{$reportdate}' , '{$testtype}', '{$RegisterBy}'";
     $sql .= ")";
     
     if($db->query($sql)){
@@ -83,6 +86,7 @@ $search_table = find_by_id('moisture_content', (int)$_GET['id']);
       $weigthtare = remove_junk($db->escape($_POST['weigthtare']));
       $drysoil = remove_junk($db->escape($_POST['drysoil']));
       $mc = remove_junk($db->escape($_POST['mc']));
+      $RegisterBy = $user['name'];
 
       $query = "UPDATE moisture_content SET ";
       $query .= "Standard = '{$standard}', ";
@@ -97,7 +101,9 @@ $search_table = find_by_id('moisture_content', (int)$_GET['id']);
       $query .= "Water = '{$water}', ";
       $query .= "Weigth_Tare = '{$weigthtare}', ";
       $query .= "Dry_Soil = '{$drysoil}', ";
-      $query .= "Mc = '{$mc}' ";
+      $query .= "Mc = '{$mc}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}', ";
 
       $query .= "WHERE id = '{$search_table['id']}'";      
 

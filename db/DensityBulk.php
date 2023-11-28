@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['density_bulk'])) {
 
@@ -18,29 +20,9 @@ if (isset($_POST['density_bulk'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'Container',
-        'WeightTareg',
-        'WeightTareSoilg',
-        'VolumeTheMoldm3',
-        'WeightLooseMaterialg',
-        'AbsorptionPorce',
-        'SpecificGravityOD',
-        'DensityWaterKgm3',
-        'LooseBulkDenistyKgm3',
-        'PercentVoidsLooseAggregate',
-        'CompactedWeightTareg',
-        'CompactedWeightTareSoilg',
-        'CompactedVolumeTheMoldm3',
-        'WeightCompactedMaterialg',
-        'CompactedAbsorptionPorce',
-        'CompactedSpecificGravityOD',
-        'CompactedDensityWaterKgm3',
-        'CompactedBulkDenistyKgm3',
-        'PercentVoidsCompactedAggregate'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -93,6 +75,8 @@ if (empty($errors)) {
     $CompactedBulkDenistyKgm3 = $db->escape($_POST['CompactedBulkDenistyKgm3']);
     $PercentVoidsCompactedAggregate = $db->escape($_POST['PercentVoidsCompactedAggregate']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO density_bulk (
     Sample_ID, 
@@ -131,7 +115,8 @@ $sql = "INSERT INTO density_bulk (
     Compacted_Specific_Gravity_OD,
     Compacted_Density_Water_Kgm3,
     Compacted_Bulk_Denisty_Kgm3,
-    Percent_Voids_Compacted_Aggregate
+    Percent_Voids_Compacted_Aggregate,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -172,7 +157,8 @@ VALUES (
     '$CompactedSpecificGravityOD',
     '$CompactedDensityWaterKgm3',
     '$CompactedBulkDenistyKgm3',
-    '$PercentVoidsCompactedAggregate'
+    '$PercentVoidsCompactedAggregate',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -232,6 +218,8 @@ $search_table = find_by_id('density_bulk', (int)$_GET['id']);
       $CompactedBulkDenistyKgm3 = remove_junk($db->escape($_POST['CompactedBulkDenistyKgm3']));
       $PercentVoidsCompactedAggregate = remove_junk($db->escape($_POST['PercentVoidsCompactedAggregate']));
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE density_bulk SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -258,7 +246,8 @@ $search_table = find_by_id('density_bulk', (int)$_GET['id']);
       $query .= "Compacted_Specific_Gravity_OD = '{$CompactedSpecificGravityOD}', ";
       $query .= "Compacted_Density_Water_Kgm3 = '{$CompactedDensityWaterKgm3}', ";
       $query .= "Compacted_Bulk_Denisty_Kgm3 = '{$CompactedBulkDenistyKgm3}', ";
-      $query .= "Percent_Voids_Compacted_Aggregate = '{$PercentVoidsCompactedAggregate}' ";
+      $query .= "Percent_Voids_Compacted_Aggregate = '{$PercentVoidsCompactedAggregate}', ";
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

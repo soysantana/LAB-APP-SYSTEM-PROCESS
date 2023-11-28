@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['PointLoad'])) {
 
@@ -18,31 +20,9 @@ if (isset($_POST['PointLoad'])) {
         'elev',
         'sampledate',
         'Standard',
-        'Method',
-        'ExtraEquip',
-        'CutterEquip',
-        'TestDevice',
-        'Temperature',
         'Comments',
         'Technician',
-        'TestStartDate',
-        'EffectiveAreaofJackPistonm2',
-        'K1ValueAssumedValueToCorrelateIs50ToUCS',
-        'K2ValueAssumed',
-        'TestTypeABCD',
-        'DimensionLmm',
-        'DimensionDorWmm',
-        'PlattensSeparationmm',
-        'LoadDirection',
-        'GaugeReadingMpa',
-        'FailureLaodMN',
-        'Demm',
-        'IsMpa',
-        'F',
-        'Is50',
-        'UCSFromK1Mpa',
-        'UCSFromK2Mpa',
-        'StrenghtClassification'
+        'TestStartDate'
     );    
 
     // Llamamos a la función para validar los campos
@@ -96,6 +76,8 @@ if (empty($errors)) {
     $UCSFromK2Mpa = $db->escape($_POST['UCSFromK2Mpa']);
     $StrenghtClassification = $db->escape($_POST['StrenghtClassification']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO point_load_test (
     Sample_ID, 
@@ -138,7 +120,8 @@ $sql = "INSERT INTO point_load_test (
     Is_50,
     UCS_From_K1_Mpa,
     UCS_From_K2_Mpa,
-    Strenght_Classification
+    Strenght_Classification,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -181,7 +164,8 @@ VALUES (
     '$Is50',
     '$UCSFromK1Mpa',
     '$UCSFromK2Mpa',
-    '$StrenghtClassification'
+    '$StrenghtClassification',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -241,6 +225,8 @@ $search_table = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
       $UCSFromK2Mpa = remove_junk($db->escape($_POST['UCSFromK2Mpa']));
       $StrenghtClassification = remove_junk($db->escape($_POST['StrenghtClassification']));
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE point_load_test SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Method = '{$Method}', ";
@@ -268,7 +254,9 @@ $search_table = find_by_id('specific_gravity_absortion', (int)$_GET['id']);
       $query .= "Is_50 = '{$Is50}', ";
       $query .= "UCS_From_K1_Mpa = '{$UCSFromK1Mpa}', ";
       $query .= "UCS_From_K2_Mpa = '{$UCSFromK2Mpa}', ";
-      $query .= "Strenght_Classification = '{$StrenghtClassification}' ";
+      $query .= "Strenght_Classification = '{$StrenghtClassification}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);

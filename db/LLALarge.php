@@ -1,5 +1,7 @@
 <?php
 
+$user = current_user();
+
 // Verificamos si se ha enviado el campo a través del método POST
 if (isset($_POST['LAALarge'])) {
 
@@ -18,18 +20,9 @@ if (isset($_POST['LAALarge'])) {
         'elev',
         'sampledate',
         'Standard',
-        'PreparationMethod',
-        'SplitMethod',
         'Comments',
         'Technician',
         'TestStartDate',
-        'SelectedGrading',
-        'WeightofTheSpheres',
-        'Revolutions',
-        'InitialWeight',
-        'FinalWeight',
-        'WeightLoss',
-        'WeightLossPorce'
     );
 
     // Llamamos a la función para validar los campos
@@ -70,6 +63,8 @@ if (empty($errors)) {
     $WeightLoss = $db->escape($_POST['WeightLoss']);
     $WeightLossPorce = $db->escape($_POST['WeightLossPorce']);
 
+    $RegisterBy = $user['name'];
+
 // Componemos la sentencia SQL
 $sql = "INSERT INTO los_angeles_abrasion_large (
     Sample_ID, 
@@ -97,7 +92,8 @@ $sql = "INSERT INTO los_angeles_abrasion_large (
     Initial_Weight,
     Final_Weight,
     Weight_Loss,
-    Weight_Loss_Porce
+    Weight_Loss_Porce,
+    Registered_By
 )
 VALUES (
     '$sampleid',
@@ -127,7 +123,8 @@ VALUES (
     '$InitialWeight',
     '$FinalWeight',
     '$WeightLoss',
-    '$WeightLossPorce'
+    '$WeightLossPorce',
+    '$RegisterBy'
 )";
 
 // Ejecutamos la sentencia
@@ -174,6 +171,8 @@ $search_table = find_by_id('los_angeles_abrasion_large', (int)$_GET['id']);
       $WeightLoss = $db->escape($_POST['WeightLoss']);
       $WeightLossPorce = $db->escape($_POST['WeightLossPorce']);
 
+      $RegisterBy = $user['name'];
+
       $query = "UPDATE los_angeles_abrasion_large SET ";
       $query .= "Standard = '{$Standard}', ";
       $query .= "Preparation_Method = '{$PreparationMethod}', ";
@@ -188,7 +187,9 @@ $search_table = find_by_id('los_angeles_abrasion_large', (int)$_GET['id']);
       $query .= "Initial_Weight = '{$InitialWeight}', ";
       $query .= "Final_Weight = '{$FinalWeight}', ";
       $query .= "Weight_Loss = '{$WeightLoss}', ";
-      $query .= "Weight_Loss_Porce = '{$WeightLossPorce}' ";
+      $query .= "Weight_Loss_Porce = '{$WeightLossPorce}', ";
+
+      $query .= "Registered_By = '{$RegisterBy}' ";
       $query .= "WHERE id = '{$search_table['id']}'";      
 
       $result = $db->query($query);
