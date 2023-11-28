@@ -758,33 +758,6 @@ var Cu = (d60 / d10)||0;
   <div id="grain_size" style="height: 600px; width: 1070px;"></div>
 </div>
 
-<script>
-  html2canvas(document.getElementById('grain_size')).then(function(canvas) {
-    var imageData = canvas.toDataURL('image/png'); // Convierte la imagen en base64
-
-    // Envia 'imageData' al servidor utilizando una solicitud AJAX
-    fetch('db/GrainSize.php', {
-      method: 'POST',
-      body: JSON.stringify({ imageData: imageData }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        // La imagen se ha guardado con éxito en la base de datos.
-        // Puedes continuar con el proceso de registro u otras acciones.
-      } else {
-        // Hubo un error al guardar la imagen.
-      }
-    })
-    .catch(function(error) {
-      // Manejar errores de red u otros errores.
-    });
-  });
-</script>
-
-
 <button type="submit" name="Grain_Size" class="btn btn-danger">Registrar ensayo</button>
 <button type="submit" name="grainsize" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </form>
@@ -829,7 +802,6 @@ var Cu = (d60 / d10)||0;
   </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <?php include_once('layouts/footer.php'); ?>
 
