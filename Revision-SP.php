@@ -583,8 +583,7 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
 
 <div id="standard_proctor" style="height: 600px; width: 1070px;"></div>
 
-<button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
-<button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
+<button type="submit" name="repetir_muestra" class="btn btn-warning">Enviar ensayo repetir</button>
 <div class="btn-group dropup" role="group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     Generar PDF

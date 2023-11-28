@@ -500,8 +500,7 @@ $SearchTable = find_by_id('grain_size_coarse_aggregate', (int)$_GET['id']);
 <div style="display: flex; margin-bottom: 1%; margin-left: -3%;">
   <div id="gs_coarse_agg" style="width: 1000px; height: 500px;"></div>
 </div>
-<button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
-<button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
+<button type="submit" name="repetir_muestra" class="btn btn-warning">Enviar ensayo repetir</button>
 <div class="btn-group dropup" role="group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     Generar PDF

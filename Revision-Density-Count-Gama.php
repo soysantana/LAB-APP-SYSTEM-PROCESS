@@ -114,8 +114,7 @@ $SearchTable = find_by_id('count_gama', (int)$_GET['id']);
 </div>
 
 <div>
-<button type="submit" class="btn btn-success">Enviar ensayo a firma</button>
-<button type="submit" name="repeat" class="btn btn-warning">Enviar ensayo repetir</button>
+<button type="submit" name="repetir_muestra" class="btn btn-warning">Enviar ensayo repetir</button>
 <div class="btn-group dropup" role="group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     Generar PDF
