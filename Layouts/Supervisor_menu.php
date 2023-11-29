@@ -34,6 +34,12 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a class="nav-link glyphicon glyphicon-picture" href="Menu_PhotoLog.php" style="font-size: 17px;"> Photo-Log</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link glyphicon glyphicon-tasks" href="Sumary.php" style="font-size: 17px;"> Sumarios</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link glyphicon glyphicon-calendar" href="planificacion.php" style="font-size: 17px;"> Planificacion Semanal</a>
         </li>
         <li class="nav-item">
@@ -43,7 +49,7 @@
           <a class="nav-link glyphicon glyphicon-question-sign" href="ensayospendientes.php" style="font-size: 17px;"> Ensayos Pendientes</a>
         </li>
         <li class="nav-item has-submenu">
-          <a class="nav-link  glyphicon glyphicon-shopping-cart submenu-toggle" href="inventario.php" style="font-size: 17px;">Inventarios</a>
+          <a class="nav-link  glyphicon glyphicon-shopping-cart submenu-toggle" href="inventario.php" style="font-size: 17px;"> Inventarios</a>
           <ul class="submenu collapse">
               <li><a class="nav-link" href="inventarioequipos.php" style="font-size: 16px;">Inventario de Equipos</a></li>
               <li class="nav-item has-submenu">
