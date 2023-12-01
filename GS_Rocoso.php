@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Grain size for Rocks';
+$page_title = 'Granulometria para materiales rocosos';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(2);
@@ -10,6 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php include_once('layouts/header.php'); ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/regression/2.0.1/regression.min.js" integrity="sha512-0k6FXllQktdobw8Nc8KQN2WtZrOuxpMn7jC2RKCF6LR7EdOhhrg3H5cBPxhs3CFzQVlO6ni1B9SDLUPhBs0Alg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/regression/2.0.1/regression.js" integrity="sha512-PHHRPMxJK1xGYLQPv9FoDbCF2X23Ao1lMAD52oLY9TBW033s4zwIXl5JQBGlfI2iOx3W1qP3LAS/MMv5Ttj0aQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <div class="row">
 <div class="col-md-6">
 <?php echo display_msg($msg); ?>
@@ -36,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </strong>
 </div>
 <div class="panel-body">
-<form method="post" action="gs_rock.php" onsubmit="calcular();calcularD();">
+<form method="post" action="GS_Rocoso.php" onsubmit="calcular();calcularD();">
 
 <div>
 <table class="table table-bordered">
@@ -503,13 +507,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Pass_3" style="border: none;" size="12" style="background: transparent;"id="195" oninput="calcular()"></td> 
             </tr>
             <tr>
-                <th style="font-size: 15px;" scope="row">21/2"</th>
-                <td><input type="text" name="Wt_Ret_21p2" style="border: none;" size="12" style="background: transparent;"id="196"oninput="calcular()"></td>
-                <td><input type="text" name="Ret_21p2" style="border: none;" size="12" style="background: transparent;"id="197"oninput="calcular()"></td> 
-                <td><input type="text" name="Cum_Ret_21p2" style="border: none;" size="12" style="background: transparent;"id="198"oninput="calcular()"></td> 
-                <td><input type="text" name="Pass_21p2" style="border: none;" size="12" style="background: transparent;"id="199"oninput="calcular()"></td> 
-            </tr>
-            <tr>
                 <th style="font-size: 15px;" scope="row">2"</th>
                 <td><input type="text" name="Wt_Ret_2" style="border: none;" size="12" style="background: transparent;"id="200"oninput="calcular()"></td>
                 <td><input type="text" name="Ret_2" style="border: none;" size="12" style="background: transparent;"id="201"oninput="calcular()"></td> 
@@ -559,54 +556,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Pass_No4" style="border: none;" size="12" style="background: transparent;"id="227"oninput="calcular()"></td> 
             </tr>
             <tr>
-                <th style="font-size: 15px;" scope="row">No.10</th>
-                <td><input type="text" name="Wt_Ret_No10" style="border: none;" size="12" style="background: transparent;"id="228"oninput="calcular()"></td>
-                <td><input type="text" name="Ret_No10" style="border: none;" size="12" style="background: transparent;"id="229"oninput="calcular()"></td> 
-                <td><input type="text" name="Cum_Ret_No10" style="border: none;" size="12" style="background: transparent;"id="230"oninput="calcular()"></td> 
-                <td><input type="text" name="Pass_No10" style="border: none;" size="12" style="background: transparent;"id="231"oninput="calcular()"></td> 
-            </tr>
-            <tr>
-                <th style="font-size: 15px;" scope="row">No.16</th>
-                <td><input type="text" name="Wt_Ret_No16" style="border: none;" size="12" style="background: transparent;"id="232"oninput="calcular()"></td>
-                <td><input type="text" name="Ret_No16" style="border: none;" size="12" style="background: transparent;"id="233"oninput="calcular()"></td> 
-                <td><input type="text" name="Cum_Ret_No16" style="border: none;" size="12" style="background: transparent;"id="234"oninput="calcular()"></td> 
-                <td><input type="text" name="Pass_No16" style="border: none;" size="12" style="background: transparent;"id="235"oninput="calcular()"></td> 
-            </tr>
-            <tr>
                 <th style="font-size: 15px;" scope="row">No.20</th>
                 <td><input type="text" name="Wt_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="236"oninput="calcular()"></td>
                 <td><input type="text" name="Ret_No20" style="border: none;" size="12" style="background: transparent;"id="237"oninput="calcular()"></td> 
                 <td><input type="text" name="Cum_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="238"oninput="calcular()"></td> 
                 <td><input type="text" name="Pass_No20" style="border: none;" size="12" style="background: transparent;"id="239"oninput="calcular()"></td> 
             </tr>
-            <tr>
-                <th style="font-size: 15px;" scope="row">No.50</th>
-                <td><input type="text" name="Wt_Ret_No50" style="border: none;" size="12" style="background: transparent;"id="240"oninput="calcular()"></td>
-                <td><input type="text" name="Ret_No50" style="border: none;" size="12" style="background: transparent;"id="241"oninput="calcular()"></td> 
-                <td><input type="text" name="Cum_Ret_No50" style="border: none;" size="12" style="background: transparent;"id="242"oninput="calcular()"></td> 
-                <td><input type="text" name="Pass_No50" style="border: none;" size="12" style="background: transparent;"id="243"oninput="calcular()"></td> 
-            </tr>
-            <tr>
-                <th style="font-size: 15px;" scope="row">No.60</th>
-                <td><input type="text" name="Wt_Ret_No60" style="border: none;" size="12" style="background: transparent;"id="244"oninput="calcular()"></td>
-                <td><input type="text" name="Ret_No60" style="border: none;" size="12" style="background: transparent;"id="245"oninput="calcular()"></td> 
-                <td><input type="text" name="Cum_Ret_No60" style="border: none;" size="12" style="background: transparent;"id="246"oninput="calcular()"></td> 
-                <td><input type="text" name="Pass_No60" style="border: none;" size="12" style="background: transparent;"id="247"oninput="calcular()"></td> 
-            </tr>
-            <tr>
-                <th style="font-size: 15px;" scope="row">No.100</th>
-                <td><input type="text" name="Wt_Ret_No100" style="border: none;" size="12" style="background: transparent;"id="248"oninput="calcular()"></td>
-                <td><input type="text" name="Ret_No100" style="border: none;" size="12" style="background: transparent;"id="249"oninput="calcular()"></td> 
-                <td><input type="text" name="Cum_Ret_No100" style="border: none;" size="12" style="background: transparent;"id="250"oninput="calcular()"></td> 
-                <td><input type="text" name="Pass_No100" style="border: none;" size="12" style="background: transparent;"id="251"oninput="calcular()"></td> 
-            </tr>
-            <tr>
-                <th style="font-size: 15px;" style="width: 125px; height: 25px;"scope="row">No. 140</th>
-                <td><input type="text" name="Wt_Ret_No140" style="border: none;" size="4" style="background: transparent;"id="252" name="" oninput="calcular()"></td>
-                <td><input type="text" name="Ret_No140" style="border: none;" size="4" style="background: transparent;"id="253" name="" oninput="calcular()"></td>
-                <td><input type="text" name="Cum_Ret_No140" style="border: none;" size="4" style="background: transparent;"id="254" name="" oninput="calcular()"></td>
-                <td><input type="text" name="Pass_No140" style="border: none;" size="4" style="background: transparent;"id="255" name="" oninput="calcular()"></td>
-              </tr>
+           
+        
             <tr>
                 <th style="font-size: 15px;" scope="row">No.200</th>
                 <td><input type="text" name="Wt_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="256"oninput="calcular()"></td>
@@ -668,7 +625,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_40" style="border: none;" size="12" style="background: transparent;"id="273"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_40" style="border: none;" size="12" style="background: transparent;"id="274"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_40" style="border: none;" size="12" style="background: transparent;"id="275"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">304.8</th>
@@ -677,7 +634,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_12" style="border: none;" size="12" style="background: transparent;"id="277"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_12" style="border: none;" size="12" style="background: transparent;"id="278"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_12" style="border: none;" size="12" style="background: transparent;"id="279"oninput="calcular()"></td>  
-                <td><input type="text" value="100" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">250</th>
@@ -686,7 +643,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_10" style="border: none;" size="12" style="background: transparent;"id="281"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_10" style="border: none;" size="12" style="background: transparent;"id="282"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_10" style="border: none;" size="12" style="background: transparent;"id="283"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">200</th>
@@ -695,7 +652,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_8" style="border: none;" size="12" style="background: transparent;"id="285"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_8" style="border: none;" size="12" style="background: transparent;"id="286"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_8" style="border: none;" size="12" style="background: transparent;"id="287"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">150</th>
@@ -704,7 +661,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_6" style="border: none;" size="12" style="background: transparent;"id="289"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_6" style="border: none;" size="12" style="background: transparent;"id="291"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_6" style="border: none;" size="12" style="background: transparent;"id="292"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">101.6</th>
@@ -713,7 +670,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_4" style="border: none;" size="12" style="background: transparent;"id="294"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_4" style="border: none;" size="12" style="background: transparent;"id="295"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_4" style="border: none;" size="12" style="background: transparent;"id="296"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">75</th>
@@ -722,7 +679,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_3" style="border: none;" size="12" style="background: transparent;"id="298"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_3" style="border: none;" size="12" style="background: transparent;"id="299"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_3" style="border: none;" size="12" style="background: transparent;"id="300"oninput="calcular()"></td>  
-                <td><input type="text" value="40-100" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">50</th>
@@ -731,7 +688,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_2" style="border: none;" size="12" style="background: transparent;"id="306"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_2" style="border: none;" size="12" style="background: transparent;"id="307"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_2" style="border: none;" size="12" style="background: transparent;"id="308"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">37.5</th>
@@ -740,7 +697,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="310"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="311"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_1p5" style="border: none;" size="12" style="background: transparent;"id="312"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">25</th>
@@ -749,7 +706,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_1" style="border: none;" size="12" style="background: transparent;"id="314"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_1" style="border: none;" size="12" style="background: transparent;"id="315"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_1" style="border: none;" size="12" style="background: transparent;"id="316"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">19</th>
@@ -758,7 +715,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="318"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="319"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_3p4" style="border: none;" size="12" style="background: transparent;"id="320"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">12.5</th>
@@ -767,7 +724,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="332"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="333"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_1p2" style="border: none;" size="12" style="background: transparent;"id="334"oninput="calcular()"></td>  
-                <td><input type="text" value="0-40" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">9.5</th>
@@ -776,7 +733,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="336"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="337"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_3p8" style="border: none;" size="12" style="background: transparent;"id="338"oninput="calcular()"></td>  
-                <td><input type="text" value="0-35" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">4.75</th>
@@ -785,8 +742,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="340"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="341"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_No4" style="border: none;" size="12" style="background: transparent;"id="342"oninput="calcular()"></td>  
-                <td><input type="text" value="0-20" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
+           
             <tr>
                 <th style="font-size: 15px;" scope="row">0.85</th>
                 <th style="font-size: 15px;" scope="row">No.20</th>
@@ -794,8 +752,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="352"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="353"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_No20" style="border: none;" size="12" style="background: transparent;"id="354"oninput="calcular()"></td>  
-                <td><input type="text" value="0-12" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
-            </tr>
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            </tr>    
+    
             <tr>
                 <th style="font-size: 15px;" scope="row">0.075</th>
                 <th style="font-size: 15px;" scope="row">No.200</th>
@@ -803,7 +762,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="372"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="373"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_No200" style="border: none;" size="12" style="background: transparent;"id="374"oninput="calcular()"></td>  
-                <td><input type="text" value="0-5" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
@@ -812,7 +771,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Pan_Ret" style="border: none;" size="12" style="background: transparent;"id="376"oninput="calcular()"></td> 
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="377"oninput="calcular()"></td> 
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="378"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
             <tr>
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
@@ -821,7 +780,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Total_Ret" style="border: none;" size="12" style="background: transparent;"id="980"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Total_Cum_Ret" style="border: none;" size="12" style="background: transparent;"id="981"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Total_Pass" style="border: none;" size="12" style="background: transparent;"id="982"oninput="calcular()"></td>  
-                <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
             </tr>
         </tbody>
     </table>
@@ -909,7 +868,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       var total40= valores[0] + valores[1]+ valores[2]+ valores[3]+ valores[4]+ valores[5]+ valores[6] ;
       var total30= valores[7] + valores[8]+ valores[9]+ valores[10]+ valores[11]+ valores[12]+ valores[13] ;
       var total20= valores[14] + valores[15]+ valores[16]+ valores[17]+ valores[18]+ valores[19]+ valores[20] ;
-      var total13= valores[21] + valores[22]+ valores[23]+ valores[24]+ valores[25]+ valores[26]+ valores[27] ;
       var total12= valores[28] + valores[29]+ valores[30]+ valores[31]+ valores[32]+ valores[33]+ valores[34] ;
       var total10= valores[35] + valores[36]+ valores[37]+ valores[38]+ valores[39]+ valores[40]+ valores[41] ;
       var total8= valores[42] + valores[43]+ valores[44]+ valores[45]+ valores[46]+ valores[47]+ valores[48] ;
@@ -945,7 +903,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var PaLR = parseFloat(document.getElementById("191").value);
 
     var WR3 = parseFloat(document.getElementById("192").value);
-    var WR2p5 = parseFloat(document.getElementById("196").value);
     var WR2 = parseFloat(document.getElementById("200").value);
     var WR1p5 = parseFloat(document.getElementById("204").value);
     var WR1 = parseFloat(document.getElementById("208").value);
@@ -953,17 +910,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var WR1p2 = parseFloat(document.getElementById("216").value);
     var WR3p8 = parseFloat(document.getElementById("220").value);
     var WRno4 = parseFloat(document.getElementById("224").value);
-    var WRno10 = parseFloat(document.getElementById("228").value);
-    var WRno16 = parseFloat(document.getElementById("232").value);
     var WRno20 = parseFloat(document.getElementById("236").value);
-    var WRno50 = parseFloat(document.getElementById("240").value);
-    var WRno60 = parseFloat(document.getElementById("244").value);
-    var WRno100 = parseFloat(document.getElementById("248").value);
-    var WRno140 = parseFloat(document.getElementById("252").value);
     var WRno200 = parseFloat(document.getElementById("256").value);
     var WRPAN = parseFloat(document.getElementById("260").value);
 
-    var cWR50 = parseFloat(document.getElementById("268").value);
+    
     var cWR40 = parseFloat(document.getElementById("272").value);
     var cWR12 = parseFloat(document.getElementById("276").value);
     var cWR10 = parseFloat(document.getElementById("280").value);
@@ -971,7 +922,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var cWR6 = parseFloat(document.getElementById("288").value);
     var cWR4 = parseFloat(document.getElementById("293").value);
     var cWR3 = parseFloat(document.getElementById("297").value);
-    var cWR2p5 = parseFloat(document.getElementById("301").value);
     var cWR2 = parseFloat(document.getElementById("305").value);
     var cWR1p5 = parseFloat(document.getElementById("309").value);
     var cWR1 = parseFloat(document.getElementById("313").value);
@@ -979,15 +929,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var cWR1p2 = parseFloat(document.getElementById("331").value);
     var cWR3p8 = parseFloat(document.getElementById("335").value);
     var cWRno4 = parseFloat(document.getElementById("339").value);
-    var cWRno10 = parseFloat(document.getElementById("343").value);
-    var cWRno16 = parseFloat(document.getElementById("347").value);
     var cWRno20 = parseFloat(document.getElementById("351").value);
-    var cWRno50 = parseFloat(document.getElementById("355").value);
-    var cWRno60 = parseFloat(document.getElementById("359").value);
-    var cWRno100 = parseFloat(document.getElementById("363").value);
-    var cWRno140 = parseFloat(document.getElementById("367").value);
     var cWRno200 = parseFloat(document.getElementById("371").value);
-    var cWRPAN = parseFloat(document.getElementById("362").value);
+    var cWRPAN = parseFloat(document.getElementById("375").value);
 
 
 
@@ -1020,7 +964,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       //correccion por humedad
       var Menor3c = resultadoOtraUnidad1 / (1 + (Amc / 100));
       var TPSS = resultadoOtraUnidad + Menor3c;
-    
+      var ROU1 = resultadoOtraUnidad1;
       
       // Calculo de granulometria reducida
     PaLR = PSSR - PLR;
@@ -1031,14 +975,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var CPR3 = PR3 + 0;
     var PP3 = 100 - CPR3;
 
-    //Tamiz 2.5 pulgadas
-    var PR2p5 = (WR2p5 / PSSR)*100;
-    var CPR2p5 = PR2p5 + CPR3;
-    var PP2p5 = 100 - CPR2p5;
-
     //Tamiz 2 pulgadas
     var PR2 = (WR2 / PSSR)*100;
-    var CPR2 = PR2 + CPR2p5;
+    var CPR2 = PR2 + CPR3;
     var PP2 = 100 - CPR2;
 
     //Tamiz 1.5 pulgadas
@@ -1071,44 +1010,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       var CPRn4 = PRn4 + CPR3p8;
       var PPn4 = 100 - CPRn4;
   
-      //Tamiz No10
-      var PRn10 = (WRno10 / PSSR) * 100;
-      var CPRn10 = PRn10 + CPRn4;
-      var PPn10 = 100 - CPRn10;
-  
-      //Tamiz No16
-      var PRn16 = (WRno16 / PSSR) * 100;
-      var CPRn16 = PRn16 + CPRn10;
-      var PPn16 = 100 - CPRn16;
-  
       //Tamiz No20
       var PRn20 = (WRno20 / PSSR) * 100;
-      var CPRn20 = PRn20 + CPRn16;
+      var CPRn20 = PRn20 + CPRn4;
       var PPn20 = 100 - CPRn20;
   
-      //Tamiz No50
-      var PRn50 = (WRno50 / PSSR) * 100;
-      var CPRn50 = PRn50 + CPRn20;
-      var PPn50 = 100 - CPRn50;
-  
-      //Tamiz No60
-      var PRn60 = (WRno60 / PSSR) * 100;
-      var CPRn60 = PRn60 + CPRn50;
-      var PPn60 = 100 - CPRn60;
-
-      //Tamiz No100
-      var PRn100 = (WRno100 / PSSR) * 100;
-      var CPRn100 = PRn100 + CPRn60;
-      var PPn100 = 100 - CPRn100;
-
-      //Tamiz No140
-      var PRn140 = (WRno140 / PSSR) * 100;
-      var CPRn140 = PRn140 + CPRn100;
-      var PPn140= 100 - CPRn140;
-  
-      //Tamiz No200
+     //Tamiz No200
       var PRn200 = (WRno200 / PSSR) * 100;
-      var CPRn200 = PRn200 + CPRn140;
+      var CPRn200 = PRn200 + CPRn20;
       var PPn200 = 100 - CPRn200;
   
       // Pan
@@ -1125,7 +1034,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       var factor = (PSSR / TPSS) * 100;
       
       // Aplicacion de factor
-        var fcWR2p5 = (WR2p5 * 100 ) / factor;
+        
         var fcWR2 = (WR2 * 100) / factor;
         var fcWR1p5 = (WR1p5 * 100) / factor;
         var fcWR1 = (WR1 * 100) / factor;
@@ -1133,27 +1042,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         var fcWR1p2 = (WR1p2 * 100) / factor;
         var fcWR3p8 = (WR3p8 *100) / factor;
         var fcWRn4 = (WRno4 * 100) / factor;
-        var fcWRn10 = (WRno10 * 100) / factor;
-        var fcWRn16 = (WRno16 * 100) / factor;
         var fcWRn20 = (WRno20 * 100) / factor;
-        var fcWRn50 = (WRno50 * 100) / factor;
-        var fcWRn60 = (WRno60 * 100) / factor;
-        var fcWRn100 = (WRno100 * 100) / factor;
-        var fcWRn140 = (WRno140 * 100) / factor;
         var fcWRn200 = (WRno200 * 100) / factor;
         var fcWRpan = (WRPAN * 100) / factor;
 
       // Calculo de granulometria combinada
       
 
-//Tamiz 50 pulgadas
-var cPR50 = (cWR50 / TPSS) * 100;
-var cCPR50 = cPR50 + 0;
-var cPP50 = 100 - cCPR50;
+
 
 //Tamiz 40 pulgadas
 var cPR40 = (cWR40/ TPSS) * 100;
-var cCPR40 = cPR40 + cCPR50;
+var cCPR40 = cPR40 + 0;
 var cPP40 = 100 - cCPR40;
 
 //Tamiz 12 pulgadas
@@ -1187,14 +1087,10 @@ var cPR3 = (cWR3 / TPSS) * 100;
 var cCPR3 = cPR3 + cCPR4;
 var cPP3 = 100 - cCPR3;
 
-//Tamiz 2.5 pulgadas
-var cPR2p5 = (fcWR2p5 / TPSS) * 100;
-var cCPR2p5 = cPR2p5 + cCPR3;
-var cPP2p5 = 100 - cCPR2p5;
 
     //Tamiz 2 pulgadas
     var cPR2 = (fcWR2 / TPSS) * 100;
-    var cCPR2 = cPR2 + cCPR2p5;
+    var cCPR2 = cPR2 + cCPR3;
     var cPP2 = 100 - cCPR2;
 
     //Tamiz 1.5 pulgadas
@@ -1227,44 +1123,16 @@ var cPP2p5 = 100 - cCPR2p5;
       var cCPRn4 = cPRn4 + cCPR3p8;
       var cPPn4 = 100 - cCPRn4;
   
-      //Tamiz No10
-      var cPRn10 = (fcWRn10 / TPSS) * 100;
-      var cCPRn10 = cPRn10 + cCPRn4;
-      var cPPn10 = 100 - cCPRn10;
-  
-      //Tamiz No16
-      var cPRn16 = (fcWRn16 / TPSS) * 100;
-      var cCPRn16 = cPRn16 + cCPRn10;
-      var cPPn16 = 100 - cCPRn16;
   
       //Tamiz No20
       var cPRn20 = (fcWRn20 / TPSS) * 100;
-      var cCPRn20 = cPRn20 + cCPRn16;
+      var cCPRn20 = cPRn20 + cCPRn4;
       var cPPn20 = 100 - cCPRn20;
   
-      //Tamiz No50
-      var cPRn50 = (fcWRn50 / TPSS) * 100;
-      var cCPRn50 = cPRn50 + cCPRn20;
-      var cPPn50 = 100 - cCPRn50;
-  
-      //Tamiz No60
-      var cPRn60 = (fcWRn60 / TPSS) * 100;
-      var cCPRn60 = cPRn60 + cCPRn50;
-      var cPPn60 = 100 - cCPRn60;
-  
-      //Tamiz No100
-      var cPRn100 = (fcWRn100 / TPSS) * 100;
-      var cCPRn100 = cPRn100 + cCPRn60;
-      var cPPn100 = 100 - cCPRn100;
-
-      //Tamiz No140
-      var cPRn140 = (fcWRn140 / TPSS) * 100;
-      var cCPRn140 = cPRn140 + cCPRn100;
-      var cPPn140 = 100 - cCPRn140;
 
       //Tamiz No200
       var cPRn200 = (fcWRn200 / TPSS) * 100;
-      var cCPRn200 = cPRn200 + cCPRn140;
+      var cCPRn200 = cPRn200 + cCPRn20;
       var cPPn200 = 100 - cCPRn200;
   
       // Pan
@@ -1272,9 +1140,8 @@ var cPP2p5 = 100 - cCPR2p5;
   
       
 
-      var TPL = cWR50 + cWR40 + cWR12 + cWR10 + cWR8 + cWR6 + cWR4 + cWR3 + fcWR2p5 + fcWR2 +
-      fcWR1p5 + fcWR1 + fcWR3p4 + fcWR1p2 + fcWR3p8 + fcWRn4 + fcWRn10 + fcWRn16 + fcWRn20 + fcWRn50 + 
-      fcWRn60 + fcWRn100 + fcWRn140 + fcWRn200 + fcWRpan;
+      var TPL = cWR40 + cWR12 + cWR10 + cWR8 + cWR6 + cWR4 + cWR3 + fcWR2 +
+      fcWR1p5 + fcWR1 + fcWR3p4 + fcWR1p2 + fcWR3p8 + fcWRn4 + fcWRn20 + fcWRn200 + fcWRpan;
       
       var PPL = TPSS - TPL;
 
@@ -1299,70 +1166,72 @@ var cPP2p5 = 100 - cCPR2p5;
     var sand = pasanteN4 - pasanteN200;
     var fines = pasanteN200;
 
-    //proceso de calculo de D10, D15, D30, D60 y D85
+    function buscarFilaValorAproximado(lookupValue, data, colIndex) {
+  if (colIndex < 1 || colIndex > data[0].length) {
+    throw new Error("Índice de columna inválido");
+  }
 
-    var p50 = parseFloat(document.getElementById("271").value);
-    var p40 = parseFloat(document.getElementById("275").value);
-    var p12 = parseFloat(document.getElementById("279").value);
-    var p10 = parseFloat(document.getElementById("283").value);
-    var p8 = parseFloat(document.getElementById("287").value);
-    var p6 = parseFloat(document.getElementById("292").value);
-    var p4 = parseFloat(document.getElementById("296").value);
-    var p3 = parseFloat(document.getElementById("300").value);
-    var p2m5 = parseFloat(document.getElementById("304").value);
-    var p2 = parseFloat(document.getElementById("308").value);
-    var p1m5 = parseFloat(document.getElementById("312").value);
-    var p1 = parseFloat(document.getElementById("316").value);
-    var p3m4 = parseFloat(document.getElementById("320").value);
-    var p1m2 = parseFloat(document.getElementById("334").value);
-    var p3m8 = parseFloat(document.getElementById("338").value);
-    var no4 = parseFloat(document.getElementById("342").value);
-    var no10 = parseFloat(document.getElementById("346").value);
-    var no16 = parseFloat(document.getElementById("350").value);
-    var no20 = parseFloat(document.getElementById("354").value);
-    var no50 = parseFloat(document.getElementById("358").value);
-    var no60 = parseFloat(document.getElementById("362").value);
-    var no100 = parseFloat(document.getElementById("366").value);
-    var no140 = parseFloat(document.getElementById("370").value);
-    var no200 = parseFloat(document.getElementById("374").value);
-  
-    var tamanos = [0.075, 0.106, 0.15, 0.25, 0.30, 0.85, 1.18, 2.00, 4.75, 9.5, 12.7, 19.5, 25.4, 38.1, 50.80, 63.50, 76.2, 101.6, 152.4, 203.2, 254, 304.8, 1016, 1270];
-    var porcentajes = [no200, no140, no100, no60, no50, no20, no16, no10, no4, p3m8, p1m2, p3m4, p1, p1m5, p2, p2m5, p3, p4, p6, p8, p10, p12, p40, p50];
+  let closestRow = data[0];
+  let closestValue = data[0][colIndex - 1];
+  let closestDifference = Math.abs(closestValue - lookupValue);
 
+  for (const row of data.slice(1)) {
+    const currentValue = row[colIndex - 1];
+    const currentDifference = Math.abs(currentValue - lookupValue);
 
-function calcularD(d) {
-  function buscarIndice() {
-    for (var i = 0; i < porcentajes.length; i++) {
-      if (porcentajes[i] >= d) {
-        return i;
-      }
+    if (currentDifference < closestDifference) {
+      closestRow = row;
+      closestValue = currentValue;
+      closestDifference = currentDifference;
     }
-    return porcentajes.length - 1; // Si no se encuentra un índice, se devuelve el último
   }
 
-  var indice = buscarIndice();
-  if (porcentajes[indice] == d) {
-    return tamanos[indice];
-  } else {
-    // Realizar interpolación logarítmica
-    var logD = Math.log(d);
-    var logD1 = Math.log(porcentajes[indice - 1]);
-    var logD2 = Math.log(porcentajes[indice]);
-    var logT1 = Math.log(tamanos[indice - 1]);
-    var logT2 = Math.log(tamanos[indice]);
-    var resultadoD = Math.exp(logT1 + (logD - logD1) * (logT2 - logT1) / (logD2 - logD1));
-    return resultadoD;
-  }
+  return closestRow;
 }
 
-var d10 = calcularD(10)||0;
-var d15 = calcularD(15)||0;
-var d30 = calcularD(30)||0;
-var d60 = calcularD(60)||0;
-var d85 = calcularD(85)||0;
-  
-var Cc = (Math.pow(d30, 2) / (d60 * d10))||0;
-var Cu = (d60 / d10)||0;
+function calcularResultado(lookupValue, valoresX, valoresY) {
+  const result = regression.logarithmic(valoresX.map((x, i) => [x, valoresY[i]]));
+  const valorB = result.equation[0];
+  const valorC = result.equation[1];
+  return Math.exp((lookupValue - valorB) / valorC);
+}
+
+const datos = [
+  [cPPn200, 0.075, cPPn20, 0.85],
+  [cPPn20, 0.85, cPPn4, 4.75],
+  [cPPn4, 4.750, cPP3p8, 9.50],
+  [cPP3p8, 9.500, cPP1p2, 12.50],
+  [cPP1p2, 12.500, cPP3p4, 19.00],
+  [cPP3p4, 19.000, cPP1, 25.00],
+  [cPP1, 25.000, cPP1p5, 37.50],
+  [cPP1p5, 37.500, cPP2, 50.80],
+  [cPP2, 50.00, cPP3, 75.80],
+  [cPP3, 75.00, cPP4, 100],
+  [cPP4, 100, cPP6, 150.00],
+  [cPP6, 150, cPP8, 200.0],
+  [cPP8, 200, cPP10, 250.00],
+  [cPP10, 250, cPP12, 300.00],
+  [cPP12, 300, cPP40, 1000],
+  [cPP40, 1000, 100, 0.00],
+];
+
+const d10 = buscarFilaValorAproximado(10, datos, 3);
+const valoresX10 = [d10[1], d10[3]];
+const valoresY10 = [d10[0], d10[2]];
+const D10 = calcularResultado(10, valoresX10, valoresY10);
+
+const d30 = buscarFilaValorAproximado(30, datos, 3);
+const valoresX30 = [d30[1], d30[3]];
+const valoresY30 = [d30[0], d30[2]];
+const D30 = calcularResultado(30, valoresX30, valoresY30);
+
+const d60 = buscarFilaValorAproximado(60, datos, 3);
+const valoresX60 = [d60[1], d60[3]];
+const valoresY60 = [d60[0], d60[2]];
+const D60 = calcularResultado(60, valoresX60, valoresY60);
+
+var Cc = Math.pow(D30, 2) / (D10 * D60);
+var Cu = D60 / D10;
 
 
 
@@ -1372,7 +1241,6 @@ var Cu = (d60 / d10)||0;
       document.getElementById("71").value = total40.toFixed(2);
       document.getElementById("72").value = total30.toFixed(2);
       document.getElementById("73").value = total20.toFixed(2);
-      document.getElementById("74").value = total13.toFixed(2);
       document.getElementById("75").value = total12.toFixed(2);
       document.getElementById("76").value = total10.toFixed(2);
       document.getElementById("77").value = total8.toFixed(2);
@@ -1395,7 +1263,7 @@ var Cu = (d60 / d10)||0;
       document.getElementById("182").value = Mc3.toFixed(2);
       document.getElementById("183").value = Amc.toFixed(2);
       document.getElementById("184").value = resultadoOtraUnidad.toFixed(2);
-      document.getElementById("185").value = Menor3c.toFixed(2);
+      document.getElementById("185").value = ROU1.toFixed(2);
       document.getElementById("186").value = TPSS.toFixed(2);
       document.getElementById("187").value = TPL.toFixed(2);
       document.getElementById("188").value = PPL.toFixed(2);
@@ -1407,10 +1275,6 @@ var Cu = (d60 / d10)||0;
       document.getElementById("193").value = PR3.toFixed(2);
       document.getElementById("194").value = CPR3.toFixed(2);
       document.getElementById("195").value = PP3.toFixed(2);
-
-      document.getElementById("197").value = PR2p5.toFixed(2);
-      document.getElementById("198").value = CPR2p5.toFixed(2);
-      document.getElementById("199").value = PP2p5.toFixed(2);
 
       document.getElementById("201").value = PR2.toFixed(2);
       document.getElementById("202").value = CPR2.toFixed(2);
@@ -1440,33 +1304,10 @@ var Cu = (d60 / d10)||0;
       document.getElementById("226").value = CPRn4.toFixed(2);
       document.getElementById("227").value = PPn4.toFixed(2);
 
-      document.getElementById("229").value = PRn10.toFixed(2);
-      document.getElementById("230").value = CPRn10.toFixed(2);
-      document.getElementById("231").value = PPn10.toFixed(2);
-
-      document.getElementById("233").value = PRn16.toFixed(2);
-      document.getElementById("234").value = CPRn16.toFixed(2);
-      document.getElementById("235").value = PPn16.toFixed(2);
-
       document.getElementById("237").value = PRn20.toFixed(2);
       document.getElementById("238").value = CPRn20.toFixed(2);
       document.getElementById("239").value = PPn20.toFixed(3);
 
-      document.getElementById("241").value = PRn50.toFixed(2);
-      document.getElementById("242").value = CPRn50.toFixed(2);
-      document.getElementById("243").value = PPn50.toFixed(2);
-
-      document.getElementById("245").value = PRn60.toFixed(2);
-      document.getElementById("246").value = CPRn60.toFixed(2);
-      document.getElementById("247").value = PPn60.toFixed(2)
-
-      document.getElementById("249").value = PRn100.toFixed(2);
-      document.getElementById("250").value = CPRn100.toFixed(2);
-      document.getElementById("251").value = PPn100.toFixed(3);
-
-      document.getElementById("253").value = PRn140.toFixed(2);
-      document.getElementById("254").value = CPRn140.toFixed(2);
-      document.getElementById("255").value = PPn140.toFixed(3);
 
       document.getElementById("257").value = PRn200.toFixed(2);
       document.getElementById("258").value = CPRn200.toFixed(2);
@@ -1484,10 +1325,6 @@ var Cu = (d60 / d10)||0;
       
       //pasando valores a la granulometria combinada
       document.getElementById("394").value = factor.toFixed(2);
-
-      document.getElementById("269").value = cPR50.toFixed(2);
-      document.getElementById("270").value = cCPR50.toFixed(2);
-      document.getElementById("271").value = cPP50.toFixed(2);
 
       document.getElementById("272").value = (total40 * 1000).toFixed(2);
       document.getElementById("273").value = cCPR40.toFixed(2);
@@ -1524,10 +1361,7 @@ var Cu = (d60 / d10)||0;
       document.getElementById("299").value = cCPR3.toFixed(2);
       document.getElementById("300").value = cPP3.toFixed(2);
 
-      document.getElementById("301").value = fcWR2p5.toFixed(2);
-      document.getElementById("302").value = cPR2p5.toFixed(2);
-      document.getElementById("303").value = cCPR2p5.toFixed(2);
-      document.getElementById("304").value = cPP2p5.toFixed(2);
+     
 
       document.getElementById("305").value = fcWR2.toFixed(2);
       document.getElementById("306").value = cPR2.toFixed(2);
@@ -1564,40 +1398,10 @@ var Cu = (d60 / d10)||0;
       document.getElementById("341").value = cCPRn4.toFixed(2);
       document.getElementById("342").value = cPPn4.toFixed(2);
 
-      document.getElementById("343").value = fcWRn10.toFixed(2);
-      document.getElementById("344").value = cPRn10.toFixed(2);
-      document.getElementById("345").value = cCPRn10.toFixed(2);
-      document.getElementById("346").value = cPPn10.toFixed(2);
-
-      document.getElementById("347").value = fcWRn16.toFixed(2);
-      document.getElementById("348").value = cPRn16.toFixed(2);
-      document.getElementById("349").value = cCPRn16.toFixed(2);
-      document.getElementById("350").value = cPPn16.toFixed(2);
-
       document.getElementById("351").value = fcWRn20.toFixed(2);
       document.getElementById("352").value = cPRn20.toFixed(2);
       document.getElementById("353").value = cCPRn20.toFixed(2);
       document.getElementById("354").value = cPPn20.toFixed(3);
-
-      document.getElementById("355").value = fcWRn50.toFixed(2);
-      document.getElementById("356").value = cPRn50.toFixed(2);
-      document.getElementById("357").value = cCPRn50.toFixed(2);
-      document.getElementById("358").value = cPPn50.toFixed(2);
-
-      document.getElementById("359").value = fcWRn60.toFixed(2);
-      document.getElementById("360").value = cPRn60.toFixed(2);
-      document.getElementById("361").value = cCPRn60.toFixed(2);
-      document.getElementById("362").value = cPPn60.toFixed(2)
-
-      document.getElementById("363").value = fcWRn100.toFixed(2);
-      document.getElementById("364").value = cPRn100.toFixed(2);
-      document.getElementById("365").value = cCPRn100.toFixed(2);
-      document.getElementById("366").value = cPPn100.toFixed(3);
-
-      document.getElementById("367").value = fcWRn140.toFixed(2);
-      document.getElementById("368").value = cPRn140.toFixed(2);
-      document.getElementById("369").value = cCPRn140.toFixed(2);
-      document.getElementById("370").value = cPPn140.toFixed(3);
 
       document.getElementById("371").value = fcWRn200.toFixed(2);
       document.getElementById("372").value = cPRn200.toFixed(2);
@@ -1618,11 +1422,10 @@ var Cu = (d60 / d10)||0;
       document.getElementById("385").value = sand.toFixed(2);
       document.getElementById("386").value = fines.toFixed(2);
 
-      document.getElementById("387").value = d10.toFixed(2);
-      document.getElementById("388").value = d15.toFixed(2);
-      document.getElementById("389").value = d30.toFixed(2);
-      document.getElementById("390").value = d60.toFixed(2);
-      document.getElementById("391").value = d85.toFixed(2);
+      document.getElementById("387").value = D10.toFixed(2);
+      document.getElementById("389").value = D30.toFixed(2);
+      document.getElementById("390").value = D60.toFixed(2);
+    
 
       document.getElementById("392").value = Cc.toFixed(2);
       document.getElementById("393").value = Cu.toFixed(2);

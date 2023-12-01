@@ -23,7 +23,7 @@ $products = join_lab_test_requisition_form();
           <a href="GS_CF.php" class="list-group-item">Granulometrias de CF</a>
           <a href="GS_LPF.php" class="list-group-item">Granulometrias de LPF</a>
           <a href="GS_UTF.php" class="list-group-item">Granulometrias de UTF</a>
-          <a href="GS_TRF.php" class="list-group-item">Granulometrias de TRF</a>
+          <a href="GS_Rocoso.php" class="list-group-item">Granulometrias de material rocoso</a>
           <a href="GS_RF.php" class="list-group-item">Granulometrias de RF</a>
           <a href="GS_IRF.php" class="list-group-item">Granulometrias de IRF</a>
           <a href="GS_UFF.php" class="list-group-item">Granulometrias de UFF</a>

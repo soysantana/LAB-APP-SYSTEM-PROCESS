@@ -45,7 +45,7 @@ option = {
   },
 
   series: [
-    /*{
+    {
       data: [
         [1016, document.getElementById(11).value],
         [304.8, document.getElementById(15).value],
@@ -55,7 +55,6 @@ option = {
         [127, document.getElementById(31).value],
         [101.6, document.getElementById(35).value],
         [76.2, document.getElementById(39).value],
-        [63.50, document.getElementById(43).value],
         [50.80, document.getElementById(47).value],
         [38.1, document.getElementById(51).value],
         [25.4, document.getElementById(55).value],
@@ -63,19 +62,13 @@ option = {
         [12.7, document.getElementById(63).value],
         [9.5, document.getElementById(67).value],
         [4.75, document.getElementById(71).value],
-        [2.00, document.getElementById(75).value],
-        [1.18, document.getElementById(79).value],
         [0.85, document.getElementById(83).value],
-        [0.30, document.getElementById(87).value],
-        [0.25, document.getElementById(91).value],
-        [0.15, document.getElementById(95).value],
-        [0.106, document.getElementById(99).value],
         [0.075, document.getElementById(103).value]
       ],
       type: "line",
       showSymbol: false,
       color: "orange"
-    },*/
+    },
     {
       data: [
         [300, 100],
