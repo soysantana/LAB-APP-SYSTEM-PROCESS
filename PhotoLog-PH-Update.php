@@ -2,7 +2,8 @@
 require_once('includes/load.php');
 
 // Obtener datos del formulario desde la URL
-$idUsuario = $_GET['id'];
+$idUsuario = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
 
 // Crear una nueva conexión a la base de datos
 $db = new mysqli('localhost', 'root', '', 'index_test_lab');

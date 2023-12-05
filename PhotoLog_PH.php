@@ -56,9 +56,9 @@ $SearchTable = find_all('pinhole');
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Alerta</h4>
+          <h4 class="modal-title" id="myModalLabel"><?php echo $Search['Sample_ID']; ?>-<?php echo $Search['Sample_Number']; ?></h4>
         </div>
-        <div class="modal-body"><h3>¡Oops!    Faltan algunas fotos</h3></div>
+        <div class="modal-body"><h3>¡Heey!   Seleciona una opcion puedes ver o agregar</h3></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -66,33 +66,13 @@ $SearchTable = find_all('pinhole');
           <a href="PhotoLog-PH-Save.php?id=<?php echo intval($Search['id']); ?>" class="btn btn-primary" onclick="verificarModal(<?php echo intval($Search['id']); ?>)">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
           </a>
+          <a href="PDF/PhotoLog-PH.php?id=<?php echo intval($Search['id']); ?>" class="btn btn-primary" onclick="verificarModal(<?php echo intval($Search['id']); ?>)">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 <?php endforeach; ?>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Escucha el clic en el botón con el ID "verificarBtn"
-  document.getElementById("verificarBtn").addEventListener("click", function(event) {
-    // Evita que el enlace se siga ejecutando
-    event.preventDefault();
-
-    // Obtiene el ID de la muestra desde el botón
-    var sampleId = this.getAttribute("data-id");
-
-    // Redirige a la página de verificación
-    window.location.href = "Photo-PH-verificacion.php?id=" + sampleId;
-  });
-});
-</script>
-
-
-
-
-
-
-
 
 <?php include_once('layouts/footer.php'); ?>

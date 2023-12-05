@@ -5,6 +5,12 @@ require_once('includes/load.php');
 page_require_level(2);
 ?>
 
+<?php
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+session_start();
+$_SESSION['idValue'] = $id;
+?>
+
 <?php include_once('layouts/header.php'); ?>
 
 <div class="col-md-5">
@@ -17,7 +23,7 @@ page_require_level(2);
       </strong>
     </div>
     <div class="panel-body">
-      <form id="uploadForm" action="PhotoLog-PH-Update.php?id=1" method="post" enctype="multipart/form-data">
+      <form id="uploadForm" action="PhotoLog-PH-Update.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
         <div class="row">
           <?php for ($i = 1; $i <= 7; $i++): ?>
             <div class="col-md-6">
@@ -32,7 +38,9 @@ page_require_level(2);
         </div>
         <div class="modal-footer">
           <button type="submit" name="Update_Picture" class="btn btn-primary">Subir Fotos</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <a href="PhotoLog_PH.php" class="btn btn-default">
+            <span aria-hidden="true">Cancelar</span>
+          </a>
         </div>
       </form>
     </div>
