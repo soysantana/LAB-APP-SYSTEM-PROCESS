@@ -96,7 +96,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input class="form-control" name="TestStartDate" type="date">
       </div>
       </div>
-      
+
+      <div class="col-xs-4">
+      <label >GS TYPE</label>
+      <select class="form-control" id="opciones" onchange="cambiarOpcion()">
+      <option selected>TRF</option>
+      <option value="RF">RF</option>
+      <option value="IRF">IRF</option>
+      <option value="UFF">UFF</option>
+      </select>
+      </div>
 
 
       <caption>Test Information</caption>
@@ -625,7 +634,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_40" style="border: none;" size="12" style="background: transparent;"id="273"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_40" style="border: none;" size="12" style="background: transparent;"id="274"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_40" style="border: none;" size="12" style="background: transparent;"id="275"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_40" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">304.8</th>
@@ -634,7 +643,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_12" style="border: none;" size="12" style="background: transparent;"id="277"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_12" style="border: none;" size="12" style="background: transparent;"id="278"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_12" style="border: none;" size="12" style="background: transparent;"id="279"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_12" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">250</th>
@@ -643,7 +652,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_10" style="border: none;" size="12" style="background: transparent;"id="281"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_10" style="border: none;" size="12" style="background: transparent;"id="282"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_10" style="border: none;" size="12" style="background: transparent;"id="283"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">200</th>
@@ -652,7 +661,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_8" style="border: none;" size="12" style="background: transparent;"id="285"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_8" style="border: none;" size="12" style="background: transparent;"id="286"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_8" style="border: none;" size="12" style="background: transparent;"id="287"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">150</th>
@@ -661,7 +670,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_6" style="border: none;" size="12" style="background: transparent;"id="289"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_6" style="border: none;" size="12" style="background: transparent;"id="291"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_6" style="border: none;" size="12" style="background: transparent;"id="292"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">101.6</th>
@@ -670,7 +679,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_4" style="border: none;" size="12" style="background: transparent;"id="294"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_4" style="border: none;" size="12" style="background: transparent;"id="295"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_4" style="border: none;" size="12" style="background: transparent;"id="296"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">75</th>
@@ -679,7 +688,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_3" style="border: none;" size="12" style="background: transparent;"id="298"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_3" style="border: none;" size="12" style="background: transparent;"id="299"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_3" style="border: none;" size="12" style="background: transparent;"id="300"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_3" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">50</th>
@@ -688,7 +697,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_2" style="border: none;" size="12" style="background: transparent;"id="306"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_2" style="border: none;" size="12" style="background: transparent;"id="307"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_2" style="border: none;" size="12" style="background: transparent;"id="308"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">37.5</th>
@@ -697,7 +706,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="310"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_1p5" style="border: none;" size="12" style="background: transparent;"id="311"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_1p5" style="border: none;" size="12" style="background: transparent;"id="312"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">25</th>
@@ -706,7 +715,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_1" style="border: none;" size="12" style="background: transparent;"id="314"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_1" style="border: none;" size="12" style="background: transparent;"id="315"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_1" style="border: none;" size="12" style="background: transparent;"id="316"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">19</th>
@@ -715,7 +724,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="318"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_3p4" style="border: none;" size="12" style="background: transparent;"id="319"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_3p4" style="border: none;" size="12" style="background: transparent;"id="320"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_3p4" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">12.5</th>
@@ -724,7 +733,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="332"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_1p2" style="border: none;" size="12" style="background: transparent;"id="333"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_1p2" style="border: none;" size="12" style="background: transparent;"id="334"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_1p2" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">9.5</th>
@@ -733,7 +742,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="336"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_3p8" style="border: none;" size="12" style="background: transparent;"id="337"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_3p8" style="border: none;" size="12" style="background: transparent;"id="338"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_3p8" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <th style="font-size: 15px;" scope="row">4.75</th>
@@ -742,7 +751,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="340"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_No4" style="border: none;" size="12" style="background: transparent;"id="341"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_No4" style="border: none;" size="12" style="background: transparent;"id="342"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_No4" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
            
             <tr>
@@ -752,7 +761,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="352"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_No20" style="border: none;" size="12" style="background: transparent;"id="353"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_No20" style="border: none;" size="12" style="background: transparent;"id="354"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_No20" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>    
     
             <tr>
@@ -762,7 +771,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="372"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Cum_Ret_No200" style="border: none;" size="12" style="background: transparent;"id="373"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Pass_No200" style="border: none;" size="12" style="background: transparent;"id="374"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="Specs_No200" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
@@ -771,7 +780,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Pan_Ret" style="border: none;" size="12" style="background: transparent;"id="376"oninput="calcular()"></td> 
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="377"oninput="calcular()"></td> 
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id="378"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
             <tr>
                 <td><input type="text" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td>
@@ -780,7 +789,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <td><input type="text" name="Gs_Total_Ret" style="border: none;" size="12" style="background: transparent;"id="980"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Total_Cum_Ret" style="border: none;" size="12" style="background: transparent;"id="981"oninput="calcular()"></td> 
                 <td><input type="text" name="Gs_Total_Pass" style="border: none;" size="12" style="background: transparent;"id="982"oninput="calcular()"></td>  
-            <td><input type="text" value="" name="" style="border: none;" size="12" style="background: transparent;"id=""oninput="calcular()"></td> 
+            <td><input type="text" id="" value="" name="" style="border: none;" size="12" style="background: transparent;"></td> 
             </tr>
         </tbody>
     </table>
@@ -852,6 +861,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 </div>
 </div>
+
+<script>
+    function cambiarOpcion() {
+      var select = document.getElementById("opciones");
+      var Specs_40 = document.getElementById("Specs_40");
+      var Specs_12 = document.getElementById("Specs_12");
+      var Specs_3 = document.getElementById("Specs_3");
+      var Specs_3p4 = document.getElementById("Specs_3p4");
+      var Specs_1p2 = document.getElementById("Specs_1p2");
+      var Specs_3p8 = document.getElementById("Specs_3p8");
+      var Specs_No4 = document.getElementById("Specs_No4");
+      var Specs_No20 = document.getElementById("Specs_No20");
+      var Specs_No200 = document.getElementById("Specs_No200");
+      var gs_trf = document.getElementById("gs_trf");
+
+      // Obtén el valor seleccionado
+      var opcionSeleccionada = select.value;
+
+      // Lógica para cambiar el valor del input según la opción seleccionada
+      switch (opcionSeleccionada) {
+        case "RF":
+            Specs_40.value = "100" + Specs_40.value;
+            Specs_12.value = "100" + Specs_12.value;
+            Specs_3.value = "0-100" + Specs_3.value;
+            Specs_1p2.value = "0-30" + Specs_1p2.value;
+            Specs_3p8.value = "0-20" + Specs_3p8.value;
+            Specs_No4.value = "0-12" + Specs_No4.value;
+            Specs_No20.value = "0-5" + Specs_No20.value;
+            Specs_No200.value = "0-3" + Specs_No200.value;
+            gs_trf.id = "gs_rf";
+          break;
+        case "IRF":
+            Specs_40.value = "100" + Specs_40.value;
+            Specs_12.value = "100" + Specs_12.value;
+            Specs_3.value = "0-100" + Specs_3.value;
+            Specs_1p2.value = "0-45" + Specs_1p2.value;
+            Specs_3p8.value = "0-40" + Specs_3p8.value;
+            Specs_No4.value = "0-25" + Specs_No4.value;
+            Specs_No20.value = "0-14" + Specs_No20.value;
+            Specs_No200.value = "0-8" + Specs_No200.value;
+            gs_trf.id = "gs_irf";
+          break;
+        case "UFF":
+            Specs_40.value = "100" + Specs_40.value;
+            Specs_3.value = "40-100" + Specs_3.value;
+            Specs_3p4.value = "25-65" + Specs_3p4.value;
+            Specs_1p2.value = "0-45" + Specs_1p2.value;
+            Specs_No4.value = "20-50" + Specs_No4.value;
+            Specs_No20.value = "12-43" + Specs_No20.value;
+            Specs_No200.value = "10-35" + Specs_No200.value;
+            gs_trf.id = "gs_uff";
+          break;
+        case "FRF":
+          break;
+        default:
+      }
+    }
+  </script>
 
 <script>
     function calcular() {
@@ -1435,39 +1502,30 @@ var Cu = D60 / D10;
     </script>
 
 <script>
-    function enviarData(event) {
-      event.preventDefault()
-      $.ajax({
-        url: "libs/js/GS_TRF.js",
-        type: "POST",
-        data: $("#mxy").serialize(),
-        success: function(data) {
-          $("#resultado").html(data);
-        }
-      });
+  function enviarData(event) {
+    event.preventDefault();
 
+    // Obtén el valor seleccionado
+    var opcionSeleccionada = document.getElementById("opciones").value;
 
-    }
-    $(document).ready(function() {
-    $('#sug_input').keyup(function() {
-      var query = $(this).val();
-      if (query != '') {
-        $.ajax({
-          url: "ajax.php",
-          method: "POST",
-          data: {
-            query: query
-          },
-          success: function(data) {
-            $('#result').html(data);
-          }
-        });
-      } else {
-        $('#result').html('');
+    // Define la URL base
+    var urlBase = "libs/js/";
+
+    // Construye la URL completa según la opción seleccionada
+    var url = urlBase + "GS_" + opcionSeleccionada + ".js";
+
+    // Realiza la solicitud AJAX con la URL construida
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: $("#mxy").serialize(),
+      success: function(data) {
+        $("#resultado").html(data);
       }
     });
-  });
-  </script>
+  }
+</script>
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
