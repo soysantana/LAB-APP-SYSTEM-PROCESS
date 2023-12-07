@@ -822,10 +822,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th style="font-size: 15px;" scope="row">D10 (mm):</th>
                 <td><input type="text" name="D10" style="border: none;" size="4" style="background: transparent; "id="387"oninput="calcularD()"></td>
             </tr>
-            <tr>
-                <th style="font-size: 15px;" scope="row">D15 (mm):</th>
-                <td><input type="text" name="D15" style="border: none;" size="4" style="background: transparent; "id="388"oninput="calcularD()"></td>
-            </tr>
+           
             <tr>
                 <th style="font-size: 15px;" scope="row">D30 (mm):</th>
                 <td><input type="text" name="D30" style="border: none;" size="4" style="background: transparent; "id="389"oninput="calcularD()"></td>
@@ -834,10 +831,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th style="font-size: 15px;" scope="row">D60 (mm):</th>
                 <td><input type="text" name="D60" style="border: none;" size="4" style="background: transparent; "id="390"oninput="calcularD()"></td>
             </tr>
-            <tr>
-                <th style="font-size: 15px;" scope="row">D85 (mm):</th>
-                <td><input type="text" name="D85" style="border: none;" size="4" style="background: transparent; "id="391"oninput="calcularD()"></td>
-            </tr>
+            <
             <tr>
                 <th style="font-size: 15px;" scope="row">Cc:</th>
                 <td><input type="text" name="Cc" style="border: none;" size="4" style="background: transparent; "id="392"oninput="calcularD()"></td>
@@ -1031,7 +1025,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       //correccion por humedad
       var Menor3c = resultadoOtraUnidad1 / (1 + (Amc / 100));
       var TPSS = resultadoOtraUnidad + Menor3c;
-      var ROU1 = resultadoOtraUnidad1;
+      var RUO1 = resultadoOtraUnidad1;
       
       // Calculo de granulometria reducida
     PaLR = PSSR - PLR;
@@ -1098,7 +1092,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       
       //calculo de factore de convercion
-      var factor = (PSSR / TPSS) * 100;
+      var factor = (PSSR / Menor3c) * 100;
       
       // Aplicacion de factor
         
@@ -1266,20 +1260,20 @@ function calcularResultado(lookupValue, valoresX, valoresY) {
 const datos = [
   [cPPn200, 0.075, cPPn20, 0.85],
   [cPPn20, 0.85, cPPn4, 4.75],
-  [cPPn4, 4.750, cPP3p8, 9.50],
-  [cPP3p8, 9.500, cPP1p2, 12.50],
-  [cPP1p2, 12.500, cPP3p4, 19.00],
-  [cPP3p4, 19.000, cPP1, 25.00],
-  [cPP1, 25.000, cPP1p5, 37.50],
-  [cPP1p5, 37.500, cPP2, 50.80],
-  [cPP2, 50.00, cPP3, 75.80],
-  [cPP3, 75.00, cPP4, 100],
-  [cPP4, 100, cPP6, 150.00],
+  [cPPn4, 4.75, cPP3p8, 9.5],
+  [cPP3p8, 9.5, cPP1p2, 12.50],
+  [cPP1p2, 12.5, cPP3p4, 19.00],
+  [cPP3p4, 19, cPP1, 25.00],
+  [cPP1, 25, cPP1p5, 37.5],
+  [cPP1p5, 37.5, cPP2, 50],
+  [cPP2, 50, cPP3, 75],
+  [cPP3, 75, cPP4, 100],
+  [cPP4, 100, cPP6, 150],
   [cPP6, 150, cPP8, 200.0],
   [cPP8, 200, cPP10, 250.00],
   [cPP10, 250, cPP12, 300.00],
   [cPP12, 300, cPP40, 1000],
-  [cPP40, 1000, 100, 0.00],
+  [cPP40, 1000, 0.00, 0.00],
 ];
 
 const d10 = buscarFilaValorAproximado(10, datos, 3);
@@ -1330,7 +1324,7 @@ var Cu = D60 / D10;
       document.getElementById("182").value = Mc3.toFixed(2);
       document.getElementById("183").value = Amc.toFixed(2);
       document.getElementById("184").value = resultadoOtraUnidad.toFixed(2);
-      document.getElementById("185").value = ROU1.toFixed(2);
+      document.getElementById("185").value = RUO1.toFixed(2);
       document.getElementById("186").value = TPSS.toFixed(2);
       document.getElementById("187").value = TPL.toFixed(2);
       document.getElementById("188").value = PPL.toFixed(2);
