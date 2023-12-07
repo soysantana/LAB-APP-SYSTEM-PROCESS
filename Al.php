@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div>
 
-<div class="row">
+<<div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
@@ -38,60 +38,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       <div class="panel-body">
         <form method="post" action="Al.php" onsubmit="calcular()">
+          <div class="col-xs-4">
+            <label>Standard</label>
+            <select class="form-control" name="standard">
+              <option selected>Choose...</option>
+              <option value="ASTM-D4318">ASTM-D4318</option>
+            </select>
+          </div>
+
+          <div class="col-xs-4">
+            <label>Preparation Method</label>
+            <select class="form-control" name="methodpre">
+              <option selected>Choose...</option>
+              <option value="Oven_Dried">Oven Dried</option>
+              <option value="Air_Dried">Air Dried</option>
+              <option value="Microwave_Dried">Microwave Dried</option>
+              <option value="Wet">Wet</option>
+            </select>
+          </div>
+
+          <div class="col-xs-4">
+            <label>Split Method</label>
+            <select class="form-control" name="split">
+              <option selected>Choose...</option>
+              <option value="Manual">Manual</option>
+              <option value="Mechanical">Mechanical</option>
+            </select>
+          </div>
+
+          <div class="col-xs-4">
+            <label>Natural Mc (%):</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="natmc" id="1">
+              <span class="input-group-addon glyphicon glyphicon-search btn btn-default"></span>
+            </div>
+          </div>
+
+          <div class="col-xs-4">
+            <label>Comments</label>
+            <textarea class="form-control" name="comments"></textarea>
+          </div>
+
+          <div class="col-xs-4">
+            <label>Technician</label>
+            <input class="form-control" name="technician" type="text">
+          </div>
+
+          <div class="col-xs-4">
+            <label>Test Start Date</label>
+            <input class="form-control" name="test_start_date" type="date">
+          </div>
+
           <table class="table table-bordered">
-            <thead>
-            <tbody id="product_info"> </tbody>
-            </thead>
+            <!-- Aquí puedes agregar las filas de tu tabla -->
           </table>
-      </div>
-      <div class="col-xs-4">
-        <label>Standard</label>
-        <select class="form-control" name="standard">
-          <option selected>Choose...</option>
-          <option value="ASTM-D4318">ASTM-D4318</option>
-        </select>
-      </div>
-      <div class="col-xs-4">
-        <label>Preparation Method</label>
-        <select class="form-control" name="methodpre">
-          <option selected>Choose...</option>
-          <option value="Oven_Dried">Oven Dried</option>
-          <option value="Air_Dried">Air Dried</option>
-          <option value="Microwave_Dried">Microwave Dried</option>
-          <option value="Wet">Wet</option>
-        </select>
-      </div>
-
-      <div class="col-xs-4">
-        <label>Split Method</label>
-        <select class="form-control" name="split">
-          <option selected>Choose...</option>
-          <option value="Manual">Manual</option>
-          <option value="Mechanical">Mechanical</option>
-        </select>
-      </div>
-
-      <div class="col-xs-4">
-        <label>Natural Mc (%):</label>
-        <input class="form-control" name="natmc" type="text" id="1">
-      </div>
-
-      <div class="col-xs-4">
-        <label>Comments</label>
-        <textarea class="form-control" name="comments"></textarea>
-      </div>
-
-      <div class="col-xs-4">
-        <label>Technician</label>
-        <input class="form-control" name="technician" type="text">
-      </div>
-
-      <div class="col-xs-4">
-        <label>Test Start Date</label>
-        <input class="form-control" name="test_start_date" type="date">
+        </form>
       </div>
 
 
+
+      <div class="panel-body"></div>
       <div class="panel-body"></div>
 
 
@@ -278,6 +284,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               
               </div>
               <td><input type="hidden"  style="border: none;" size="4" style="background: transparent;" id="51.1" name="rsq" oninput="calcular()"></td>
+    
 
 <script>
   function calcular() {
