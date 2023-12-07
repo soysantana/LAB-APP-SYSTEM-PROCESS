@@ -413,14 +413,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <td><input type="text" name="Cum_Ret_6" style="border: none;" size="4" style="background: transparent;"id="85" oninput="calcular()"></td>
           <td><input type="text" name="Pass_6" style="border: none;" size="4" style="background: transparent;"id="86" oninput="calcular()"></td>
         </tr>
-        <tr>
-          <th scope="row">5"</th>
-          <td>127</td>
-          <td><input type="text" name="Wt_Ret_5" style="border: none;" size="4" style="background: transparent;"id="87" oninput="calcular()"></td>
-          <td><input type="text" name="Ret_5" style="border: none;" size="4" style="background: transparent;"id="88" oninput="calcular()"></td>
-          <td><input type="text" name="Cum_Ret_5" style="border: none;" size="4" style="background: transparent;"id="89" oninput="calcular()"></td>
-          <td><input type="text" name="Pass_5" style="border: none;" size="4" style="background: transparent;"id="90" oninput="calcular()"></td>
-        </tr>
+     
         <tr>
           <th scope="row">4"</th>
           <td>101.6</td>
@@ -436,14 +429,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <td><input type="text" name="Ret_3" style="border: none;" size="4" style="background: transparent;"id="96" oninput="calcular()"></td>
           <td><input type="text" name="Cum_Ret_3" style="border: none;" size="4" style="background: transparent;"id="97" oninput="calcular()"></td>
           <td><input type="text" name="Pass_3" style="border: none;" size="4" style="background: transparent;"id="98" oninput="calcular()"></td>
-        </tr>
-        <tr>
-          <th scope="row">2.5"</th>
-          <td>63.50</td>
-          <td><input type="text" name="Wt_Ret_2p5" style="border: none;" size="4" style="background: transparent;"id="99" oninput="calcular()"></td>
-          <td><input type="text" name="Ret_2p5" style="border: none;" size="4" style="background: transparent;"id="100" oninput="calcular()"></td>
-          <td><input type="text" name="Cum_Ret_2p5" style="border: none;" size="4" style="background: transparent;"id="101" oninput="calcular()"></td>
-          <td><input type="text" name="Pass_2p5" style="border: none;" size="4" style="background: transparent;"id="102" oninput="calcular()"></td>
         </tr>
         <tr>
           <th scope="row">2"</th>
@@ -915,6 +900,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          var arf8 = parseFloat(document.getElementById("55").value);
          var arf9 = parseFloat(document.getElementById("59").value);
 
+         var WDST = parseFloat(document.getElementById("62").value);
+         var wtare = parseFloat(document.getElementById("63").value);
+         var wWashed = parseFloat(document.getElementById("65").value);
+         var WR40 = parseFloat(document.getElementById("67").value);
+         var WR12 = parseFloat(document.getElementById("71").value);
+         var WR10 = parseFloat(document.getElementById("75").value);
+         var WR8 = parseFloat(document.getElementById("79").value);
+         var WR6 = parseFloat(document.getElementById("83").value);
+         var WR4 = parseFloat(document.getElementById("91").value);
+         var WR3 = parseFloat(document.getElementById("95").value);
+         var WR2 = parseFloat(document.getElementById("103").value);
+         var WR1p5 = parseFloat(document.getElementById("107").value);
+         var WR1 = parseFloat(document.getElementById("111").value);
+         var WR3p4 = parseFloat(document.getElementById("115").value);
+         var WR1p2 = parseFloat(document.getElementById("119").value);
+         var WR3p8 = parseFloat(document.getElementById("123").value);
+         var WRno4 = parseFloat(document.getElementById("127").value);
+         var WRno10 = parseFloat(document.getElementById("131").value);
+         var WRno16 = parseFloat(document.getElementById("135").value);
+         var WRno20 = parseFloat(document.getElementById("139").value);
+         var WRno50 = parseFloat(document.getElementById("143").value);
+         var WRno60 = parseFloat(document.getElementById("147").value);
+         var WRno100 = parseFloat(document.getElementById("151").value);
+         var WRno140 = parseFloat(document.getElementById("155").value);
+         var WRno200 = parseFloat(document.getElementById("159").value);
+         var WRPAN = parseFloat(document.getElementById("163").value);
+
          var tm1 = parseFloat(document.getElementById("185").value);
          var tm2 = parseFloat(document.getElementById("197").value);
          var tm3 = parseFloat(document.getElementById("209").value);
@@ -1077,12 +1089,133 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       var Dm9 = Math.sqrt((A / B) * (Hm9 / (tm9 * 60))) * 10;
 
       // Determinacion de granulometria.
-      var valores = [];
-    for (var i = 67; i <=170; i++) {
-      valores.push(parseFloat(document.getElementById(i.toString()).value || 0));
-    }
+    
+
+// Calculando
+var WDS = WDST - wtare;
+var WWpan = WDS - wWashed;
+//Tamiz 40 pulgadas
+   var PWR40 = (WR40/WDS)*100;
+    var PC40 = PWR40+0;
+    var PP40 = 100-PC40;
+
+//Tamiz 12 pulgadas
+    var PWR12 = (WR12/WDS)*100;
+    var PC12 = PWR12+ PC40;
+    var PP12 = 100-PC12;
+
+//Tamiz 10 pulgadas
+    var PWR10 = (WR10/WDS)*100;
+    var PC10 = PWR10+ PC12;
+    var PP10 = 100-PC10;
+
+//Tamiz 8 pulgadas
+   var PWR8 = (WR8/WDS)*100;
+    var PC8 = PWR8+ PC10;
+    var PP8 = 100-PC8;
+
+//Tamiz 6 pulgadas
+    var PWR6 = (WR6/WDS)*100;
+    var PC6 = PWR6+ PC8;
+    var PP6 = 100-PC6;
+
+//Tamiz 4 pulgadas
+    var PWR4 = (WR4/WDS)*100;
+    var PC4 = PWR4+ PC6;
+    var PP4 = 100-PC4;
 
 
+
+//Tamiz 3 pulgadas
+    var PWR3 = (WR3/WDS)*100;
+    var PC3 = PWR3+ PC4;
+    var PP3 = 100-PC3;
+
+    //Tamiz 2 pulgadas
+    var PWR2 = (WR2/WDS)*100;
+    var PC2 = PWR2+ PC3;
+    var PP2 = 100-PC2;
+
+    //Tamiz 1.5 pulgadas
+    var PWR1p5 = (WR1p5/WDS)*100;
+    var PC1p5 = PWR1p5+ PC2;
+    var PP1p5 = 100-PC1p5;
+
+    //Tamiz 1 pulgadas
+    var PWR1 = (WR1/WDS)*100;
+    var PC1 = PWR1+ PC1p5;
+    var PP1 = 100-PC1;
+
+    //Tamiz 3p4 pulgadas
+    var PWR3p4 = (WR3p4/WDS)*100;
+    var PC3p4 = PWR3p4+ PC1;
+    var PP3p4 = 100-PC3p4;
+  
+    //Tamiz 1p2 pulgadas
+    var PWR1p2 = (WR1p2/WDS)*100;
+    var PC1p2 = PWR1p2+ PC3p4;
+    var PP1p2 = 100-PC1p2;
+
+    //Tamiz 3p8 pulgadas
+    var PWR3p8 = (W3p82/WDS)*100;
+    var PC3p8 = PW3p82+ PC1p2;
+    var PP3p8 = 100-PC3p8;
+    
+  
+      //Tamiz No4
+    var PWRno4 = (WRno4/WDS)*100;
+    var PCno4 = PWRno4+ PC3p8;
+    var PPno4 = 100-PCno4;
+
+      //Tamiz No10
+    var PWRno10 = (WRno10/WDS)*100;
+    var PCno10 = PWRno10+ PCno4;
+    var PPno10 = 100-PCno10;
+
+      //Tamiz No16
+    var PWRno16 = (WRno16/WDS)*100;
+    var PCno16 = PWRno16+ PCno10;
+    var PPno16 = 100-PCno16;
+
+      //Tamiz No20
+    var PWRno20 = (WRno20/WDS)*100;
+    var PCno20 = PWRno20+ PCno16;
+    var PPno20= 100-PCno20;
+
+      //Tamiz No50
+    var PWRno50 = (WRno50/WDS)*100;
+    var PCno50 = PWRno50+ PCno20;
+    var PPno50= 100-PCno50;
+  
+      //Tamiz No60
+    var PWRno60 = (WRno60/WDS)*100;
+    var PCno60 = PWRno60+ PCno50;
+    var PPno60= 100-PCno60;
+  
+      //Tamiz No100
+    var PWRno100 = (WRno100/WDS)*100;
+    var PCno100 = PWRno100+ PCno60;
+    var PPno100= 100-PCno100;
+
+      //Tamiz No140
+    var PWRno140 = (WRno140/WDS)*100;
+    var PCno140 = PWRno140+ PCno100;
+    var PPno140= 100-PCno140;
+      
+
+      //Tamiz No200
+    var PWRno200 = (WRno200/WDS)*100;
+    var PCno200 = PWRno200+ PCno140;
+    var PPno200= 100-PCno200;
+      
+        // Pan
+        var PRpan = (WRPAN / WDS) * 100;
+  
+  // Total Pan
+  var WRTP = WRPAN + WWpan;
+  var PRTP = (WRTP / WDS) * 100;
+  var CPRTP = PRTP + PCno200;
+  var PPTP = 100 - CPRTP;
 
 
       //pasamos resultados a los inputs.
