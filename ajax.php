@@ -40,11 +40,11 @@
           $html .= "<tr>";
             $html  .= "<td>"; 
             $html .= "<label for='sampleid'>Sample ID:</label>";
-            $html  .= "<input type=\"text\" class=\"form-control\"  name=\"sampleid\" value=\"{$result['Sample_ID']}\">";
+            $html  .= "<input type=\"text\" class=\"form-control\"  name=\"sampleid\" id=\"sample_id\" value=\"{$result['Sample_ID']}\">";
             $html  .= "</td>";
             $html  .= "<td>"; 
               $html .= "<label for='samplenumber'>Sample Number:</label>";
-              $html  .= "<input type=\"text\" class=\"form-control\"  name=\"samplenumber\" value=\"{$result['Sample_Number']}\">";
+              $html  .= "<input type=\"text\" class=\"form-control\"  name=\"samplenumber\" id=\"sample_number\" value=\"{$result['Sample_Number']}\">";
               $html  .= "</td>";
             $html  .= "<td>";
             $html .= "<label for='structure'>Structure:</label>";

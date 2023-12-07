@@ -80,12 +80,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <div class="col-xs-4">
     <label>Natural Mc (%):</label>
-    <input class="form-control" name="Nmc" type="text" value="" id="1">   
+    <div class="input-group">
+    <input type="text" class="form-control" name="Nmc" id="1">
+    <span class="input-group-addon glyphicon glyphicon-search btn btn-default" onclick="search()"></span>
+    </div>
     </div>
 
     <div class="col-xs-4">
         <label>Specific Gravity:</label>
-        <input class="form-control" name="natmc" type="text" value="" id="1.1">   
+        <input class="form-control" name="natmc" type="text" value="" id="98" onclick="search()">   
         </div>
     <div class="col-xs-4">
     <label>Comments</label>
@@ -315,13 +318,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         oversize fractions ωT (%)</th>
     <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="102" name="Corrected_Water_Content_Finer" oninput="calcular()"></td>
 
+
+    <script>
+        function search() {
+            var sampleId = $('#sample_id').val();
+            var sampleNumber = $('#sample_number').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'Ajax-Mc.php',
+                data: { sample_id: sampleId, sample_number: sampleNumber },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#1').val(response.mc_value);
+                        $('#98').val(response.sg_value);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Error en la solicitud AJAX.');
+                }
+            });
+        }
+    </script>
+
+
     <script>
 function calcular() {
     //declaro todas mis variables.
 
     //variables de otro ensayo.
     var Nmc = parseFloat(document.getElementById("1").value);
-    var SG = parseFloat(document.getElementById("1.1").value);
+    var SG = parseFloat(document.getElementById("98").value);
 
     //variables del peso del material humedo mas el molde de cada punto.
     var Wwsm1 = parseFloat(document.getElementById("2").value);

@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   require_once('db/AtterbergLimit.php'); 
 }
 ?>
+
 <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div>
 
-<<div class="row">
+<div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
@@ -70,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label>Natural Mc (%):</label>
             <div class="input-group">
               <input type="text" class="form-control" name="natmc" id="1">
-              <span class="input-group-addon glyphicon glyphicon-search btn btn-default"></span>
+              <span class="input-group-addon glyphicon glyphicon-search btn btn-default" onclick="search()"></span>
             </div>
           </div>
 
@@ -90,9 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
           <table class="table table-bordered">
-            <!-- Aquí puedes agregar las filas de tu tabla -->
+            <thead>
+              <tbody id="product_info"></tbody>
+            </thead>
           </table>
-        </form>
+        
       </div>
 
 
@@ -284,6 +287,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               
               </div>
               <td><input type="hidden"  style="border: none;" size="4" style="background: transparent;" id="51.1" name="rsq" oninput="calcular()"></td>
+
+
+
+    <script>
+        function search() {
+            var sampleId = $('#sample_id').val();
+            var sampleNumber = $('#sample_number').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'Ajax-Mc.php',
+                data: { sample_id: sampleId, sample_number: sampleNumber },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#1').val(response.mc_value);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Error en la solicitud AJAX.');
+                }
+            });
+        }
+    </script>
     
 
 <script>

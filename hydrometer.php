@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <caption>Atterber Limit Results</caption>
 <tbody>
 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Liquid Limit (%)</th>
-<td><input type="text" name="Liquid_Limit_Porce" style="border: none;" size="4" style="background: transparent;" id="10" oninput="calcular()"></td>
+<td><input type="text" name="Liquid_Limit_Porce" style="border: none;" size="4" style="background: transparent;" id="10" oninput="calcular()" onclick="search()"></td>
 </tr>
 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Plasticity Index (%)</th>
 <td><input type="text" name="Plasticity_Index_Porce" style="border: none;" size="4" style="background: transparent;" id="11" oninput="calcular()"></td>
@@ -809,6 +809,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 </div>
                 </div>
+
+
+<script>
+    function search() {
+        var sampleId = $('#sample_id').val();
+        var sampleNumber = $('#sample_number').val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'Ajax-Mc.php',
+            data: { sample_id: sampleId, sample_number: sampleNumber },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    $('#12').val(response.sg_value);
+                    $('#10').val(response.LLporce);
+                    $('#11').val(response.PLindex);
+                    $('#67').val(response.Wt40);
+                    $('#71').val(response.Wt12);
+                    $('#75').val(response.Wt10);
+                    $('#79').val(response.Wt8);
+                    $('#83').val(response.Wt6);
+                    $('#87').val(response.Wt5);
+                    $('#91').val(response.Wt4);
+                    $('#95').val(response.Wt3);
+                    $('#99').val(response.Wt2p5);
+                    $('#103').val(response.Wt2);
+                    $('#107').val(response.Wt1p5);
+                    $('#111').val(response.Wt1);
+                    $('#115').val(response.Wt3p4);
+                    $('#119').val(response.Wt1p2);
+                    $('#123').val(response.Wt3p8);
+                    $('#127').val(response.Wtn4);
+                    $('#131').val(response.Wtn10);
+                    $('#135').val(response.Wtn16);
+                    $('#139').val(response.Wtn20);
+                    $('#143').val(response.Wtn50);
+                    $('#147').val(response.Wtn60);
+                    $('#151').val(response.Wtn100);
+                    $('#155').val(response.Wtn140);
+                    $('#159').val(response.Wtn200);
+                    $('#163').val(response.Wtpan);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Error en la solicitud AJAX.');
+            }
+        });
+    }
+</script>
+
+
+
 
       <script>
         function calcular() {
