@@ -1,17 +1,29 @@
-<?php
 
-$spreadsheet = require_once __DIR__.'/libs/PhpSpreadsheet/src/PhpSpreadsheet/Spreadsheet.php';
+<?php
+// Incluir el autoloader de PHPSpreadsheet
+require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-
-// Crear una nueva instancia de Spreadsheet
+// Crear una instancia de Spreadsheet
 $spreadsheet = new Spreadsheet();
 
-// ... Trabaja con la hoja de cálculo ...
+// Obtener la hoja activa del libro de trabajo
+$sheet = $spreadsheet->getActiveSheet();
 
-// Guardar el archivo de Excel en formato xlsx
+// Escribir datos en celdas
+$sheet->setCellValue('A1', 'Hola');
+$sheet->setCellValue('B1', 'Mundo');
+
+// Crear un objeto Writer (Escritor) para guardar el archivo
 $writer = new Xlsx($spreadsheet);
-$writer->save('hola-mundo.xlsx');
 
+// Definir la ruta donde se guardará el archivo
+$filePath = 'ruta/donde/guardar/archivo.xlsx'; // Reemplaza con tu ruta y nombre de archivo
+
+// Guardar el archivo
+$writer->save($filePath);
+
+echo "Archivo Excel creado correctamente en: $filePath";
 ?>
