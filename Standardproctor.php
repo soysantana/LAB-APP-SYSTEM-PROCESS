@@ -635,6 +635,7 @@ var densidadesSecasC = [DD1C, DD2C, DD3C, DD4C, DD5C, DD6C];
 
 <div id="standard_proctor" style="height: 600px; width: 1070px;"></div>
 
+
 <button type="submit" name="Standardproctor" class="btn btn-danger">Registrar ensayo</button>
 <button type="submit" name="grafico" class="btn btn-primary" onclick="enviarData(event)">Graficar</button>
 </form>
