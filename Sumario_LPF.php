@@ -3,11 +3,11 @@
 require 'js/vendor/autoload.php';
 require_once('includes/load.php');
 
-$SeachLimit = find_by_sql("SELECT * FROM atterberg_limit ORDER BY Sample_Date ASC");
-$SeachMoisture = find_by_sql("SELECT * FROM moisture_content ORDER BY Sample_Date ASC");
-$SeachGrainsize = find_by_sql("SELECT * FROM grain_size ORDER BY Sample_Date ASC");
-$SeachProctor = find_by_sql("SELECT * FROM standard_proctor ORDER BY Sample_Date ASC");
-$SeachGravityAbsortion = find_by_sql("SELECT * FROM specific_gravity_absortion ORDER BY Sample_Date ASC");
+$SeachLimit = find_by_sql("SELECT * FROM atterberg_limit WHERE Material_Type = 'LPF' ORDER BY Sample_Date ASC");
+$SeachMoisture = find_by_sql("SELECT * FROM moisture_content WHERE Material_Type = 'LPF' ORDER BY Sample_Date ASC");
+$SeachGrainsize = find_by_sql("SELECT * FROM grain_size WHERE Material_Type = 'LPF' ORDER BY Sample_Date ASC");
+$SeachProctor = find_by_sql("SELECT * FROM standard_proctor WHERE Material_Type = 'LPF' ORDER BY Sample_Date ASC");
+$SeachGravityAbsortion = find_by_sql("SELECT * FROM specific_gravity_absortion WHERE Material_Type = 'LPF' ORDER BY Sample_Date ASC");
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
