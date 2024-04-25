@@ -24,7 +24,7 @@ page_require_level(3);
                         die("Error de conexión a la base de datos: " . mysqli_connect_error());
                     }
 
-                    $fechaLimite = date('Y-m-d H:i:s', strtotime('-50 days'));
+                    $fechaLimite = date('Y-m-d H:i:s', strtotime('-7 days'));
 
                     // Array con los nombres de las tablas deseadas
                     $tablas = array('moisture_content', 'grain_size', 'atterberg_limit', 'standard_proctor', 

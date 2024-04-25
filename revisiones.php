@@ -1,9 +1,7 @@
 <?php
 // Verifica si se reciben los parámetros necesarios en la URL
-if (isset($_GET['sampleid']) && isset($_GET['id']) && isset($_GET['samplenumber']) && isset($_GET['test_type'])) {
-    $sample_id = $_GET['sampleid'];
+if (isset($_GET['id']) && isset($_GET['test_type'])) {
     $id = $_GET['id'];
-    $sample_number = $_GET['samplenumber'];
     $test_type = $_GET['test_type'];
 
     // Determina la página de detalles según el tipo de ensayo
