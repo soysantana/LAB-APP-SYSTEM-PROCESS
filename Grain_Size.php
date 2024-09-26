@@ -417,6 +417,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </tr>
       </tbody>
     </table>
+<tr>
+    <td><input type="text" style="border: none;" size="4" style="background: transparent;"id="resultado" name="resultado" oninput="calcular()"></td>
+</tr>
 </div>
 
 
@@ -542,7 +545,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var TPCP = PCNo200 + TPPR;
     var TPPP = 100-TPCP;
     
-    
+    var suma = valores [5];
     
     var pasante3;
   
@@ -624,6 +627,20 @@ var d85 = calcularDiametro(85)||0;
 var Cc = (Math.pow(d30, 2) / (d60 * d10))||0;
 var Cu = (d60 / d10)||0;
 
+
+var revision = [];
+// Iniciar el bucle desde 5, e incrementar en 4 hasta 111
+for (var i = 10; i <= 97; i += 4) {
+    revision.push(parseFloat(document.getElementById(i.toString()).value || 0));
+}
+
+// Sumar los valores seleccionados
+var suma = revision.reduce((total, valor) => total + valor, 0);
+
+
+
+
+ 
 //pasamos los valores a los inputs
   document.getElementById("5").value = WDS.toFixed(2);
   document.getElementById("7").value = WWpan.toFixed(2);
@@ -744,8 +761,8 @@ var Cu = (d60 / d10)||0;
   document.getElementById("122").value = Cu.toFixed(2);
   
 
-
-
+  document.getElementById("resultado").value =  suma.toFixed(2);
+ 
 
 
  }

@@ -42,20 +42,51 @@ $lab_req_form = join_lab_test_requisition_form();
               <th class="text-center" style="width: 50px">#</th>
               <th>ID de Muestras</th>
               <th>Numero de Muestras</th>
+              <th class="text-center" style="width: 150px">Progreso de Ensayos</th>
               <th class="text-center" style="width: 100px">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($lab_req_form as $lab_req_id):?>
+            <?php foreach ($lab_req_form as $lab_req_id):
+              // Contar ensayos solicitados y entregados
+              $total_ensayos_solicitados = 0;
+              $total_ensayos_entregados = 0;
+
+              for ($i = 1; $i <= 19; $i++) {
+                $column_name = 'Test_Type' . $i;
+                if (isset($lab_req_id[$column_name]) && !empty($lab_req_id[$column_name])) {
+                  $total_ensayos_solicitados++;
+                  // Verificar si el ensayo ha sido entregado
+                  $query = "SELECT COUNT(*) AS entregado FROM ensayo_en_entrega WHERE Sample_ID = '{$lab_req_id['Sample_ID']}' AND Test_Type = '{$lab_req_id[$column_name]}'";
+                  $result = $db->query($query);
+                  $row = $result->fetch_assoc();
+                  if ($row['entregado'] > 0) {
+                    $total_ensayos_entregados++;
+                  }
+                }
+              }
+
+              // Calcular el porcentaje de ensayos entregados
+              $porcentaje_entregado = ($total_ensayos_solicitados > 0) ? ($total_ensayos_entregados / $total_ensayos_solicitados) * 100 : 0;
+            ?>
             <tr>
-              <td class="text-center"><?php echo count_id();?></td>
+              <td class="text-center"><?php echo count_id(); ?></td>
               <td class="text-center"><?php echo remove_junk($lab_req_id['Sample_ID']); ?></td>
               <td class="text-center"><?php echo remove_junk($lab_req_id['Sample_Number']); ?></td>
+              <td class="text-center">
+                <span>Total Solicitados: <?php echo $total_ensayos_solicitados; ?></span><br>
+                <span>Total Entregados: <?php echo $total_ensayos_entregados; ?></span><br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: <?php echo $porcentaje_entregado; ?>%;" aria-valuenow="<?php echo $porcentaje_entregado; ?>" aria-valuemin="0" aria-valuemax="100">
+                    <?php echo round($porcentaje_entregado, 2); ?>%
+                  </div>
+                </div>
+              </td>
               <td class="text-center">
                 <div class="btn-group">
                   <a
                     class="btn btn-warning btn-xs"
-                    title="Editar"
+                    title="Ver Detalles"
                     data-toggle="modal"
                     data-target="#basicModal_<?php echo $lab_req_id['id']; ?>"
                   >
@@ -111,7 +142,7 @@ $lab_req_form = join_lab_test_requisition_form();
                     </ul>
 
                     <h3>Fecha de muestreo: <?php echo remove_junk($lab_req_id['Sample_Date']); ?></h3>
-                    <h3>Fecha de registo: <?php echo remove_junk($lab_req_id['Registed_Date']); ?></h3>
+                    <h3>Fecha de registro: <?php echo remove_junk($lab_req_id['Registed_Date']); ?></h3>
                     <h3>Registrado por: <?php echo remove_junk($lab_req_id['Register_By']); ?></h3>
                   </div>
                 </div>
@@ -147,8 +178,6 @@ $lab_req_form = join_lab_test_requisition_form();
   });
 </script>
 
-
-
 <style>
     .modal-body h3 {
         font-size: 18px;
@@ -180,38 +209,15 @@ $lab_req_form = join_lab_test_requisition_form();
     }
 
     .modal-header {
-      background-color: blanchedalmond;
-        color: black;
-        border-bottom: 1px solid #ddd;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px 5px 0 0;
+      text-align: center;
     }
 
-    .modal-header h4 {
+    .modal-title {
+        font-size: 24px;
         margin: 0;
-    }
-
-    .btn-primary {
-        background-color: #337ab7;
-        color: #fff;
-        border: 1px solid #337ab7;
-    }
-
-    .btn-primary:hover {
-        background-color: #286090;
-        border: 1px solid #286090;
-    }
-
-    /* Estilos adicionales para el botón de cierre */
-    .close {
-        font-size: 30px;
-        color: red;
-        position: relative;
-        top: -10px; /* Ajusta la posición superior según sea necesario */
-        opacity: 10;
-    }
-
-    .close:hover {
-        color: #fff;
-        opacity: 0.8;
     }
 </style>
 
