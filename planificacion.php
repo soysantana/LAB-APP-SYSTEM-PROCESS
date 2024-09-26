@@ -145,7 +145,6 @@ $resulEventos = mysqli_query($con, $SqlEventos);
                 },
             });
 
-            // Oculta mensajes de Notificación
             setTimeout(function () {
                 $(".alert").slideUp(300);
             }, 3000);

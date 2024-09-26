@@ -90,13 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="MoistureContentBeforeTestMCPorce" id="2" oninput="calcular()"></td>
                 </tr>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Specific Gravity (Estimated or Measured)</th>
-                  <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="SpecificGravityEstimatedorMeasured" id="3" oninput="calcular()"></td>
+                  <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="SpecificGravityEstimatedorMeasured" id="3" oninput="calcular()" onclick="search()"></td>
                 </tr>
                 <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Max Dry Density (g/cm3)</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="MaxDryDensitygcm3" id="4" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="MaxDryDensitygcm3" id="4" oninput="calcular()" ></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Optimum Moisture Content (%)</th>
-                <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="OptimumMoistureContentPorce" id="5" oninput="calcular()"></td>
+                <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="OptimumMoistureContentPorce" id="5" oninput="calcular()" ></td>
               </tr>
               <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">Wt Wet Soil + Mold (gr)</th>
                 <td><input type="text" style="border: none;" size="10" style="background: transparent;" name="WtWetSoilMoldgr" id="6" oninput="calcular()"></td>
@@ -538,6 +538,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </form>
         </div>
       </div>
+
+
+      <script>
+        function search() {
+            var sampleId = $('#sample_id').val();
+            var sampleNumber = $('#sample_number').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'Ajax-Mc.php',
+                data: { sample_id: sampleId, sample_number: sampleNumber },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#3').val(response.sg_value);
+                        $('#4').val(response.max_density);
+                        $('#5').val(response.optimum_mc);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Error en la solicitud AJAX.');
+                }
+            });
+        }
+    </script>
 
       <script>
         document.getElementById("fileToUpload").onchange = function(e) {   

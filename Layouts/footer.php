@@ -28,6 +28,7 @@
 <script src="libs/js/liquid_limit_plot.js"></script>
 <script src="libs/js/plasticity_chart.js"></script>
 <script src="libs/js/consolidation.js"></script>
+<script src="libs/js/sp_graph.js"></script>
 
 </body>
 </html>

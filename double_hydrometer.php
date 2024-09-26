@@ -186,7 +186,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <caption>Specific Gravity</caption>
                   <tbody>
                   <th style="font-size: 15px;" style="width: 350px; height: 25px;" scope="row">SG</th>
-                    <td><input type="text" name="Specific_Gravity" style="border: none;" size="4" style="background: transparent;" id="12" oninput="calcular()"></td>
+                    <td>
+                    <div class="input-group">
+                    <input type="text" class="form-control" name="Specific_Gravity" size="4" style="background: transparent;" id="12" oninput="calcular()">
+                    <span class="input-group-addon glyphicon glyphicon-search btn btn-default" onclick="search()"></span>
+                    </div>
+                  </td>
                   </tr>
                   </tbody>
                 </table>
@@ -664,6 +669,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 </div>
                 </div>
+
+
+   <script>
+        function search() {
+            var sampleId = $('#sample_id').val();
+            var sampleNumber = $('#sample_number').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'Ajax-Mc.php',
+                data: { sample_id: sampleId, sample_number: sampleNumber },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#12').val(response.sg_value);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Error en la solicitud AJAX.');
+                }
+            });
+        }
+    </script>
 
 
               <script>
