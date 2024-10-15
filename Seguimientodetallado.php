@@ -108,16 +108,17 @@ $lab_req_form = join_lab_test_requisition_form();
                                 <td class="text-center"><?php echo remove_junk($lab_req_id['Sample_Number']); ?></td>
 
                                 <?php for ($i = 1; $i <= 20; $i++): ?>
-                                    <td class="text-center">
-                                        <?php if ($test_status[$i] === 'entregado'): ?>
-                                            <i class="fas fa-check text-primary"></i> <!-- Cotejo azul -->
-                                        <?php elseif ($test_status[$i] === 'no_entregado'): ?>
-                                            <i class="fas fa-times text-danger"></i> <!-- X roja -->
-                                        <?php else: ?>
-                                            <i class=""></i> <!-- Sin test -->
-                                        <?php endif; ?>
-                                    </td>
-                                <?php endfor; ?>
+    <td class="text-center">
+        <?php if ($test_status[$i] === 'entregado'): ?>
+            <i class="fas fa-check text-primary fa-2x"></i> <!-- Cotejo azul -->
+        <?php elseif ($test_status[$i] === 'no_entregado'): ?>
+            <i class="fas fa-times text-danger fa-2x"></i> <!-- X roja -->
+        <?php else: ?>
+            <i class=""></i> <!-- Sin test -->
+        <?php endif; ?>
+    </td>
+<?php endfor; ?>
+
 
                                 <td class="text-center"><?php echo $total_ensayos_solicitados; ?></td>
                                 <td class="text-center"><?php echo $total_ensayos_entregados; ?></td>
