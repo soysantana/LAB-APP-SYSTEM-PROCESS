@@ -43,6 +43,9 @@
           <a class="nav-link glyphicon glyphicon-calendar" href="planificacion.php" style="font-size: 17px;"> Planificacion Semanal</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link glyphicon glyphicon-tasks" href="seguimientodetallado.php" style="font-size: 17px;"> Seguimiento a Detalle</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link glyphicon glyphicon-registration-mark" href="menuEnsayosRevision.php" style="font-size: 17px;"> Ensayos en Revision</a>
         </li>
         <li class="nav-item">
